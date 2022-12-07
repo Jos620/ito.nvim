@@ -62,3 +62,23 @@ typescript.setup({
   }
 })
 
+-- Lua 
+lspconfig["sumneko_lua"].setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      -- Add global "vim" 
+      diagnostics = {
+        globals = { "vim" },
+      },
+      -- Add runtime files
+      workspace = {
+        library = {
+          [fn.expand("$VIMRUNTIME/lua")] = true,
+          [fn.stdpath("config") .. "/lua"] = true,
+        },
+      },
+    },
+  },
+})
