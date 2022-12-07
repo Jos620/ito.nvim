@@ -53,6 +53,13 @@ return packer.startup(function(use)
   -- Comments 
   use "numToStr/Comment.nvim"
 
+  -- Fuzzy finder 
+  use { "nvim-telescope/telescope.nvim", branch = "0.1.x" }
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+
+  -- Dependencies
+  use("nvim-lua/plenary.nvim")
+
   if packer_bootstrap then
     packer.sync()
   end

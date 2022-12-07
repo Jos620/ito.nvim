@@ -44,3 +44,10 @@ set("n", "-", "<C-x>")
 
 -- File tree
 set("n", "<Leader>e", ":NvimTreeToggle<Return>", { silent = true })
+
+-- Telescope
+set("n", "<Leader>ff", ":Telescope find_files<Return>", { silent = true })
+set("n", "<Leader>fg", ":Telescope live_grep<Return>", { silent = true })
+set("n", "<Leader>fs", ":Telescope grep_string<Return>", { silent = true })
+set("n", "<Leader>fb", ":Telescope buffers<Return>", { silent = true })
+set("n", "<Leader>fo", ":Telescope oldfiles<Return>", { silent = true })
