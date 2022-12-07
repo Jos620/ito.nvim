@@ -32,6 +32,9 @@ return packer.startup(function(use)
   -- Theme
   use("bluz71/vim-nightfly-guicolors")
 
+  -- Status Line
+  use("nvim-lualine/lualine.nvim")
+
   if packer_bootstrap then
     packer.sync()
   end
