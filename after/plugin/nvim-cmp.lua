@@ -4,6 +4,9 @@ if not cmp_status then return end
 local luasnip_status, luasnip = pcall(require, "luasnip")
 if not luasnip_status then return end
 
+local lspkind_status, lspkind = pcall(require, "lspkind")
+if not lspkind_status then return end
+
 require("luasnip/loaders/from_vscode").lazy_load()
 
 vim.opt.completeopt = "menu,menuone,noselect"
@@ -35,9 +38,17 @@ cmp.setup({
   }),
 
   sources = cmp.config.sources({
+    { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
   }),
+
+  formatting = {
+    format = lspkind.cmp_format({
+      maxwidth = 50,
+      ellipsis_char = "...",
+    }),
+  },
 })
 
