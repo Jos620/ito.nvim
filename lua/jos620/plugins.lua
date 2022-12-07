@@ -46,6 +46,9 @@ return packer.startup(function(use)
   -- Navigation
   use("justinmk/vim-sneak")
 
+  -- Comments 
+  use "numToStr/Comment.nvim"
+
   if packer_bootstrap then
     packer.sync()
   end
