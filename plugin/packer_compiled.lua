@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/home/jos620/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors",
     url = "https://github.com/bluz71/vim-nightfly-guicolors"
   },
+  ["vim-sneak"] = {
+    loaded = true,
+    path = "/home/jos620/.local/share/nvim/site/pack/packer/start/vim-sneak",
+    url = "https://github.com/justinmk/vim-sneak"
+  },
   ["vim-surround"] = {
     loaded = true,
     path = "/home/jos620/.local/share/nvim/site/pack/packer/start/vim-surround",

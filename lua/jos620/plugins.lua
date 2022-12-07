@@ -43,6 +43,9 @@ return packer.startup(function(use)
   use("windwp/nvim-autopairs")
   use("tpope/vim-surround")
 
+  -- Navigation
+  use("justinmk/vim-sneak")
+
   if packer_bootstrap then
     packer.sync()
   end
