@@ -42,3 +42,5 @@ set("n", "H", ":tabp<Return>", { silent = true })
 set("n", "=", "<C-a>")
 set("n", "-", "<C-x>")
 
+-- File tree
+set("n", "<Leader>e", ":NvimTreeToggle<Return>", { silent = true })

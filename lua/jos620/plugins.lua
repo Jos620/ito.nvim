@@ -31,9 +31,13 @@ return packer.startup(function(use)
 
   -- Theme
   use("bluz71/vim-nightfly-guicolors")
+  use("nvim-tree/nvim-web-devicons")
 
   -- Status Line
   use("nvim-lualine/lualine.nvim")
+
+  -- File tree
+  use("nvim-tree/nvim-tree.lua")
 
   -- Window management
   use("christoomey/vim-tmux-navigator")
