@@ -35,6 +35,10 @@ return packer.startup(function(use)
   -- Status Line
   use("nvim-lualine/lualine.nvim")
 
+  -- Window management
+  use("christoomey/vim-tmux-navigator")
+  use("szw/vim-maximizer")
+
   if packer_bootstrap then
     packer.sync()
   end

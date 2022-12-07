@@ -30,6 +30,8 @@ set("n", "<C-down>", "<C-w>-")
 set("n", "<C-right>", "<C-w>>")
 set("n", "<C-left>", "<C-w><")
 
+set("n", "<C-\\>", ":MaximizerToggle<Return>", { silent = true })
+
 -- Tabs
 set("n", "<Leader>t", ":tabnew<Return>", { silent = true })
 set("n", "<Leader>x", ":tabclose<Return>", { silent = true })
