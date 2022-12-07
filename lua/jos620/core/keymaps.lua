@@ -31,8 +31,12 @@ set("n", "<C-right>", "<C-w>>")
 set("n", "<C-left>", "<C-w><")
 
 -- Tabs
-set("n", "<C-t>", ":tabnew<Return>", { silent = true })
-set("n", "<C-x>", ":tabclose<Return>", { silent = true })
+set("n", "<Leader>t", ":tabnew<Return>", { silent = true })
+set("n", "<Leader>x", ":tabclose<Return>", { silent = true })
 set("n", "L", ":tabn<Return>", { silent = true })
 set("n", "H", ":tabp<Return>", { silent = true })
+
+-- Increase / decrease
+set("n", "=", "<C-a>")
+set("n", "-", "<C-x>")
 
