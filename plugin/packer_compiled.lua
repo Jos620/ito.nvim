@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/jos620/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/home/jos620/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/jos620/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -93,6 +98,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jos620/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors",
     url = "https://github.com/bluz71/vim-nightfly-guicolors"
+  },
+  ["vim-surround"] = {
+    loaded = true,
+    path = "/home/jos620/.local/share/nvim/site/pack/packer/start/vim-surround",
+    url = "https://github.com/tpope/vim-surround"
   },
   ["vim-tmux-navigator"] = {
     loaded = true,

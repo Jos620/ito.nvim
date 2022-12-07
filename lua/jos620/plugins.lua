@@ -39,6 +39,10 @@ return packer.startup(function(use)
   use("christoomey/vim-tmux-navigator")
   use("szw/vim-maximizer")
 
+  -- Surrounds / Pairs
+  use("windwp/nvim-autopairs")
+  use("tpope/vim-surround")
+
   if packer_bootstrap then
     packer.sync()
   end
