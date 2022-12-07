@@ -29,6 +29,9 @@ if not status then return end
 return packer.startup(function(use)
   use("wbthomason/packer.nvim")
 
+  -- Theme
+  use("bluz71/vim-nightfly-guicolors")
+
   if packer_bootstrap then
     packer.sync()
   end

@@ -78,6 +78,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jos620/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  ["vim-nightfly-guicolors"] = {
+    loaded = true,
+    path = "/home/jos620/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors",
+    url = "https://github.com/bluz71/vim-nightfly-guicolors"
   }
 }
 
