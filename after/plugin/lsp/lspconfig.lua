@@ -32,3 +32,21 @@ end
 
 -- Enable auto completion 
 local capabilities = cmp_nvim_lsp.default_capabilities()
+
+-- HTML 
+lspconfig["html"].setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
+-- CSS 
+lspconfig["cssls"].setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
+-- TailWindCSS 
+lspconfig["tailwindcss"].setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
