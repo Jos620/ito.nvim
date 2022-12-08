@@ -76,6 +76,10 @@ return packer.startup(function(use)
   use "onsails/lspkind.nvim"
   use { "glepnir/lspsaga.nvim", branch = "main" }
 
+  -- Formatting & linting
+  use "jose-elias-alvarez/null-ls.nvim"
+  use "jayp0521/mason-null-ls.nvim"
+
   -- Dependencies
   use("nvim-lua/plenary.nvim")
 
