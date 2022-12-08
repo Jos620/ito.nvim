@@ -1,11 +1,17 @@
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status then return end
+if not lspconfig_status then
+  return
+end
 
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not cmp_nvim_lsp_status then return end
+if not cmp_nvim_lsp_status then
+  return
+end
 
 local typescript_status, typescript = pcall(require, "typescript")
-if not typescript_status then return end
+if not typescript_status then
+  return
+end
 
 local fn = vim.fn
 
@@ -33,42 +39,42 @@ local on_attach = function(client, buffer)
   end
 end
 
--- Enable auto completion 
+-- Enable auto completion
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
--- HTML 
+-- HTML
 lspconfig["html"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })
 
--- CSS 
+-- CSS
 lspconfig["cssls"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })
 
--- TailWindCSS 
+-- TailWindCSS
 lspconfig["tailwindcss"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })
 
--- TypeScript 
+-- TypeScript
 typescript.setup({
   server = {
     capabilities = capabilities,
     on_attach = on_attach,
-  }
+  },
 })
 
--- Lua 
+-- Lua
 lspconfig["sumneko_lua"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
     Lua = {
-      -- Add global "vim" 
+      -- Add global "vim"
       diagnostics = {
         globals = { "vim" },
       },

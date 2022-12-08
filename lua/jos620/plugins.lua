@@ -1,10 +1,10 @@
 -- Auto reloads the plugins
-vim.cmd [[
+vim.cmd([[
   augroup reload_packer
     autocmd!
     autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
-]]
+]])
 
 -- Auto install Packer
 local ensure_packer_installed = function()
@@ -24,7 +24,9 @@ end
 local packer_bootstrap = ensure_packer_installed()
 
 local status, packer = pcall(require, "packer")
-if not status then return end
+if not status then
+  return
+end
 
 return packer.startup(function(use)
   use("wbthomason/packer.nvim")
@@ -50,35 +52,35 @@ return packer.startup(function(use)
   -- Navigation
   use("justinmk/vim-sneak")
 
-  -- Comments 
-  use "numToStr/Comment.nvim"
+  -- Comments
+  use("numToStr/Comment.nvim")
 
-  -- Fuzzy finder 
-  use { "nvim-telescope/telescope.nvim", branch = "0.1.x" }
-  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+  -- Fuzzy finder
+  use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
+  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
   -- Auto completion
-  use "hrsh7th/nvim-cmp"
-  use "hrsh7th/cmp-buffer"
-  use "hrsh7th/cmp-path"
-  use "hrsh7th/cmp-nvim-lsp"
+  use("hrsh7th/nvim-cmp")
+  use("hrsh7th/cmp-buffer")
+  use("hrsh7th/cmp-path")
+  use("hrsh7th/cmp-nvim-lsp")
 
   -- Snippets
-  use "L3MON4D3/LuaSnip"
-  use "saadparwaiz1/cmp_luasnip"
-  use "rafamadriz/friendly-snippets"
+  use("L3MON4D3/LuaSnip")
+  use("saadparwaiz1/cmp_luasnip")
+  use("rafamadriz/friendly-snippets")
 
-  -- LSP 
-  use "neovim/nvim-lspconfig"
-  use "williamboman/mason.nvim"
-  use "williamboman/mason-lspconfig.nvim"
-  use "jose-elias-alvarez/typescript.nvim"
-  use "onsails/lspkind.nvim"
-  use { "glepnir/lspsaga.nvim", branch = "main" }
+  -- LSP
+  use("neovim/nvim-lspconfig")
+  use("williamboman/mason.nvim")
+  use("williamboman/mason-lspconfig.nvim")
+  use("jose-elias-alvarez/typescript.nvim")
+  use("onsails/lspkind.nvim")
+  use({ "glepnir/lspsaga.nvim", branch = "main" })
 
   -- Formatting & linting
-  use "jose-elias-alvarez/null-ls.nvim"
-  use "jayp0521/mason-null-ls.nvim"
+  use("jose-elias-alvarez/null-ls.nvim")
+  use("jayp0521/mason-null-ls.nvim")
 
   -- Dependencies
   use("nvim-lua/plenary.nvim")
@@ -87,4 +89,3 @@ return packer.startup(function(use)
     packer.sync()
   end
 end)
-

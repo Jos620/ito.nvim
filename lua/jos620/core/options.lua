@@ -37,4 +37,3 @@ opt.clipboard:append("unnamedplus")
 -- Split
 opt.splitright = true
 opt.splitbelow = true
-

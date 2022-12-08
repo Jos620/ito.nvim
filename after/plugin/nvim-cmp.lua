@@ -1,11 +1,17 @@
 local cmp_status, cmp = pcall(require, "cmp")
-if not cmp_status then return end
+if not cmp_status then
+  return
+end
 
 local luasnip_status, luasnip = pcall(require, "luasnip")
-if not luasnip_status then return end
+if not luasnip_status then
+  return
+end
 
 local lspkind_status, lspkind = pcall(require, "lspkind")
-if not lspkind_status then return end
+if not lspkind_status then
+  return
+end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -19,21 +25,21 @@ cmp.setup({
   },
 
   mapping = cmp.mapping.preset.insert({
-    -- Move through the list 
+    -- Move through the list
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<Tab>"] = cmp.mapping.select_next_item(),
     ["<S-Tab>"] = cmp.mapping.select_prev_item(),
 
-    -- Docs 
+    -- Docs
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
 
-    -- Show / hide the popup 
+    -- Show / hide the popup
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.abort(),
 
-    -- Confim 
+    -- Confim
     ["<Return>"] = cmp.mapping.confirm({ select = false }),
   }),
 
@@ -51,4 +57,3 @@ cmp.setup({
     }),
   },
 })
-

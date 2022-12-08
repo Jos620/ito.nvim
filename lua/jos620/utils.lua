@@ -10,4 +10,3 @@ function _G.ReloadConfig()
 end
 
 vim.cmd("command! ReloadConfig lua ReloadConfig()")
-
