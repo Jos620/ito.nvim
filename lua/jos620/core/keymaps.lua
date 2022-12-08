@@ -9,6 +9,9 @@ set("n", "<C-s>", ":write<Return>")
 -- Do not yank with "x"
 set("n", "x", '"_x')
 
+-- Reload configuration
+set("n", "<Leader>r", ":ReloadConfig<Return>", { silent = true })
+
 -- Line indent with visual
 set("v", ">", ">V")
 set("v", "<", "<V")
