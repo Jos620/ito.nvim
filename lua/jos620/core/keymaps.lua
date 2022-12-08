@@ -32,12 +32,6 @@ set("n", "<C-left>", "<C-w><")
 
 set("n", "<C-\\>", ":MaximizerToggle<Return>", { silent = true })
 
--- Tabs
-set("n", "<Leader>t", ":tabnew<Return>", { silent = true })
-set("n", "<Leader>x", ":tabclose<Return>", { silent = true })
-set("n", "L", ":tabn<Return>", { silent = true })
-set("n", "H", ":tabp<Return>", { silent = true })
-
 -- Increase / decrease
 set("n", "=", "<C-a>")
 set("n", "-", "<C-x>")
@@ -51,3 +45,8 @@ set("n", "<Leader>fg", ":Telescope live_grep<Return>", { silent = true })
 set("n", "<Leader>fs", ":Telescope grep_string<Return>", { silent = true })
 set("n", "<Leader>fb", ":Telescope buffers<Return>", { silent = true })
 set("n", "<Leader>fo", ":Telescope oldfiles<Return>", { silent = true })
+
+-- Buffers
+set("n", "H", ":BufferLineCyclePrev<Return>", { silent = true })
+set("n", "L", ":BufferLineCycleNext<Return>", { silent = true })
+set("n", "<Leader>x", ":bdelete<Return>", { silent = true })

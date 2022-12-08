@@ -35,8 +35,9 @@ return packer.startup(function(use)
   use("bluz71/vim-nightfly-guicolors")
   use("nvim-tree/nvim-web-devicons")
 
-  -- Status Line
+  -- Status / buffer line
   use("nvim-lualine/lualine.nvim")
+  use("akinsho/bufferline.nvim")
 
   -- File tree
   use("nvim-tree/nvim-tree.lua")
