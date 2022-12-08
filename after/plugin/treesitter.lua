@@ -15,6 +15,7 @@ treesitter.setup({
     "html",
     "css",
     "lua",
+    "vim",
   },
 
   auto_install = true,
