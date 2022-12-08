@@ -82,6 +82,9 @@ return packer.startup(function(use)
   use("jose-elias-alvarez/null-ls.nvim")
   use("jayp0521/mason-null-ls.nvim")
 
+  -- Syntax Hightlight
+  use("nvim-treesitter/nvim-treesitter")
+
   -- Dependencies
   use("nvim-lua/plenary.nvim")
 
