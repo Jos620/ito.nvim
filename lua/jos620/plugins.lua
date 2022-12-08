@@ -48,6 +48,7 @@ return packer.startup(function(use)
   -- Surrounds / Pairs
   use("windwp/nvim-autopairs")
   use("tpope/vim-surround")
+  use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
 
   -- Navigation
   use("justinmk/vim-sneak")
