@@ -87,6 +87,9 @@ return packer.startup(function(use)
   -- Syntax Hightlight
   use("nvim-treesitter/nvim-treesitter")
 
+  -- Git
+  use("lewis6991/gitsigns.nvim")
+
   -- Dependencies
   use("nvim-lua/plenary.nvim")
 
