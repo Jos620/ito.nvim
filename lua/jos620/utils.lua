@@ -7,6 +7,8 @@ function _G.ReloadConfig()
   end
 
   dofile(vim.env.MYVIMRC)
+
+  print("Reloaded!")
 end
 
-vim.cmd("command! ReloadConfig lua ReloadConfig() print('Reloaded!')")
+vim.cmd("command! ReloadConfig lua ReloadConfig()")
