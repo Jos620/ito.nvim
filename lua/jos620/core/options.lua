@@ -37,3 +37,7 @@ opt.clipboard:append("unnamedplus")
 -- Split
 opt.splitright = true
 opt.splitbelow = true
+
+-- Scroll
+opt.scrolloff = 12
+opt.sidescrolloff = 8
