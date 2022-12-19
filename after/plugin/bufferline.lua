@@ -20,5 +20,5 @@ bufferline.setup({
 
 local map = vim.keymap.set
 
-map("n", "<C-H>", ":BufferLineMovePrev<Return>", { silent = true })
-map("n", "<C-L>", ":BufferLineMoveNext<Return>", { silent = true })
+map("n", "<Leader>,", ":BufferLineMovePrev<Return>", { silent = true })
+map("n", "<Leader>.", ":BufferLineMoveNext<Return>", { silent = true })
