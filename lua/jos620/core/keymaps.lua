@@ -47,6 +47,7 @@ set("n", "<Leader>fg", ":Telescope live_grep<Return>", opts)
 set("n", "<Leader>fs", ":Telescope grep_string<Return>", opts)
 set("n", "<Leader>fb", ":Telescope buffers<Return>", opts)
 set("n", "<Leader>fo", ":Telescope oldfiles<Return>", opts)
+set("n", "<Leader>fk", ":Telescope keymaps<Return>", opts)
 
 -- Buffers
 set("n", "H", ":BufferLineCyclePrev<Return>", opts)
