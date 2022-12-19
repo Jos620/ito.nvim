@@ -43,7 +43,6 @@ return packer.startup(function(use)
   use("nvim-tree/nvim-tree.lua")
 
   -- Window management
-  use("christoomey/vim-tmux-navigator")
   use("szw/vim-maximizer")
 
   -- Surrounds / Pairs
@@ -52,7 +51,9 @@ return packer.startup(function(use)
   use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
 
   -- Navigation
+  use("christoomey/vim-tmux-navigator")
   use("justinmk/vim-sneak")
+  use("jesseleite/vim-noh")
 
   -- Comments
   use("numToStr/Comment.nvim")

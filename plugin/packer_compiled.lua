@@ -226,6 +226,11 @@ _G.packer_plugins = {
     path = "/root/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors",
     url = "https://github.com/bluz71/vim-nightfly-guicolors"
   },
+  ["vim-noh"] = {
+    loaded = true,
+    path = "/home/jos620/.local/share/nvim/site/pack/packer/start/vim-noh",
+    url = "https://github.com/jesseleite/vim-noh"
+  },
   ["vim-sneak"] = {
     loaded = true,
     path = "/root/.local/share/nvim/site/pack/packer/start/vim-sneak",
