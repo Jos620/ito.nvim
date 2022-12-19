@@ -12,3 +12,18 @@ function _G.ReloadConfig()
 end
 
 vim.cmd("command! ReloadConfig lua ReloadConfig()")
+
+-- Type convertion
+function _G.StringToBoolean(original)
+  if type(original) == "boolean" then
+    return original
+  end
+
+  local bool = false
+
+  if original == "true" then
+    bool = true
+  end
+
+  return bool
+end
