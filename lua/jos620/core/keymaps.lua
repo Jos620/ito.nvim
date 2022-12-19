@@ -3,7 +3,8 @@ local set = vim.keymap.set
 local opts = { silent = true }
 
 -- Exit insert mode
-set("i", "jk", "<C-[>")
+set("i", "jk", "<Esc>")
+set("i", "jj", "<Esc>:wa<Return>", opts)
 
 -- Save
 set("n", "<C-s>", ":write<Return>")
