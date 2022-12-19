@@ -14,5 +14,11 @@ bufferline.setup({
       },
     },
     close_command = "bdelete! %d",
+    diagnostics = "nvim_lsp",
   },
 })
+
+local map = vim.keymap.set
+
+map("n", "<C-H>", ":BufferLineMovePrev<Return>", { silent = true })
+map("n", "<C-L>", ":BufferLineMoveNext<Return>", { silent = true })
