@@ -16,8 +16,8 @@ set("n", "x", '"_x')
 set("n", "<Leader>r", ":ReloadConfig<Return>", opts)
 
 -- Line indent with visual
-set("v", ">", ">V")
-set("v", "<", "<V")
+set("v", ">", ">gv")
+set("v", "<", "<gv")
 
 -- Split window
 set("n", "<Leader>sv", "<C-w>v")
