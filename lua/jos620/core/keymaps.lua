@@ -15,6 +15,12 @@ set("n", "x", '"_x')
 -- Reload configuration
 set("n", "<Leader>r", ":ReloadConfig<Return>", opts)
 
+-- Toggle transparent
+set("n", "<Leader>t", function()
+  local next_state = IsTransparent and "false" or "true"
+  vim.cmd("Transparent " .. next_state)
+end, opts)
+
 -- Line indent with visual
 set("v", ">", ">gv")
 set("v", "<", "<gv")

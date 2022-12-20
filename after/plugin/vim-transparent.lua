@@ -8,13 +8,15 @@ function _G.SetupTransparent(is_transparent_str)
       TransparentEnable
       set nocul
     ]])
+    IsTransparent = true
   else
     vim.cmd([[
       TransparentDisable
       set cul
     ]])
+    IsTransparent = false
   end
 end
 
 vim.cmd("command! -nargs=1 Transparent lua SetupTransparent(<f-args>)")
-vim.cmd("Transparent true")
+vim.cmd("Transparent " .. tostring(IsTransparent))
