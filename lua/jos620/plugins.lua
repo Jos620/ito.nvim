@@ -82,6 +82,9 @@ return packer.startup(function(use)
   use("onsails/lspkind.nvim")
   use({ "glepnir/lspsaga.nvim", branch = "main" })
 
+  -- AI programming
+  use("github/copilot.vim")
+
   -- Formatting & linting
   use("jose-elias-alvarez/null-ls.nvim")
   use("jayp0521/mason-null-ls.nvim")
