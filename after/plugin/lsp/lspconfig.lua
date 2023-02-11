@@ -42,23 +42,14 @@ end
 -- Enable auto completion
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
--- HTML
-lspconfig["html"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-})
+local servers = { "html", "cssls", "tailwindcss" }
 
--- CSS
-lspconfig["cssls"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-})
-
--- TailWindCSS
-lspconfig["tailwindcss"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-})
+for _, server in ipairs(servers) do
+  lspconfig[server].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
+end
 
 -- TypeScript
 typescript.setup({
