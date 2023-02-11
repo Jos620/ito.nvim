@@ -3,8 +3,6 @@ if not status then
   return
 end
 
--- hey there
-
 bufferline.setup({
   options = {
     offsets = {
