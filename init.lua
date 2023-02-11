@@ -1,4 +1,3 @@
-require("jos620.globals")
 require("jos620.utils")
 require("jos620.plugins")
 
