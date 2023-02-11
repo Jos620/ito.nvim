@@ -43,8 +43,8 @@ set("n", "<Leader>e", ":NvimTreeFindFileToggle<Return>", opts)
 
 -- Telescope
 set("n", "<Leader>ff", ":Telescope find_files<Return>", opts)
-set("n", "<Leader>fg", ":Telescope live_grep<Return>", opts)
-set("n", "<Leader>fs", ":Telescope grep_string<Return>", opts)
+set("n", "<Leader>fs", ":Telescope live_grep<Return>", opts)
+set("n", "<Leader>fg", ":Telescope git_status<Return>", opts)
 set("n", "<Leader>fb", ":Telescope buffers<Return>", opts)
 set("n", "<Leader>fo", ":Telescope oldfiles<Return>", opts)
 set("n", "<Leader>fk", ":Telescope keymaps<Return>", opts)
