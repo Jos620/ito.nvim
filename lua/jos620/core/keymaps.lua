@@ -24,7 +24,7 @@ set("n", "<Leader>sv", "<C-w>v")
 set("n", "<Leader>sh", "<C-w>s")
 set("n", "<Leader>se", "<C-w>=")
 set("n", "<Leader>q", ":quit<Return>", opts)
-set("n", "<Leader>c", ":close<Return>", opts)
+set("n", "<Leader>x", ":close<Return>", opts)
 
 -- Split resize
 set("n", "<C-up>", "<C-w>+")
@@ -52,4 +52,4 @@ set("n", "<Leader>fk", ":Telescope keymaps<Return>", opts)
 -- Buffers
 set("n", "H", ":BufferLineCyclePrev<Return>", opts)
 set("n", "L", ":BufferLineCycleNext<Return>", opts)
-set("n", "<Leader>x", ":bdelete<Return>", opts)
+set("n", "<Leader>c", ":bdelete<Return>", opts)
