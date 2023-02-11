@@ -14,4 +14,7 @@ saga.setup({
   definition = {
     edit = "<Return>",
   },
+  symbol_in_winbar = {
+    enable = false,
+  },
 })
