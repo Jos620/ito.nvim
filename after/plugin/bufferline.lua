@@ -3,6 +3,8 @@ if not status then
   return
 end
 
+-- hey there
+
 bufferline.setup({
   options = {
     offsets = {
@@ -15,6 +17,41 @@ bufferline.setup({
     },
     close_command = "bdelete! %d",
     diagnostics = "nvim_lsp",
+    separator_style = {
+      "",
+      "",
+    },
+  },
+  highlights = {
+    fill = {
+      bg = "#121212",
+    },
+    background = {
+      fg = "#5c6b5e",
+      bg = "#121212",
+    },
+    buffer_visible = {
+      fg = "#292929",
+    },
+    buffer_selected = {
+      bg = "#292929",
+    },
+    error_visible = {
+      fg = "#b49065",
+    },
+    error_selected = {
+      fg = "#a76262",
+      bg = "#292929",
+    },
+    close_button_selected = {
+      bg = "#292929",
+    },
+    separator_visible = {
+      bg = "#292929",
+    },
+    indicator_selected = {
+      bg = "#292929",
+    },
   },
 })
 
