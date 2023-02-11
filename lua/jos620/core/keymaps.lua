@@ -32,7 +32,7 @@ set("n", "<C-down>", "<C-w>-")
 set("n", "<C-right>", "<C-w>>")
 set("n", "<C-left>", "<C-w><")
 
-set("n", "<C-\\>", ":MaximizerToggle<Return>", opts)
+set("n", "<C-m>", ":MaximizerToggle<Return>", opts)
 
 -- Increase / decrease
 set("n", "=", "<C-a>")
