@@ -39,7 +39,7 @@ set("n", "=", "<C-a>")
 set("n", "-", "<C-x>")
 
 -- File tree
-set("n", "<Leader>e", ":NvimTreeToggle<Return>", opts)
+set("n", "<Leader>e", ":NvimTreeFindFileToggle<Return>", opts)
 
 -- Telescope
 set("n", "<Leader>ff", ":Telescope find_files<Return>", opts)
