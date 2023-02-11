@@ -3,29 +3,28 @@ if not status then
   return
 end
 
-local nightfly_theme = require("lualine.themes.nightfly")
-
-local colors = {
-  blue = "#65D1FF",
-  green = "#3EFFDC",
-  violet = "#FF61EF",
-  yellow = "#FFDA7B",
-  black = "#000000",
-}
-
-nightfly_theme.normal.a.bg = colors.blue
-nightfly_theme.insert.a.bg = colors.green
-nightfly_theme.visual.a.bg = colors.violet
-nightfly_theme.command = {
-  a = {
-    gui = "bold",
-    bg = colors.yellow,
-    fg = colors.black,
-  },
-}
-
 lualine.setup({
   options = {
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
     theme = "vitesse",
+  },
+  sections = {
+    lualine_a = { "mode" },
+    lualine_b = { "branch", "diagnostics" },
+    lualine_c = { "filename" },
+
+    lualine_x = { "filetype" },
+    lualine_y = { "progress" },
+    lualine_z = { "location" },
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = { "filename" },
+
+    lualine_x = { "location" },
+    lualine_y = {},
+    lualine_z = {},
   },
 })
