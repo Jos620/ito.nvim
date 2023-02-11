@@ -11,4 +11,7 @@ saga.setup({
   definition_action_keys = {
     edit = "<Return>",
   },
+  definition = {
+    edit = "<Return>",
+  },
 })
