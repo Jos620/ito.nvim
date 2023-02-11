@@ -32,7 +32,12 @@ return packer.startup(function(use)
   use("wbthomason/packer.nvim")
 
   -- Theme
-  use("bluz71/vim-nightfly-guicolors")
+  use({
+    "2nthony/vitesse.nvim",
+    requires = {
+      "tjdevries/colorbuddy.nvim",
+    },
+  })
   use("nvim-tree/nvim-web-devicons")
 
   -- Status / buffer line

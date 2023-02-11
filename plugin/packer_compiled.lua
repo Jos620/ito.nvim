@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/jos620/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["colorbuddy.nvim"] = {
+    loaded = true,
+    path = "/home/jos620/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim",
+    url = "https://github.com/tjdevries/colorbuddy.nvim"
+  },
   ["copilot.vim"] = {
     loaded = true,
     path = "/home/jos620/.local/share/nvim/site/pack/packer/start/copilot.vim",
@@ -226,11 +231,6 @@ _G.packer_plugins = {
     path = "/home/jos620/.local/share/nvim/site/pack/packer/start/vim-maximizer",
     url = "https://github.com/szw/vim-maximizer"
   },
-  ["vim-nightfly-guicolors"] = {
-    loaded = true,
-    path = "/home/jos620/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors",
-    url = "https://github.com/bluz71/vim-nightfly-guicolors"
-  },
   ["vim-noh"] = {
     loaded = true,
     path = "/home/jos620/.local/share/nvim/site/pack/packer/start/vim-noh",
@@ -250,6 +250,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jos620/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
     url = "https://github.com/christoomey/vim-tmux-navigator"
+  },
+  ["vitesse.nvim"] = {
+    loaded = true,
+    path = "/home/jos620/.local/share/nvim/site/pack/packer/start/vitesse.nvim",
+    url = "https://github.com/2nthony/vitesse.nvim"
   }
 }
 

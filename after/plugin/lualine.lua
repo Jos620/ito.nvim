@@ -26,6 +26,6 @@ nightfly_theme.command = {
 
 lualine.setup({
   options = {
-    theme = nightfly_theme,
+    theme = "vitesse",
   },
 })
