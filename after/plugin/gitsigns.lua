@@ -12,7 +12,7 @@ gitsigns.setup({
     end
 
     -- Navigation
-    set("n", "]c", function()
+    set("n", "<Leader>gj", function()
       if vim.wo.diff then
         return "]c"
       end
@@ -24,7 +24,7 @@ gitsigns.setup({
       return "<Ignore>"
     end, { expr = true })
 
-    set("n", "[c", function()
+    set("n", "<Leader>gk", function()
       if vim.wo.diff then
         return "[c"
       end
@@ -37,21 +37,21 @@ gitsigns.setup({
     end, { expr = true })
 
     -- Actions
-    set({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>")
-    set({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>")
-    set("n", "<leader>hS", gitsigns.stage_buffer)
-    set("n", "<leader>hu", gitsigns.undo_stage_hunk)
-    set("n", "<leader>hR", gitsigns.reset_buffer)
-    set("n", "<leader>hp", gitsigns.preview_hunk)
-    set("n", "<leader>hb", function()
+    set({ "n", "v" }, "<Leader>gs", ":Gitsigns stage_hunk<CR>")
+    set({ "n", "v" }, "<Leader>gr", ":Gitsigns reset_hunk<CR>")
+    set("n", "<Leader>gS", gitsigns.stage_buffer)
+    set("n", "<Leader>gu", gitsigns.undo_stage_hunk)
+    set("n", "<Leader>gR", gitsigns.reset_buffer)
+    set("n", "<Leader>gp", gitsigns.preview_hunk)
+    set("n", "<Leader>gl", function()
       gitsigns.blame_line({ full = true })
     end)
-    set("n", "<leader>tb", gitsigns.toggle_current_line_blame)
-    set("n", "<leader>hd", gitsigns.diffthis)
-    set("n", "<leader>hD", function()
+    set("n", "<Leader>gb", gitsigns.toggle_current_line_blame)
+    set("n", "<Leader>gd", gitsigns.diffthis)
+    set("n", "<Leader>gD", function()
       gitsigns.diffthis("~")
     end)
-    set("n", "<leader>td", gitsigns.toggle_deleted)
+    set("n", "<Leader>td", gitsigns.toggle_deleted)
 
     -- Text object
     set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
