@@ -5,4 +5,6 @@ end
 
 telescope.setup()
 
-telescope.load_extension("fzf")
+if vim.fn.executable("fzf") == 1 then
+  telescope.load_extension("fzf")
+end

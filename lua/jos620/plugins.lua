@@ -7,8 +7,9 @@ vim.cmd([[
 ]])
 
 -- Auto install Packer
+local fn = vim.fn
+
 local ensure_packer_installed = function()
-  local fn = vim.fn
   local path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
   if fn.empty(fn.glob(path)) > 0 then
@@ -65,7 +66,9 @@ return packer.startup(function(use)
 
   -- Fuzzy finder
   use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
-  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+  if fn.executable("fzf") == 1 then
+    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+  end
 
   -- Auto completion
   use("hrsh7th/nvim-cmp")
