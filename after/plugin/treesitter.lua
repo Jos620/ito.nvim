@@ -9,14 +9,19 @@ treesitter.setup({
   autotag = { enable = true },
 
   ensure_installed = {
-    "json",
-    "javascript",
     "typescript",
+    "javascript",
     "tsx",
     "html",
     "css",
+    "json",
+    "markdown",
+    "markdown_inline",
     "lua",
     "vim",
+    "yaml",
+    "toml",
+    "bash",
   },
 
   auto_install = true,
