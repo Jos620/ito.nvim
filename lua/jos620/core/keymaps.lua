@@ -52,6 +52,7 @@ set("n", "<Leader>fg", ":Telescope git_status<Return>", opts)
 set("n", "<Leader>fb", ":Telescope buffers<Return>", opts)
 set("n", "<Leader>fo", ":Telescope oldfiles<Return>", opts)
 set("n", "<Leader>fk", ":Telescope keymaps<Return>", opts)
+set("n", "<Leader>fh", ":Telescope highlights<Return>", opts)
 
 -- Buffers
 set("n", "H", ":BufferLineCyclePrev<Return>", opts)
