@@ -12,6 +12,10 @@ set("n", "<C-s>", ":write<Return>")
 -- Do not yank with "x"
 set("n", "x", '"_x')
 
+-- Move lines with visual
+set("v", "J", ":m '>+1<Return>gv=gv")
+set("v", "K", ":m '<-2<Return>gv=gv")
+
 -- Reload configuration
 set("n", "<Leader>r", ":ReloadConfig<Return>", opts)
 
