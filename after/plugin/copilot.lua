@@ -8,6 +8,12 @@ copilot.setup({
     enabled = true,
     auto_trigger = true,
   },
+  filetypes = {
+    gitcommit = true,
+    gitrebase = true,
+    hgcommit = true,
+    ["*"] = true,
+  },
 })
 
 local status_cmp, copilot_cmp = pcall(require, "copilot_cmp")
