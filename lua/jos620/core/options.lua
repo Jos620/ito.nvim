@@ -1,46 +1,47 @@
-local opt = vim.opt
+local o = vim.opt
+local g = vim.g
 
 -- Leader key
-vim.g.mapleader = " "
+g.mapleader = " "
 
 -- Numbers
-opt.number = true
-opt.relativenumber = true
+o.number = true
+o.relativenumber = true
 
 -- Tabs & indentation
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.expandtab = true
-opt.autoindent = true
+o.tabstop = 2
+o.shiftwidth = 2
+o.expandtab = true
+o.autoindent = true
 
 -- Line wrapping
-opt.wrap = false
+o.wrap = false
 
 -- Search settings
-opt.ignorecase = true
-opt.smartcase = true
+o.ignorecase = true
+o.smartcase = true
 
 -- Cursor line
-opt.cursorline = true
+o.cursorline = true
 
 -- Appearence
-opt.termguicolors = true
-opt.background = "dark"
-opt.signcolumn = "yes"
+o.termguicolors = true
+o.background = "dark"
+o.signcolumn = "yes"
 
 -- Backspace
-opt.backspace = "indent,eol,start"
+o.backspace = "indent,eol,start"
 
 -- Clipboard
-opt.clipboard:append("unnamedplus")
+o.clipboard:append("unnamedplus")
 
 -- Split
-opt.splitright = true
-opt.splitbelow = true
+o.splitright = true
+o.splitbelow = true
 
 -- Scroll
-opt.scrolloff = 12
-opt.sidescrolloff = 8
+o.scrolloff = 12
+o.sidescrolloff = 8
 
 -- Update the file when it changes
-opt.autoread = true
+o.autoread = true
