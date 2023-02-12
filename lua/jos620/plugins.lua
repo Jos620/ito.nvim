@@ -87,7 +87,8 @@ return packer.startup(function(use)
   use({ "glepnir/lspsaga.nvim", branch = "main" })
 
   -- AI programming
-  use("github/copilot.vim")
+  use("zbirenbaum/copilot.lua")
+  use("zbirenbaum/copilot-cmp")
 
   -- Formatting & linting
   use("jose-elias-alvarez/null-ls.nvim")
