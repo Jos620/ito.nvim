@@ -9,8 +9,11 @@ set("i", "jj", "<Esc>:wa<Return>", silent)
 -- Save
 set("n", "<C-s>", ":write<Return>")
 
--- Do not yank with "x"
-set("n", "x", '"_x')
+-- Do not yank with "X" and "C"
+set({ "n", "v" }, "x", '"_x')
+set({ "n", "v" }, "X", '"_X')
+set({ "n", "v" }, "c", '"_c')
+set({ "n", "v" }, "C", '"_C')
 
 -- Move lines with visual
 set("v", "J", ":m '>+1<Return>gv=gv")
