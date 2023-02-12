@@ -19,6 +19,7 @@ nvim_tree.setup({
       list = {
         { key = "l", action = "edit" },
         { key = "h", action = "close_node" },
+        { key = "e", action = "" },
       },
     },
   },
