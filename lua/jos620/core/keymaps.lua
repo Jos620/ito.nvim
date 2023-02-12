@@ -9,6 +9,9 @@ set("i", "jj", "<Esc>:wa<Return>", silent)
 -- Save
 set("n", "<C-s>", ":write<Return>")
 
+-- Highlights
+set("n", "<Leader>h", ":set hlsearch!<Return>", silent)
+
 -- Do not yank with "X" and "C"
 set({ "n", "v" }, "x", '"_x')
 set({ "n", "v" }, "X", '"_X')
