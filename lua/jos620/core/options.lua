@@ -41,3 +41,6 @@ opt.splitbelow = true
 -- Scroll
 opt.scrolloff = 12
 opt.sidescrolloff = 8
+
+-- Update the file when it changes
+opt.autoread = true
