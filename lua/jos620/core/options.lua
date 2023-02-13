@@ -48,3 +48,9 @@ o.autoread = true
 
 -- Hide the mode from the status line
 o.showmode = false
+
+-- Set ruler
+o.ruler = false
+
+-- Set last status
+o.laststatus = 0
