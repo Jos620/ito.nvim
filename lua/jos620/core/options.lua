@@ -45,3 +45,6 @@ o.sidescrolloff = 8
 
 -- Update the file when it changes
 o.autoread = true
+
+-- Hide the mode from the status line
+o.showmode = false
