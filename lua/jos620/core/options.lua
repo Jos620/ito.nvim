@@ -40,7 +40,7 @@ o.splitright = true
 o.splitbelow = true
 
 -- Scroll
-o.scrolloff = 12
+o.scrolloff = 8
 o.sidescrolloff = 8
 
 -- Update the file when it changes
