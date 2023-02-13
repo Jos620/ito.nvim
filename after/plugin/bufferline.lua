@@ -76,6 +76,10 @@ bufferline.setup({
       fg = colors.gray,
       bg = colors.black,
     },
+    duplicate = {
+      fg = colors.gray,
+      bg = colors.black,
+    },
     duplicate_selected = {
       fg = colors.gray,
       bg = colors.darkgray,
