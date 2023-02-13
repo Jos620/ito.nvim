@@ -42,7 +42,11 @@ end
 -- Enable auto completion
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
-local servers = { "html", "cssls", "tailwindcss" }
+local servers = {
+  "html",
+  "cssls",
+  "tailwindcss",
+}
 
 for _, server in ipairs(servers) do
   lspconfig[server].setup({
