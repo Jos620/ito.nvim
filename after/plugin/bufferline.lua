@@ -3,6 +3,20 @@ if not status then
   return
 end
 
+local colors = {
+  white = "#ffffff",
+  black = "#181818",
+  darkgray = "#292929",
+  gray = "#c8c5b8",
+  lightgray = "#c0caf5",
+  green = "#4d9375",
+  cyan = "#5eaab5",
+  blue = "#6394bf",
+  red = "#cb7676",
+  yellow = "#e6cc77",
+  orange = "#d4976c",
+}
+
 bufferline.setup({
   options = {
     offsets = {
@@ -21,34 +35,114 @@ bufferline.setup({
     },
   },
   highlights = {
-    fill = {
-      bg = "#121212",
-    },
     background = {
-      fg = "#5c6b5e",
-      bg = "#121212",
+      fg = colors.gray,
+      bg = colors.black,
     },
-    buffer_visible = {
-      fg = "#292929",
+    fill = {
+      fg = colors.gray,
+      bg = colors.black,
     },
     buffer_selected = {
-      bg = "#292929",
+      fg = colors.white,
+      bg = colors.darkgray,
+      bold = true,
     },
-    error_visible = {
-      fg = "#b49065",
+    buffer_visible = {
+      fg = colors.gray,
+      bg = colors.black,
     },
-    error_selected = {
-      fg = "#a76262",
-      bg = "#292929",
+    separator = {
+      fg = colors.black,
+      bg = colors.black,
     },
-    close_button_selected = {
-      bg = "#292929",
+    separator_selected = {
+      fg = colors.black,
+      bg = colors.black,
     },
     separator_visible = {
-      bg = "#292929",
+      fg = colors.black,
+      bg = colors.black,
     },
     indicator_selected = {
-      bg = "#292929",
+      fg = colors.green,
+      bg = colors.darkgray,
+    },
+    modified_selected = {
+      fg = colors.yellow,
+      bg = colors.darkgray,
+    },
+    modified_visible = {
+      fg = colors.yellow,
+      bg = colors.black,
+    },
+    close_button = {
+      fg = colors.gray,
+      bg = colors.black,
+    },
+    close_button_selected = {
+      fg = colors.green,
+      bg = colors.darkgray,
+    },
+    close_button_visible = {
+      fg = colors.gray,
+      bg = colors.black,
+    },
+    duplicate_selected = {
+      fg = colors.gray,
+      bg = colors.darkgray,
+    },
+    duplicate_visible = {
+      fg = colors.gray,
+      bg = colors.black,
+    },
+    error_diagnostic = {
+      fg = colors.red,
+      bg = colors.black,
+    },
+    error_diagnostic_selected = {
+      fg = colors.red,
+      bg = colors.darkgray,
+    },
+    error_diagnostic_visible = {
+      fg = colors.red,
+      bg = colors.black,
+    },
+    info_diagnostic = {
+      fg = colors.blue,
+      bg = colors.black,
+    },
+    info_diagnostic_selected = {
+      fg = colors.blue,
+      bg = colors.darkgray,
+    },
+    info_diagnostic_visible = {
+      fg = colors.blue,
+      bg = colors.black,
+    },
+    hint_diagnostic = {
+      fg = colors.cyan,
+      bg = colors.black,
+    },
+    hint_diagnostic_selected = {
+      fg = colors.cyan,
+      bg = colors.darkgray,
+    },
+    hint_diagnostic_visible = {
+      fg = colors.cyan,
+      bg = colors.black,
+    },
+    warning_diagnostic = {
+      fg = colors.yellow,
+      bg = colors.black,
+    },
+    warning_diagnostic_selected = {
+      fg = colors.yellow,
+      bg = colors.darkgray,
+    },
+    warning_diagnostic_visible = {
+      fg = colors.yellow,
+      bg = colors.black,
     },
   },
 })
