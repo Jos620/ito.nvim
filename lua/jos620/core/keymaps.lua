@@ -22,6 +22,10 @@ set({ "n", "v" }, "C", '"_C')
 set("v", "J", ":m '>+1<Return>gv=gv")
 set("v", "K", ":m '<-2<Return>gv=gv")
 
+-- Better movimentation on wrapped lines
+set("n", "j", "gj")
+set("n", "k", "gk")
+
 -- Reload configuration
 set("n", "<Leader>r", ":ReloadConfig<Return>", silent)
 
