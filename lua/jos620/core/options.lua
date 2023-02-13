@@ -46,11 +46,7 @@ o.sidescrolloff = 8
 -- Update the file when it changes
 o.autoread = true
 
--- Hide the mode from the status line
+-- Bottom bar
 o.showmode = false
-
--- Set ruler
 o.ruler = false
-
--- Set last status
 o.laststatus = 0
