@@ -51,10 +51,11 @@ return packer.startup(function(use)
   -- Window management
   use("szw/vim-maximizer")
 
-  -- Surrounds / Pairs
+  -- Surrounds / Pairs / Folds
   use("windwp/nvim-autopairs")
   use("tpope/vim-surround")
   use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
+  use("anuvyklack/pretty-fold.nvim")
 
   -- Navigation
   use("christoomey/vim-tmux-navigator")
