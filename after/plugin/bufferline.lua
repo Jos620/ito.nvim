@@ -84,6 +84,18 @@ bufferline.setup({
       fg = colors.gray,
       bg = colors.black,
     },
+    error = {
+      fg = colors.red,
+      bg = colors.black,
+    },
+    error_selected = {
+      fg = colors.red,
+      bg = colors.darkgray,
+    },
+    error_visible = {
+      fg = colors.red,
+      bg = colors.black,
+    },
     error_diagnostic = {
       fg = colors.red,
       bg = colors.black,
