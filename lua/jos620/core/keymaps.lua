@@ -57,6 +57,7 @@ set("n", "<Leader>e", ":NvimTreeFindFileToggle<Return>", silent)
 
 -- Telescope
 set("n", "<Leader>ff", ":Telescope find_files<Return>", silent)
+set("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", silent)
 set("n", "<Leader>fs", ":Telescope live_grep<Return>", silent)
 set("n", "<Leader>fg", ":Telescope git_status<Return>", silent)
 set("n", "<Leader>fb", ":Telescope buffers<Return>", silent)
