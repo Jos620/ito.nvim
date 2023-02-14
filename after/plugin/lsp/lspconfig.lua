@@ -26,8 +26,9 @@ local on_attach = function(client, buffer)
 
   set("n", "<Leader>la", ":Lspsaga code_action<Return>", opts)
   set("n", "<Leader>lr", ":Lspsaga rename<Return>", opts)
-  set("n", "<Leader>d", ":Lspsaga show_line_diagnostics<Return>", opts)
-  set("n", "<Leader>d", ":Lspsaga show_cursor_diagnostics<Return>", opts)
+  set("n", "<Leader>ld", ":Lspsaga show_line_diagnostics<Return>", opts)
+  set("n", "<Leader>lc", ":Lspsaga show_cursor_diagnostics<Return>", opts)
+  set("n", "<Leader>lb", ":Lspsaga show_buf_diagnostics<Return>", opts)
 
   set("n", "[d", ":Lspsaga diagnostic_jump_prev<Return>", opts)
   set("n", "]d", ":Lspsaga diagnostic_jump_next<Return>", opts)
