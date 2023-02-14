@@ -30,8 +30,8 @@ local on_attach = function(client, buffer)
   set("n", "<Leader>lc", ":Lspsaga show_cursor_diagnostics<Return>", opts)
   set("n", "<Leader>lb", ":Lspsaga show_buf_diagnostics<Return>", opts)
 
-  set("n", "[d", ":Lspsaga diagnostic_jump_prev<Return>", opts)
-  set("n", "]d", ":Lspsaga diagnostic_jump_next<Return>", opts)
+  set("n", "<Leader>lj", ":Lspsaga diagnostic_jump_next<Return>", opts)
+  set("n", "<Leader>lk", ":Lspsaga diagnostic_jump_prev<Return>", opts)
   set("n", "K", ":Lspsaga hover_doc<Return>", opts)
   set("n", "<Leader>o", ":LSoutlineToggle<Return>", opts)
 
