@@ -5,6 +5,21 @@ end
 
 local colors = require("jos620.colors")
 
+local normal = {
+  fg = colors.gray,
+  bg = colors.black,
+}
+
+local green = {
+  fg = colors.green,
+  bg = colors.darkgray,
+}
+
+local black = {
+  fg = colors.black,
+  bg = colors.black,
+}
+
 bufferline.setup({
   options = {
     offsets = {
@@ -23,108 +38,49 @@ bufferline.setup({
     },
   },
   highlights = {
-    background = {
-      fg = colors.gray,
-      bg = colors.black,
-    },
-    fill = {
-      fg = colors.gray,
-      bg = colors.black,
-    },
+    background = normal,
+    fill = normal,
+
+    tab = normal,
+    tab_selected = green,
+    tab_close = normal,
+
+    close_button = normal,
+    close_button_visible = normal,
+    close_button_selected = green,
+
+    buffer_visible = normal,
     buffer_selected = {
       fg = colors.white,
       bg = colors.darkgray,
       bold = true,
     },
-    buffer_visible = {
-      fg = colors.gray,
+
+    numbers = normal,
+    numbers_visible = normal,
+    numbers_selected = green,
+
+    diagnostic = normal,
+    diagnostic_visible = normal,
+    diagnostic_selected = green,
+
+    hint = {
+      fg = colors.cyan,
       bg = colors.black,
     },
-    separator = {
-      fg = colors.black,
+    hint_visible = {
+      fg = colors.cyan,
       bg = colors.black,
     },
-    separator_selected = {
-      fg = colors.black,
-      bg = colors.black,
-    },
-    separator_visible = {
-      fg = colors.black,
-      bg = colors.black,
-    },
-    indicator_selected = {
-      fg = colors.green,
+    hint_selected = {
+      fg = colors.cyan,
       bg = colors.darkgray,
-    },
-    modified_selected = {
-      fg = colors.yellow,
-      bg = colors.darkgray,
-    },
-    modified_visible = {
-      fg = colors.yellow,
-      bg = colors.black,
-    },
-    close_button = {
-      fg = colors.gray,
-      bg = colors.black,
-    },
-    close_button_selected = {
-      fg = colors.green,
-      bg = colors.darkgray,
-    },
-    close_button_visible = {
-      fg = colors.gray,
-      bg = colors.black,
-    },
-    duplicate = {
-      fg = colors.gray,
-      bg = colors.black,
-    },
-    duplicate_selected = {
-      fg = colors.gray,
-      bg = colors.darkgray,
-    },
-    duplicate_visible = {
-      fg = colors.gray,
-      bg = colors.black,
-    },
-    error = {
-      fg = colors.red,
-      bg = colors.black,
-    },
-    error_selected = {
-      fg = colors.red,
-      bg = colors.darkgray,
-    },
-    error_visible = {
-      fg = colors.red,
-      bg = colors.black,
-    },
-    error_diagnostic = {
-      fg = colors.red,
-      bg = colors.black,
-    },
-    error_diagnostic_selected = {
-      fg = colors.red,
-      bg = colors.darkgray,
-    },
-    error_diagnostic_visible = {
-      fg = colors.red,
-      bg = colors.black,
-    },
-    info_diagnostic = {
-      fg = colors.blue,
-      bg = colors.black,
-    },
-    info_diagnostic_selected = {
-      fg = colors.blue,
-      bg = colors.darkgray,
-    },
-    info_diagnostic_visible = {
-      fg = colors.blue,
-      bg = colors.black,
     },
     hint_diagnostic = {
+      fg = colors.cyan,
+      bg = colors.black,
+    },
+    hint_diagnostic_visible = {
       fg = colors.cyan,
       bg = colors.black,
     },
@@ -132,11 +88,49 @@ bufferline.setup({
       fg = colors.cyan,
       bg = colors.darkgray,
     },
-    hint_diagnostic_visible = {
-      fg = colors.cyan,
+
+    info = {
+      fg = colors.blue,
       bg = colors.black,
     },
+    info_visible = {
+      fg = colors.blue,
+      bg = colors.black,
+    },
+    info_selected = {
+      fg = colors.blue,
+      bg = colors.darkgray,
+    },
+    info_diagnostic = {
+      fg = colors.blue,
+      bg = colors.black,
+    },
+    info_diagnostic_visible = {
+      fg = colors.blue,
+      bg = colors.black,
+    },
+    info_diagnostic_selected = {
+      fg = colors.blue,
+      bg = colors.darkgray,
+    },
+
+    warning = {
+      fg = colors.yellow,
+      bg = colors.black,
+    },
+    warning_visible = {
+      fg = colors.yellow,
+      bg = colors.black,
+    },
+    warning_selected = {
+      fg = colors.yellow,
+      bg = colors.darkgray,
+    },
     warning_diagnostic = {
+      fg = colors.yellow,
+      bg = colors.black,
+    },
+    warning_diagnostic_visible = {
       fg = colors.yellow,
       bg = colors.black,
     },
@@ -144,9 +138,66 @@ bufferline.setup({
       fg = colors.yellow,
       bg = colors.darkgray,
     },
-    warning_diagnostic_visible = {
+
+    error = {
+      fg = colors.red,
+      bg = colors.black,
+    },
+    error_visible = {
+      fg = colors.red,
+      bg = colors.black,
+    },
+    error_selected = {
+      fg = colors.red,
+      bg = colors.darkgray,
+    },
+    error_diagnostic = {
+      fg = colors.red,
+      bg = colors.black,
+    },
+    error_diagnostic_visible = {
+      fg = colors.red,
+      bg = colors.black,
+    },
+    error_diagnostic_selected = {
+      fg = colors.red,
+      bg = colors.darkgray,
+    },
+
+    modified = {
       fg = colors.yellow,
       bg = colors.black,
     },
+    modified_visible = {
+      fg = colors.yellow,
+      bg = colors.black,
+    },
+    modified_selected = {
+      fg = colors.yellow,
+      bg = colors.darkgray,
+    },
+
+    duplicate_selected = {
+      fg = colors.gray,
+      bg = colors.darkgray,
+    },
+    duplicate_visible = normal,
+    duplicate = normal,
+
+    separator_selected = black,
+    separator_visible = black,
+    separator = black,
+
+    indicator_selected = green,
+
+    pick_selected = {
+      fg = colors.white,
+      bg = colors.darkgray,
+      bold = true,
+    },
+    pick_visible = normal,
+    pick = normal,
+
+    offset_separator = black,
   },
 })
