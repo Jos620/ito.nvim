@@ -150,8 +150,3 @@ bufferline.setup({
     },
   },
 })
-
-local map = vim.keymap.set
-
-map("n", "<Leader>,", ":BufferLineMovePrev<Return>", { silent = true })
-map("n", "<Leader>.", ":BufferLineMoveNext<Return>", { silent = true })
