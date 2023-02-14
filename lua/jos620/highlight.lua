@@ -1,4 +1,6 @@
-local nvim_tree_hi_groups = {
+local colors = require("jos620.colors")
+
+local link_to_normal_groups = {
   "NvimTreeFolderName",
   "NvimTreeOpenedFolderName",
   "NvimTreeEmptyFolderName",
@@ -6,11 +8,11 @@ local nvim_tree_hi_groups = {
   "NvimTreeRootFolder",
 }
 
-for _, group in ipairs(nvim_tree_hi_groups) do
+for _, group in ipairs(link_to_normal_groups) do
   vim.cmd("highlight! link " .. group .. " Normal")
 end
 
-local nvim_tree_icons = {
+local green_fg_groups = {
   "NvimTreeFolderIcon",
   "NvimTreeOpenedFolderIcon",
   "NvimTreeClosedFolderIcon",
@@ -26,6 +28,6 @@ local nvim_tree_icons = {
   "NvimTreeGitIgnored",
 }
 
-for _, group in ipairs(nvim_tree_icons) do
-  vim.cmd("highlight! " .. group .. " guifg=#4d9375")
+for _, group in ipairs(green_fg_groups) do
+  vim.cmd("highlight! " .. group .. " guifg=" .. colors.green)
 end
