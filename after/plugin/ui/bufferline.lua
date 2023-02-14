@@ -38,17 +38,21 @@ bufferline.setup({
     },
   },
   highlights = {
+    -- General
     background = normal,
     fill = normal,
 
+    -- Tabs
     tab = normal,
     tab_selected = green,
     tab_close = normal,
 
+    -- Close button
     close_button = normal,
     close_button_visible = normal,
     close_button_selected = green,
 
+    -- Buffers
     buffer_visible = normal,
     buffer_selected = {
       fg = colors.white,
@@ -56,14 +60,17 @@ bufferline.setup({
       bold = true,
     },
 
+    -- Numbers
     numbers = normal,
     numbers_visible = normal,
     numbers_selected = green,
 
+    -- General diagnostics
     diagnostic = normal,
     diagnostic_visible = normal,
     diagnostic_selected = green,
 
+    -- Hint
     hint = {
       fg = colors.cyan,
       bg = colors.black,
@@ -89,6 +96,7 @@ bufferline.setup({
       bg = colors.darkgray,
     },
 
+    -- Info
     info = {
       fg = colors.blue,
       bg = colors.black,
@@ -114,6 +122,7 @@ bufferline.setup({
       bg = colors.darkgray,
     },
 
+    -- Warning
     warning = {
       fg = colors.yellow,
       bg = colors.black,
@@ -139,6 +148,7 @@ bufferline.setup({
       bg = colors.darkgray,
     },
 
+    -- Error
     error = {
       fg = colors.red,
       bg = colors.black,
@@ -164,6 +174,7 @@ bufferline.setup({
       bg = colors.darkgray,
     },
 
+    -- Modified
     modified = {
       fg = colors.yellow,
       bg = colors.black,
@@ -177,6 +188,7 @@ bufferline.setup({
       bg = colors.darkgray,
     },
 
+    -- Duplicate
     duplicate_selected = {
       fg = colors.gray,
       bg = colors.darkgray,
@@ -184,12 +196,15 @@ bufferline.setup({
     duplicate_visible = normal,
     duplicate = normal,
 
+    -- Separators
     separator_selected = black,
     separator_visible = black,
     separator = black,
 
+    -- Indicators
     indicator_selected = green,
 
+    -- Pick
     pick_selected = {
       fg = colors.white,
       bg = colors.darkgray,
@@ -198,6 +213,7 @@ bufferline.setup({
     pick_visible = normal,
     pick = normal,
 
+    -- Offset
     offset_separator = black,
   },
 })
