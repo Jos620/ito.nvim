@@ -69,3 +69,9 @@ set("n", "<Leader>fh", ":Telescope highlights<Return>", silent)
 set("n", "H", ":BufferLineCyclePrev<Return>", silent)
 set("n", "L", ":BufferLineCycleNext<Return>", silent)
 set("n", "<Leader>c", ":bdelete<Return>", silent)
+
+-- Packages
+set("n", "<Leader>pi", ":PackerInstall<Return>", silent)
+set("n", "<Leader>pc", ":PackerCompile<Return>", silent)
+set("n", "<Leader>ps", ":PackerSync<Return>", silent)
+set("n", "<Leader>mm", ":Mason<Return>", silent)
