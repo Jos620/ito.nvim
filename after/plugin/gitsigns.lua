@@ -16,7 +16,7 @@ gitsigns.setup({
     -- Navigation
     set("n", "<Leader>gj", function()
       if vim.wo.diff then
-        return "]c"
+        return "<Leader>gj"
       end
 
       vim.schedule(function()
@@ -28,7 +28,7 @@ gitsigns.setup({
 
     set("n", "<Leader>gk", function()
       if vim.wo.diff then
-        return "[c"
+        return "<Leader>gk"
       end
 
       vim.schedule(function()
