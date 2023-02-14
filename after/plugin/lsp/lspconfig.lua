@@ -33,7 +33,6 @@ local on_attach = function(client, buffer)
   set("n", "<Leader>lj", ":Lspsaga diagnostic_jump_next<Return>", opts)
   set("n", "<Leader>lk", ":Lspsaga diagnostic_jump_prev<Return>", opts)
   set("n", "K", ":Lspsaga hover_doc<Return>", opts)
-  set("n", "<Leader>o", ":LSoutlineToggle<Return>", opts)
 
   if client.name == "tsserver" then
     set("n", "<Leader>lfr", ":TypescriptRenameFile<Return>", opts)
