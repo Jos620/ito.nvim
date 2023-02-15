@@ -23,6 +23,7 @@ null_ls.setup({
     -- JavaScript
     formatting.eslint_d,
     diagnostics.eslint_d,
+    code_actions.eslint_d,
 
     -- Rust
     formatting.rustfmt,
