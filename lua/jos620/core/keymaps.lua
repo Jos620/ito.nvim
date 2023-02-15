@@ -22,6 +22,12 @@ set({ "n", "v" }, "C", '"_C')
 set("v", "J", ":m '>+1<Return>gv=gv")
 set("v", "K", ":m '<-2<Return>gv=gv")
 
+-- "ie" as all file text objects
+set("n", "vie", "ggVG")
+set("n", "cie", "ggcG")
+set("n", "die", "ggdG")
+set("n", "yie", "ggVGy")
+
 -- Better movimentation on wrapped lines
 set("n", "j", "gj")
 set("n", "k", "gk")
