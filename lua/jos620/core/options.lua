@@ -20,7 +20,7 @@ o.wrap = false
 -- Save files
 o.swapfile = false
 o.backup = false
-o.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
+o.undodir = vim.fn.stdpath("config") .. "/undodir"
 o.undofile = true
 
 -- Search settings
