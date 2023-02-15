@@ -26,6 +26,8 @@ o.undofile = true
 -- Search settings
 o.ignorecase = true
 o.smartcase = true
+o.hlsearch = false
+o.incsearch = true
 
 -- Cursor line
 o.cursorline = true
