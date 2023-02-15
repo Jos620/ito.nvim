@@ -12,6 +12,12 @@ set("n", "<C-s>", ":write<Return>")
 -- Highlights
 set("n", "<Leader>h", ":set hlsearch!<Return>", silent)
 
+-- Navigation
+set("n", "gg", "gg0zz")
+set("n", "G", "G0zz")
+set("n", "gh", "^")
+set("n", "gl", "$")
+
 -- Do not yank with "X" and "C"
 set({ "n", "v" }, "x", '"_x')
 set({ "n", "v" }, "X", '"_X')
