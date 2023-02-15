@@ -22,7 +22,17 @@ null_ls.setup({
 
     -- JavaScript
     formatting.eslint_d,
-    diagnostics.eslint_d,
+    diagnostics.eslint_d.with({
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+      },
+      extra_args = { "--ignore-path", ".gitignore", "--ignore-pattern", "node_modules" },
+    }),
     code_actions.eslint_d,
 
     -- Rust
