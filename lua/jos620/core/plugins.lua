@@ -104,6 +104,9 @@ return packer.startup(function(use)
   -- Git
   use("lewis6991/gitsigns.nvim")
 
+  -- Indent objects
+  use("michaeljsmith/vim-indent-object")
+
   -- Dependencies
   use("nvim-lua/plenary.nvim")
 
