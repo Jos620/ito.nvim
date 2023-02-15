@@ -1,5 +1,6 @@
 # Folders
 plugin/
+!after/plugin/
 undodir/
 
 # Files
