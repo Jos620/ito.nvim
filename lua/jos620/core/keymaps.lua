@@ -51,6 +51,10 @@ set("n", "<C-up>", "<C-w>+")
 set("n", "<C-down>", "<C-w>-")
 set("n", "<C-right>", "<C-w>>")
 set("n", "<C-left>", "<C-w><")
+set("n", "+", "<C-w>+")
+set("n", "_", "<C-w>-")
+set("n", ">>", "<C-w>>")
+set("n", "<<", "<C-w><")
 
 set("n", "<C-m>", ":MaximizerToggle<Return>", silent)
 
