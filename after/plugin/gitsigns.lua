@@ -39,7 +39,6 @@ gitsigns.setup({
     end, { silent = true, expr = true })
 
     -- Actions
-    set({ "n", "v" }, "<Leader>gs", ":Gitsigns stage_hunk<CR>", silent)
     set({ "n", "v" }, "<Leader>gr", ":Gitsigns reset_hunk<CR>", silent)
     set("n", "<Leader>gS", gitsigns.stage_buffer, silent)
     set("n", "<Leader>gu", gitsigns.undo_stage_hunk, silent)
