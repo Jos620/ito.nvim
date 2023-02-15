@@ -49,4 +49,3 @@ o.autoread = true
 -- Bottom bar
 o.showmode = false
 o.ruler = false
-o.laststatus = 0
