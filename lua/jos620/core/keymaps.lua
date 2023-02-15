@@ -87,8 +87,8 @@ set("n", "<Leader>fh", ":Telescope highlights<Return>", silent)
 -- Buffers
 set("n", "H", ":BufferLineCyclePrev<Return>", silent)
 set("n", "L", ":BufferLineCycleNext<Return>", silent)
-set("n", "<Leader>,", ":BufferLineMovePrev<Return>", { silent = true })
-set("n", "<Leader>.", ":BufferLineMoveNext<Return>", { silent = true })
+set("n", "<Leader>,", ":BufferLineMovePrev<Return>", silent)
+set("n", "<Leader>.", ":BufferLineMoveNext<Return>", silent)
 set("n", "<Leader>c", ":bdelete<Return>", silent)
 
 -- Packages
