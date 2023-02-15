@@ -12,7 +12,9 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
   sources = {
     -- Spell checking
-    diagnostics.cspell,
+    diagnostics.cspell.with({
+      filetypes = { "markdown", "tex", "text", "typescript", "typescriptreact", "typescript.tsx", "vimwiki" },
+    }),
     code_actions.cspell,
 
     -- Lua
