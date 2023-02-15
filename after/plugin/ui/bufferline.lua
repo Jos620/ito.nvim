@@ -3,7 +3,7 @@ if not status then
   return
 end
 
-local colors = require("jos620.colors")
+local colors = require("jos620.core").colors
 
 local normal = {
   fg = colors.gray,
