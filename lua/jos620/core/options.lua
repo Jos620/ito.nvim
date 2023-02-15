@@ -17,6 +17,12 @@ o.autoindent = true
 -- Line wrapping
 o.wrap = false
 
+-- Save files
+o.swapfile = false
+o.backup = false
+o.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
+o.undofile = true
+
 -- Search settings
 o.ignorecase = true
 o.smartcase = true
