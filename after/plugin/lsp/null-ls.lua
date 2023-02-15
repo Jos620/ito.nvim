@@ -20,7 +20,7 @@ null_ls.setup({
     -- Lua
     formatting.stylua,
 
-    -- JavaScript
+    -- JavaScript / TypeScript
     formatting.eslint_d,
     diagnostics.eslint_d.with({
       filetypes = {
