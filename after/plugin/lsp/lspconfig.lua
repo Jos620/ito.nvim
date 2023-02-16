@@ -47,6 +47,7 @@ local servers = {
   "cssls",
   "tailwindcss",
   "rust_analyzer",
+  "jsonls",
 }
 
 for _, server in ipairs(servers) do
