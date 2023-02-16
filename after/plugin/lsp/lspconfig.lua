@@ -84,3 +84,15 @@ lspconfig["lua_ls"].setup({
     },
   },
 })
+
+-- Vue
+lspconfig.volar.setup({
+  filetypes = {
+    "typescript",
+    "javascript",
+    "javascriptreact",
+    "typescriptreact",
+    "vue",
+    "json",
+  },
+})
