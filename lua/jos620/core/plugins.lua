@@ -40,6 +40,7 @@ return packer.startup(function(use)
     },
   })
   use("nvim-tree/nvim-web-devicons")
+  use("brenoprata10/nvim-highlight-colors")
 
   -- Status / buffer line
   use("nvim-lualine/lualine.nvim")
