@@ -21,11 +21,9 @@ set("n", "G", "G0zz")
 set("n", "gh", "^")
 set("n", "gl", "$")
 
--- Do not yank with "X", "C" and "P"
+-- Do not yank with "X" and "P"
 set({ "n", "v" }, "x", '"_x')
 set({ "n", "v" }, "X", '"_X')
-set({ "n", "v" }, "c", '"_c')
-set({ "n", "v" }, "C", '"_C')
 set("x", "p", '"_dP')
 set("x", "<Leader>p", "p")
 
