@@ -41,6 +41,9 @@ null_ls.setup({
       extra_args = { "--ignore-path", ".gitignore", "--ignore-pattern", "node_modules" },
     }),
     code_actions.eslint_d,
+    formatting.prettierd.with({
+      filetypes = { "svelte" },
+    }),
 
     -- Rust
     formatting.rustfmt,
@@ -54,6 +57,10 @@ null_ls.setup({
         callback = function()
           vim.lsp.buf.format({
             filter = function(client)
+              if vim.bo.filetype == "svelte" then
+                return client.name == "svelte"
+              end
+
               return client.name == "null-ls"
             end,
             bufnr = bufnr,
