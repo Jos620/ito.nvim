@@ -38,6 +38,9 @@ null_ls.setup({
         "typescriptreact",
         "typescript.tsx",
       },
+      condition = function(utils)
+        return utils.root_has_file(".eslintrc")
+      end,
       extra_args = { "--ignore-path", ".gitignore", "--ignore-pattern", "node_modules" },
     }),
     code_actions.eslint_d,
