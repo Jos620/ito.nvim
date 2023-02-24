@@ -29,6 +29,7 @@ local on_attach = function(client, buffer)
   set("n", "<Leader>ld", ":Lspsaga show_line_diagnostics<Return>", opts)
   set("n", "<Leader>lc", ":Lspsaga show_cursor_diagnostics<Return>", opts)
   set("n", "<Leader>lb", ":Lspsaga show_buf_diagnostics<Return>", opts)
+  set("n", "<Leader>li", ":Lspsaga lsp_finder<Return>", opts)
 
   set("n", "<Leader>lj", ":Lspsaga diagnostic_jump_next<Return>", opts)
   set("n", "<Leader>lk", ":Lspsaga diagnostic_jump_prev<Return>", opts)
@@ -90,10 +91,6 @@ lspconfig["lua_ls"].setup({
 -- Vue
 lspconfig.volar.setup({
   filetypes = {
-    "typescript",
-    "javascript",
-    "javascriptreact",
-    "typescriptreact",
     "vue",
     "json",
   },
