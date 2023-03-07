@@ -62,6 +62,7 @@ return packer.startup(function(use)
   use("christoomey/vim-tmux-navigator")
   use("justinmk/vim-sneak")
   use("jesseleite/vim-noh")
+  use("karb94/neoscroll.nvim")
 
   -- Comments
   use("numToStr/Comment.nvim")
