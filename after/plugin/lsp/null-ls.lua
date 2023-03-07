@@ -11,11 +11,6 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local cspell_config = {
   filetypes = { "markdown", "tex", "text", "typescript", "typescriptreact", "typescript.tsx", "vimwiki" },
-  condition = function(utils)
-    local have_cspell = utils.root_has_file("cspell.json") and utils.executable("cspell")
-
-    return have_cspell
-  end,
 }
 
 null_ls.setup({
