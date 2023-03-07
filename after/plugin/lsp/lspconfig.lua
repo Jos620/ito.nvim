@@ -8,14 +8,9 @@ if not cmp_nvim_lsp_status then
   return
 end
 
-local typescript_status, typescript = pcall(require, "typescript")
-if not typescript_status then
-  return
-end
-
 local fn = vim.fn
 
-local on_attach = function(client, buffer)
+local on_attach = function(_, buffer)
   local set = vim.keymap.set
   local opts = { noremap = true, silent = true, buffer = buffer }
 
@@ -34,10 +29,6 @@ local on_attach = function(client, buffer)
   set("n", "<Leader>lj", ":Lspsaga diagnostic_jump_next<Return>", opts)
   set("n", "<Leader>lk", ":Lspsaga diagnostic_jump_prev<Return>", opts)
   set("n", "K", ":Lspsaga hover_doc<Return>", opts)
-
-  if client.name == "tsserver" then
-    set("n", "<Leader>lfr", ":TypescriptRenameFile<Return>", opts)
-  end
 end
 
 -- Enable auto completion
@@ -50,6 +41,7 @@ local servers = {
   "rust_analyzer",
   "jsonls",
   "svelte",
+  "tsserver",
 }
 
 for _, server in ipairs(servers) do
@@ -58,14 +50,6 @@ for _, server in ipairs(servers) do
     on_attach = on_attach,
   })
 end
-
--- TypeScript
-typescript.setup({
-  server = {
-    capabilities = capabilities,
-    on_attach = on_attach,
-  },
-})
 
 -- Lua
 lspconfig["lua_ls"].setup({
