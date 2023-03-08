@@ -52,13 +52,23 @@ bufferline.setup({
       end
 
       local icons = {
-        ["@mobile"] = "",
+        ["@mobile"] = "󰄜",
+        ["@desktop"] = "󰇄",
       }
 
       for key, icon in pairs(icons) do
         if string.find(buf.path, key) then
           label = icon .. " " .. label
         end
+      end
+
+      -- ScoreMilk
+      if
+        string.find(buf.path, "ScoreMilk")
+        and string.find(buf.path, "components")
+        and not string.find(buf.path, "@mobile")
+      then
+        label = icons["@desktop"] .. " " .. label
       end
 
       return label
