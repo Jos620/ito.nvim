@@ -37,6 +37,7 @@ cmp.setup({
 
     -- Show / hide the popup
     ["<C-Space>"] = cmp.mapping.complete(),
+    ["<M-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.abort(),
 
     -- Confim
