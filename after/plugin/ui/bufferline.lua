@@ -36,6 +36,33 @@ bufferline.setup({
       "",
       "",
     },
+
+    name_formatter = function(buf)
+      local modify = vim.fn.fnamemodify
+
+      local name = modify(buf.path, ":t")
+      local folder = modify(buf.path, ":h:t")
+
+      local label
+
+      if string.find(name, "index") or string.find(name, "init") then
+        label = folder .. "." .. modify(buf.path, ":e")
+      else
+        label = name
+      end
+
+      local icons = {
+        ["@mobile"] = "",
+      }
+
+      for key, icon in pairs(icons) do
+        if string.find(buf.path, key) then
+          label = icon .. " " .. label
+        end
+      end
+
+      return label
+    end,
   },
   highlights = {
     -- General
