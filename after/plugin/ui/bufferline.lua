@@ -46,7 +46,7 @@ bufferline.setup({
       local label
 
       if string.find(name, "index") or string.find(name, "init") then
-        label = folder .. "." .. modify(buf.path, ":e")
+        label = folder
       else
         label = name
       end
