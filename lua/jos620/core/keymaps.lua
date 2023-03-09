@@ -6,9 +6,6 @@ local silent = { silent = true }
 set("i", "jk", "<Esc>")
 set("i", "jj", "<Esc>:wa<Return>", silent)
 
--- Save
-set("n", "<C-s>", ":write<Return>")
-
 -- Search and replace
 set("n", "<C-S>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
