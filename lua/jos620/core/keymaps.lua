@@ -13,7 +13,10 @@ set("n", "<C-s>", ":write<Return>")
 set("n", "<C-S>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Highlights
-set("n", "<Leader>h", ":set hlsearch!<Return>", silent)
+set("n", "<Leader>h", function()
+  vim.cmd([[nohlsearch]])
+  vim.cmd([[echom '']])
+end, silent)
 
 -- Navigation
 set("n", "gg", "gg0zz")
