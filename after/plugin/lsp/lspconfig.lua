@@ -42,6 +42,7 @@ local servers = {
   "jsonls",
   "svelte",
   "tsserver",
+  "prismals",
 }
 
 for _, server in ipairs(servers) do

@@ -43,7 +43,7 @@ null_ls.setup({
     }),
     code_actions.eslint_d,
     formatting.prettierd.with({
-      filetypes = { "svelte" },
+      filetypes = { "svelte", "prisma" },
     }),
 
     -- Rust
@@ -60,6 +60,10 @@ null_ls.setup({
             filter = function(client)
               if vim.bo.filetype == "svelte" then
                 return client.name == "svelte"
+              end
+
+              if vim.bo.filetype == "prisma" then
+                return client.name == "prismals"
               end
 
               return client.name == "null-ls"
