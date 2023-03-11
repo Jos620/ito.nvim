@@ -45,7 +45,7 @@ bufferline.setup({
 
       local label
 
-      if string.find(name, "index") or string.find(name, "init") then
+      if string.find(name, "index") or string.find(name, "init") or string.find(name, "style") then
         label = "/" .. folder
       else
         label = name
@@ -54,6 +54,7 @@ bufferline.setup({
       local icons = {
         ["@mobile"] = "󰄜",
         ["@desktop"] = "󰇄",
+        ["style"] = "󰏘",
       }
 
       for key, icon in pairs(icons) do
