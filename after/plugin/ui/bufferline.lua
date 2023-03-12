@@ -57,6 +57,7 @@ bufferline.setup({
         ["style"] = "󰏘",
         ["spec"] = "",
         ["test"] = "",
+        ["repositor"] = "",
       }
 
       for key, icon in pairs(icons) do
