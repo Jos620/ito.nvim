@@ -52,11 +52,16 @@ bufferline.setup({
       end
 
       local icons = {
+        -- Environment
         ["@mobile"] = "󰄜",
         ["@desktop"] = "󰇄",
+
+        -- File functions
         ["style"] = "󰏘",
         ["spec"] = "",
         ["test"] = "",
+
+        -- Database
         ["repositor"] = "",
       }
 
