@@ -20,4 +20,7 @@ saga.setup({
   beacon = {
     enable = false,
   },
+  lightbulb = {
+    enable = false,
+  },
 })
