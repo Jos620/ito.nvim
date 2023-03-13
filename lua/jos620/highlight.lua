@@ -1,4 +1,4 @@
-local colors = require("jos620.core").colors
+local colors = require("jos620.colors")
 
 local link_to_normal_groups = {
   "NvimTreeFolderName",

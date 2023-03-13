@@ -1,6 +1,4 @@
-local M = {}
-
-M.colors = {
+return {
   white = "#ffffff",
   black = "#181818",
   darkgray = "#292929",
@@ -13,5 +11,3 @@ M.colors = {
   yellow = "#e6cc77",
   orange = "#d4976c",
 }
-
-return M
