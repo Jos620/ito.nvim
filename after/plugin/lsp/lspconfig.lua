@@ -11,24 +11,7 @@ end
 local fn = vim.fn
 
 local on_attach = function(_, buffer)
-  local set = vim.keymap.set
-  local opts = { noremap = true, silent = true, buffer = buffer }
-
-  set("n", "gf", ":Lspsaga lsp_finder<Return>", opts)
-  set("n", "gd", ":Lspsaga peek_definition<Return>", opts)
-  set("n", "gD", ":lua vim.lsp.buf.declaration()<Return>", opts)
-  set("n", "gi", ":lua vim.lsp.buf.implementation()<Return>", opts)
-
-  set("n", "<Leader>la", ":Lspsaga code_action<Return>", opts)
-  set("n", "<Leader>lr", ":Lspsaga rename<Return>", opts)
-  set("n", "<Leader>ld", ":Lspsaga show_line_diagnostics<Return>", opts)
-  set("n", "<Leader>lc", ":Lspsaga show_cursor_diagnostics<Return>", opts)
-  set("n", "<Leader>lb", ":Lspsaga show_buf_diagnostics<Return>", opts)
-  set("n", "<Leader>li", ":Lspsaga lsp_finder<Return>", opts)
-
-  set("n", "<Leader>lj", ":Lspsaga diagnostic_jump_next<Return>", opts)
-  set("n", "<Leader>lk", ":Lspsaga diagnostic_jump_prev<Return>", opts)
-  set("n", "K", ":Lspsaga hover_doc<Return>", opts)
+  require("jos620.core.keymaps").setup_lsp_keymaps(buffer)
 end
 
 -- Enable auto completion
@@ -80,3 +63,9 @@ lspconfig.volar.setup({
     "json",
   },
 })
+
+return {
+  servers = servers,
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
