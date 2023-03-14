@@ -3,6 +3,9 @@ if not status then
   return
 end
 
+local colors = require("jos620.colors")
+local neovide_background = require("jos620.neovide").neovide_background
+
 lualine.setup({
   options = {
     component_separators = { left = "", right = "" },
@@ -11,18 +14,39 @@ lualine.setup({
   },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "branch", "diagnostics" },
+    lualine_b = {
+      {
+        "branch",
+        "diagnostics",
+        color = {
+          bg = neovide_background(colors.darkgray),
+        },
+      },
+    },
     lualine_c = { "filename" },
 
-    lualine_x = { "filetype" },
-    lualine_y = { "progress" },
+    lualine_x = {
+      {
+        "filetype",
+        color = {
+          bg = neovide_background(colors.black),
+        },
+      },
+    },
+    lualine_y = {
+      {
+        "progress",
+        color = {
+          bg = neovide_background(colors.darkgray),
+        },
+      },
+    },
     lualine_z = { "location" },
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
     lualine_c = { "filename" },
-
     lualine_x = { "location" },
     lualine_y = {},
     lualine_z = {},

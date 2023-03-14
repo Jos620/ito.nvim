@@ -22,6 +22,7 @@ nvim_tree.setup({
         { key = "e", action = "" },
       },
     },
+    cursorline = not vim.g.neovide,
   },
 
   sync_root_with_cwd = true,

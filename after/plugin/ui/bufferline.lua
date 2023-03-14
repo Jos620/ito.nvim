@@ -4,15 +4,16 @@ if not status then
 end
 
 local colors = require("jos620.colors")
+local neovide_background = require("jos620.neovide").neovide_background
 
 local normal = {
   fg = colors.gray,
-  bg = colors.black,
+  bg = neovide_background(colors.black),
 }
 
 local green = {
   fg = colors.green,
-  bg = colors.darkgray,
+  bg = neovide_background(colors.darkgray),
 }
 
 local black = {
@@ -102,7 +103,7 @@ bufferline.setup({
     buffer_visible = normal,
     buffer_selected = {
       fg = colors.white,
-      bg = colors.darkgray,
+      bg = neovide_background(colors.darkgray),
       bold = true,
     },
 
@@ -127,7 +128,7 @@ bufferline.setup({
     },
     hint_selected = {
       fg = colors.cyan,
-      bg = colors.darkgray,
+      bg = neovide_background(colors.darkgray),
     },
     hint_diagnostic = {
       fg = colors.cyan,
@@ -139,7 +140,7 @@ bufferline.setup({
     },
     hint_diagnostic_selected = {
       fg = colors.cyan,
-      bg = colors.darkgray,
+      bg = neovide_background(colors.darkgray),
     },
 
     -- Info
@@ -153,7 +154,7 @@ bufferline.setup({
     },
     info_selected = {
       fg = colors.blue,
-      bg = colors.darkgray,
+      bg = neovide_background(colors.darkgray),
     },
     info_diagnostic = {
       fg = colors.blue,
@@ -165,7 +166,7 @@ bufferline.setup({
     },
     info_diagnostic_selected = {
       fg = colors.blue,
-      bg = colors.darkgray,
+      bg = neovide_background(colors.darkgray),
     },
 
     -- Warning
@@ -179,7 +180,7 @@ bufferline.setup({
     },
     warning_selected = {
       fg = colors.yellow,
-      bg = colors.darkgray,
+      bg = neovide_background(colors.darkgray),
     },
     warning_diagnostic = {
       fg = colors.yellow,
@@ -191,7 +192,7 @@ bufferline.setup({
     },
     warning_diagnostic_selected = {
       fg = colors.yellow,
-      bg = colors.darkgray,
+      bg = neovide_background(colors.darkgray),
     },
 
     -- Error
@@ -205,7 +206,7 @@ bufferline.setup({
     },
     error_selected = {
       fg = colors.red,
-      bg = colors.darkgray,
+      bg = neovide_background(colors.darkgray),
     },
     error_diagnostic = {
       fg = colors.red,
@@ -217,7 +218,7 @@ bufferline.setup({
     },
     error_diagnostic_selected = {
       fg = colors.red,
-      bg = colors.darkgray,
+      bg = neovide_background(colors.darkgray),
     },
 
     -- Modified
@@ -231,13 +232,13 @@ bufferline.setup({
     },
     modified_selected = {
       fg = colors.yellow,
-      bg = colors.darkgray,
+      bg = neovide_background(colors.darkgray),
     },
 
     -- Duplicate
     duplicate_selected = {
       fg = colors.gray,
-      bg = colors.darkgray,
+      bg = neovide_background(colors.darkgray),
     },
     duplicate_visible = normal,
     duplicate = normal,
@@ -253,7 +254,7 @@ bufferline.setup({
     -- Pick
     pick_selected = {
       fg = colors.white,
-      bg = colors.darkgray,
+      bg = neovide_background(colors.darkgray),
       bold = true,
     },
     pick_visible = normal,
