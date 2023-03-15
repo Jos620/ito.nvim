@@ -17,11 +17,11 @@ lualine.setup({
     lualine_b = {
       {
         "branch",
-        "diagnostics",
         color = {
           bg = neovide_background(colors.darkgray),
         },
       },
+      "diagnostics",
     },
     lualine_c = { "filename" },
 
