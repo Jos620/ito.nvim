@@ -3,9 +3,6 @@ if not status then
   return
 end
 
--- I'll use :%s to replace all the bg = (color) to bg = neovide_background(color), minus the ones that are already using it
--- regex: bg = (?!neovide_background\()(.*)
-
 local colors = require("jos620.colors")
 local neovide_background = require("jos620.neovide").neovide_background
 
