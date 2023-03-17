@@ -21,7 +21,12 @@ lualine.setup({
           bg = neovide_background(colors.darkgray),
         },
       },
-      "diagnostics",
+      {
+        "diagnostics",
+        color = {
+          bg = neovide_background(colors.darkgray),
+        },
+      },
     },
     lualine_c = { "filename" },
 
