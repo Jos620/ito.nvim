@@ -3,6 +3,9 @@ if not status then
   return
 end
 
+-- I'll use :%s to replace all the bg = (color) to bg = neovide_background(color), minus the ones that are already using it
+-- regex: bg = (?!neovide_background\()(.*)
+
 local colors = require("jos620.colors")
 local neovide_background = require("jos620.neovide").neovide_background
 
@@ -11,14 +14,34 @@ local normal = {
   bg = neovide_background(colors.black),
 }
 
+local black = {
+  fg = colors.black,
+  bg = neovide_background(colors.black),
+}
+
 local green = {
   fg = colors.green,
   bg = neovide_background(colors.darkgray),
 }
 
-local black = {
-  fg = colors.black,
-  bg = colors.black,
+local cyan = {
+  fg = colors.cyan,
+  bg = neovide_background(colors.black),
+}
+
+local blue = {
+  fg = colors.blue,
+  bg = neovide_background(colors.black),
+}
+
+local yellow = {
+  fg = colors.yellow,
+  bg = neovide_background(colors.black),
+}
+
+local red = {
+  fg = colors.red,
+  bg = neovide_background(colors.black),
 }
 
 bufferline.setup({
@@ -118,118 +141,64 @@ bufferline.setup({
     diagnostic_selected = green,
 
     -- Hint
-    hint = {
-      fg = colors.cyan,
-      bg = colors.black,
-    },
-    hint_visible = {
-      fg = colors.cyan,
-      bg = colors.black,
-    },
+    hint = cyan,
+    hint_visible = cyan,
     hint_selected = {
       fg = colors.cyan,
       bg = neovide_background(colors.darkgray),
     },
-    hint_diagnostic = {
-      fg = colors.cyan,
-      bg = colors.black,
-    },
-    hint_diagnostic_visible = {
-      fg = colors.cyan,
-      bg = colors.black,
-    },
+    hint_diagnostic = cyan,
+    hint_diagnostic_visible = cyan,
     hint_diagnostic_selected = {
       fg = colors.cyan,
       bg = neovide_background(colors.darkgray),
     },
 
     -- Info
-    info = {
-      fg = colors.blue,
-      bg = colors.black,
-    },
-    info_visible = {
-      fg = colors.blue,
-      bg = colors.black,
-    },
+    info = blue,
+    info_visible = blue,
     info_selected = {
       fg = colors.blue,
       bg = neovide_background(colors.darkgray),
     },
-    info_diagnostic = {
-      fg = colors.blue,
-      bg = colors.black,
-    },
-    info_diagnostic_visible = {
-      fg = colors.blue,
-      bg = colors.black,
-    },
+    info_diagnostic = blue,
+    info_diagnostic_visible = blue,
     info_diagnostic_selected = {
       fg = colors.blue,
       bg = neovide_background(colors.darkgray),
     },
 
     -- Warning
-    warning = {
-      fg = colors.yellow,
-      bg = colors.black,
-    },
-    warning_visible = {
-      fg = colors.yellow,
-      bg = colors.black,
-    },
+    warning = yellow,
+    warning_visible = yellow,
     warning_selected = {
       fg = colors.yellow,
       bg = neovide_background(colors.darkgray),
     },
-    warning_diagnostic = {
-      fg = colors.yellow,
-      bg = colors.black,
-    },
-    warning_diagnostic_visible = {
-      fg = colors.yellow,
-      bg = colors.black,
-    },
+    warning_diagnostic = yellow,
+    warning_diagnostic_visible = yellow,
     warning_diagnostic_selected = {
       fg = colors.yellow,
       bg = neovide_background(colors.darkgray),
     },
 
     -- Error
-    error = {
-      fg = colors.red,
-      bg = colors.black,
-    },
-    error_visible = {
-      fg = colors.red,
-      bg = colors.black,
-    },
+    error = red,
+    error_visible = red,
     error_selected = {
       fg = colors.red,
       bg = neovide_background(colors.darkgray),
     },
-    error_diagnostic = {
-      fg = colors.red,
-      bg = colors.black,
-    },
-    error_diagnostic_visible = {
-      fg = colors.red,
-      bg = colors.black,
-    },
+    error_diagnostic = red,
+    error_diagnostic_visible = red,
     error_diagnostic_selected = {
       fg = colors.red,
       bg = neovide_background(colors.darkgray),
     },
 
     -- Modified
-    modified = {
-      fg = colors.yellow,
-      bg = colors.black,
-    },
-    modified_visible = {
-      fg = colors.yellow,
-      bg = colors.black,
-    },
+    modified = yellow,
+    modified_visible = yellow,
     modified_selected = {
       fg = colors.yellow,
       bg = neovide_background(colors.darkgray),
