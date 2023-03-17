@@ -70,7 +70,7 @@ bufferline.setup({
       local label
 
       if string.find(name, "index") or string.find(name, "init") or string.find(name, "style") then
-        label = "/" .. folder
+        label = folder
       else
         label = name
       end
@@ -91,7 +91,7 @@ bufferline.setup({
 
       for key, icon in pairs(icons) do
         if string.find(buf.path, key) then
-          label = icon .. " " .. label
+          label = icon .. "|" .. label
         end
       end
 
@@ -101,7 +101,7 @@ bufferline.setup({
         and string.find(buf.path, "components")
         and not string.find(buf.path, "@mobile")
       then
-        label = icons["@desktop"] .. " " .. label
+        label = icons["@desktop"] .. "|" .. label
       end
 
       return label
