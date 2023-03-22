@@ -26,6 +26,7 @@ local servers = {
   "svelte",
   "tsserver",
   "prismals",
+  "unocss",
 }
 
 for _, server in ipairs(servers) do
