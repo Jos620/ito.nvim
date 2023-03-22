@@ -70,6 +70,9 @@ set("n", "<C-m>", ":MaximizerToggle<Return>", silent)
 set("n", "<Leader>Sh", "<C-w>t<C-w>H")
 set("n", "<Leader>Sv", "<C-w>t<C-w>K")
 
+-- Folds
+set("n", "<Leader>z", "$V%zf")
+
 -- Increase / decrease
 set("n", "=", "<C-a>")
 set("n", "-", "<C-x>")
