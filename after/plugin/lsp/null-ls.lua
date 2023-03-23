@@ -46,6 +46,14 @@ null_ls.setup({
       filetypes = { "svelte", "prisma" },
     }),
 
+    diagnostics.eslint.with({
+      filetypes = { "vue" },
+      condition = function(utils)
+        return utils.root_has_file(".eslintrc")
+      end,
+      extra_args = { "--ignore-path", ".gitignore", "--ignore-pattern", "node_modules" },
+    }),
+
     -- Rust
     formatting.rustfmt,
   },
