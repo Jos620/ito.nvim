@@ -63,6 +63,18 @@ lspconfig.volar.setup({
     "vue",
     "json",
   },
+  settings = {
+    css = {
+      lint = {
+        unknownAtRules = "ignore",
+      },
+    },
+    scss = {
+      lint = {
+        unknownAtRules = "ignore",
+      },
+    },
+  },
 })
 
 return {
