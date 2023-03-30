@@ -4,7 +4,7 @@ if not status then
 end
 
 local colors = require("jos620.colors")
-local neovide_background = require("jos620.neovide").neovide_background
+local neovide_color = require("jos620.neovide").neovide_color
 
 lualine.setup({
   options = {
@@ -18,13 +18,13 @@ lualine.setup({
       {
         "branch",
         color = {
-          bg = neovide_background(colors.darkgray),
+          bg = neovide_color(colors.darkgray),
         },
       },
       {
         "diagnostics",
         color = {
-          bg = neovide_background(colors.darkgray),
+          bg = neovide_color(colors.darkgray),
         },
       },
     },
@@ -34,7 +34,7 @@ lualine.setup({
       {
         "filetype",
         color = {
-          bg = neovide_background(colors.black),
+          bg = neovide_color(colors.black),
         },
       },
     },
@@ -42,7 +42,7 @@ lualine.setup({
       {
         "progress",
         color = {
-          bg = neovide_background(colors.darkgray),
+          bg = neovide_color(colors.darkgray),
         },
       },
     },

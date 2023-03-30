@@ -3,7 +3,7 @@ local alpha = function()
   return string.format("%x", math.floor(255 * (vim.g.transparency or 0.8)))
 end
 
-local neovide_background = function(default)
+local neovide_color = function(default)
   if vim.g.neovide then
     return "None"
   end
@@ -36,5 +36,5 @@ vim.cmd("hi lualine_c_normal guibg=None")
 vim.cmd("hi Pmenu cterm=None guibg=None")
 
 return {
-  neovide_background = neovide_background,
+  neovide_color = neovide_color,
 }
