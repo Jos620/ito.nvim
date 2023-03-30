@@ -67,7 +67,7 @@ bufferline.setup({
 
       local label
 
-      if string.find(name, "index") or string.find(name, "init") or string.find(name, "style") then
+      if string.find(name, "index") or string.find(name, "init") then
         label = folder
       else
         label = name
@@ -96,10 +96,19 @@ bufferline.setup({
       -- ScoreMilk
       if
         string.find(buf.path, "ScoreMilk")
-        and string.find(buf.path, "components")
-        and not string.find(buf.path, "@mobile")
       then
-        label = icons["@desktop"] .. "|" .. label
+        -- Desktop
+        if
+          string.find(buf.path, "components")
+          and not string.find(buf.path, "@mobile")
+        then
+          label = icons["@desktop"] .. "|" .. label
+        end
+
+        -- Style
+        if string.find(buf.path, "style") then
+          label = icons["style"] .. "|" .. folder
+        end
       end
 
       return label
