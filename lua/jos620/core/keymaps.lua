@@ -105,6 +105,61 @@ set("n", "<Leader>pc", ":PackerCompile<Return>", silent)
 set("n", "<Leader>ps", ":PackerSync<Return>", silent)
 set("n", "<Leader>mm", ":Mason<Return>", silent)
 
+-- Git
+local function setup_git_keymaps(buffer, gitsigns)
+  local function set_git(mode, l, r, opts)
+    opts = opts or {}
+    opts.buffer = buffer
+    vim.keymap.set(mode, l, r, opts)
+  end
+
+  -- Navigation
+  set_git("n", "<Leader>gj", function()
+    if vim.wo.diff then
+      return "<Leader>gj"
+    end
+
+    vim.schedule(function()
+      gitsigns.next_hunk()
+    end)
+
+    return "<Ignore>"
+  end, { silent = true, expr = true })
+
+  set_git("n", "<Leader>gk", function()
+    if vim.wo.diff then
+      return "<Leader>gk"
+    end
+
+    vim.schedule(function()
+      gitsigns.prev_hunk()
+    end)
+
+    return "<Ignore>"
+  end, { silent = true, expr = true })
+
+  -- Actions
+  set_git({ "n", "v" }, "<Leader>gr", ":Gitsigns reset_hunk<Return>", silent)
+  set_git("n", "<Leader>gS", gitsigns.stage_buffer, silent)
+  set_git("n", "<Leader>gu", gitsigns.undo_stage_hunk, silent)
+  set_git("n", "<Leader>gR", gitsigns.reset_buffer, silent)
+  set_git("n", "<Leader>gp", gitsigns.preview_hunk, silent)
+  set_git("n", "<Leader>gl", function()
+    gitsigns.blame_line({ full = true })
+  end)
+  set_git("n", "<Leader>gb", gitsigns.toggle_current_line_blame, silent)
+  set_git("n", "<Leader>gd", gitsigns.diffthis, silent)
+  set_git("n", "<Leader>gD", function()
+    gitsigns.diffthis("~")
+  end, silent)
+  set_git("n", "<Leader>td", gitsigns.toggle_deleted, silent)
+
+  -- Text object
+  set_git({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<Return>", silent)
+
+  set_git("n", "gs", ":Git<Return>", { silent = true })
+end
+
 -- LSP
 local function setup_lsp_keymaps(buffer)
   local opts = { noremap = true, silent = true, buffer = buffer }
@@ -127,5 +182,6 @@ local function setup_lsp_keymaps(buffer)
 end
 
 return {
+  setup_git_keymaps = setup_git_keymaps,
   setup_lsp_keymaps = setup_lsp_keymaps,
 }
