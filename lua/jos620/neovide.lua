@@ -37,4 +37,7 @@ vim.cmd("hi Pmenu cterm=None guibg=None")
 
 return {
   neovide_color = neovide_color,
+  is_neovide = function()
+    return vim.g.neovide ~= nil
+  end,
 }
