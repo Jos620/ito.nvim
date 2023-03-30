@@ -5,6 +5,7 @@ end
 
 local colors = require("jos620.colors")
 local neovide_color = require("jos620.neovide").neovide_color
+local is_neovide = require("jos620.neovide").is_neovide()
 
 local normal = {
   fg = colors.gray,
@@ -122,7 +123,7 @@ bufferline.setup({
     -- Buffers
     buffer_visible = normal,
     buffer_selected = {
-      fg = colors.white,
+      fg = is_neovide and colors.green or colors.white,
       bg = neovide_color(colors.darkgray),
       bold = true,
     },
