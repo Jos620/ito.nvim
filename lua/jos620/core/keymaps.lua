@@ -107,14 +107,14 @@ set("n", "<Leader>mm", ":Mason<Return>", silent)
 
 -- Git
 local function setup_git_keymaps(buffer, gitsigns)
-  local function set_git(mode, l, r, opts)
+  local function git_set(mode, l, r, opts)
     opts = opts or {}
     opts.buffer = buffer
     vim.keymap.set(mode, l, r, opts)
   end
 
   -- Navigation
-  set_git("n", "<Leader>gj", function()
+  git_set("n", "<Leader>gj", function()
     if vim.wo.diff then
       return "<Leader>gj"
     end
@@ -126,7 +126,7 @@ local function setup_git_keymaps(buffer, gitsigns)
     return "<Ignore>"
   end, { silent = true, expr = true })
 
-  set_git("n", "<Leader>gk", function()
+  git_set("n", "<Leader>gk", function()
     if vim.wo.diff then
       return "<Leader>gk"
     end
@@ -139,25 +139,25 @@ local function setup_git_keymaps(buffer, gitsigns)
   end, { silent = true, expr = true })
 
   -- Actions
-  set_git({ "n", "v" }, "<Leader>gr", ":Gitsigns reset_hunk<Return>", silent)
-  set_git("n", "<Leader>gS", gitsigns.stage_buffer, silent)
-  set_git("n", "<Leader>gu", gitsigns.undo_stage_hunk, silent)
-  set_git("n", "<Leader>gR", gitsigns.reset_buffer, silent)
-  set_git("n", "<Leader>gp", gitsigns.preview_hunk, silent)
-  set_git("n", "<Leader>gl", function()
+  git_set({ "n", "v" }, "<Leader>gr", ":Gitsigns reset_hunk<Return>", silent)
+  git_set("n", "<Leader>gS", gitsigns.stage_buffer, silent)
+  git_set("n", "<Leader>gu", gitsigns.undo_stage_hunk, silent)
+  git_set("n", "<Leader>gR", gitsigns.reset_buffer, silent)
+  git_set("n", "<Leader>gp", gitsigns.preview_hunk, silent)
+  git_set("n", "<Leader>gl", function()
     gitsigns.blame_line({ full = true })
   end)
-  set_git("n", "<Leader>gb", gitsigns.toggle_current_line_blame, silent)
-  set_git("n", "<Leader>gd", gitsigns.diffthis, silent)
-  set_git("n", "<Leader>gD", function()
+  git_set("n", "<Leader>gb", gitsigns.toggle_current_line_blame, silent)
+  git_set("n", "<Leader>gd", gitsigns.diffthis, silent)
+  git_set("n", "<Leader>gD", function()
     gitsigns.diffthis("~")
   end, silent)
-  set_git("n", "<Leader>td", gitsigns.toggle_deleted, silent)
+  git_set("n", "<Leader>td", gitsigns.toggle_deleted, silent)
 
   -- Text object
-  set_git({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<Return>", silent)
+  git_set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<Return>", silent)
 
-  set_git("n", "gs", ":Git<Return>", { silent = true })
+  git_set("n", "gs", ":Git<Return>", { silent = true })
 end
 
 -- LSP
