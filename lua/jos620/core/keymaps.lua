@@ -157,7 +157,7 @@ local function setup_git_keymaps(buffer, gitsigns)
   -- Text object
   git_set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<Return>", silent)
 
-  git_set("n", "gs", ":Git<Return>", { silent = true })
+  git_set("n", "gs", ":vertical rightbelow Git<Return>", silent)
 end
 
 -- LSP
