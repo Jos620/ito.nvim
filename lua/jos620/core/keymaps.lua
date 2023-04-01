@@ -49,8 +49,8 @@ set("v", ">", ">gv")
 set("v", "<", "<gv")
 
 -- Split window
-set("n", "<Leader>sv", "<C-w>v")
-set("n", "<Leader>sh", "<C-w>s")
+set("n", "<Leader>sb", "<C-w>v")
+set("n", "<Leader>sv", "<C-w>s")
 set("n", "<Leader>se", "<C-w>=")
 set("n", "<Leader>q", ":quit<Return>", silent)
 set("n", "<Leader>x", ":close<Return>", silent)
