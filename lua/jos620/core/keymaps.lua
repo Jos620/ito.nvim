@@ -158,6 +158,8 @@ local function setup_git_keymaps(buffer, gitsigns)
   git_set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<Return>", silent)
 
   git_set("n", "gs", ":vertical rightbelow Git<Return>", silent)
+  git_set("n", "gh", ":diffget //2<Return>", silent)
+  git_set("n", "gl", ":diffget //3<Return>", silent)
 end
 
 -- LSP
