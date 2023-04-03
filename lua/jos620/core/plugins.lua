@@ -49,6 +49,9 @@ return packer.startup(function(use)
   -- File tree
   use("nvim-tree/nvim-tree.lua")
 
+  -- Terminal
+  use({ "akinsho/toggleterm.nvim", tag = "*" })
+
   -- Window management
   use("szw/vim-maximizer")
 
