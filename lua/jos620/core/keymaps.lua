@@ -80,6 +80,11 @@ set("n", "-", "<C-x>")
 -- File tree
 set("n", "<Leader>e", ":NvimTreeFindFileToggle<Return>", silent)
 
+-- Terminal
+local toggleterm_command = ":ToggleTerm direction=horizontal size=10<Return>"
+set("n", "<M-1>", toggleterm_command, silent)
+set("t", "<M-1>", "<C-\\><C-n>" .. toggleterm_command, silent)
+
 -- Telescope
 set("n", "<Leader>ff", ":Telescope find_files<Return>", silent)
 set("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", silent)
