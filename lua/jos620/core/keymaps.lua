@@ -52,6 +52,7 @@ set("v", "<", "<gv")
 set("n", "<Leader>sb", "<C-w>v")
 set("n", "<Leader>sv", "<C-w>s")
 set("n", "<Leader>se", "<C-w>=")
+set("n", "<Leader>%", "<C-w>o")
 set("n", "<Leader>q", ":quit<Return>", silent)
 set("n", "<Leader>x", ":close<Return>", silent)
 
