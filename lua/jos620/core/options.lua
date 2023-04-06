@@ -6,7 +6,7 @@ g.mapleader = " "
 
 -- Numbers
 o.number = true
-o.relativenumber = true
+o.relativenumber = false
 
 -- Tabs & indentation
 o.tabstop = 2
