@@ -17,12 +17,22 @@ mason.setup()
 
 mason_lspconfig.setup({
   ensure_installed = {
-    "tsserver",
+    -- FrontEnd
     "html",
     "cssls",
     "tailwindcss",
-    "lua_ls",
-    "vuels",
+    "unocss",
+    "volar",
+    "svelte",
+
+    -- Backend
+    "tsserver",
+    "rust_analyzer",
+
+    -- Utils
+    "marksman",
+    "jsonls",
+    "prismals",
   },
 })
 
