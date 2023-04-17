@@ -27,6 +27,7 @@ local servers = {
   "tsserver",
   "prismals",
   "unocss",
+  "gopls",
 }
 
 for _, server in ipairs(servers) do
