@@ -28,7 +28,14 @@ lualine.setup({
         },
       },
     },
-    lualine_c = { "filename" },
+    lualine_c = {
+      {
+        "filename",
+        color = {
+          bg = neovide_color(colors.black),
+        },
+      },
+    },
 
     lualine_x = {
       {
