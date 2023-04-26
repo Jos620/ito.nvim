@@ -5,7 +5,7 @@ end
 
 local colors = require("jos620.colors")
 local neovide_color = require("jos620.neovide").neovide_color
-local is_neovide = require("jos620.neovide").is_neovide()
+local is_neovide = require("jos620.neovide").is_neovide
 
 local normal = {
   fg = colors.gray,
