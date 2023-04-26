@@ -94,14 +94,9 @@ bufferline.setup({
       end
 
       -- ScoreMilk
-      if
-        string.find(buf.path, "ScoreMilk")
-      then
+      if string.find(buf.path, "ScoreMilk") then
         -- Desktop
-        if
-          string.find(buf.path, "components")
-          and not string.find(buf.path, "@mobile")
-        then
+        if string.find(buf.path, "components") and not string.find(buf.path, "@mobile") then
           label = icons["@desktop"] .. "|" .. label
         end
 
