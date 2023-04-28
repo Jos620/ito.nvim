@@ -20,6 +20,7 @@ nvim_tree.setup({
         { key = "l", action = "edit" },
         { key = "h", action = "close_node" },
         { key = "e", action = "" },
+        { key = "<Return>", action = "cd" },
       },
     },
     cursorline = not vim.g.neovide,
