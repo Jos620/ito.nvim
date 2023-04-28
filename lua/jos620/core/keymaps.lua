@@ -135,7 +135,6 @@ local function setup_git_keymaps(buffer, gitsigns)
 
     return "<Ignore>"
   end, { silent = true, expr = true })
-
   git_set("n", "<Leader>gk", function()
     if vim.wo.diff then
       return "<Leader>gk"
@@ -148,24 +147,28 @@ local function setup_git_keymaps(buffer, gitsigns)
     return "<Ignore>"
   end, { silent = true, expr = true })
 
-  -- Actions
-  git_set({ "n", "v" }, "<Leader>gr", ":Gitsigns reset_hunk<Return>", silent)
+  -- Stage
   git_set("n", "<Leader>gS", gitsigns.stage_buffer, silent)
   git_set("n", "<Leader>gu", gitsigns.undo_stage_hunk, silent)
-  git_set("n", "<Leader>gR", gitsigns.reset_buffer, silent)
   git_set("n", "<Leader>gp", gitsigns.preview_hunk, silent)
+  git_set("n", "<Leader>td", gitsigns.toggle_deleted, silent)
+
+  -- Reset
+  git_set("n", "<Leader>gR", gitsigns.reset_buffer, silent)
+  git_set({ "n", "v" }, "<Leader>gr", gitsigns.reset_hunk, silent)
+  git_set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<Return>", silent)
+
+  -- Blame
   git_set("n", "<Leader>gl", function()
     gitsigns.blame_line({ full = true })
   end)
   git_set("n", "<Leader>gb", gitsigns.toggle_current_line_blame, silent)
+
+  -- Diff
   git_set("n", "<Leader>gd", gitsigns.diffthis, silent)
   git_set("n", "<Leader>gD", function()
     gitsigns.diffthis("~")
   end, silent)
-  git_set("n", "<Leader>td", gitsigns.toggle_deleted, silent)
-
-  -- Text object
-  git_set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<Return>", silent)
 end
 
 -- LSP
