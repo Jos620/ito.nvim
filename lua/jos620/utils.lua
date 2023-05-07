@@ -51,3 +51,17 @@ function _G.StringToBoolean(original)
 
   return bool
 end
+
+-- Table merge
+function _G.MergeTable(...)
+  local tables = { ... }
+  local result = {}
+
+  for _, table in ipairs(tables) do
+    for key, value in pairs(table) do
+      result[key] = value
+    end
+  end
+
+  return result
+end
