@@ -3,6 +3,8 @@ if not status then
   return
 end
 
+local setup_nvim_tree_keymaps = require("jos620.core.keymaps").setup_nvim_tree_keymaps
+
 vim.g.loaded = true
 vim.g.loaded_netrwPlugin = true
 
@@ -15,16 +17,9 @@ nvim_tree.setup({
     },
   },
   view = {
-    mappings = {
-      list = {
-        { key = "l", action = "edit" },
-        { key = "h", action = "close_node" },
-        { key = "e", action = "" },
-        { key = "<Return>", action = "cd" },
-      },
-    },
     cursorline = not vim.g.neovide,
   },
 
   sync_root_with_cwd = true,
+  on_attach = setup_nvim_tree_keymaps,
 })
