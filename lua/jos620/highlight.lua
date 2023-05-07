@@ -6,6 +6,7 @@ local link_to_normal_groups = {
   "NvimTreeEmptyFolderName",
   "NvimTreeIndentMarker",
   "NvimTreeRootFolder",
+  "packerWorking",
 }
 
 for _, group in ipairs(link_to_normal_groups) do
