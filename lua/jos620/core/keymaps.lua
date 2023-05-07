@@ -173,7 +173,7 @@ local function setup_git_keymaps(buffer, gitsigns)
   git_set("n", "<Leader>gb", gitsigns.toggle_current_line_blame, "Toggle blame line")
 
   -- Diff
-  git_set("n", "<Leader>gd", gitsigns.diffthis, "Diff buffer")
+  git_set("n", "<Leader>gd", ":Gvdiffsplit<Return>", "Diff buffer")
   git_set("n", "<Leader>gD", function()
     gitsigns.diffthis("~")
   end, "Diff buffer against HEAD")
