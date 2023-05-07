@@ -1,126 +1,134 @@
-local set = vim.keymap.set
-
-local silent = { silent = true }
+local function set(mode, key, command, desc, options)
+  local opts = options or { silent = true }
+  vim.keymap.set(mode, key, command, MergeTable(opts, { desc = desc }))
+end
 
 -- Exit insert mode
-set("i", "jk", "<Esc>")
-set("i", "jj", "<Esc>:wa<Return>", silent)
+set("i", "jk", "<Esc>", "Exit insert mode")
+set("i", "jj", "<Esc>:wa<Return>", "Exit insert mode and save")
 
 -- Search and replace
-set("n", "<C-S>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+set("n", "<C-S>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Search and replace")
 
 -- Highlights
 set("n", "<Leader>h", function()
   vim.cmd([[nohlsearch]])
   vim.cmd([[echom '']])
-end, silent)
+end, "Clear highlights")
 
 -- Navigation
-set("n", "gg", "gg0zz")
-set("n", "G", "G0zz")
-set("n", "gh", "^")
-set("n", "gl", "$")
+set("n", "gg", "gg0zz", "Go to first line")
+set("n", "G", "G0zz", "Go to last line")
+set("n", "gh", "^", "Go to first character")
+set("n", "gl", "$", "Go to last character")
 
 -- Do not yank with "X" and "P"
-set({ "n", "v" }, "x", '"_x')
-set({ "n", "v" }, "X", '"_X')
-set("x", "p", '"_dP')
-set("x", "<Leader>p", "p")
+set({ "n", "v" }, "x", '"_x', "Do not yank with 'x'")
+set({ "n", "v" }, "X", '"_X', "Do not yank with 'X'")
+set("x", "p", '"_dP', "Do not yank with 'p'")
+set("x", "<Leader>p", "p", "Yank with 'p'")
 
 -- Move lines with visual
-set("v", "J", ":m '>+1<Return>gv=gv")
-set("v", "K", ":m '<-2<Return>gv=gv")
+set("v", "J", ":m '>+1<Return>gv=gv", "Move lines down")
+set("v", "K", ":m '<-2<Return>gv=gv", "Move lines up")
 
--- "ie" as all file text objects
-set("n", "vie", "ggVG")
-set("n", "cie", "ggcG")
-set("n", "die", "ggdG")
-set("n", "yie", "ggVGy")
+-- "ie" as file
+set("n", "vie", "ggVG", "Select all file")
+set("n", "cie", "ggcG", "Change all file")
+set("n", "die", "ggdG", "Delete all file")
+set("n", "yie", "ggVGy", "Yank all file")
 
 -- Better movimentation on wrapped lines
-set("n", "j", "gj")
-set("n", "k", "gk")
+set("n", "j", "gj", "Move down")
+set("n", "k", "gk", "Move up")
 
 -- Reload configuration
-set("n", "<Leader>r", ":ReloadConfig<Return>", silent)
+set("n", "<Leader>r", ":ReloadConfig<Return>", "Reload configuration")
 
 -- Line indent with visual
-set("v", ">", ">gv")
-set("v", "<", "<gv")
+set("v", ">", ">gv", "Indent lines")
+set("v", "<", "<gv", "Unindent lines")
 
 -- Split window
-set("n", "<Leader>sb", "<C-w>v")
-set("n", "<Leader>sv", "<C-w>s")
-set("n", "<Leader>se", "<C-w>=")
-set("n", "<Leader>%", "<C-w>o")
-set("n", "<Leader>q", ":quit<Return>", silent)
-set("n", "<Leader>x", ":close<Return>", silent)
+set("n", "<Leader>sb", "<C-w>v", "Split window vertically")
+set("n", "<Leader>sv", "<C-w>s", "Split window horizontally")
+set("n", "<Leader>se", "<C-w>=", "Equalize windows")
+set("n", "<Leader>%", "<C-w>o", "Close other windows")
+set("n", "<Leader>q", ":quit<Return>", "Quit window")
+set("n", "<Leader>x", ":close<Return>", "Close window")
 
 -- Split resize
-set("n", "<M-up>", "<C-w>+")
-set("n", "<M-down>", "<C-w>-")
-set("n", "<M-right>", "<C-w>>")
-set("n", "<M-left>", "<C-w><")
-set("n", "+", "<C-w>+")
-set("n", "_", "<C-w>-")
-set("n", ">>", "<C-w>>")
-set("n", "<<", "<C-w><")
+set("n", "<M-up>", "<C-w>+", "Increase window height")
+set("n", "<M-down>", "<C-w>-", "Decrease window height")
+set("n", "<M-right>", "<C-w>>", "Increase window width")
+set("n", "<M-left>", "<C-w><", "Decrease window width")
+set("n", "+", "<C-w>+", "Increase window height")
+set("n", "_", "<C-w>-", "Decrease window height")
+set("n", ">>", "<C-w>>", "Increase window width")
+set("n", "<<", "<C-w><", "Decrease window width")
 
-set("n", "<C-m>", ":MaximizerToggle<Return>", silent)
+set("n", "<C-m>", ":MaximizerToggle<Return>", "Maximize window")
 
-set("n", "<Leader>Sh", "<C-w>t<C-w>H")
-set("n", "<Leader>Sv", "<C-w>t<C-w>K")
+set("n", "<Leader>Sh", "<C-w>t<C-w>H", "Change split orientation to horizontal")
+set("n", "<Leader>Sv", "<C-w>t<C-w>K", "Change split orientation to vertical")
 
 -- Folds
-set("n", "<Leader>z", "$V%zf")
+set("n", "<Leader>z", "$V%zf", "Create fold")
 
 -- Increase / decrease
-set("n", "=", "<C-a>")
-set("n", "-", "<C-x>")
+set("n", "=", "<C-a>", "Increase")
+set("n", "-", "<C-x>", "Decrease")
 
 -- File tree
-set("n", "<Leader>e", ":NvimTreeFindFileToggle<Return>", silent)
+set("n", "<Leader>e", ":NvimTreeFindFileToggle<Return>", "Toggle file tree")
 
 -- Terminal
 local toggleterm_command = ":ToggleTerm direction=horizontal size=10<Return>"
-set("n", "<M-1>", toggleterm_command, silent)
-set("t", "<M-1>", "<C-\\><C-n>" .. toggleterm_command, silent)
+set("n", "<M-1>", toggleterm_command, "Toggle terminal")
+set("t", "<M-1>", "<C-\\><C-n>" .. toggleterm_command, "Toggle terminal")
 
 -- Telescope
-set("n", "<Leader>ff", ":Telescope find_files<Return>", silent)
-set("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", silent)
-set("n", "<Leader>fs", ":Telescope live_grep<Return>", silent)
-set("n", "<Leader>fb", ":Telescope buffers<Return>", silent)
-set("n", "<Leader>fo", ":Telescope oldfiles<Return>", silent)
-set("n", "<Leader>fk", ":Telescope keymaps<Return>", silent)
-set("n", "<Leader>fh", ":Telescope highlights<Return>", silent)
-set("n", "<Leader>fgf", ":Telescope git_status<Return>", silent)
-set("n", "<Leader>fgb", ":Telescope git_branches<Return>", silent)
-set("n", "<Leader>fgc", ":Telescope git_commits<Return>", silent)
+set("n", "<Leader>ff", ":Telescope find_files<Return>", "Find files")
+set("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", "Find all files")
+set("n", "<Leader>fs", ":Telescope live_grep<Return>", "Search in files")
+set("n", "<Leader>fb", ":Telescope buffers<Return>", "Find buffers")
+set("n", "<Leader>fo", ":Telescope oldfiles<Return>", "Find recent files")
+set("n", "<Leader>fk", ":Telescope keymaps<Return>", "Find keymaps")
+set("n", "<Leader>fh", ":Telescope highlights<Return>", "Find highlights")
+set("n", "<Leader>fgf", ":Telescope git_status<Return>", "Find changed files")
+set("n", "<Leader>fgb", ":Telescope git_branches<Return>", "Find git branches")
+set("n", "<Leader>fgc", ":Telescope git_commits<Return>", "Find git commits")
 
 -- Buffers
-set("n", "H", ":BufferLineCyclePrev<Return>", silent)
-set("n", "L", ":BufferLineCycleNext<Return>", silent)
-set("n", "<Leader>,", ":BufferLineMovePrev<Return>", silent)
-set("n", "<Leader>.", ":BufferLineMoveNext<Return>", silent)
-set("n", "<Leader>c", ":bdelete<Return>", silent)
+set("n", "H", ":BufferLineCyclePrev<Return>", "Previous buffer")
+set("n", "L", ":BufferLineCycleNext<Return>", "Next buffer")
+set("n", "<Leader>,", ":BufferLineMovePrev<Return>", "Move buffer left")
+set("n", "<Leader>.", ":BufferLineMoveNext<Return>", "Move buffer right")
+set("n", "<Leader>c", ":bdelete<Return>", "Close buffer")
 
 -- Packages
-set("n", "<Leader>pi", ":PackerInstall<Return>", silent)
-set("n", "<Leader>pc", ":PackerCompile<Return>", silent)
-set("n", "<Leader>ps", ":PackerSync<Return>", silent)
-set("n", "<Leader>mm", ":Mason<Return>", silent)
+set("n", "<Leader>pi", ":PackerInstall<Return>", "Install packages")
+set("n", "<Leader>pc", ":PackerCompile<Return>", "Compile packages")
+set("n", "<Leader>ps", ":PackerSync<Return>", "Sync packages")
+set("n", "<Leader>mm", ":Mason<Return>", "Launch Mason")
 
 -- Git
-set("n", "gs", ":vertical rightbelow Git<Return>", silent)
-set("n", "gh", ":diffget //2<Return>", silent)
-set("n", "gl", ":diffget //3<Return>", silent)
+set("n", "gs", ":vertical rightbelow Git<Return>", "Open git status")
+set("n", "gh", ":diffget //2<Return>", "Use left diff hunk")
+set("n", "gl", ":diffget //3<Return>", "Use right diff hunk")
 
 local function setup_git_keymaps(buffer, gitsigns)
-  local function git_set(mode, l, r, opts)
-    opts = opts or {}
-    opts.buffer = buffer
-    vim.keymap.set(mode, l, r, opts)
+  local function git_set(mode, key, command, desc, opts)
+    set(
+      mode,
+      key,
+      command,
+      desc,
+      MergeTable({
+        silent = true,
+        buffer = buffer,
+      }, opts)
+    )
   end
 
   -- Navigation
@@ -134,7 +142,7 @@ local function setup_git_keymaps(buffer, gitsigns)
     end)
 
     return "<Ignore>"
-  end, { silent = true, expr = true })
+  end, "Go to next git hunk", { silent = true, expr = true })
   git_set("n", "<Leader>gk", function()
     if vim.wo.diff then
       return "<Leader>gk"
@@ -145,51 +153,51 @@ local function setup_git_keymaps(buffer, gitsigns)
     end)
 
     return "<Ignore>"
-  end, { silent = true, expr = true })
+  end, "go to previous hunk", { silent = true, expr = true })
 
   -- Stage
-  git_set("n", "<Leader>gS", gitsigns.stage_buffer, silent)
-  git_set("n", "<Leader>gu", gitsigns.undo_stage_hunk, silent)
-  git_set("n", "<Leader>gp", gitsigns.preview_hunk, silent)
-  git_set("n", "<Leader>td", gitsigns.toggle_deleted, silent)
+  git_set("n", "<Leader>gS", gitsigns.stage_buffer, "Stage buffer")
+  git_set("n", "<Leader>gu", gitsigns.undo_stage_hunk, "Undo stage hunk")
+  git_set("n", "<Leader>gp", gitsigns.preview_hunk, "Preview hunk")
+  git_set("n", "<Leader>td", gitsigns.toggle_deleted, "Toggle deleted sections")
 
   -- Reset
-  git_set("n", "<Leader>gR", gitsigns.reset_buffer, silent)
-  git_set({ "n", "v" }, "<Leader>gr", gitsigns.reset_hunk, silent)
-  git_set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<Return>", silent)
+  git_set("n", "<Leader>gR", gitsigns.reset_buffer, "Reset buffer")
+  git_set({ "n", "v" }, "<Leader>gr", gitsigns.reset_hunk, "Reset hunk")
+  git_set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<Return>", "Select hunk")
 
   -- Blame
   git_set("n", "<Leader>gl", function()
     gitsigns.blame_line({ full = true })
   end)
-  git_set("n", "<Leader>gb", gitsigns.toggle_current_line_blame, silent)
+  git_set("n", "<Leader>gb", gitsigns.toggle_current_line_blame, "Toggle blame line")
 
   -- Diff
-  git_set("n", "<Leader>gd", gitsigns.diffthis, silent)
+  git_set("n", "<Leader>gd", gitsigns.diffthis, "Diff buffer")
   git_set("n", "<Leader>gD", function()
     gitsigns.diffthis("~")
-  end, silent)
+  end, "Diff buffer against HEAD")
 end
 
 -- LSP
 local function setup_lsp_keymaps(buffer)
   local opts = { noremap = true, silent = true, buffer = buffer }
 
-  set("n", "gf", ":Lspsaga lsp_finder<Return>", opts)
-  set("n", "gd", ":Lspsaga peek_definition<Return>", opts)
-  set("n", "gD", ":lua vim.lsp.buf.declaration()<Return>", opts)
-  set("n", "gi", ":lua vim.lsp.buf.implementation()<Return>", opts)
+  set("n", "gf", ":Lspsaga lsp_finder<Return>", "Find definition", opts)
+  set("n", "gd", ":Lspsaga peek_definition<Return>", "Peek definition", opts)
+  set("n", "gD", ":lua vim.lsp.buf.declaration()<Return>", "Go to declaration", opts)
+  set("n", "gi", ":lua vim.lsp.buf.implementation()<Return>", "Go to implementation", opts)
 
-  set("n", "<Leader>lf", ":Lspsaga lsp_finder<Return>", opts)
-  set("n", "<Leader>la", ":Lspsaga code_action<Return>", opts)
-  set("n", "<Leader>lr", ":Lspsaga rename<Return>", opts)
-  set("n", "<Leader>ld", ":Lspsaga show_line_diagnostics<Return>", opts)
-  set("n", "<Leader>lc", ":Lspsaga show_cursor_diagnostics<Return>", opts)
-  set("n", "<Leader>lb", ":Lspsaga show_buf_diagnostics<Return>", opts)
+  set("n", "<Leader>lf", ":Lspsaga lsp_finder<Return>", "Find references", opts)
+  set("n", "<Leader>la", ":Lspsaga code_action<Return>", "Code action", opts)
+  set("n", "<Leader>lr", ":Lspsaga rename<Return>", "Rename symbol", opts)
+  set("n", "<Leader>ld", ":Lspsaga show_line_diagnostics<Return>", "Show line diagnostics", opts)
+  set("n", "<Leader>lc", ":Lspsaga show_cursor_diagnostics<Return>", "Show cursor diagnostics", opts)
+  set("n", "<Leader>lb", ":Lspsaga show_buf_diagnostics<Return>", "Show buffer diagnostics", opts)
 
-  set("n", "<Leader>lj", ":Lspsaga diagnostic_jump_next<Return>", opts)
-  set("n", "<Leader>lk", ":Lspsaga diagnostic_jump_prev<Return>", opts)
-  set("n", "K", ":Lspsaga hover_doc<Return>", opts)
+  set("n", "<Leader>lj", ":Lspsaga diagnostic_jump_next<Return>", "Jump to next diagnostic", opts)
+  set("n", "<Leader>lk", ":Lspsaga diagnostic_jump_prev<Return>", "Jump to previous diagnostic", opts)
+  set("n", "K", ":Lspsaga hover_doc<Return>", "Show hover doc", opts)
 end
 
 return {
