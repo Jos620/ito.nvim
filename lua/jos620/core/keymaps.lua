@@ -3,8 +3,6 @@ local function set(mode, key, command, desc, options)
   vim.keymap.set(mode, key, command, MergeTable(opts, { desc = desc }))
 end
 
-local del = vim.keymap.del
-
 -- Exit insert mode
 set("i", "jk", "<Esc>", "Exit insert mode")
 set("i", "jj", "<Esc>:wa<Return>", "Exit insert mode and save")
