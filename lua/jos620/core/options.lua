@@ -48,8 +48,8 @@ o.splitright = true
 o.splitbelow = true
 
 -- Scroll
-o.scrolloff = 8
-o.sidescrolloff = 8
+o.scrolloff = 5
+o.sidescrolloff = 5
 
 -- Update the file when it changes
 o.autoread = true

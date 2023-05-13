@@ -27,7 +27,6 @@ local servers = {
   "tsserver",
   "prismals",
   "unocss",
-  "gopls",
 }
 
 for _, server in ipairs(servers) do
@@ -73,6 +72,23 @@ lspconfig.volar.setup({
     scss = {
       lint = {
         unknownAtRules = "ignore",
+      },
+    },
+  },
+})
+
+-- Golang
+lspconfig.gopls.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  cmd = { "gopls" },
+  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
+  setting = {
+    gopls = {
+      completeUnimported = true,
+      analyses = {
+        unusedparams = true,
       },
     },
   },
