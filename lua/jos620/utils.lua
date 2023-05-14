@@ -36,8 +36,6 @@ function _G.ReloadConfig()
   print("Reloaded!")
 end
 
-vim.cmd("command! ReloadConfig lua ReloadConfig()")
-
 -- Type convertion
 function _G.StringToBoolean(original)
   if type(original) == "boolean" then
