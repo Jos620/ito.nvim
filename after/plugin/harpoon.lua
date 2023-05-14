@@ -10,7 +10,4 @@ if not keymaps_status then
   return
 end
 
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
-
-keymaps.setup_harpoon_keymaps(mark, ui)
+keymaps.setup_harpoon_keymaps()
