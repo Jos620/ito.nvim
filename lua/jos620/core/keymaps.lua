@@ -142,6 +142,23 @@ local function setup_nvim_tree_keymaps(bufnr)
   set("n", "<Return>", api.tree.change_root_to_node, "CD", opts)
 end
 
+-- Harpoon
+local function setup_harpoon_keymaps(harpoon)
+  local mark = harpoon.mark
+  local ui = harpoon.ui
+
+  set("n", "<Leader>hh", mark.add_file, "Add file to harpoon")
+  set("n", "<Leader>hm", ui.toggle_quick_menu, "Toggle harpoon menu")
+
+  set("n", "1", ui.nav_file(1), "Go to harpoon mark 1")
+  set("n", "2", ui.nav_file(2), "Go to harpoon mark 2")
+  set("n", "3", ui.nav_file(3), "Go to harpoon mark 3")
+  set("n", "4", ui.nav_file(4), "Go to harpoon mark 4")
+
+  set("n", "<Leader>n", ui.nav_next(), "Go to next harpoon mark")
+  set("n", "<Leader>p", ui.nav_prev(), "Go to previous harpoon mark")
+end
+
 -- Terminal
 local toggleterm_command = ":ToggleTerm direction=horizontal size=10<Return>"
 set("n", "<M-1>", toggleterm_command, "Toggle terminal")
@@ -264,4 +281,5 @@ return {
   setup_nvim_tree_keymaps = setup_nvim_tree_keymaps,
   setup_git_keymaps = setup_git_keymaps,
   setup_lsp_keymaps = setup_lsp_keymaps,
+  setup_harpoon_keymaps = setup_harpoon_keymaps,
 }
