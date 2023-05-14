@@ -66,6 +66,7 @@ return packer.startup(function(use)
   use("justinmk/vim-sneak")
   use("jesseleite/vim-noh")
   use("karb94/neoscroll.nvim")
+  use("ThePrimeagen/harpoon")
 
   -- Comments
   use("numToStr/Comment.nvim")
