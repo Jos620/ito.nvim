@@ -143,18 +143,25 @@ local function setup_nvim_tree_keymaps(bufnr)
 end
 
 -- Harpoon
-local function setup_harpoon_keymaps(mark, ui)
-  set("n", "<Leader>hh", mark.add_file, "Add file to harpoon")
-  set("n", "<Leader>hm", ui.toggle_quick_menu, "Toggle harpoon menu")
-
-  for i = 1, 4 do
-    set("n", tostring(i), function()
-      ui.nav_file(i)
-    end, "Go to harpoon mark " .. i)
+local function setup_harpoon_keymaps()
+  local mark_status, mark = pcall(require, "harpoon.mark")
+  if mark_status then
+    set("n", "<Leader>hh", mark.add_file, "Add file to harpoon")
   end
 
-  set("n", "<Leader>n", ui.nav_next, "Go to next harpoon mark")
-  set("n", "<Leader>p", ui.nav_prev, "Go to previous harpoon mark")
+  local ui_status, ui = pcall(require, "harpoon.ui")
+  if ui_status then
+    set("n", "<Leader>hm", ui.toggle_quick_menu, "Toggle harpoon menu")
+
+    for i = 1, 4 do
+      set("n", tostring(i), function()
+        ui.nav_file(i)
+      end, "Go to harpoon mark " .. i)
+    end
+
+    set("n", "<Leader>n", ui.nav_next, "Go to next harpoon mark")
+    set("n", "<Leader>p", ui.nav_prev, "Go to previous harpoon mark")
+  end
 end
 
 -- Terminal
