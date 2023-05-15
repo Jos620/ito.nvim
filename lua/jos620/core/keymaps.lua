@@ -146,12 +146,12 @@ end
 local function setup_harpoon_keymaps()
   local mark_status, mark = pcall(require, "harpoon.mark")
   if mark_status then
-    set("n", "<Leader>hh", mark.add_file, "Add file to harpoon")
+    set("n", "<Leader>Hh", mark.add_file, "Add file to harpoon")
   end
 
   local ui_status, ui = pcall(require, "harpoon.ui")
   if ui_status then
-    set("n", "<Leader>hm", ui.toggle_quick_menu, "Toggle harpoon menu")
+    set("n", "<Leader>Hm", ui.toggle_quick_menu, "Toggle harpoon menu")
 
     for i = 1, 4 do
       set("n", tostring(i), function()
