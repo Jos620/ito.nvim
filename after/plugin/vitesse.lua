@@ -9,3 +9,5 @@ vitesse.setup({
   float_background = true,
   reverse_visual = true,
 })
+
+vim.cmd("colorscheme vitesse")
