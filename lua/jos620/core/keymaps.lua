@@ -53,6 +53,8 @@ set("v", "<", "<gv", "Unindent lines")
 set("n", "<Leader>sb", "<C-w>v", "Split window vertically")
 set("n", "<Leader>sv", "<C-w>s", "Split window horizontally")
 set("n", "<Leader>se", "<C-w>=", "Equalize windows")
+set("n", "<Leader>sm", ":MaximizerToggle<Return>", "Maximize window")
+
 set("n", "<Leader>%", "<C-w>o", "Close other windows")
 set("n", "<Leader>q", ":quit<Return>", "Quit window")
 set("n", "<Leader>x", ":close<Return>", "Close window")
@@ -66,8 +68,6 @@ set("n", "+", "<C-w>+", "Increase window height")
 set("n", "_", "<C-w>-", "Decrease window height")
 set("n", ">>", "<C-w>>", "Increase window width")
 set("n", "<<", "<C-w><", "Decrease window width")
-
-set("n", "<C-m>", ":MaximizerToggle<Return>", "Maximize window")
 
 set("n", "<Leader>Sh", "<C-w>t<C-w>H", "Change split orientation to horizontal")
 set("n", "<Leader>Sv", "<C-w>t<C-w>K", "Change split orientation to vertical")
