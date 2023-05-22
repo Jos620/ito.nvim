@@ -142,6 +142,8 @@ local function setup_nvim_tree_keymaps(bufnr)
   set("n", "<Return>", api.tree.change_root_to_node, "CD", opts)
 end
 
+set("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
+
 -- Harpoon
 local function setup_harpoon_keymaps()
   local mark_status, mark = pcall(require, "harpoon.mark")
