@@ -5,3 +5,4 @@ undodir/
 
 # Files
 cspell.json
+.DS_Store
