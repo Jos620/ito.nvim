@@ -24,7 +24,6 @@ local servers = {
   "rust_analyzer",
   "jsonls",
   "svelte",
-  "tsserver",
   "prismals",
   "unocss",
 }
@@ -59,10 +58,7 @@ lspconfig["lua_ls"].setup({
 
 -- Vue
 lspconfig.volar.setup({
-  filetypes = {
-    "vue",
-    "json",
-  },
+  filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue", "json" },
   settings = {
     css = {
       lint = {
