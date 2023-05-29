@@ -24,6 +24,7 @@ local eslint_file_types = {
   "typescriptreact",
   "typescript.tsx",
   "svelte",
+  "vue",
 }
 
 null_ls.setup({
