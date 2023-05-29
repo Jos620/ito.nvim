@@ -53,6 +53,21 @@ null_ls.setup({
       extra_args = { "--ignore-path", ".gitignore", "--ignore-pattern", "node_modules" },
     }),
     code_actions.eslint_d,
+    formatting.prettierd.with({
+      filetypes = eslint_file_types,
+      condition = function(utils)
+        local config_files = {
+          ".prettierrc",
+          ".prettierrc.js",
+          ".prettierrc.cjs",
+          "prettier.config.js",
+          "prettier.config.cjs",
+          "prettier.config.ts",
+        }
+
+        return utils.root_has_file(config_files)
+      end,
+    }),
 
     -- Rust
     formatting.rustfmt,
