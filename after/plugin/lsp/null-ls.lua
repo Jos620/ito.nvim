@@ -16,6 +16,16 @@ local cspell_config = {
   end,
 }
 
+local eslint_file_types = {
+  "javascript",
+  "javascriptreact",
+  "javascript.jsx",
+  "typescript",
+  "typescriptreact",
+  "typescript.tsx",
+  "svelte",
+}
+
 null_ls.setup({
   sources = {
     -- Spell checking
@@ -26,33 +36,22 @@ null_ls.setup({
     formatting.stylua,
 
     -- JavaScript / TypeScript
-    formatting.eslint_d,
+    formatting.eslint_d.with({
+      filetypes = eslint_file_types,
+    }),
     diagnostics.eslint_d.with({
-      filetypes = {
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx",
-      },
+      filetypes = eslint_file_types,
       condition = function(utils)
-        return utils.root_has_file(".eslintrc")
+        local config_files = {
+          ".eslintrc",
+          ".eslintrc.cjs",
+        }
+
+        return utils.root_has_file(config_files)
       end,
       extra_args = { "--ignore-path", ".gitignore", "--ignore-pattern", "node_modules" },
     }),
     code_actions.eslint_d,
-    formatting.prettierd.with({
-      filetypes = { "svelte", "prisma" },
-    }),
-
-    diagnostics.eslint.with({
-      filetypes = { "vue" },
-      condition = function(utils)
-        return utils.root_has_file(".eslintrc")
-      end,
-      extra_args = { "--ignore-path", ".gitignore", "--ignore-pattern", "node_modules" },
-    }),
 
     -- Rust
     formatting.rustfmt,
@@ -70,10 +69,6 @@ null_ls.setup({
         callback = function()
           vim.lsp.buf.format({
             filter = function(client)
-              if vim.bo.filetype == "svelte" then
-                return client.name == "svelte"
-              end
-
               if vim.bo.filetype == "prisma" then
                 return client.name == "prismals"
               end
