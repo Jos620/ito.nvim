@@ -8,6 +8,7 @@ vim.defer_fn(function()
     "NvimTreeIndentMarker",
     "NvimTreeRootFolder",
     "packerWorking",
+    "harpoonwindow",
   }
 
   for _, group in ipairs(link_to_normal_groups) do
@@ -28,6 +29,7 @@ vim.defer_fn(function()
     "NvimTreeGitRenamed",
     "NvimTreeGitDeleted",
     "NvimTreeGitIgnored",
+    "harpoonborder",
   }
 
   for _, group in ipairs(green_fg_groups) do
