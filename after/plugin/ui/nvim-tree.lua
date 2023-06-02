@@ -18,6 +18,9 @@ nvim_tree.setup({
   },
   view = {
     cursorline = not vim.g.neovide,
+    float = {
+      enable = true,
+    },
   },
 
   sync_root_with_cwd = true,
