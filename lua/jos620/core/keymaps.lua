@@ -120,8 +120,8 @@ local function setup_nvim_tree_keymaps(bufnr)
   -- Git / Diagnostics
   set("n", "<Leader>gj", api.node.navigate.git.next, "Next Git", opts)
   set("n", "<Leader>gk", api.node.navigate.git.prev, "Prev Git", opts)
-  set("n", "]e", api.node.navigate.diagnostics.next, "Next Diagnostic", opts)
-  set("n", "[e", api.node.navigate.diagnostics.prev, "Prev Diagnostic", opts)
+  set("n", "<Leader>lj", api.node.navigate.diagnostics.next, "Next Diagnostic", opts)
+  set("n", "<Leader>lk", api.node.navigate.diagnostics.prev, "Prev Diagnostic", opts)
 
   -- Filters
   set("n", "f", api.live_filter.start, "Filter", opts)
