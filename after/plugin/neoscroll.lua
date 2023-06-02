@@ -4,4 +4,6 @@ if not status then
   return
 end
 
-neoscroll.setup()
+neoscroll.setup({
+  hide_cursor = false,
+})
