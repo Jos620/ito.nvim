@@ -30,8 +30,7 @@ function _G.ReloadConfig()
 
   dofile(vim.env.MYVIMRC)
 
-  -- Reload LSP
-  vim.lsp.stop_client(vim.lsp.get_active_clients())
+  vim.cmd("LspRestart")
 
   print("Reloaded!")
 end
