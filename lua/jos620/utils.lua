@@ -19,16 +19,14 @@ end
 
 -- Reload configuration
 function _G.ReloadConfig()
-  LoadPath(vim.fn.stdpath("config") .. "/after/plugin")
-
-  -- Reload other configuration files
   for name in pairs(package.loaded) do
     if name:match("^jos620") then
       package.loaded[name] = nil
     end
   end
-
   dofile(vim.env.MYVIMRC)
+
+  LoadPath(vim.fn.stdpath("config") .. "/after/plugin")
 
   vim.cmd("LspRestart")
 
