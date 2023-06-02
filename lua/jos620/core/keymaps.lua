@@ -85,46 +85,55 @@ local function setup_nvim_tree_keymaps(bufnr)
   local api = require("nvim-tree.api")
   local opts = { buffer = bufnr, noremap = true, silent = true, nowait = true }
 
-  set("n", "<C-e>", api.node.open.replace_tree_buffer, "Open: In Place", opts)
+  -- Help / Info
+  set("n", "g?", api.tree.toggle_help, "Help", opts)
   set("n", "<C-k>", api.node.show_info_popup, "Info", opts)
+  set("n", "gy", api.fs.copy.absolute_path, "Copy Absolute Path", opts)
+  set("n", "s", api.node.run.system, "Run System", opts)
+  set("n", ".", api.node.run.cmd, "Run Command", opts)
+
+  -- Open
+  set("n", "l", api.node.open.edit, "Open", opts)
   set("n", "v", api.node.open.vertical, "Open: Vertical Split", opts)
   set("n", "b", api.node.open.horizontal, "Open: Horizontal Split", opts)
-  set("n", ".", api.node.run.cmd, "Run Command", opts)
-  set("n", "-", api.tree.change_root_to_parent, "Up", opts)
+
+  -- Basic operations
   set("n", "a", api.fs.create, "Create", opts)
-  set("n", "bmv", api.marks.bulk.move, "Move Bookmarked", opts)
-  set("n", "B", api.tree.toggle_no_buffer_filter, "Toggle No Buffer", opts)
-  set("n", "c", api.fs.copy.node, "Copy", opts)
-  set("n", "C", api.tree.toggle_git_clean_filter, "Toggle Git Clean", opts)
-  set("n", "<Leader>gj", api.node.navigate.git.next, "Next Git", opts)
-  set("n", "<Leader>gk", api.node.navigate.git.prev, "Prev Git", opts)
+  set("n", "p", api.fs.paste, "Paste", opts)
   set("n", "d", api.fs.remove, "Delete", opts)
   set("n", "D", api.fs.trash, "Trash", opts)
-  set("n", "]e", api.node.navigate.diagnostics.next, "Next Diagnostic", opts)
-  set("n", "[e", api.node.navigate.diagnostics.prev, "Prev Diagnostic", opts)
-  set("n", "F", api.live_filter.clear, "Clean Filter", opts)
-  set("n", "f", api.live_filter.start, "Filter", opts)
-  set("n", "g?", api.tree.toggle_help, "Help", opts)
-  set("n", "gy", api.fs.copy.absolute_path, "Copy Absolute Path", opts)
-  set("n", "H", api.tree.toggle_hidden_filter, "Toggle Dotfiles", opts)
-  set("n", "I", api.tree.toggle_gitignore_filter, "Toggle Git Ignore", opts)
-  set("n", "m", api.marks.toggle, "Toggle Bookmark", opts)
-  set("n", "o", api.node.open.edit, "Open", opts)
-  set("n", "O", api.node.open.no_window_picker, "Open: No Window Picker", opts)
-  set("n", "p", api.fs.paste, "Paste", opts)
-  set("n", "P", api.node.navigate.parent, "Parent Directory", opts)
-  set("n", "q", api.tree.close, "Close", opts)
+  set("n", "x", api.fs.cut, "Cut", opts)
+  set("n", "c", api.fs.copy.node, "Copy", opts)
   set("n", "r", api.fs.rename, "Rename", opts)
   set("n", "R", api.tree.reload, "Refresh", opts)
-  set("n", "s", api.node.run.system, "Run System", opts)
-  set("n", "U", api.tree.toggle_custom_filter, "Toggle Hidden", opts)
-  set("n", "x", api.fs.cut, "Cut", opts)
+
+  -- Navigation
+  set("n", "h", api.node.navigate.parent_close, "Close Directory", opts)
+  set("n", "q", api.tree.close, "Close", opts)
+  set("n", "-", api.tree.change_root_to_parent, "Up", opts)
+  set("n", "<Return>", api.tree.change_root_to_node, "CD", opts)
+
+  -- Bookmarks
+  set("n", "m", api.marks.toggle, "Toggle Bookmark", opts)
+  set("n", "bmv", api.marks.bulk.move, "Move Bookmarked", opts)
+
+  -- Git / Diagnostics
+  set("n", "<Leader>gj", api.node.navigate.git.next, "Next Git", opts)
+  set("n", "<Leader>gk", api.node.navigate.git.prev, "Prev Git", opts)
+  set("n", "]e", api.node.navigate.diagnostics.next, "Next Diagnostic", opts)
+  set("n", "[e", api.node.navigate.diagnostics.prev, "Prev Diagnostic", opts)
+
+  -- Filters
+  set("n", "f", api.live_filter.start, "Filter", opts)
+  set("n", "F", api.live_filter.clear, "Clean Filter", opts)
+  set("n", "B", api.tree.toggle_no_buffer_filter, "Toggle No Buffer", opts)
+  set("n", "C", api.tree.toggle_git_clean_filter, "Toggle Git Clean", opts)
+  set("n", "H", api.tree.toggle_hidden_filter, "Toggle Dotfiles", opts)
+  set("n", "I", api.tree.toggle_gitignore_filter, "Toggle Git Ignore", opts)
+
+  -- Mouse support
   set("n", "<2-LeftMouse>", api.node.open.edit, "Open", opts)
   set("n", "<2-RightMouse>", api.tree.change_root_to_node, "CD", opts)
-
-  set("n", "l", api.node.open.edit, "Open", opts)
-  set("n", "h", api.node.navigate.parent_close, "Close Directory", opts)
-  set("n", "<Return>", api.tree.change_root_to_node, "CD", opts)
 end
 
 set("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
