@@ -21,7 +21,7 @@ nvim_tree.setup({
     float = {
       enable = true,
       open_win_config = function()
-        local HEIGHT_RATIO = 0.8
+        local HEIGHT_RATIO = 0.75
         local WIDTH_RATIO = 0.5
 
         local screen_width = vim.opt.columns:get()
