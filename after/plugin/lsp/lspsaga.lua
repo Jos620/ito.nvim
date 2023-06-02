@@ -7,7 +7,10 @@ saga.setup({
   ui = {
     border = "rounded",
   },
-  move_in_saga = { prev = "<C-k>", next = "<C-j>" },
+  move_in_saga = {
+    prev = "<C-k>",
+    next = "<C-j>",
+  },
   finder_action_keys = {
     open = "<Return>",
   },
