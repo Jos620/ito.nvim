@@ -20,6 +20,29 @@ nvim_tree.setup({
     cursorline = not vim.g.neovide,
     float = {
       enable = true,
+      open_win_config = function()
+        local HEIGHT_RATIO = 0.8
+        local WIDTH_RATIO = 0.5
+
+        local screen_width = vim.opt.columns:get()
+        local window_width = math.ceil(screen_width * WIDTH_RATIO)
+        local screen_height = vim.opt.lines:get() - vim.opt.cmdheight:get()
+        local window_height = math.ceil(screen_height * HEIGHT_RATIO)
+
+        local position = {
+          row = ((vim.opt.lines:get() - window_height) / 2) - vim.opt.cmdheight:get(),
+          col = (screen_width - window_width) / 2,
+        }
+
+        return {
+          border = "rounded",
+          relative = "editor",
+          row = position.row,
+          col = position.col,
+          width = window_width,
+          height = window_height,
+        }
+      end,
     },
   },
 
