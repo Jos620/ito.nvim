@@ -102,9 +102,7 @@ return packer.startup(function(use)
       "stevearc/dressing.nvim", -- optional for vim.ui.select
     },
   })
-  use({
-    "olexsmir/gopher.nvim",
-  })
+  use({ "olexsmir/gopher.nvim" })
 
   -- AI programming
   use("zbirenbaum/copilot.lua")
