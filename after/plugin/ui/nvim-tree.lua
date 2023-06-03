@@ -9,6 +9,11 @@ vim.g.loaded = true
 vim.g.loaded_netrwPlugin = true
 
 nvim_tree.setup({
+  on_attach = setup_nvim_tree_keymaps,
+  sync_root_with_cwd = true,
+  hijack_cursor = true,
+  hijack_unnamed_buffer_when_opening = true,
+
   actions = {
     open_file = {
       window_picker = {
@@ -16,6 +21,7 @@ nvim_tree.setup({
       },
     },
   },
+
   view = {
     cursorline = not vim.g.neovide,
     float = {
@@ -45,8 +51,4 @@ nvim_tree.setup({
       end,
     },
   },
-  sync_root_with_cwd = true,
-  on_attach = setup_nvim_tree_keymaps,
-  hijack_cursor = true,
-  hijack_unnamed_buffer_when_opening = true,
 })
