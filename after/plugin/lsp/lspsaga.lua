@@ -11,8 +11,12 @@ saga.setup({
     prev = "<C-k>",
     next = "<C-j>",
   },
-  finder_action_keys = {
-    open = "<Return>",
+  finder = {
+    keys = {
+      expand_or_jump = "<Return>",
+      vsplit = "v",
+      split = "b",
+    },
   },
   definition_action_keys = {
     edit = "<Return>",
