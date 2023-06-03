@@ -18,9 +18,6 @@ saga.setup({
       split = "b",
     },
   },
-  definition_action_keys = {
-    edit = "<Return>",
-  },
   definition = {
     edit = "<Return>",
   },
