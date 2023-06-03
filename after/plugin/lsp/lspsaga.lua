@@ -20,6 +20,8 @@ saga.setup({
   },
   definition = {
     edit = "<Return>",
+    vsplit = "v",
+    split = "b",
   },
   symbol_in_winbar = {
     enable = false,
