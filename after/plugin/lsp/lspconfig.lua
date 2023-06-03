@@ -22,7 +22,6 @@ local servers = {
   "cssls",
   "tailwindcss",
   "rust_analyzer",
-  "jsonls",
   "svelte",
   "prismals",
   "unocss",
@@ -56,6 +55,30 @@ lspconfig["lua_ls"].setup({
     },
   },
 })
+
+-- JSON
+local schemastore_status, schemastore = pcall(require, "schemastore")
+
+if schemastore_status then
+  lspconfig.jsonls.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = {
+      json = {
+        schemas = schemastore.json.schemas(),
+        validate = {
+          enable = true,
+        },
+      },
+      yaml = {
+        schemas = schemastore.yaml.schemas(),
+        validate = {
+          enable = true,
+        },
+      },
+    },
+  })
+end
 
 -- Vue
 lspconfig.volar.setup({
