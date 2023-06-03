@@ -103,6 +103,7 @@ return packer.startup(function(use)
     },
   })
   use({ "olexsmir/gopher.nvim" })
+  use("b0o/schemastore.nvim")
 
   -- AI programming
   use("zbirenbaum/copilot.lua")
