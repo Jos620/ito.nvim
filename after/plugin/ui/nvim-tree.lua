@@ -45,7 +45,8 @@ nvim_tree.setup({
       end,
     },
   },
-
   sync_root_with_cwd = true,
   on_attach = setup_nvim_tree_keymaps,
+  hijack_cursor = true,
+  hijack_unnamed_buffer_when_opening = true,
 })
