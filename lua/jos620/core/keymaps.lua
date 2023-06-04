@@ -196,21 +196,10 @@ set("n", "gh", ":diffget //2<Return>", "Use left diff hunk")
 set("n", "gl", ":diffget //3<Return>", "Use right diff hunk")
 
 local function setup_git_keymaps(buffer, gitsigns)
-  local function git_set(mode, key, command, desc, opts)
-    set(
-      mode,
-      key,
-      command,
-      desc,
-      MergeTable({
-        silent = true,
-        buffer = buffer,
-      }, opts)
-    )
-  end
+  local opts = { noremap = true, silent = true, buffer = buffer }
 
   -- Navigation
-  git_set("n", "<Leader>gj", function()
+  set("n", "<Leader>gj", function()
     if vim.wo.diff then
       return "<Leader>gj"
     end
@@ -220,8 +209,9 @@ local function setup_git_keymaps(buffer, gitsigns)
     end)
 
     return "<Ignore>"
-  end, "Go to next git hunk", { silent = true, expr = true })
-  git_set("n", "<Leader>gk", function()
+  end, "Go to next git hunk", MergeTable(opts, { expr = true }))
+
+  set("n", "<Leader>gk", function()
     if vim.wo.diff then
       return "<Leader>gk"
     end
@@ -231,28 +221,28 @@ local function setup_git_keymaps(buffer, gitsigns)
     end)
 
     return "<Ignore>"
-  end, "go to previous hunk", { silent = true, expr = true })
+  end, "go to previous hunk", MergeTable(opts, { expr = true }))
 
   -- Stage
-  git_set("n", "<Leader>gS", gitsigns.stage_buffer, "Stage buffer")
-  git_set("n", "<Leader>gu", gitsigns.undo_stage_hunk, "Undo stage hunk")
-  git_set("n", "<Leader>gp", gitsigns.preview_hunk, "Preview hunk")
-  git_set("n", "<Leader>td", gitsigns.toggle_deleted, "Toggle deleted sections")
+  set("n", "<Leader>gS", gitsigns.stage_buffer, "Stage buffer")
+  set("n", "<Leader>gu", gitsigns.undo_stage_hunk, "Undo stage hunk")
+  set("n", "<Leader>gp", gitsigns.preview_hunk, "Preview hunk")
+  set("n", "<Leader>td", gitsigns.toggle_deleted, "Toggle deleted sections")
 
   -- Reset
-  git_set("n", "<Leader>gR", gitsigns.reset_buffer, "Reset buffer")
-  git_set({ "n", "v" }, "<Leader>gr", gitsigns.reset_hunk, "Reset hunk")
-  git_set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<Return>", "Select hunk")
+  set("n", "<Leader>gR", gitsigns.reset_buffer, "Reset buffer")
+  set({ "n", "v" }, "<Leader>gr", gitsigns.reset_hunk, "Reset hunk")
+  set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<Return>", "Select hunk")
 
   -- Blame
-  git_set("n", "<Leader>gl", function()
+  set("n", "<Leader>gl", function()
     gitsigns.blame_line({ full = true })
   end)
-  git_set("n", "<Leader>gb", gitsigns.toggle_current_line_blame, "Toggle blame line")
+  set("n", "<Leader>gb", gitsigns.toggle_current_line_blame, "Toggle blame line")
 
   -- Diff
-  git_set("n", "<Leader>gd", ":Gvdiffsplit<Return>", "Diff buffer")
-  git_set("n", "<Leader>gD", function()
+  set("n", "<Leader>gd", ":Gvdiffsplit<Return>", "Diff buffer")
+  set("n", "<Leader>gD", function()
     gitsigns.diffthis("~")
   end, "Diff buffer against HEAD")
 end
