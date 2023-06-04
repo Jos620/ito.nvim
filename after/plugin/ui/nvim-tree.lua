@@ -26,6 +26,7 @@ nvim_tree.setup({
     cursorline = not vim.g.neovide,
     float = {
       enable = true,
+      quit_on_focus_loss = false,
       open_win_config = function()
         local HEIGHT_RATIO = 0.75
         local WIDTH_RATIO = 0.5
