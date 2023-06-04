@@ -272,6 +272,7 @@ local function setup_lsp_keymaps(buffer)
   set("n", "<Leader>ld", ":Lspsaga show_line_diagnostics<Return>", "Show line diagnostics", opts)
   set("n", "<Leader>lc", ":Lspsaga show_cursor_diagnostics<Return>", "Show cursor diagnostics", opts)
   set("n", "<Leader>lb", ":Lspsaga show_buf_diagnostics<Return>", "Show buffer diagnostics", opts)
+  set("n", "<Leader>lw", ":Lspsaga show_workspace_diagnostics<Return>", "Show workspace diagnostics", opts)
 
   set("n", "<Leader>lj", ":Lspsaga diagnostic_jump_next<Return>", "Jump to next diagnostic", opts)
   set("n", "<Leader>lk", ":Lspsaga diagnostic_jump_prev<Return>", "Jump to previous diagnostic", opts)
