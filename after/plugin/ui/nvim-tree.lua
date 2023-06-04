@@ -51,4 +51,12 @@ nvim_tree.setup({
       end,
     },
   },
+
+  renderer = {
+    icons = {
+      show = {
+        folder_arrow = false,
+      },
+    },
+  },
 })
