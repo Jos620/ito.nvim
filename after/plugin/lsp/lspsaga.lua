@@ -1,9 +1,9 @@
-local status, saga = pcall(require, "lspsaga")
+local status, lspsaga = pcall(require, "lspsaga")
 if not status then
   return
 end
 
-saga.setup({
+lspsaga.setup({
   ui = {
     border = "rounded",
   },
