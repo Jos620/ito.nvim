@@ -7,8 +7,6 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
 local cspell_config = {
   filetypes = { "markdown", "tex", "text", "typescript", "typescriptreact", "typescript.tsx", "vimwiki" },
   condition = function()
@@ -81,6 +79,8 @@ null_ls.setup({
   },
   on_attach = function(current_client, bufnr)
     if current_client.supports_method("textDocument/formatting") then
+      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = augroup,
