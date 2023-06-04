@@ -2,8 +2,10 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
 function _G.Setup()
-  if vim.fn.argc() == 0 then
-    vim.cmd("NvimTreeOpen")
+  local nvim_tree_status, nvim_tree = pcall(require, "nvim-tree.api")
+
+  if nvim_tree_status and vim.fn.argc() == 0 then
+    nvim_tree.tree.open()
   end
 end
 
