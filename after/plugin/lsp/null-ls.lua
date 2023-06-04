@@ -75,6 +75,9 @@ null_ls.setup({
     -- GoLang
     formatting.gofmt,
     formatting.goimports,
+
+    -- Dart
+    formatting.dart_format,
   },
   on_attach = function(current_client, bufnr)
     if current_client.supports_method("textDocument/formatting") then
