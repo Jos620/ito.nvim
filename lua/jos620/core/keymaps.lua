@@ -251,6 +251,8 @@ end
 local function setup_lsp_keymaps(buffer)
   local opts = { noremap = true, silent = true, buffer = buffer }
 
+  set("n", "K", ":Lspsaga hover_doc<Return>", "Show hover doc", opts)
+
   set("n", "gf", ":Lspsaga lsp_finder<Return>", "Find definition", opts)
   set("n", "gd", ":Lspsaga peek_definition<Return>", "Peek definition", opts)
   set("n", "gD", ":lua vim.lsp.buf.declaration()<Return>", "Go to declaration", opts)
@@ -264,9 +266,16 @@ local function setup_lsp_keymaps(buffer)
   set("n", "<Leader>lb", ":Lspsaga show_buf_diagnostics<Return>", "Show buffer diagnostics", opts)
   set("n", "<Leader>lw", ":Lspsaga show_workspace_diagnostics<Return>", "Show workspace diagnostics", opts)
 
-  set("n", "<Leader>lj", ":Lspsaga diagnostic_jump_next<Return>", "Jump to next diagnostic", opts)
-  set("n", "<Leader>lk", ":Lspsaga diagnostic_jump_prev<Return>", "Jump to previous diagnostic", opts)
-  set("n", "K", ":Lspsaga hover_doc<Return>", "Show hover doc", opts)
+  local diagnostic_status, diagnostic = pcall(require, "lspsaga.diagnostic")
+  if diagnostic_status then
+    set("n", "<Leader>lj", function()
+      diagnostic:goto_next()
+    end, "Jump to next diagnostic", opts)
+
+    set("n", "<Leader>lk", function()
+      diagnostic:goto_prev()
+    end, "Jump to previous diagnostic", opts)
+  end
 end
 
 return {
