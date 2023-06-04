@@ -21,3 +21,14 @@ autocmd("BufWritePre", {
   command = "silent! lua vim.lsp.buf.formatting_sync()",
   group = auto_format_augroup,
 })
+
+function _G.Setup()
+  if vim.fn.argc() == 0 then
+    vim.cmd("NvimTreeOpen")
+  end
+end
+
+autocmd("VimEnter", {
+  pattern = "*",
+  command = "lua Setup()",
+})
