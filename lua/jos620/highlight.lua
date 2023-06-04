@@ -35,4 +35,12 @@ vim.defer_fn(function()
   for _, group in ipairs(green_fg_groups) do
     vim.cmd("highlight! " .. group .. " guifg=" .. colors.green)
   end
+
+  local special_highlighted_groups = {
+    "NvimTreeSpecialFile",
+  }
+
+  for _, group in ipairs(special_highlighted_groups) do
+    vim.cmd("highlight! " .. group .. " guifg=" .. colors.green .. " gui=underline,bold")
+  end
 end, 0)
