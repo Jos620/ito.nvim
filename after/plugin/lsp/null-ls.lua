@@ -14,6 +14,19 @@ local cspell_config = {
   end,
 }
 
+function NullLsFormat(bufnr)
+  vim.lsp.buf.format({
+    filter = function(client)
+      if vim.bo.filetype == "prisma" then
+        return client.name == "prismals"
+      end
+
+      return client.name == "null-ls"
+    end,
+    bufnr = bufnr,
+  })
+end
+
 local eslint_file_types = {
   "javascript",
   "javascriptreact",
@@ -86,16 +99,7 @@ null_ls.setup({
         group = augroup,
         buffer = bufnr,
         callback = function()
-          vim.lsp.buf.format({
-            filter = function(client)
-              if vim.bo.filetype == "prisma" then
-                return client.name == "prismals"
-              end
-
-              return client.name == "null-ls"
-            end,
-            bufnr = bufnr,
-          })
+          NullLsFormat(bufnr)
         end,
       })
     end
