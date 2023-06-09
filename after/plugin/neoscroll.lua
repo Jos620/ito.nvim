@@ -5,5 +5,6 @@ if not status then
 end
 
 neoscroll.setup({
+  mappings = { "<C-u>", "<C-d>", "zt", "zz", "zb" },
   hide_cursor = false,
 })
