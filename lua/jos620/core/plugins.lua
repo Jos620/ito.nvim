@@ -108,6 +108,14 @@ return packer.startup(function(use)
   -- AI programming
   use("zbirenbaum/copilot.lua")
   use("zbirenbaum/copilot-cmp")
+  use({
+    "dreamsofcode-io/chatgpt.nvim",
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+  })
 
   -- Formatting & linting
   use("jose-elias-alvarez/null-ls.nvim")
