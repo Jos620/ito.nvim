@@ -25,6 +25,8 @@ function NullLsFormat(bufnr)
     end,
     bufnr = bufnr,
   })
+
+  vim.cmd("silent! write")
 end
 
 local eslint_file_types = {
