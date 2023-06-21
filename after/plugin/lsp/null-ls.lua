@@ -73,6 +73,7 @@ null_ls.setup({
           ".prettierrc",
           ".prettierrc.js",
           ".prettierrc.cjs",
+          ".prettierrc.json",
           "prettier.config.js",
           "prettier.config.cjs",
           "prettier.config.ts",
