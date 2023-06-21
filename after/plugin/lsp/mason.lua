@@ -30,6 +30,7 @@ mason_lspconfig.setup({
     "rust_analyzer",
 
     -- Utils
+    "lua_ls",
     "jsonls",
     "prismals",
   },
