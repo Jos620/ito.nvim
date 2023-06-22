@@ -61,3 +61,13 @@ function _G.MergeTable(...)
 
   return result
 end
+
+function _G.Contains(tbl, value)
+  for _, current in pairs(tbl) do
+    if current == value then
+      return true
+    end
+  end
+
+  return false
+end
