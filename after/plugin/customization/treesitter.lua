@@ -160,6 +160,6 @@ arguments: ((template_string) @css
   (#inject_without_children! @css)))
 ]]
 
-vim.treesitter.query.set_query("javascript", "injections", ecma_injections)
-vim.treesitter.query.set_query("typescript", "injections", ecma_injections)
-vim.treesitter.query.set_query("tsx", "injections", ecma_injections)
+vim.treesitter.query.set("javascript", "injections", ecma_injections)
+vim.treesitter.query.set("typescript", "injections", ecma_injections)
+vim.treesitter.query.set("tsx", "injections", ecma_injections)
