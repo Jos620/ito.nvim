@@ -20,6 +20,11 @@ telescope.setup({
   },
 })
 
-if vim.fn.executable("fzf") == 1 then
-  telescope.load_extension("fzf")
+local function load_extensions()
+  local fzf_status = pcall(require, "telescope._extensions.fzf")
+  if fzf_status and vim.fn.executable("fzf") == 1 then
+    telescope.load_extension("fzf")
+  end
 end
+
+vim.defer_fn(load_extensions, 0)
