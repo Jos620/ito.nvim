@@ -71,3 +71,16 @@ function _G.Contains(tbl, value)
 
   return false
 end
+
+-- Range
+function _G.IsOneLine(range)
+  return range[1] == range[3]
+end
+
+function _G.IsRangeEmptyOrInvalid(range)
+  if range[3] < range[1] or (IsOneLine(range) and range[4] <= range[2]) then
+    return true
+  end
+
+  return false
+end
