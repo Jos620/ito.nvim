@@ -121,7 +121,7 @@ return packer.startup(function(use)
   use("jose-elias-alvarez/null-ls.nvim")
   use("jayp0521/mason-null-ls.nvim")
 
-  -- Syntax Hightlight
+  -- Syntax Highlight
   use("nvim-treesitter/nvim-treesitter")
 
   -- Git
