@@ -33,7 +33,7 @@ function _G.ReloadConfig()
   print("Reloaded!")
 end
 
--- Type convertion
+-- Type conversion
 function _G.StringToBoolean(original)
   if type(original) == "boolean" then
     return original
