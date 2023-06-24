@@ -32,7 +32,7 @@ o.incsearch = true
 -- Cursor line
 o.cursorline = true
 
--- Appearence
+-- Appearance
 o.termguicolors = true
 o.background = "dark"
 o.signcolumn = "yes"
