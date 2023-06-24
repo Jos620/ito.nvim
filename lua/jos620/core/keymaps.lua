@@ -38,7 +38,7 @@ set("n", "cie", "ggcG", "Change all file")
 set("n", "die", "ggdG", "Delete all file")
 set("n", "yie", "ggVGy", "Yank all file")
 
--- Better movimentation on wrapped lines
+-- Better navigation on wrapped lines
 set("n", "j", "gj", "Move down")
 set("n", "k", "gk", "Move up")
 
