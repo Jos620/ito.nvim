@@ -28,8 +28,8 @@ nvim_tree.setup({
       enable = true,
       quit_on_focus_loss = false,
       open_win_config = function()
-        local HEIGHT_RATIO = 0.75
-        local WIDTH_RATIO = 0.5
+        local HEIGHT_RATIO = 0.8
+        local WIDTH_RATIO = 0.75
 
         local screen_width = vim.opt.columns:get()
         local window_width = math.ceil(screen_width * WIDTH_RATIO)
@@ -40,6 +40,14 @@ nvim_tree.setup({
           row = ((vim.opt.lines:get() - window_height) / 2) - vim.opt.cmdheight:get(),
           col = (screen_width - window_width) / 2,
         }
+
+        if window_width < 80 and window_width < screen_width / 2 then
+          window_width = 80
+        end
+
+        if window_height < 20 and window_height < screen_height / 2 then
+          window_height = 20
+        end
 
         return {
           border = "rounded",
