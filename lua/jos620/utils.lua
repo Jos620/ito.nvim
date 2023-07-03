@@ -1,3 +1,11 @@
+function _G.Setup()
+  local nvim_tree_status, nvim_tree = pcall(require, "nvim-tree.api")
+
+  if nvim_tree_status and vim.fn.argc() == 0 then
+    nvim_tree.tree.open()
+  end
+end
+
 -- Load all lua files in a directory
 function _G.LoadPath(path)
   for _, file in ipairs(vim.fn.readdir(path)) do
