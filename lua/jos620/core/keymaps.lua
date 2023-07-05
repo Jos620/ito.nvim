@@ -22,6 +22,10 @@ set("n", "G", "G0zz", "Go to last line")
 set("n", "gh", "^", "Go to first character")
 set("n", "gl", "$", "Go to last character")
 
+-- Scroll
+set("n", "zl", "30zl", "Scroll right")
+set("n", "zh", "30zh", "Scroll left")
+
 -- Do not yank with "X" and "P"
 set({ "n", "v" }, "x", '"_x', "Do not yank with 'x'")
 set({ "n", "v" }, "X", '"_X', "Do not yank with 'X'")
