@@ -19,8 +19,6 @@ end, "Clear highlights")
 -- Navigation
 set("n", "gg", "gg0zz", "Go to first line")
 set("n", "G", "G0zz", "Go to last line")
-set("n", "gh", "^", "Go to first character")
-set("n", "gl", "$", "Go to last character")
 
 -- Scroll
 set("n", "zl", "30zl", "Scroll right")
