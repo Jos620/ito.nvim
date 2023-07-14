@@ -43,4 +43,6 @@ vim.defer_fn(function()
   for _, group in ipairs(special_highlighted_groups) do
     vim.cmd("highlight! " .. group .. " guifg=" .. colors.green .. " gui=underline,bold")
   end
+
+  vim.cmd("highlight! ColorColumn guibg=" .. colors.darkgray)
 end, 0)
