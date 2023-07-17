@@ -89,7 +89,7 @@ local function setup_nvim_tree_keymaps(bufnr)
 
   -- Help / Info
   set("n", "g?", api.tree.toggle_help, "Help", opts)
-  set("n", "<C-k>", api.node.show_info_popup, "Info", opts)
+  set("n", "K", api.node.show_info_popup, "Info", opts)
   set("n", "gy", api.fs.copy.absolute_path, "Copy Absolute Path", opts)
   set("n", "s", api.node.run.system, "Run System", opts)
   set("n", ".", api.node.run.cmd, "Run Command", opts)
