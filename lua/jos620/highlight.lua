@@ -45,4 +45,5 @@ vim.defer_fn(function()
   end
 
   vim.cmd("highlight! ColorColumn guibg=" .. colors.darkgray)
+  vim.cmd("highlight! BufferLineIndicatorVisible guibg=" .. colors.black)
 end, 0)
