@@ -58,3 +58,6 @@ o.autoread = true
 -- Bottom bar
 o.showmode = false
 o.ruler = false
+
+-- Set cursor as block
+o.guicursor = "n-v-c:block,i-ci-ve:block"
