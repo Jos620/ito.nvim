@@ -1,6 +1,7 @@
 return {
   "nvim-telescope/telescope.nvim",
   branch = "0.1.x",
+  event = "BufWinEnter",
   config = function()
     local telescope_status, telescope = pcall(require, "telescope")
     if not telescope_status then
