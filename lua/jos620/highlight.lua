@@ -40,17 +40,7 @@ vim.defer_fn(function()
     hi(group, { fg = colors.green })
   end
 
-  local special_highlighted_groups = {
-    "NvimTreeSpecialFile",
-  }
-
-  for _, group in ipairs(special_highlighted_groups) do
-    hi(group, {
-      fg = colors.green,
-      bold = true,
-    })
-  end
-
   hi("ColorColumn", { bg = colors.darkgray })
   hi("BufferLineIndicatorVisible", { bg = colors.black })
+  hi("NvimTreeSpecialFile", { fg = colors.green, bold = true })
 end, 0)
