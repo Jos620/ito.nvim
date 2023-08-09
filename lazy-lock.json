@@ -7,6 +7,8 @@
   "nvim-autopairs": { "branch": "master", "commit": "ae5b41ce880a6d850055e262d6dfebd362bb276e" },
   "nvim-highlight-colors": { "branch": "main", "commit": "231547093a788b925b8fc36351ad422701c3a8c8" },
   "nvim-tree.lua": { "branch": "master", "commit": "904f95cd9db31d1800998fa428e78e418a50181d" },
+  "nvim-treesitter": { "branch": "master", "commit": "80cee52d445363c8bd08eacca17be31e3837f4d0" },
+  "nvim-ts-autotag": { "branch": "main", "commit": "6be1192965df35f94b8ea6d323354f7dc7a557e4" },
   "vim-maximizer": { "branch": "master", "commit": "2e54952fe91e140a2e69f35f22131219fcd9c5f1" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vitesse.nvim": { "branch": "main", "commit": "1fd79ce42185e81e5396d2b8fb563dfaec477bfc" }
