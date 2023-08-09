@@ -16,4 +16,7 @@ if not status then
   return
 end
 
-lazy.setup("jos620.plugins")
+lazy.setup({
+  { import = "jos620.plugins" },
+  { import = "jos620.plugins.theme.colorscheme" },
+})
