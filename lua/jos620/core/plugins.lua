@@ -23,4 +23,5 @@ lazy.setup({
   { import = "jos620.plugins.ui" },
   { import = "jos620.plugins.telescope" },
   { import = "jos620.plugins.navigation" },
+  { import = "jos620.plugins.lsp" },
 })
