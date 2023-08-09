@@ -1,4 +1,8 @@
 return {
   "onsails/lspkind.nvim",
-  config = function() end,
+  event = "InsertEnter",
+  dependencies = {
+    "neovim/nvim-lspconfig",
+    "hrsh7th/nvim-cmp",
+  },
 }
