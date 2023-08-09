@@ -3,6 +3,7 @@ return {
   dependencies = {
     "neovim/nvim-lspconfig",
   },
+  event = "BufReadPre",
   config = function()
     local setup, null_ls = pcall(require, "null-ls")
     if not setup then
