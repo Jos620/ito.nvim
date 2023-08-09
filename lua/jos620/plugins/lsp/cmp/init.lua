@@ -1,5 +1,6 @@
 return {
   "hrsh7th/nvim-cmp",
+  event = "InsertEnter",
   config = function()
     local cmp_status, cmp = pcall(require, "cmp")
     if not cmp_status then
