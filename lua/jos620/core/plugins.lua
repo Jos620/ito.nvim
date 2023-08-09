@@ -10,3 +10,10 @@ if not vim.loop.fs_stat(lazy_path) then
   })
 end
 vim.opt.rtp:prepend(lazy_path)
+
+local status, lazy = pcall(require, "lazy")
+if not status then
+  return
+end
+
+lazy.setup("jos620.plugins")
