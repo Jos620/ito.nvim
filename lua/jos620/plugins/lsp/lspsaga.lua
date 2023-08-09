@@ -3,6 +3,7 @@ return {
   dependencies = {
     "neovim/nvim-lspconfig",
   },
+  event = "BufReadPre",
   config = function()
     local status, lspsaga = pcall(require, "lspsaga")
     if not status then
