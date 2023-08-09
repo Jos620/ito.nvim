@@ -3,11 +3,6 @@ if not cmp_status then
   return
 end
 
-local luasnip_status, luasnip = pcall(require, "luasnip")
-if not luasnip_status then
-  return
-end
-
 local lspkind_status, lspkind = pcall(require, "lspkind")
 if not lspkind_status then
   return
@@ -20,6 +15,11 @@ vim.opt.completeopt = "menu,menuone,noselect"
 cmp.setup({
   snippet = {
     expand = function(args)
+      local luasnip_status, luasnip = pcall(require, "luasnip")
+      if not luasnip_status then
+        return
+      end
+
       luasnip.lsp_expand(args.body)
     end,
   },
