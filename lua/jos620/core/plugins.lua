@@ -21,4 +21,5 @@ lazy.setup({
   { import = "jos620.plugins.theme" },
   { import = "jos620.plugins.theme.colorscheme" },
   { import = "jos620.plugins.ui" },
+  { import = "jos620.plugins.navigation" },
 })
