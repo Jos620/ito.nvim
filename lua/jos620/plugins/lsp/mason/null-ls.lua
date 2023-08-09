@@ -4,6 +4,7 @@ return {
     "williamboman/mason.nvim",
     "jose-elias-alvarez/null-ls.nvim",
   },
+  event = "BufReadPre",
   config = function()
     local status, mason_null_ls = pcall(require, "mason-null-ls")
     if not status then
