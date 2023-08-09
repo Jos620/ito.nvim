@@ -40,7 +40,7 @@ cmp.setup({
     ["<M-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.abort(),
 
-    -- Confim
+    -- Confirm
     ["<Return>"] = cmp.mapping.confirm({ select = false }),
   }),
 
