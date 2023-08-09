@@ -1,5 +1,9 @@
 local colors = require("jos620.colors")
 
+local function hi(group, options)
+  vim.api.nvim_set_hl(0, group, options)
+end
+
 vim.defer_fn(function()
   local link_to_normal_groups = {
     "NvimTreeFolderName",
@@ -33,7 +37,7 @@ vim.defer_fn(function()
   }
 
   for _, group in ipairs(green_fg_groups) do
-    vim.cmd("highlight! " .. group .. " guifg=" .. colors.green)
+    hi(group, { fg = colors.green })
   end
 
   local special_highlighted_groups = {
@@ -41,9 +45,12 @@ vim.defer_fn(function()
   }
 
   for _, group in ipairs(special_highlighted_groups) do
-    vim.cmd("highlight! " .. group .. " guifg=" .. colors.green .. " gui=underline,bold")
+    hi(group, {
+      fg = colors.green,
+      bold = true,
+    })
   end
 
-  vim.cmd("highlight! ColorColumn guibg=" .. colors.darkgray)
-  vim.cmd("highlight! BufferLineIndicatorVisible guibg=" .. colors.black)
+  hi("ColorColumn", { bg = colors.darkgray })
+  hi("BufferLineIndicatorVisible", { bg = colors.black })
 end, 0)
