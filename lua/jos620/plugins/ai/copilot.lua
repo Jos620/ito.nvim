@@ -1,5 +1,6 @@
 return {
   "zbirenbaum/copilot.lua",
+  event = "InsertEnter",
   config = function()
     local status, copilot = pcall(require, "copilot")
     if not status then
