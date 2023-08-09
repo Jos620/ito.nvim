@@ -4,6 +4,10 @@ local function hi(group, options)
   vim.api.nvim_set_hl(0, group, options)
 end
 
+local function link(group, link_to)
+  vim.cmd("highlight! link " .. group .. " " .. link_to)
+end
+
 vim.defer_fn(function()
   local link_to_normal_groups = {
     "NvimTreeFolderName",
@@ -16,7 +20,7 @@ vim.defer_fn(function()
   }
 
   for _, group in ipairs(link_to_normal_groups) do
-    vim.cmd("highlight! link " .. group .. " Normal")
+    link(group, "Normal")
   end
 
   local green_fg_groups = {
