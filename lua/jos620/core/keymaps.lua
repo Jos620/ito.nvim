@@ -20,6 +20,9 @@ end, "Clear highlights")
 set("n", "gg", "gg0zz", "Go to first line")
 set("n", "G", "G0zz", "Go to last line")
 
+set("n", "f", "<Plug>Sneak_f")
+set("n", "F", "<Plug>Sneak_F")
+
 -- Scroll
 set("n", "zl", "30zl", "Scroll right")
 set("n", "zh", "30zh", "Scroll left")
