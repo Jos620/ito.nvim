@@ -55,8 +55,8 @@ set("v", ">", ">gv", "Indent lines")
 set("v", "<", "<gv", "Unindent lines")
 
 -- Split window
-set("n", "<Leader>sb", "<C-w>v", "Split window vertically")
-set("n", "<Leader>sv", "<C-w>s", "Split window horizontally")
+set("n", "<Leader>sv", "<C-w>v", "Split window vertically")
+set("n", "<Leader>sb", "<C-w>s", "Split window horizontally")
 set("n", "<Leader>se", "<C-w>=", "Equalize windows")
 set("n", "<Leader>sm", ":MaximizerToggle<Return>", "Maximize window")
 
@@ -74,8 +74,8 @@ set("n", "_", "<C-w>-", "Decrease window height")
 set("n", ">>", "<C-w>>", "Increase window width")
 set("n", "<<", "<C-w><", "Decrease window width")
 
-set("n", "<Leader>Sh", "<C-w>t<C-w>H", "Change split orientation to horizontal")
-set("n", "<Leader>Sv", "<C-w>t<C-w>K", "Change split orientation to vertical")
+set("n", "<Leader>Sv", "<C-w>t<C-w>H", "Change split orientation to horizontal")
+set("n", "<Leader>Sb", "<C-w>t<C-w>K", "Change split orientation to vertical")
 
 -- Folds
 set("n", "<Leader>z", "$V%zf", "Create fold")
