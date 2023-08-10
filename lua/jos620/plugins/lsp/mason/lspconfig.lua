@@ -4,7 +4,7 @@ return {
     "williamboman/mason.nvim",
     "neovim/nvim-lspconfig",
   },
-  event = "BufReadPre",
+  lazy = true,
   config = function()
     local status, mason_lspconfig = pcall(require, "mason-lspconfig")
     if not status then
