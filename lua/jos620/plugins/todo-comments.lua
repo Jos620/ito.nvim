@@ -3,6 +3,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
+  lazy = true,
   config = function()
     local status, todo = pcall(require, "todo-comments")
 
