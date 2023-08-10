@@ -50,8 +50,7 @@ return {
         offsets = {
           {
             filetype = "NvimTree",
-            text = "File Explorer",
-            text_alient = "left",
+            text = "Explorer",
             separator = true,
           },
         },
