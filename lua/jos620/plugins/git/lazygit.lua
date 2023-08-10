@@ -1,6 +1,13 @@
 return {
   "kdheepak/lazygit.nvim",
-  event = "BufWinEnter",
+  event = "User FileOpened",
+  cmd = {
+    "LazyGit",
+    "LazyGitConfig",
+    "LazyGitCurrentFile",
+    "LazyGitFilter",
+    "LazyGitFilterCurrentFile",
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
