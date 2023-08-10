@@ -61,3 +61,6 @@ o.ruler = false
 
 -- Set cursor as block
 o.guicursor = "n-v-c:block,i-ci-ve:block"
+
+-- Set global statusline
+o.laststatus = 3
