@@ -1,5 +1,6 @@
 return {
   "karb94/neoscroll.nvim",
+  event = "BufReadPre",
   config = function()
     local status, neoscroll = pcall(require, "neoscroll")
 
