@@ -1,6 +1,5 @@
 return {
   "mbbill/undotree",
-  event = "BufRead",
   cmd = {
     "UndotreeFocus",
     "UndotreeHide",
