@@ -22,6 +22,9 @@ return {
           i = split_keymaps,
           n = split_keymaps,
         },
+        layout_config = {
+          preview_width = 0.5,
+        },
       },
     })
 
