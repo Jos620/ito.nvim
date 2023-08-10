@@ -1,5 +1,7 @@
 return {
   "nvim-tree/nvim-tree.lua",
+  cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFileToggle" },
+  event = "User DirOpened",
   config = function()
     local status, nvim_tree = pcall(require, "nvim-tree")
     if not status then
