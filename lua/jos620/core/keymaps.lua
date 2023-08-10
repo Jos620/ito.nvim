@@ -199,6 +199,7 @@ set("n", "<Leader>mm", ":Mason<Return>", "Launch Mason")
 set("n", "gs", ":vertical rightbelow Git<Return>", "Open git status")
 set("n", "gh", ":diffget //2<Return>", "Use left diff hunk")
 set("n", "gl", ":diffget //3<Return>", "Use right diff hunk")
+set("n", "<Leader>gg", ":LazyGit<Return>", "Open lazy git")
 
 local function setup_git_keymaps(buffer, gitsigns)
   local opts = { noremap = true, silent = true, buffer = buffer }
