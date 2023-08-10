@@ -1,4 +1,4 @@
-local colors = require("jos620.colors")
+local colors = require("jos620.core.colors")
 
 local function hi(group, options)
   vim.api.nvim_set_hl(0, group, options)

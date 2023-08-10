@@ -6,7 +6,7 @@ return {
       return
     end
 
-    local colors = require("jos620.colors")
+    local colors = require("jos620.core.colors")
     local neovide_color = require("jos620.neovide").neovide_color
 
     lualine.setup({

@@ -10,7 +10,7 @@ return {
       return
     end
 
-    local colors = require("jos620.colors")
+    local colors = require("jos620.core.colors")
 
     todo.setup({
       colors = {
