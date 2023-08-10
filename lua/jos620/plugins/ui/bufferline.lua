@@ -1,5 +1,6 @@
 return {
   "akinsho/bufferline.nvim",
+  event = "User FileOpened",
   config = function()
     local status, bufferline = pcall(require, "bufferline")
     if not status then
