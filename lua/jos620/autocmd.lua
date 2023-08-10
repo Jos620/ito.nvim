@@ -16,7 +16,6 @@ autocmd("BufRead, BufWinEnter, BufNewFile", {
   }),
   nested = true,
   callback = function(args)
-    print("FileOpened")
     local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
 
     if not (vim.fn.expand("%") == "" or buftype == "nofile") then
@@ -35,7 +34,6 @@ autocmd("BufRead, BufWinEnter, BufNewFile", {
   callback = function(args)
     local bufname = vim.api.nvim_buf_get_name(args.buf)
     if IsDirectory(bufname) then
-      print("DirOpened")
       vim.api.nvim_del_augroup_by_name("_dir_opened")
       vim.cmd("do User DirOpened")
       vim.api.nvim_exec_autocmds(args.event, { buffer = args.buf, data = args.data })
