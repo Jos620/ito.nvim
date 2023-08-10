@@ -25,3 +25,20 @@ autocmd("BufRead, BufWinEnter, BufNewFile", {
     end
   end,
 })
+
+-- Fire DirOpened event
+autocmd("BufRead, BufWinEnter, BufNewFile", {
+  group = augroup("_dir_opened", {
+    clear = true,
+  }),
+  nested = true,
+  callback = function(args)
+    local bufname = vim.api.nvim_buf_get_name(args.buf)
+    if IsDirectory(bufname) then
+      print("DirOpened")
+      vim.api.nvim_del_augroup_by_name("_dir_opened")
+      vim.cmd("do User DirOpened")
+      vim.api.nvim_exec_autocmds(args.event, { buffer = args.buf, data = args.data })
+    end
+  end,
+})
