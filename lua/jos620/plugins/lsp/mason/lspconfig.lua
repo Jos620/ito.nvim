@@ -29,6 +29,7 @@ return {
         "lua_ls",
         "jsonls",
         "prismals",
+        "marksman",
       },
     })
   end,
