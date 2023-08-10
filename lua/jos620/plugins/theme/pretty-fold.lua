@@ -1,5 +1,6 @@
 return {
   "anuvyklack/pretty-fold.nvim",
+  event = "BufRead",
   config = function()
     local status, pretty_fold = pcall(require, "pretty-fold")
     if not status then
