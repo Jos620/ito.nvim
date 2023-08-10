@@ -82,3 +82,8 @@ function _G.IsRangeEmptyOrInvalid(range)
 
   return false
 end
+
+-- File / Directory
+function _G.IsDirectory(bufname)
+  return vim.fn.isdirectory(vim.fn.fnamemodify(bufname, ":p"))
+end
