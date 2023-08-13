@@ -198,6 +198,7 @@ set("n", "<Leader>mm", ":Mason<Return>", "Launch Mason")
 -- Git
 set("n", "gs", ":vertical rightbelow Git<Return>", "Open git status")
 set("n", "gh", ":diffget //2<Return>", "Use left diff hunk")
+set("n", "gm", ":GitMessenger<Return>", "Open git messenger")
 set("n", "gl", ":diffget //3<Return>", "Use right diff hunk")
 set("n", "<Leader>gg", ":LazyGit<Return>", "Open lazy git")
 
