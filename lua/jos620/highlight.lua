@@ -46,3 +46,4 @@ end
 hi("ColorColumn", { bg = colors.darkgray })
 hi("BufferLineIndicatorVisible", { bg = colors.black })
 hi("NvimTreeSpecialFile", { fg = colors.green, bold = true })
+hi("Visual", { bg = colors.darkgray })
