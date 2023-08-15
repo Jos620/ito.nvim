@@ -39,6 +39,9 @@ return {
       lightbulb = {
         enable = false,
       },
+      hover = {
+        open_link = "o",
+      },
     })
   end,
 }
