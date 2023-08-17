@@ -27,6 +27,7 @@ lazy.setup({
   { import = "jos620.plugins.lsp.mason" },
   { import = "jos620.plugins.lsp.cmp" },
   { import = "jos620.plugins.lsp.snippets" },
+  { import = "jos620.plugins.lsp.languages" },
   { import = "jos620.plugins.git" },
   { import = "jos620.plugins.ai" },
 })
