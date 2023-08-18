@@ -145,27 +145,25 @@ set("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
 
 -- Harpoon
 local function setup_harpoon_keymaps()
-  local mark_status, mark = pcall(require, "harpoon.mark")
-  if mark_status then
-    set("n", "<Leader>|", function()
-      mark.add_file()
-
-      local ui_status, ui = pcall(require, "harpoon.ui")
-      if ui_status then
-        ui.toggle_quick_menu()
-      end
-    end, "Add file to harpoon")
+  local harpoon_status, _ = pcall(require, "harpoon")
+  if not harpoon_status then
+    return
   end
 
-  local ui_status, ui = pcall(require, "harpoon.ui")
-  if ui_status then
-    set("n", "<Leader>\\", ui.toggle_quick_menu, "Toggle harpoon menu")
+  local mark = require("harpoon.mark")
+  local ui = require("harpoon.ui")
 
-    for i = 1, 9 do
-      set("n", "<Leader>" .. tostring(i), function()
-        ui.nav_file(i)
-      end, "Go to harpoon mark " .. i)
-    end
+  set("n", "<Leader>|", function()
+    mark.add_file()
+    ui.toggle_quick_menu()
+  end, "Add file to harpoon")
+
+  set("n", "<Leader>\\", ui.toggle_quick_menu, "Toggle harpoon menu")
+
+  for i = 1, 9 do
+    set("n", "<Leader>" .. tostring(i), function()
+      ui.nav_file(i)
+    end, "Go to harpoon mark " .. i)
   end
 end
 
