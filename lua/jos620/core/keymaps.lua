@@ -165,6 +165,7 @@ end
 -- Terminal
 set("t", "<C-[>", "<C-\\><C-n>", "Exit terminal mode")
 set("t", "jk", "<C-\\><C-n>", "Exit terminal mode")
+set("n", "<Leader>st", ":vsplit term://zsh<Return>i", "Open terminal")
 
 -- Telescope
 set("n", "<Leader>ff", ":Telescope find_files<Return>", "Find files")
