@@ -147,7 +147,14 @@ set("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
 local function setup_harpoon_keymaps()
   local mark_status, mark = pcall(require, "harpoon.mark")
   if mark_status then
-    set("n", "<Leader>|", mark.add_file, "Add file to harpoon")
+    set("n", "<Leader>|", function()
+      mark.add_file()
+
+      local ui_status, ui = pcall(require, "harpoon.ui")
+      if ui_status then
+        ui.toggle_quick_menu()
+      end
+    end, "Add file to harpoon")
   end
 
   local ui_status, ui = pcall(require, "harpoon.ui")
