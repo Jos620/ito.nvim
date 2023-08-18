@@ -37,6 +37,7 @@ local green_fg_groups = {
   "NvimTreeGitRenamed",
   "NvimTreeGitDeleted",
   "NvimTreeGitIgnored",
+  "OilDirIcon",
   "harpoonborder",
 }
 
