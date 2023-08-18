@@ -154,7 +154,7 @@ local function setup_harpoon_keymaps()
   if ui_status then
     set("n", "<Leader>\\", ui.toggle_quick_menu, "Toggle harpoon menu")
 
-    for i = 1, 4 do
+    for i = 1, 9 do
       set("n", "<Leader>" .. tostring(i), function()
         ui.nav_file(i)
       end, "Go to harpoon mark " .. i)
