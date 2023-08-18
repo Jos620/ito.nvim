@@ -162,6 +162,10 @@ local function setup_harpoon_keymaps()
   end
 end
 
+-- Terminal
+set("t", "<C-[>", "<C-\\><C-n>", "Exit terminal mode")
+set("t", "jk", "<C-\\><C-n>", "Exit terminal mode")
+
 -- Telescope
 set("n", "<Leader>ff", ":Telescope find_files<Return>", "Find files")
 set("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", "Find all files")
