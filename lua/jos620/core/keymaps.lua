@@ -162,11 +162,6 @@ local function setup_harpoon_keymaps()
   end
 end
 
--- Terminal
-local toggleterm_command = ":ToggleTerm direction=horizontal size=10<Return>"
-set("n", "<M-1>", toggleterm_command, "Toggle terminal")
-set("t", "<M-1>", "<C-\\><C-n>" .. toggleterm_command, "Toggle terminal")
-
 -- Telescope
 set("n", "<Leader>ff", ":Telescope find_files<Return>", "Find files")
 set("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", "Find all files")
