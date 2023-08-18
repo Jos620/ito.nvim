@@ -159,9 +159,6 @@ local function setup_harpoon_keymaps()
         ui.nav_file(i)
       end, "Go to harpoon mark " .. i)
     end
-
-    set("n", "<Leader>n", ui.nav_next, "Go to next harpoon mark")
-    set("n", "<Leader>p", ui.nav_prev, "Go to previous harpoon mark")
   end
 end
 
