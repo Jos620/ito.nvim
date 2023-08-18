@@ -3,6 +3,8 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
+  cmd = { "Oil" },
+  lazy = true,
   config = function()
     local status, oil = pcall(require, "oil")
     if not status then
