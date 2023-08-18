@@ -9,8 +9,14 @@ return {
       return
     end
 
-    oil.setup()
     oil.setup({
+      keymaps = {
+        ["g?"] = "actions.show_help",
+        ["l"] = "actions.select",
+        ["h"] = "actions.parent",
+        ["<C-v>"] = "actions.select_vsplit",
+        ["<C-b>"] = "actions.select_split",
+      },
       view_options = {
         show_hidden = true,
       },
