@@ -16,6 +16,7 @@ local link_to_normal_groups = {
   "NvimTreeRootFolder",
   "packerWorking",
   "harpoonwindow",
+  "Directory",
 }
 
 for _, group in ipairs(link_to_normal_groups) do
