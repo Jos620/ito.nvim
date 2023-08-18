@@ -178,6 +178,7 @@ set("n", "<Leader>fh", ":Telescope highlights<Return>", "Find highlights")
 set("n", "<Leader>fgf", ":Telescope git_status<Return>", "Find changed files")
 set("n", "<Leader>fgb", ":Telescope git_branches<Return>", "Find git branches")
 set("n", "<Leader>fgc", ":Telescope git_commits<Return>", "Find git commits")
+set("n", "<Leader>fm", ":Telescope harpoon marks<Return>", "Find git commits")
 
 -- Buffers
 set("n", "H", ":BufferLineCyclePrev<Return>", "Previous buffer")
