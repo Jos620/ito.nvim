@@ -17,9 +17,6 @@ set("n", "<Leader>h", function()
 end, "Clear highlights")
 
 -- Navigation
-set("n", "gg", "gg0zz", "Go to first line")
-set("n", "G", "G0zz", "Go to last line")
-
 set("n", "f", "<Plug>Sneak_f")
 set("n", "F", "<Plug>Sneak_F")
 
