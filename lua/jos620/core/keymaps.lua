@@ -151,12 +151,12 @@ local function setup_harpoon_keymaps()
   local mark = require("harpoon.mark")
   local ui = require("harpoon.ui")
 
-  set("n", "<Leader>|", function()
+  set("n", "<Leader>\\", function()
     mark.add_file()
     ui.toggle_quick_menu()
   end, "Add file to harpoon")
 
-  set("n", "<Leader>\\", ui.toggle_quick_menu, "Toggle harpoon menu")
+  set("n", "<Leader>|", ui.toggle_quick_menu, "Toggle harpoon menu")
 
   for i = 1, 9 do
     set("n", "<Leader>" .. tostring(i), function()
