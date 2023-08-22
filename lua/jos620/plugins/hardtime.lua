@@ -11,6 +11,13 @@ return {
       return
     end
 
-    hardtime.setup()
+    hardtime.setup({
+      max_time = 2000,
+      max_count = 5,
+      restricted_keys = {
+        ["j"] = {},
+        ["k"] = {},
+      },
+    })
   end,
 }
