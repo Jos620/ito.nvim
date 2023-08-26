@@ -64,3 +64,6 @@ o.guicursor = "n-v-c:block,i-ci-ve:block"
 
 -- Set global statusline
 o.laststatus = 3
+
+-- Mouse support
+o.mouse = "a"
