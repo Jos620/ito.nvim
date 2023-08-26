@@ -75,16 +75,14 @@ set("n", "<Leader>Sv", "<C-w>t<C-w>H", "Change split orientation to horizontal")
 set("n", "<Leader>Sb", "<C-w>t<C-w>K", "Change split orientation to vertical")
 
 -- Folds
-local function setup_ufo_keymaps()
+local function setup_fold_keymaps()
   set("n", "<Leader>z", "$V%zf", "Create fold")
 
   local status, ufo = pcall(require, "ufo")
-  if not status then
-    return
+  if status then
+    set("n", "zR", ufo.openAllFolds, "Open all folds")
+    set("n", "zM", ufo.closeAllFolds, "Close all folds")
   end
-
-  set("n", "zR", ufo.openAllFolds, "Open all folds")
-  set("n", "zM", ufo.closeAllFolds, "Close all folds")
 end
 
 -- Increase / decrease
@@ -300,5 +298,5 @@ return {
   setup_git_keymaps = setup_git_keymaps,
   setup_lsp_keymaps = setup_lsp_keymaps,
   setup_harpoon_keymaps = setup_harpoon_keymaps,
-  setup_ufo_keymaps = setup_ufo_keymaps,
+  setup_fold_keymaps = setup_fold_keymaps,
 }
