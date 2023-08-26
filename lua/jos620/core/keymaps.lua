@@ -92,7 +92,11 @@ set("n", "-", "<C-x>", "Decrease")
 -- File tree
 set("n", "<Leader>e", ":NvimTreeFindFileToggle<Return>", "Toggle file tree")
 local function setup_nvim_tree_keymaps(bufnr)
-  local api = require("nvim-tree.api")
+  local nvim_tree_status, api = pcall(require, "nvim-tree.api")
+  if not nvim_tree_status then
+    return
+  end
+
   local opts = { buffer = bufnr, noremap = true, silent = true, nowait = true }
 
   -- Help / Info
