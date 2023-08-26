@@ -14,6 +14,7 @@ return {
     hardtime.setup({
       max_time = 2000,
       max_count = 5,
+      disable_mouse = false,
       restricted_keys = {
         ["j"] = {},
         ["k"] = {},
