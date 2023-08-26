@@ -192,6 +192,8 @@ set("n", "<Leader>fm", ":Telescope harpoon marks<Return>", "Find git commits")
 -- Buffers
 set("n", "H", ":BufferLineCyclePrev<Return>", "Previous buffer")
 set("n", "L", ":BufferLineCycleNext<Return>", "Next buffer")
+set("n", "<Tab>", ":BufferLineCycleNext<Return>", "Next buffer")
+set("n", "<S-Tab>", ":BufferLineCyclePrev<Return>", "Next buffer")
 set("n", "<Leader>,", ":BufferLineMovePrev<Return>", "Move buffer left")
 set("n", "<Leader>.", ":BufferLineMoveNext<Return>", "Move buffer right")
 set("n", "<Leader>c", ":bdelete<Return>", "Close buffer")
