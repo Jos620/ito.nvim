@@ -19,6 +19,12 @@ return {
     -- Enable auto completion
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
+    -- Folding
+    capabilities.textDocument.foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    }
+
     local servers = {
       "html",
       "cssls",
