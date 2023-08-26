@@ -8,13 +8,18 @@ return {
       return
     end
 
-    local setup_nvim_tree_keymaps = require("jos620.core.keymaps").setup_nvim_tree_keymaps
-
     vim.g.loaded = true
     vim.g.loaded_netrwPlugin = true
 
     nvim_tree.setup({
-      on_attach = setup_nvim_tree_keymaps,
+      on_attach = function(bufnr)
+        local api_status, api = pcall(require, "nvim-tree.api")
+        local keymaps_status, keymaps = pcall(require, "jos620.core.keymaps")
+
+        if api_status and keymaps_status then
+          keymaps.setup_nvim_tree_keymaps(api, bufnr)
+        end
+      end,
       sync_root_with_cwd = true,
       hijack_cursor = true,
       hijack_unnamed_buffer_when_opening = true,

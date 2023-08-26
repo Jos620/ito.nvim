@@ -91,63 +91,58 @@ set("n", "-", "<C-x>", "Decrease")
 
 -- File tree
 set("n", "<Leader>e", ":NvimTreeFindFileToggle<Return>", "Toggle file tree")
-local function setup_nvim_tree_keymaps(bufnr)
-  local nvim_tree_status, api = pcall(require, "nvim-tree.api")
-  if not nvim_tree_status then
-    return
-  end
-
+local function setup_nvim_tree_keymaps(tree_api, bufnr)
   local opts = { buffer = bufnr, noremap = true, silent = true, nowait = true }
 
   -- Help / Info
-  set("n", "g?", api.tree.toggle_help, "Help", opts)
-  set("n", "K", api.node.show_info_popup, "Info", opts)
-  set("n", "gy", api.fs.copy.absolute_path, "Copy Absolute Path", opts)
-  set("n", "s", api.node.run.system, "Run System", opts)
-  set("n", ".", api.node.run.cmd, "Run Command", opts)
+  set("n", "g?", tree_api.tree.toggle_help, "Help", opts)
+  set("n", "K", tree_api.node.show_info_popup, "Info", opts)
+  set("n", "gy", tree_api.fs.copy.absolute_path, "Copy Absolute Path", opts)
+  set("n", "s", tree_api.node.run.system, "Run System", opts)
+  set("n", ".", tree_api.node.run.cmd, "Run Command", opts)
 
   -- Open
-  set("n", "l", api.node.open.edit, "Open", opts)
-  set("n", "v", api.node.open.vertical, "Open: Vertical Split", opts)
-  set("n", "b", api.node.open.horizontal, "Open: Horizontal Split", opts)
+  set("n", "l", tree_api.node.open.edit, "Open", opts)
+  set("n", "v", tree_api.node.open.vertical, "Open: Vertical Split", opts)
+  set("n", "b", tree_api.node.open.horizontal, "Open: Horizontal Split", opts)
 
   -- Basic operations
-  set("n", "a", api.fs.create, "Create", opts)
-  set("n", "p", api.fs.paste, "Paste", opts)
-  set("n", "d", api.fs.remove, "Delete", opts)
-  set("n", "D", api.fs.trash, "Trash", opts)
-  set("n", "x", api.fs.cut, "Cut", opts)
-  set("n", "c", api.fs.copy.node, "Copy", opts)
-  set("n", "r", api.fs.rename, "Rename", opts)
-  set("n", "R", api.tree.reload, "Refresh", opts)
+  set("n", "a", tree_api.fs.create, "Create", opts)
+  set("n", "p", tree_api.fs.paste, "Paste", opts)
+  set("n", "d", tree_api.fs.remove, "Delete", opts)
+  set("n", "D", tree_api.fs.trash, "Trash", opts)
+  set("n", "x", tree_api.fs.cut, "Cut", opts)
+  set("n", "c", tree_api.fs.copy.node, "Copy", opts)
+  set("n", "r", tree_api.fs.rename, "Rename", opts)
+  set("n", "R", tree_api.tree.reload, "Refresh", opts)
 
   -- Navigation
-  set("n", "h", api.node.navigate.parent_close, "Close Directory", opts)
-  set("n", "q", api.tree.close, "Close", opts)
-  set("n", "-", api.tree.change_root_to_parent, "Up", opts)
-  set("n", "<Return>", api.tree.change_root_to_node, "CD", opts)
+  set("n", "h", tree_api.node.navigate.parent_close, "Close Directory", opts)
+  set("n", "q", tree_api.tree.close, "Close", opts)
+  set("n", "-", tree_api.tree.change_root_to_parent, "Up", opts)
+  set("n", "<Return>", tree_api.tree.change_root_to_node, "CD", opts)
 
   -- Bookmarks
-  set("n", "m", api.marks.toggle, "Toggle Bookmark", opts)
-  set("n", "bmv", api.marks.bulk.move, "Move Bookmarked", opts)
+  set("n", "m", tree_api.marks.toggle, "Toggle Bookmark", opts)
+  set("n", "bmv", tree_api.marks.bulk.move, "Move Bookmarked", opts)
 
   -- Git / Diagnostics
-  set("n", "<Leader>gj", api.node.navigate.git.next, "Next Git", opts)
-  set("n", "<Leader>gk", api.node.navigate.git.prev, "Prev Git", opts)
-  set("n", "<Leader>lj", api.node.navigate.diagnostics.next, "Next Diagnostic", opts)
-  set("n", "<Leader>lk", api.node.navigate.diagnostics.prev, "Prev Diagnostic", opts)
+  set("n", "<Leader>gj", tree_api.node.navigate.git.next, "Next Git", opts)
+  set("n", "<Leader>gk", tree_api.node.navigate.git.prev, "Prev Git", opts)
+  set("n", "<Leader>lj", tree_api.node.navigate.diagnostics.next, "Next Diagnostic", opts)
+  set("n", "<Leader>lk", tree_api.node.navigate.diagnostics.prev, "Prev Diagnostic", opts)
 
   -- Filters
-  set("n", "f", api.live_filter.start, "Filter", opts)
-  set("n", "F", api.live_filter.clear, "Clean Filter", opts)
-  set("n", "B", api.tree.toggle_no_buffer_filter, "Toggle No Buffer", opts)
-  set("n", "C", api.tree.toggle_git_clean_filter, "Toggle Git Clean", opts)
-  set("n", "H", api.tree.toggle_hidden_filter, "Toggle Dotfiles", opts)
-  set("n", "I", api.tree.toggle_gitignore_filter, "Toggle Git Ignore", opts)
+  set("n", "f", tree_api.live_filter.start, "Filter", opts)
+  set("n", "F", tree_api.live_filter.clear, "Clean Filter", opts)
+  set("n", "B", tree_api.tree.toggle_no_buffer_filter, "Toggle No Buffer", opts)
+  set("n", "C", tree_api.tree.toggle_git_clean_filter, "Toggle Git Clean", opts)
+  set("n", "H", tree_api.tree.toggle_hidden_filter, "Toggle Dotfiles", opts)
+  set("n", "I", tree_api.tree.toggle_gitignore_filter, "Toggle Git Ignore", opts)
 
   -- Mouse support
-  set("n", "<2-LeftMouse>", api.node.open.edit, "Open", opts)
-  set("n", "<2-RightMouse>", api.tree.change_root_to_node, "CD", opts)
+  set("n", "<2-LeftMouse>", tree_api.node.open.edit, "Open", opts)
+  set("n", "<2-RightMouse>", tree_api.tree.change_root_to_node, "CD", opts)
 end
 set("n", "<Leader>o", ":Oil<Return>", "Toggle Oil")
 
