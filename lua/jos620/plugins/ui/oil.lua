@@ -12,6 +12,7 @@ return {
     end
 
     oil.setup({
+      default_file_explorer = true,
       keymaps = {
         ["g?"] = "actions.show_help",
         ["<C-v>"] = "actions.select_vsplit",
