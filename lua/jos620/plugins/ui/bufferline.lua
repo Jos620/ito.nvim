@@ -91,7 +91,7 @@ return {
           }
 
           for key, icon in pairs(icons) do
-            if string.find(buf.path, key) then
+            if string.find(buf.path, key) and not string.find(label, icon) then
               label = icon .. "|" .. label
             end
           end
