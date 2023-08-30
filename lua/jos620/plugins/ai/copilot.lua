@@ -18,6 +18,12 @@ return {
         hgcommit = true,
         ["*"] = true,
       },
+      panel = {
+        layout = {
+          position = "right",
+          ratio = 0.4,
+        },
+      },
     })
 
     local status_cmp, copilot_cmp = pcall(require, "copilot_cmp")
