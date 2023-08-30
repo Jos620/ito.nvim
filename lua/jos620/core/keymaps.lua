@@ -173,7 +173,6 @@ local function setup_harpoon_keymaps()
 end
 
 -- Terminal
-set("t", "<C-[>", "<C-\\><C-n>", "Exit terminal mode")
 set("n", "<Leader>st", ":vsplit term://zsh<Return>i", "Open terminal")
 
 -- Telescope
