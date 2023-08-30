@@ -30,4 +30,13 @@ lazy.setup({
   { import = "jos620.plugins.lsp.languages" },
   { import = "jos620.plugins.git" },
   { import = "jos620.plugins.ai" },
+}, {
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    enabled = true,
+    notify = false,
+  },
 })
