@@ -31,6 +31,7 @@ lazy.setup({
   { import = "jos620.plugins.git" },
   { import = "jos620.plugins.ai" },
 }, {
+  colorscheme = "vitesse",
   checker = {
     enabled = true,
     notify = false,
