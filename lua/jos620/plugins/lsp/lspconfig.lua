@@ -25,6 +25,7 @@ return {
       lineFoldingOnly = true,
     }
 
+    -- Base LSP config
     local servers = {
       "html",
       "cssls",
