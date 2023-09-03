@@ -9,6 +9,14 @@ autocmd("BufRead, BufNewFile", {
   }),
 })
 
+-- Add colorcolumn
+autocmd("BufRead, BufNewFile", {
+  command = "set colorcolumn=80",
+  group = augroup("ColorColumn", {
+    clear = true,
+  }),
+})
+
 -- Fire FileOpened event
 autocmd("BufRead, BufWinEnter, BufNewFile", {
   group = augroup("_file_opened", {
