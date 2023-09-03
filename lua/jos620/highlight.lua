@@ -8,6 +8,13 @@ local function link(group, link_to)
   vim.cmd("highlight! link " .. group .. " " .. link_to)
 end
 
+hi("ColorColumn", { bg = colors.darkgray })
+hi("BufferLineIndicatorVisible", { bg = colors.black })
+hi("NvimTreeSpecialFile", { fg = colors.green, bold = true })
+hi("Visual", { bg = colors.darkgray })
+hi("MatchParen", { bg = "None", fg = colors.red })
+hi("Sneak", { bg = colors.yellow, fg = colors.black })
+
 local link_to_normal_groups = {
   "NvimTreeFolderName",
   "NvimTreeOpenedFolderName",
@@ -44,10 +51,3 @@ local green_fg_groups = {
 for _, group in ipairs(green_fg_groups) do
   hi(group, { fg = colors.green })
 end
-
-hi("ColorColumn", { bg = colors.darkgray })
-hi("BufferLineIndicatorVisible", { bg = colors.black })
-hi("NvimTreeSpecialFile", { fg = colors.green, bold = true })
-hi("Visual", { bg = colors.darkgray })
-hi("MatchParen", { bg = "None", fg = colors.red })
-hi("Sneak", { bg = colors.yellow, fg = colors.black })
