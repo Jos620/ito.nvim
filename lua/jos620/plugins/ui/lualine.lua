@@ -32,14 +32,7 @@ return {
             },
           },
         },
-        lualine_c = {
-          {
-            "filename",
-            color = {
-              bg = neovide_color(colors.black),
-            },
-          },
-        },
+        lualine_c = {},
 
         lualine_x = {
           {
