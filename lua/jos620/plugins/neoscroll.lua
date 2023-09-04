@@ -1,6 +1,8 @@
+local neoscroll_keys = { "<C-u>", "<C-d>", "zt", "zz", "zb" }
+
 return {
   "karb94/neoscroll.nvim",
-  event = "BufReadPre",
+  keys = neoscroll_keys,
   config = function()
     local status, neoscroll = pcall(require, "neoscroll")
 
@@ -9,7 +11,7 @@ return {
     end
 
     neoscroll.setup({
-      mappings = { "<C-u>", "<C-d>", "zt", "zz", "zb" },
+      mappings = neoscroll_keys,
       hide_cursor = false,
     })
   end,
