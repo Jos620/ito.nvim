@@ -23,7 +23,7 @@ return {
 
     for mode, color in pairs(mode_color) do
       theme[mode] = {
-        a = { bg = color, fg = colors.black, gui = "bold" },
+        a = { bg = color, fg = colors.black },
         b = { bg = colors.black, fg = color },
         c = { bg = colors.black, fg = color },
       }
