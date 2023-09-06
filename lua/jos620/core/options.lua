@@ -66,3 +66,8 @@ o.laststatus = 3
 
 -- Mouse support
 o.mouse = "a"
+
+-- Fold
+o.foldlevel = 99
+o.foldlevelstart = 99
+o.foldenable = true
