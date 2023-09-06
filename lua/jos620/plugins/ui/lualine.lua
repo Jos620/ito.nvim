@@ -10,11 +10,30 @@ return {
     local colors = require("jos620.core.colors")
     local neovide_color = require("jos620.neovide").neovide_color
 
+    local mode_color = {
+      normal = colors.green,
+      insert = colors.orange,
+      visual = colors.yellow,
+      replace = colors.red,
+      command = colors.blue,
+      inactive = colors.darkgray,
+    }
+
+    local theme = {}
+
+    for mode, color in pairs(mode_color) do
+      theme[mode] = {
+        a = { bg = color, fg = colors.black, gui = "bold" },
+        b = { bg = colors.black, fg = color },
+        c = { bg = colors.black, fg = color },
+      }
+    end
+
     lualine.setup({
       options = {
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
-        theme = "vitesse",
+        theme = theme,
       },
       sections = {
         lualine_a = { "mode" },
