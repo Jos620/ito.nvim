@@ -25,7 +25,7 @@ return {
       theme[mode] = {
         a = { bg = color, fg = colors.black },
         b = { bg = colors.black, fg = color },
-        c = { bg = colors.black, fg = color },
+        c = { bg = colors.black, fg = colors.gray },
       }
     end
 
