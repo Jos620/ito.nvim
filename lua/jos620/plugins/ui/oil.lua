@@ -16,6 +16,7 @@ return {
         ["<C-v>"] = "actions.select_vsplit",
         ["<C-b>"] = "actions.select_split",
       },
+      skip_confirm_for_simple_edits = true,
       view_options = {
         show_hidden = true,
       },
