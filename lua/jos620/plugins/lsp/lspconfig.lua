@@ -12,8 +12,26 @@ return {
       return
     end
 
-    local on_attach = function(_, buffer)
+    local on_attach = function(client, buffer)
       require("jos620.core.keymaps").setup_lsp_keymaps(buffer)
+
+      ---@diagnostic disable-next-line: deprecated
+      local is_vue_project = lspconfig.util.root_pattern(unpack({
+        "vue.config.{js,ts}",
+        "nuxt.config.{js,ts}",
+        "[Aa]pp.vue",
+        "src/[Aa]pp.vue",
+      }))(vim.fn.getcwd())
+
+      if is_vue_project then
+        if client.name == "tsserver" then
+          client.stop()
+        end
+      else
+        if client.name == "volar" then
+          client.stop()
+        end
+      end
     end
 
     -- Enable auto completion
