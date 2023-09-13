@@ -92,6 +92,7 @@ return {
     -- Vue
     lspconfig.volar.setup({
       filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue", "json" },
+      on_attach = on_attach,
       settings = {
         css = {
           lint = {
