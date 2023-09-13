@@ -35,6 +35,7 @@ return {
       "prismals",
       "unocss",
       "marksman",
+      "tsserver",
     }
 
     for _, server in ipairs(servers) do
