@@ -122,10 +122,6 @@ local function setup_nvim_tree_keymaps(tree_api, bufnr)
   set("n", "-", tree_api.tree.change_root_to_parent, "Up", opts)
   set("n", "<Return>", tree_api.tree.change_root_to_node, "CD", opts)
 
-  -- Bookmarks
-  set("n", "m", tree_api.marks.toggle, "Toggle Bookmark", opts)
-  set("n", "bmv", tree_api.marks.bulk.move, "Move Bookmarked", opts)
-
   -- Git / Diagnostics
   set("n", "<Leader>gj", tree_api.node.navigate.git.next, "Next Git", opts)
   set("n", "<Leader>gk", tree_api.node.navigate.git.prev, "Prev Git", opts)
