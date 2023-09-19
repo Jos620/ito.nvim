@@ -191,7 +191,8 @@ set("n", "<Tab>", ":BufferLineCycleNext<Return>", "Next buffer")
 set("n", "<S-Tab>", ":BufferLineCyclePrev<Return>", "Next buffer")
 set("n", "<Leader>,", ":BufferLineMovePrev<Return>", "Move buffer left")
 set("n", "<Leader>.", ":BufferLineMoveNext<Return>", "Move buffer right")
-set("n", "<Leader>c", ":b# <bar> bd#<Return>", "Close buffer")
+set("n", "<Leader>c", ":bdelete<Return>", "Close buffer")
+set("n", "<Leader>C", ":b# <bar> bd#<Return>", "Close buffer, without closing the window")
 
 -- Packages
 set("n", "<Leader>pi", ":PackerInstall<Return>", "Install packages")
