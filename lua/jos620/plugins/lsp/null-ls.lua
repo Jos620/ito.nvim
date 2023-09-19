@@ -91,6 +91,10 @@ return {
             return utils.root_has_file(config_files)
           end,
         }),
+        -- CSS / SCSS
+        formatting.prettierd.with({
+          filetypes = { "css", "scss", "less" },
+        }),
 
         -- Rust
         formatting.rustfmt,
