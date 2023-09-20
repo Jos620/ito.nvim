@@ -143,6 +143,7 @@ end
 set("n", "<Leader>o", ":Oil<Return>", "Toggle Oil")
 
 set("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
+set("n", "<Leader>U", ":UndotreeFocus<Return>", "Focus Undo Tree")
 
 -- Harpoon
 local function setup_harpoon_keymaps()
