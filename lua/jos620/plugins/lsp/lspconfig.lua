@@ -20,7 +20,7 @@ return {
         "vue.config.{js,ts}",
         "nuxt.config.{js,ts}",
         "[Aa]pp.vue",
-        "src/[Aa]pp.vue",
+        "./src/[Aa]pp.vue",
       }))(vim.fn.getcwd())
 
       if is_vue_project then
