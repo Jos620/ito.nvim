@@ -15,6 +15,7 @@ return {
     local on_attach = function(client, buffer)
       require("jos620.core.keymaps").setup_lsp_keymaps(buffer)
 
+      -- Stop tsserver when in Vue project
       local is_vue_project = lspconfig.util.root_pattern({
         "vue.config.{js,ts}",
         "nuxt.config.{js,ts}",
