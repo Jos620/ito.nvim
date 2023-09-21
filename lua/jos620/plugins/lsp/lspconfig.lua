@@ -15,13 +15,12 @@ return {
     local on_attach = function(client, buffer)
       require("jos620.core.keymaps").setup_lsp_keymaps(buffer)
 
-      ---@diagnostic disable-next-line: deprecated
-      local is_vue_project = lspconfig.util.root_pattern(unpack({
+      local is_vue_project = lspconfig.util.root_pattern({
         "vue.config.{js,ts}",
         "nuxt.config.{js,ts}",
         "[Aa]pp.vue",
         "./src/[Aa]pp.vue",
-      }))(vim.fn.getcwd())
+      })(vim.fn.getcwd())
 
       if is_vue_project then
         if client.name == "tsserver" then
