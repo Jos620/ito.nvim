@@ -20,7 +20,7 @@ return {
       },
       finder = {
         keys = {
-          expand_or_jump = "<Return>",
+          toggle_or_open = "<Return>",
           vsplit = "v",
           split = "b",
         },
