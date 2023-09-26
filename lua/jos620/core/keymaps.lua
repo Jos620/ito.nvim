@@ -266,7 +266,7 @@ local function setup_lsp_keymaps(buffer)
 
   set("n", "K", ":Lspsaga hover_doc<Return>", "Show hover doc", opts)
 
-  set("n", "gf", ":Lspsaga lsp_finder<Return>", "Find definition", opts)
+  set("n", "gf", ":Lspsaga finder<Return>", "Find definition", opts)
   set("n", "gd", ":Lspsaga goto_definition<Return>", "Go to definition", opts)
   set("n", "gD", ":Lspsaga peek_definition<Return>", "Peek definition", opts)
   set("n", "gi", ":lua vim.lsp.buf.implementation()<Return>", "Go to implementation", opts)
