@@ -17,5 +17,7 @@ return {
         timeout_ms = 500,
       },
     })
+
+    require("jos620.core.keymaps").setup_formatting_keymaps(conform)
   end,
 }
