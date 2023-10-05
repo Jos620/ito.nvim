@@ -70,6 +70,26 @@ function _G.Contains(tbl, value)
   return false
 end
 
+function _G.Flatten(tbl)
+  local result = {}
+
+  if type(tbl) ~= "table" then
+    return { tbl }
+  end
+
+  for _, value in ipairs(tbl) do
+    if type(value) == "table" then
+      for _, current in ipairs(Flatten(value)) do
+        table.insert(result, current)
+      end
+    else
+      table.insert(result, value)
+    end
+  end
+
+  return result
+end
+
 -- Range
 function _G.IsOneLine(range)
   return range[1] == range[3]
