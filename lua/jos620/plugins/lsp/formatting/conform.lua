@@ -23,6 +23,7 @@ return {
         javascript = javascript_formatters,
         typescriptreact = javascript_formatters,
         javascriptreact = javascript_formatters,
+        vue = javascript_formatters,
         lua = { "stylua" },
       },
       format_on_save = {
