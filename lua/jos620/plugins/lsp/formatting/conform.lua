@@ -9,10 +9,10 @@ return {
 
     conform.setup({
       formatters_by_ft = {
-        typescript = { "prettier" },
-        javascript = { "prettier" },
-        typescriptreact = { "prettier" },
-        javascriptreact = { "prettier" },
+        typescript = { { "prettierd", "prettier" } },
+        javascript = { { "prettierd", "prettier" } },
+        typescriptreact = { { "prettierd", "prettier" } },
+        javascriptreact = { { "prettierd", "prettier" } },
         lua = { "stylua" },
       },
       format_on_save = {
