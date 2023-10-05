@@ -25,5 +25,7 @@ return {
         lint.try_lint()
       end,
     })
+
+    require("jos620.core.keymaps").setup_linting_keymaps(lint)
   end,
 }

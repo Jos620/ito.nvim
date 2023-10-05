@@ -301,6 +301,12 @@ local function setup_formatting_keymaps(conform)
   end, "Format file or range")
 end
 
+local function setup_linting_keymaps(lint)
+  set("n", "<Leader>lL", function()
+    lint.try_lint()
+  end, "Lint file")
+end
+
 return {
   setup_nvim_tree_keymaps = setup_nvim_tree_keymaps,
   setup_git_keymaps = setup_git_keymaps,
@@ -308,4 +314,5 @@ return {
   setup_harpoon_keymaps = setup_harpoon_keymaps,
   setup_fold_keymaps = setup_fold_keymaps,
   setup_formatting_keymaps = setup_formatting_keymaps,
+  setup_linting_keymaps = setup_linting_keymaps,
 }
