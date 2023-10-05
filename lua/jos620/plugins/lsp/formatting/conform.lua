@@ -10,6 +10,7 @@ return {
     local javascript_formatters = { "eslint_d" }
     local prettier_configs = {
       ".prettierrc",
+      ".prettierrc.yaml",
     }
 
     if RootHasFile(prettier_configs) then
