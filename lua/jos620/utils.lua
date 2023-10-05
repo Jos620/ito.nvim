@@ -31,6 +31,16 @@ function _G.ReloadConfig()
   print("Reloaded!")
 end
 
+function _G.RootHasFile(...)
+  local files = Flatten({ ... })
+
+  for _, file in ipairs(files) do
+    if vim.fn.filereadable(vim.fn.getcwd() .. "/" .. file) == 1 then
+      return true
+    end
+  end
+end
+
 -- Type conversion
 function _G.StringToBoolean(original)
   if type(original) == "boolean" then
