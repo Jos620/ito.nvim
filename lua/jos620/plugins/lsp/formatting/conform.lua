@@ -8,8 +8,11 @@ return {
     end
 
     local javascript_formatters = { "eslint_d" }
+    local prettier_configs = {
+      ".prettierrc",
+    }
 
-    if vim.fn.filereadable(vim.fn.getcwd() .. "/.prettierrc") == 1 then
+    if RootHasFile(prettier_configs) then
       table.insert(javascript_formatters, "prettierd")
     end
 
