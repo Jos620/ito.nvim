@@ -141,6 +141,7 @@ local function setup_nvim_tree_keymaps(tree_api, bufnr)
   set("n", "<2-RightMouse>", tree_api.tree.change_root_to_node, "CD", opts)
 end
 set("n", "<Leader>o", ":Oil<Return>", "Toggle Oil")
+set("n", "<Leader>O", ":vsplit<Return>:Oil<Return>", "Open oil nvim")
 
 set("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
 set("n", "<Leader>U", ":UndotreeFocus<Return>", "Focus Undo Tree")
