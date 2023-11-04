@@ -4,4 +4,5 @@ return {
     "G",
     "Git",
   },
+  event = "VeryLazy",
 }
