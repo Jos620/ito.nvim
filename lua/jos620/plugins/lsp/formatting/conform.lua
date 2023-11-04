@@ -25,6 +25,8 @@ return {
         javascriptreact = javascript_formatters,
         vue = javascript_formatters,
         lua = { "stylua" },
+        css = { "stylelint" },
+        scss = { "stylelint" },
       },
       format_on_save = {
         lsp_fallback = true,

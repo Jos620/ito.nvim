@@ -13,6 +13,8 @@ return {
       typescriptreact = { "eslint_d" },
       javascriptreact = { "eslint_d" },
       vue = { "eslint_d" },
+      css = { "stylelint" },
+      scss = { "stylelint" },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
