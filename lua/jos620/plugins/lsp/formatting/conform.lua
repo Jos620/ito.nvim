@@ -27,6 +27,7 @@ return {
         lua = { "stylua" },
         css = { "stylelint" },
         scss = { "stylelint" },
+        html = { "prettierd" },
       },
       format_on_save = {
         lsp_fallback = true,
