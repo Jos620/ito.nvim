@@ -4,7 +4,7 @@ return {
     "nvim-lua/plenary.nvim",
   },
   cmd = { "TodoLocList", "TodoQuickFix", "TodoTelescope" },
-  lazy = true,
+  event = "BufRead",
   config = function()
     local status, todo = pcall(require, "todo-comments")
 
