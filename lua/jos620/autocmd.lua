@@ -1,7 +1,7 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd("BufRead, BufNewFile", {
+autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.conf",
   command = "set filetype=tmux",
   group = augroup("TMUX", {
@@ -10,7 +10,7 @@ autocmd("BufRead, BufNewFile", {
 })
 
 -- Add colorcolumn
-autocmd("BufRead, BufNewFile", {
+autocmd({ "BufRead", "BufNewFile" }, {
   command = "set colorcolumn=80",
   group = augroup("ColorColumn", {
     clear = true,
@@ -18,7 +18,7 @@ autocmd("BufRead, BufNewFile", {
 })
 
 -- Fire FileOpened event
-autocmd("BufRead, BufWinEnter, BufNewFile", {
+autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
   group = augroup("_file_opened", {
     clear = true,
   }),
@@ -34,7 +34,7 @@ autocmd("BufRead, BufWinEnter, BufNewFile", {
 })
 
 -- Fire DirOpened event
-autocmd("BufRead, BufWinEnter, BufNewFile", {
+autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
   group = augroup("_dir_opened", {
     clear = true,
   }),
