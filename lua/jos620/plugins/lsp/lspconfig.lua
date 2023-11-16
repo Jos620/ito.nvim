@@ -56,6 +56,7 @@ return {
       "marksman",
       "tsserver",
       "dockerls",
+      "bufls",
     }
 
     for _, server in ipairs(servers) do
