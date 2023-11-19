@@ -10,11 +10,16 @@ set("i", "jj", "<Esc>:wa<Return>", "Exit insert mode and save")
 -- Search and replace
 set("n", "<C-S>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Search and replace")
 
--- Highlights
+-- Clean
 set("n", "<Leader>h", function()
   vim.cmd([[nohlsearch]])
   vim.cmd([[echom '']])
-end, "Clear highlights")
+
+  local notify_status, notify = pcall(require, "notify")
+  if notify_status then
+    notify.dismiss()
+  end
+end, "Clear")
 
 -- Navigation
 set("n", "f", "<Plug>Sneak_f")
