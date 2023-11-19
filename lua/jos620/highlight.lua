@@ -47,6 +47,9 @@ local green_fg_groups = {
   "NvimTreeGitIgnored",
   "OilDirIcon",
   "harpoonborder",
+  "NoiceCmdlineIcon",
+  "NoiceCmdlinePopupBorder",
+  "NoiceCmdlinePopupTitle",
 }
 
 for _, group in ipairs(green_fg_groups) do
@@ -57,6 +60,8 @@ end
 local darkgray_bg_groups = {
   "ColorColumn",
   "Visual",
+  "NoiceCmdlinePrompt",
+  "NoiceCmdline",
 }
 
 for _, group in ipairs(darkgray_bg_groups) do
