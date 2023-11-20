@@ -38,7 +38,7 @@ return {
     local actions = require("telescope.actions")
     local fb_actions = require("telescope").extensions.file_browser.actions
 
-    local split_keymaps = {
+    local keymaps = {
       ["<C-x>"] = false,
       ["<C-v>"] = actions.select_vertical,
       ["<C-b>"] = actions.select_horizontal,
@@ -47,8 +47,8 @@ return {
     telescope.setup({
       defaults = {
         mappings = {
-          i = split_keymaps,
-          n = split_keymaps,
+          i = keymaps,
+          n = keymaps,
         },
         -- layout_config = {
         --   preview_width = 0.5,
