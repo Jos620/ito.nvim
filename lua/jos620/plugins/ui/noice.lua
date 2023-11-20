@@ -31,6 +31,8 @@ return {
       return
     end
 
+    vim.notify = require("notify")
+
     notify.setup({
       background_colour = colors.black,
     })
