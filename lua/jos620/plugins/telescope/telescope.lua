@@ -42,6 +42,7 @@ return {
       ["<C-x>"] = false,
       ["<C-v>"] = actions.select_vertical,
       ["<C-b>"] = actions.select_horizontal,
+      ["q"] = actions.close,
     }
 
     telescope.setup({
