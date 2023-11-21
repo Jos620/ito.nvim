@@ -45,19 +45,25 @@ return {
     "akinsho/bufferline.nvim",
     event = "User FileOpened",
     config = function()
-      local status, bufferline = pcall(require, "bufferline")
-      if not status then
-        return
-      end
-
       local normal = {
         fg = colors.gray,
         bg = colors.black,
       }
 
+      local bold = {
+        fg = colors.white,
+        bg = colors.darkgray,
+        bold = true,
+      }
+
       local black = {
         fg = colors.black,
         bg = colors.black,
+      }
+
+      local gray = {
+        fg = colors.gray,
+        bg = colors.darkgray,
       }
 
       local green = {
@@ -70,9 +76,19 @@ return {
         bg = colors.black,
       }
 
+      local cyan_gray = {
+        fg = colors.cyan,
+        bg = colors.darkgray,
+      }
+
       local blue = {
         fg = colors.blue,
         bg = colors.black,
+      }
+
+      local blue_gray = {
+        fg = colors.blue,
+        bg = colors.darkgray,
       }
 
       local yellow = {
@@ -80,12 +96,22 @@ return {
         bg = colors.black,
       }
 
+      local yellow_gray = {
+        fg = colors.yellow,
+        bg = colors.darkgray,
+      }
+
       local red = {
         fg = colors.red,
         bg = colors.black,
       }
 
-      bufferline.setup({
+      local red_gray = {
+        fg = colors.red,
+        bg = colors.darkgray,
+      }
+
+      require("bufferline").setup({
         options = {
           offsets = {
             {
@@ -168,11 +194,7 @@ return {
 
           -- Buffers
           buffer_visible = normal,
-          buffer_selected = {
-            fg = colors.white,
-            bg = colors.darkgray,
-            bold = true,
-          },
+          buffer_selected = bold,
 
           -- Numbers
           numbers = normal,
@@ -187,72 +209,42 @@ return {
           -- Hint
           hint = cyan,
           hint_visible = cyan,
-          hint_selected = {
-            fg = colors.cyan,
-            bg = colors.darkgray,
-          },
+          hint_selected = cyan_gray,
           hint_diagnostic = cyan,
           hint_diagnostic_visible = cyan,
-          hint_diagnostic_selected = {
-            fg = colors.cyan,
-            bg = colors.darkgray,
-          },
+          hint_diagnostic_selected = cyan_gray,
 
           -- Info
           info = blue,
           info_visible = blue,
-          info_selected = {
-            fg = colors.blue,
-            bg = colors.darkgray,
-          },
+          info_selected = blue_gray,
           info_diagnostic = blue,
           info_diagnostic_visible = blue,
-          info_diagnostic_selected = {
-            fg = colors.blue,
-            bg = colors.darkgray,
-          },
+          info_diagnostic_selected = blue_gray,
 
           -- Warning
           warning = yellow,
           warning_visible = yellow,
-          warning_selected = {
-            fg = colors.yellow,
-            bg = colors.darkgray,
-          },
+          warning_selected = yellow_gray,
           warning_diagnostic = yellow,
           warning_diagnostic_visible = yellow,
-          warning_diagnostic_selected = {
-            fg = colors.yellow,
-            bg = colors.darkgray,
-          },
+          warning_diagnostic_selected = yellow_gray,
 
           -- Error
           error = red,
           error_visible = red,
-          error_selected = {
-            fg = colors.red,
-            bg = colors.darkgray,
-          },
+          error_selected = red_gray,
           error_diagnostic = red,
           error_diagnostic_visible = red,
-          error_diagnostic_selected = {
-            fg = colors.red,
-            bg = colors.darkgray,
-          },
+          error_diagnostic_selected = red_gray,
 
           -- Modified
           modified = yellow,
           modified_visible = yellow,
-          modified_selected = {
-            fg = colors.yellow,
-            bg = colors.darkgray,
-          },
+          modified_selected = yellow_gray,
 
           -- Duplicate
-          duplicate_selected = {
-            fg = colors.gray,
-            bg = colors.darkgray,
-          },
+          duplicate_selected = gray,
           duplicate_visible = normal,
           duplicate = normal,
 
@@ -265,11 +257,7 @@ return {
           indicator_selected = green,
 
           -- Pick
-          pick_selected = {
-            fg = colors.white,
-            bg = colors.darkgray,
-            bold = true,
-          },
+          pick_selected = bold,
           pick_visible = normal,
           pick = normal,
 
