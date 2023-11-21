@@ -1,3 +1,5 @@
+local colors = require("jos620.core.colors")
+
 return {
   { -- Hardtime
     "m4xshen/hardtime.nvim",
@@ -70,5 +72,32 @@ return {
     "numToStr/Comment.nvim",
     event = "BufRead",
     opts = {},
+  },
+
+  { -- TODO comments
+    "folke/todo-comments.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    cmd = { "TodoLocList", "TodoQuickFix", "TodoTelescope" },
+    event = "BufRead",
+    opts = {
+      colors = {
+        error = { colors.red },
+        warning = { colors.yellow },
+        info = { colors.blue },
+        hint = { colors.green },
+        default = { colors.white },
+        test = { colors.cyan },
+      },
+
+      keywords = {
+        FIX = { color = "error" },
+        TODO = { color = "info" },
+        HACK = { color = "warning" },
+        WARN = { color = "warning" },
+        NOTE = { color = "hint" },
+      },
+    },
   },
 }
