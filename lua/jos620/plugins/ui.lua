@@ -372,4 +372,9 @@ return {
     "christoomey/vim-tmux-navigator",
     lazy = false,
   },
+
+  { -- Text navigation
+    "justinmk/vim-sneak",
+    event = "BufRead",
+  },
 }
