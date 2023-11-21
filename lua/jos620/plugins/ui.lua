@@ -367,4 +367,9 @@ return {
     "szw/vim-maximizer",
     cmd = { "MaximizerToggle" },
   },
+
+  { -- Window navigation
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
 }
