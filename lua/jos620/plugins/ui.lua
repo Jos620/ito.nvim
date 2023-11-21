@@ -1,3 +1,5 @@
+local colors = require("jos620.core.colors")
+
 return {
   { -- Better UI for Neovim
     "folke/noice.nvim",
@@ -6,12 +8,7 @@ return {
       "rcarriga/nvim-notify",
     },
     config = function()
-      local status, noice = pcall(require, "noice")
-      if not status then
-        return
-      end
-
-      noice.setup({
+      require("noice").setup({
         routes = {
           {
             filter = {
@@ -24,19 +21,20 @@ return {
           },
         },
       })
+    end,
+  },
 
-      local colors = require("jos620.core.colors")
-
-      local notify_status, notify = pcall(require, "notify")
-      if not notify_status then
-        return
-      end
-
-      vim.notify = require("notify")
+  { -- Notifications
+    "rcarriga/nvim-notify",
+    config = function()
+      local notify = require("notify")
 
       notify.setup({
         background_colour = colors.black,
+        timeout = 8000,
       })
+
+      vim.notify = notify
     end,
   },
 }
