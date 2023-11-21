@@ -59,4 +59,5 @@ lazy.setup({
       },
     },
   },
+  debug = false,
 })
