@@ -2,6 +2,7 @@ return {
   { -- Telescope
     "nvim-telescope/telescope.nvim",
     dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
     },
     cmd = "Telescope",
