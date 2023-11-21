@@ -30,7 +30,7 @@ return {
 
       -- Enable auto completion
       local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-      local capabilities = cmp_nvim_lsp_status and cmp_nvim_lsp.capabilities()
+      local capabilities = cmp_nvim_lsp_status and cmp_nvim_lsp.default_capabilities()
         or vim.lsp.protocol.make_client_capabilities()
 
       -- Folding
