@@ -41,4 +41,9 @@ lazy.setup({
     enabled = true,
     notify = false,
   },
+  performance = {
+    cache = {
+      enabled = true,
+    },
+  },
 })
