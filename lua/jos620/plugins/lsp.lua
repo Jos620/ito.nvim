@@ -187,6 +187,7 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "onsails/lspkind.nvim",
       "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
     },
     config = function()
       vim.opt.completeopt = "menu,menuone,noselect"
