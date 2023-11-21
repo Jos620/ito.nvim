@@ -1,5 +1,5 @@
 return {
-  {
+  { -- Telescope
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-telescope/telescope-file-browser.nvim",
@@ -102,6 +102,15 @@ return {
       if harpoon_status then
         telescope.load_extension("harpoon")
       end
+    end,
+  },
+
+  { -- fzf
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "make",
+    lazy = true,
+    cond = function()
+      return CheckDependencies({ "fzf", "make" })
     end,
   },
 }
