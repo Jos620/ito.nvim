@@ -363,14 +363,16 @@ return {
     end,
   },
 
-  { -- Maximize split
-    "szw/vim-maximizer",
-    cmd = { "MaximizerToggle" },
-  },
-
   { -- Window navigation
-    "christoomey/vim-tmux-navigator",
-    lazy = false,
+    {
+      "christoomey/vim-tmux-navigator",
+      lazy = false,
+    },
+
+    {
+      "szw/vim-maximizer",
+      cmd = { "MaximizerToggle" },
+    },
   },
 
   { -- Text navigation
