@@ -110,4 +110,9 @@ return {
       hide_cursor = false,
     },
   },
+
+  { -- Indentation object
+    "michaeljsmith/vim-indent-object",
+    event = "BufReadPre",
+  },
 }
