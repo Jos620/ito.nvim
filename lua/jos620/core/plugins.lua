@@ -13,20 +13,7 @@ vim.opt.rtp:prepend(lazy_path)
 
 require("lazy").setup({
   spec = {
-    { import = "jos620.plugins" },
-    { import = "jos620.plugins.theme" },
-    { import = "jos620.plugins.theme.colorscheme" },
-    { import = "jos620.plugins.ui" },
-    { import = "jos620.plugins.telescope" },
-    { import = "jos620.plugins.navigation" },
-    { import = "jos620.plugins.lsp" },
-    { import = "jos620.plugins.lsp.mason" },
-    { import = "jos620.plugins.lsp.cmp" },
-    { import = "jos620.plugins.lsp.snippets" },
-    { import = "jos620.plugins.lsp.languages" },
-    { import = "jos620.plugins.lsp.formatting" },
-    { import = "jos620.plugins.git" },
-    { import = "jos620.plugins.ai" },
+    import = "jos620.plugins",
   },
   defaults = {
     version = false,
