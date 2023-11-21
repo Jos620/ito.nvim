@@ -50,42 +50,39 @@ return {
         return
       end
 
-      local neovide_color = require("jos620.neovide").neovide_color
-      local is_neovide = require("jos620.neovide").is_neovide
-
       local normal = {
         fg = colors.gray,
-        bg = neovide_color(colors.black),
+        bg = colors.black,
       }
 
       local black = {
         fg = colors.black,
-        bg = neovide_color(colors.black),
+        bg = colors.black,
       }
 
       local green = {
         fg = colors.green,
-        bg = neovide_color(colors.darkgray),
+        bg = colors.darkgray,
       }
 
       local cyan = {
         fg = colors.cyan,
-        bg = neovide_color(colors.black),
+        bg = colors.black,
       }
 
       local blue = {
         fg = colors.blue,
-        bg = neovide_color(colors.black),
+        bg = colors.black,
       }
 
       local yellow = {
         fg = colors.yellow,
-        bg = neovide_color(colors.black),
+        bg = colors.black,
       }
 
       local red = {
         fg = colors.red,
-        bg = neovide_color(colors.black),
+        bg = colors.black,
       }
 
       bufferline.setup({
@@ -172,8 +169,8 @@ return {
           -- Buffers
           buffer_visible = normal,
           buffer_selected = {
-            fg = is_neovide and colors.green or colors.white,
-            bg = neovide_color(colors.darkgray),
+            fg = colors.white,
+            bg = colors.darkgray,
             bold = true,
           },
 
@@ -192,13 +189,13 @@ return {
           hint_visible = cyan,
           hint_selected = {
             fg = colors.cyan,
-            bg = neovide_color(colors.darkgray),
+            bg = colors.darkgray,
           },
           hint_diagnostic = cyan,
           hint_diagnostic_visible = cyan,
           hint_diagnostic_selected = {
             fg = colors.cyan,
-            bg = neovide_color(colors.darkgray),
+            bg = colors.darkgray,
           },
 
           -- Info
@@ -206,13 +203,13 @@ return {
           info_visible = blue,
           info_selected = {
             fg = colors.blue,
-            bg = neovide_color(colors.darkgray),
+            bg = colors.darkgray,
           },
           info_diagnostic = blue,
           info_diagnostic_visible = blue,
           info_diagnostic_selected = {
             fg = colors.blue,
-            bg = neovide_color(colors.darkgray),
+            bg = colors.darkgray,
           },
 
           -- Warning
@@ -220,13 +217,13 @@ return {
           warning_visible = yellow,
           warning_selected = {
             fg = colors.yellow,
-            bg = neovide_color(colors.darkgray),
+            bg = colors.darkgray,
           },
           warning_diagnostic = yellow,
           warning_diagnostic_visible = yellow,
           warning_diagnostic_selected = {
             fg = colors.yellow,
-            bg = neovide_color(colors.darkgray),
+            bg = colors.darkgray,
           },
 
           -- Error
@@ -234,13 +231,13 @@ return {
           error_visible = red,
           error_selected = {
             fg = colors.red,
-            bg = neovide_color(colors.darkgray),
+            bg = colors.darkgray,
           },
           error_diagnostic = red,
           error_diagnostic_visible = red,
           error_diagnostic_selected = {
             fg = colors.red,
-            bg = neovide_color(colors.darkgray),
+            bg = colors.darkgray,
           },
 
           -- Modified
@@ -248,13 +245,13 @@ return {
           modified_visible = yellow,
           modified_selected = {
             fg = colors.yellow,
-            bg = neovide_color(colors.darkgray),
+            bg = colors.darkgray,
           },
 
           -- Duplicate
           duplicate_selected = {
             fg = colors.gray,
-            bg = neovide_color(colors.darkgray),
+            bg = colors.darkgray,
           },
           duplicate_visible = normal,
           duplicate = normal,
@@ -270,7 +267,7 @@ return {
           -- Pick
           pick_selected = {
             fg = colors.white,
-            bg = neovide_color(colors.darkgray),
+            bg = colors.darkgray,
             bold = true,
           },
           pick_visible = normal,
