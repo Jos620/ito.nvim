@@ -41,6 +41,31 @@ return {
     end,
   },
 
+  { -- File explorer
+    "stevearc/oil.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("oil").setup({
+        default_file_explorer = true,
+        keymaps = {
+          ["g?"] = "actions.show_help",
+          ["<C-v>"] = "actions.select_vsplit",
+          ["<C-b>"] = "actions.select_split",
+          ["<C-h>"] = false,
+          ["<C-j>"] = false,
+          ["<C-k>"] = false,
+          ["<C-l>"] = false,
+        },
+        skip_confirm_for_simple_edits = true,
+        view_options = {
+          show_hidden = true,
+        },
+      })
+    end,
+  },
+
   { -- Buffers
     "akinsho/bufferline.nvim",
     event = "User FileOpened",
