@@ -115,4 +115,27 @@ return {
     "michaeljsmith/vim-indent-object",
     event = "BufReadPre",
   },
+
+  { -- AI development
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    opts = {
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+      },
+      filetypes = {
+        gitcommit = true,
+        gitrebase = true,
+        hgcommit = true,
+        ["*"] = true,
+      },
+      panel = {
+        layout = {
+          position = "right",
+          ratio = 0.4,
+        },
+      },
+    },
+  },
 }
