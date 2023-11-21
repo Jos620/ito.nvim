@@ -267,4 +267,81 @@ return {
       })
     end,
   },
+
+  { -- Lualine
+    "nvim-lualine/lualine.nvim",
+    event = "VimEnter",
+    config = function()
+      local mode_color = {
+        normal = colors.green,
+        insert = colors.orange,
+        visual = colors.yellow,
+        replace = colors.red,
+        command = colors.blue,
+        inactive = colors.darkgray,
+      }
+
+      local theme = {}
+
+      for mode, color in pairs(mode_color) do
+        theme[mode] = {
+          a = { bg = color, fg = colors.black },
+          b = { bg = colors.black, fg = color },
+          c = { bg = colors.black, fg = colors.gray },
+        }
+      end
+
+      require("lualine").setup({
+        options = {
+          component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
+          theme = theme,
+        },
+        sections = {
+          lualine_a = { "mode" },
+          lualine_b = {
+            {
+              "branch",
+              color = {
+                bg = colors.darkgray,
+              },
+            },
+            {
+              "diagnostics",
+              color = {
+                bg = colors.darkgray,
+              },
+            },
+          },
+          lualine_c = {},
+
+          lualine_x = {
+            {
+              "filetype",
+              color = {
+                bg = colors.black,
+              },
+            },
+          },
+          lualine_y = {
+            {
+              "progress",
+              color = {
+                bg = colors.darkgray,
+              },
+            },
+          },
+          lualine_z = { "location" },
+        },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { "filename" },
+          lualine_x = { "location" },
+          lualine_y = {},
+          lualine_z = {},
+        },
+      })
+    end,
+  },
 }
