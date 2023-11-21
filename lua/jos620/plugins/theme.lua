@@ -51,4 +51,20 @@ return {
       enable_named_colors = false,
     },
   },
+
+  { -- Theme (vitesse)
+    "2nthony/vitesse.nvim",
+    dependencies = {
+      "tjdevries/colorbuddy.vim",
+    },
+    config = function()
+      require("vitesse").setup({
+        comment_italics = false,
+        float_background = true,
+        reverse_visual = true,
+      })
+
+      vim.cmd("colorscheme vitesse")
+    end,
+  },
 }
