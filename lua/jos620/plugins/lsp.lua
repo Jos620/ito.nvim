@@ -177,4 +177,68 @@ return {
       },
     },
   },
+
+  { -- Code completion
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lsp",
+      "onsails/lspkind.nvim",
+      "L3MON4D3/LuaSnip",
+    },
+    config = function()
+      vim.opt.completeopt = "menu,menuone,noselect"
+
+      local cmp = require("cmp")
+
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+          end,
+        },
+
+        mapping = cmp.mapping.preset.insert({
+          -- Move through the list
+          ["<C-j>"] = cmp.mapping.select_next_item(),
+          ["<C-k>"] = cmp.mapping.select_prev_item(),
+          ["<Tab>"] = cmp.mapping.select_next_item(),
+          ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+
+          -- Docs
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+
+          -- Show / hide the popup
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<M-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+
+          -- Confirm
+          ["<Return>"] = cmp.mapping.confirm({ select = false }),
+        }),
+
+        sources = cmp.config.sources({
+          { name = "nvim_lsp", trigger_characters = { "-" } },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "path" },
+        }),
+
+        formatting = {
+          format = require("lspkind").cmp_format({
+            maxwidth = 50,
+            ellipsis_char = "...",
+          }),
+        },
+
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
+      })
+    end,
+  },
 }
