@@ -161,19 +161,14 @@ return {
       lazy = true,
       opts = {
         ensure_installed = {
-          -- FrontEnd
           "html",
           "cssls",
           "tailwindcss",
           "unocss",
           "volar",
           "svelte",
-
-          -- BackEnd
           "tsserver",
           "rust_analyzer",
-
-          -- Utils
           "lua_ls",
           "jsonls",
           "prismals",
