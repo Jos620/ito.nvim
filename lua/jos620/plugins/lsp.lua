@@ -254,5 +254,13 @@ return {
         require("luasnip.loaders.from_vscode").lazy_load()
       end,
     },
+
+    {
+      "b0o/schemastore.nvim",
+      ft = {
+        "json",
+        "yaml",
+      },
+    },
   },
 }
