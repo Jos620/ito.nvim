@@ -1,4 +1,10 @@
 return {
+  { -- Pairs
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {},
+  },
+
   { -- Folds
     "kevinhwang91/nvim-ufo",
     event = "BufReadPost",
