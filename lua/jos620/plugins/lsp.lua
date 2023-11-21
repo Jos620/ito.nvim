@@ -173,6 +173,7 @@ return {
           "jsonls",
           "prismals",
           "marksman",
+          "vuels",
         },
       },
     },
