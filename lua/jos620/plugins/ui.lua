@@ -369,4 +369,9 @@ return {
       })
     end,
   },
+
+  { -- Maximize split
+    "szw/vim-maximizer",
+    cmd = { "MaximizerToggle" },
+  },
 }
