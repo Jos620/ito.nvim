@@ -23,6 +23,32 @@ return {
     opts = {},
   },
 
+  { -- HTML tags
+    "windwp/nvim-ts-autotag",
+    ft = {
+      "html",
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+      "svelte",
+      "vue",
+      "tsx",
+      "jsx",
+      "rescript",
+      "xml",
+      "php",
+      "markdown",
+      "astro",
+      "glimmer",
+      "handlebars",
+      "hbs",
+    },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
+
   { -- Surround
     "tpope/vim-surround",
     event = "BufReadPre",
