@@ -1,4 +1,22 @@
 return {
+  { -- Hardtime
+    "m4xshen/hardtime.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+    },
+    event = "User FileOpened",
+    opts = {
+      max_time = 2000,
+      max_count = 5,
+      disable_mouse = false,
+      restricted_keys = {
+        ["j"] = {},
+        ["k"] = {},
+      },
+    },
+  },
+
   { -- Pairs
     "windwp/nvim-autopairs",
     event = "InsertEnter",
