@@ -117,3 +117,24 @@ end
 function _G.IsDirectory(bufname)
   return vim.fn.isdirectory(vim.fn.fnamemodify(bufname, ":p"))
 end
+
+-- Dependencies
+function _G.CheckDependency(executable)
+  if vim.fn.executable(executable) == 1 then
+    return true
+  else
+    print("Missing dependency: " .. executable)
+  end
+
+  return false
+end
+
+function _G.CheckDependencies(executable_list)
+  for _, executable in ipairs(executable_list) do
+    if not CheckDependency(executable) then
+      return false
+    end
+  end
+
+  return true
+end
