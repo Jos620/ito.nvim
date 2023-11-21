@@ -23,6 +23,11 @@ return {
     opts = {},
   },
 
+  { -- Surround
+    "tpope/vim-surround",
+    event = "BufReadPre",
+  },
+
   { -- Folds
     "kevinhwang91/nvim-ufo",
     event = "BufReadPost",
