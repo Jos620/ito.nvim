@@ -114,4 +114,12 @@ return {
       return CheckDependencies({ "fzf", "make" })
     end,
   },
+
+  { -- Hardpoon
+    "ThePrimeagen/harpoon",
+    lazy = false,
+    config = function()
+      require("jos620.core.keymaps").setup_harpoon_keymaps()
+    end,
+  },
 }
