@@ -1,4 +1,5 @@
 local colors = require("jos620.core.colors")
+local scroll_keys = { "<C-u>", "<C-d>", "zt", "zz", "zb" }
 
 return {
   { -- Hardtime
@@ -98,6 +99,15 @@ return {
         WARN = { color = "warning" },
         NOTE = { color = "hint" },
       },
+    },
+  },
+
+  { -- Scroll
+    "karb94/neoscroll.nvim",
+    keys = scroll_keys,
+    opts = {
+      mappings = scroll_keys,
+      hide_cursor = false,
     },
   },
 }
