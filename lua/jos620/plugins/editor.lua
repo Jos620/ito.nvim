@@ -16,4 +16,10 @@ return {
       require("jos620.core.keymaps").setup_fold_keymaps()
     end,
   },
+
+  { -- Comments
+    "numToStr/Comment.nvim",
+    event = "BufRead",
+    opts = {},
+  },
 }
