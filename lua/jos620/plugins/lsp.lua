@@ -406,5 +406,9 @@ return {
         },
       },
     },
+
+    { -- Markdown
+      "ixru/nvim-markdown",
+    },
   },
 }
