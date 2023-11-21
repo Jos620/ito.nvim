@@ -374,15 +374,17 @@ return {
   },
 
   { -- Text navigation
-    "justinmk/vim-sneak",
-    event = "BufRead",
-  },
+    {
+      "justinmk/vim-sneak",
+      event = "BufRead",
+    },
 
-  { -- Clear highlights
-    "jesseleite/vim-noh",
-    event = "BufRead",
-    config = function()
-      vim.cmd("noremap <Plug>NohAfter zz")
-    end,
+    { -- Clear highlights
+      "jesseleite/vim-noh",
+      event = "BufRead",
+      config = function()
+        vim.cmd("noremap <Plug>NohAfter zz")
+      end,
+    },
   },
 }
