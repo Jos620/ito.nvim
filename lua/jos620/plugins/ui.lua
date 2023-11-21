@@ -138,13 +138,6 @@ return {
 
       require("bufferline").setup({
         options = {
-          offsets = {
-            {
-              filetype = "NvimTree",
-              text = "Explorer",
-              separator = true,
-            },
-          },
           close_command = "bdelete! %d",
           diagnostics = "nvim_lsp",
           separator_style = {
