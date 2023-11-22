@@ -19,6 +19,15 @@ return {
               skip = true,
             },
           },
+          {
+            filter = {
+              event = "msg_show",
+              kind = "search_count",
+            },
+            opts = {
+              skip = true,
+            },
+          },
         },
         presets = {
           lsp_doc_border = true,
