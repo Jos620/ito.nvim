@@ -28,6 +28,15 @@ return {
               skip = true,
             },
           },
+          {
+            filter = {
+              event = "msg_show",
+              find = "written$",
+            },
+            opts = {
+              skip = true,
+            },
+          },
         },
         presets = {
           lsp_doc_border = true,
