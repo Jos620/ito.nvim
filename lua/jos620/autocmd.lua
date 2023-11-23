@@ -13,6 +13,10 @@ autocmd({ "VimEnter" }, {
 
     local last_file_path = GetFilePathByMark("0")
 
+    if string.find(last_file_path, ".git") then
+      return
+    end
+
     if FileIsInWorkingDirectory(last_file_path) then
       vim.cmd("normal! '0")
       vim.cmd("bdelete #")
