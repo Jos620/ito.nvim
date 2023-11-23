@@ -10,7 +10,7 @@ return {
     config = function()
       require("noice").setup({
         routes = {
-          {
+          { -- Hide "No information available" message
             filter = {
               event = "notify",
               find = "No information available",
@@ -19,7 +19,7 @@ return {
               skip = true,
             },
           },
-          {
+          { -- Hide search count
             filter = {
               event = "msg_show",
               kind = "search_count",
@@ -28,7 +28,7 @@ return {
               skip = true,
             },
           },
-          {
+          { -- Hide written message
             filter = {
               event = "msg_show",
               find = "written$",
@@ -37,7 +37,7 @@ return {
               skip = true,
             },
           },
-          {
+          { -- Hide Sneak messages
             filter = {
               event = "msg_show",
               find = "^>%a?%a?%d?$",
