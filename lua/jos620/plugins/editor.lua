@@ -138,4 +138,11 @@ return {
       },
     },
   },
+
+  { -- Remember last position on a file
+    "vladdoster/remember.nvim",
+    config = function()
+      require("remember")
+    end,
+  },
 }
