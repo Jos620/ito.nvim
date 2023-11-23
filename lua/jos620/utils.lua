@@ -41,6 +41,16 @@ function _G.RootHasFile(...)
   end
 end
 
+function _G.FileIsInWorkingDirectory(filepath)
+  local cwd = vim.fn.getcwd()
+
+  if filepath:sub(1, #cwd) == cwd then
+    return true
+  end
+
+  return false
+end
+
 function _G.GetFilePathByMark(mark)
   local list = vim.fn.getmarklist()
 
