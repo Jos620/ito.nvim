@@ -41,6 +41,16 @@ function _G.RootHasFile(...)
   end
 end
 
+function _G.GetFilePathByMark(mark)
+  local list = vim.fn.getmarklist()
+
+  for _, item in ipairs(list) do
+    if item.mark == "'" .. mark then
+      return item.file
+    end
+  end
+end
+
 -- Type conversion
 function _G.StringToBoolean(original)
   if type(original) == "boolean" then
