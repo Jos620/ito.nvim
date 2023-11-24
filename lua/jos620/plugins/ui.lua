@@ -40,7 +40,7 @@ return {
           { -- Hide Sneak messages
             filter = {
               event = "msg_show",
-              find = "^>%a?%a?%d?$",
+              find = "^" .. (vim.g["sneak#prompt"] or ">") .. ".*",
             },
             opts = {
               skip = true,
@@ -406,6 +406,9 @@ return {
     {
       "justinmk/vim-sneak",
       event = "BufRead",
+      config = function()
+        vim.g["sneak#prompt"] = ">"
+      end,
     },
 
     { -- Clear highlights
