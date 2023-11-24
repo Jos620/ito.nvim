@@ -41,6 +41,26 @@ function _G.RootHasFile(...)
   end
 end
 
+function _G.FileIsInWorkingDirectory(filepath)
+  local cwd = vim.fn.getcwd()
+
+  if filepath:sub(1, #cwd) == cwd then
+    return true
+  end
+
+  return false
+end
+
+function _G.GetFilePathByMark(mark)
+  local list = vim.fn.getmarklist()
+
+  for _, item in ipairs(list) do
+    if item.mark == "'" .. mark then
+      return item.file
+    end
+  end
+end
+
 -- Type conversion
 function _G.StringToBoolean(original)
   if type(original) == "boolean" then
@@ -116,4 +136,25 @@ end
 -- File / Directory
 function _G.IsDirectory(bufname)
   return vim.fn.isdirectory(vim.fn.fnamemodify(bufname, ":p"))
+end
+
+-- Dependencies
+function _G.CheckDependency(executable)
+  if vim.fn.executable(executable) == 1 then
+    return true
+  else
+    print("Missing dependency: " .. executable)
+  end
+
+  return false
+end
+
+function _G.CheckDependencies(executable_list)
+  for _, executable in ipairs(executable_list) do
+    if not CheckDependency(executable) then
+      return false
+    end
+  end
+
+  return true
 end

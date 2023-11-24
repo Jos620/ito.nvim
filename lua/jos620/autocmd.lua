@@ -1,6 +1,29 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+autocmd({ "VimEnter" }, {
+  group = augroup("OpenLastFile", {
+    clear = true,
+  }),
+  nested = true,
+  callback = function()
+    if vim.fn.argc() ~= 0 then
+      return
+    end
+
+    local last_file_path = GetFilePathByMark("0")
+
+    if string.find(last_file_path, ".git") then
+      return
+    end
+
+    if FileIsInWorkingDirectory(last_file_path) then
+      vim.cmd("normal! '0")
+      vim.cmd("bdelete #")
+    end
+  end,
+})
+
 autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.conf",
   command = "set filetype=tmux",

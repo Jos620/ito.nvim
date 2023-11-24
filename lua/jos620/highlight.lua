@@ -10,17 +10,11 @@ end
 
 -- Highlights
 hi("BufferLineIndicatorVisible", { bg = colors.black })
-hi("NvimTreeSpecialFile", { fg = colors.green, bold = true })
 hi("MatchParen", { bg = "None", fg = colors.red })
 hi("Sneak", { bg = colors.yellow, fg = colors.black })
 
 -- Normal
 local link_to_normal_groups = {
-  "NvimTreeFolderName",
-  "NvimTreeOpenedFolderName",
-  "NvimTreeEmptyFolderName",
-  "NvimTreeIndentMarker",
-  "NvimTreeRootFolder",
   "packerWorking",
   "harpoonwindow",
   "Directory",
@@ -32,21 +26,11 @@ end
 
 -- Green foreground
 local green_fg_groups = {
-  "NvimTreeFolderIcon",
-  "NvimTreeOpenedFolderIcon",
-  "NvimTreeClosedFolderIcon",
-  "NvimTreeFolderArrowIcon",
-  "NvimTreeFileIcon",
-  "NvimTreeIndentMarker",
-  "NvimTreeGitDirty",
-  "NvimTreeGitStaged",
-  "NvimTreeGitMerge",
-  "NvimTreeGitNew",
-  "NvimTreeGitRenamed",
-  "NvimTreeGitDeleted",
-  "NvimTreeGitIgnored",
   "OilDirIcon",
   "harpoonborder",
+  "NoiceCmdlineIcon",
+  "NoiceCmdlinePopupBorder",
+  "NoiceCmdlinePopupTitle",
 }
 
 for _, group in ipairs(green_fg_groups) do
@@ -57,6 +41,8 @@ end
 local darkgray_bg_groups = {
   "ColorColumn",
   "Visual",
+  "NoiceCmdlinePrompt",
+  "NoiceCmdline",
 }
 
 for _, group in ipairs(darkgray_bg_groups) do

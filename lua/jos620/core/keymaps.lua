@@ -10,11 +10,16 @@ set("i", "jj", "<Esc>:wa<Return>", "Exit insert mode and save")
 -- Search and replace
 set("n", "<C-S>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Search and replace")
 
--- Highlights
+-- Clean
 set("n", "<Leader>h", function()
   vim.cmd([[nohlsearch]])
   vim.cmd([[echom '']])
-end, "Clear highlights")
+
+  local notify_status, notify = pcall(require, "notify")
+  if notify_status then
+    notify.dismiss()
+  end
+end, "Clear")
 
 -- Navigation
 set("n", "f", "<Plug>Sneak_f")
@@ -90,56 +95,6 @@ set("n", "=", "<C-a>", "Increase")
 set("n", "-", "<C-x>", "Decrease")
 
 -- File tree
-set("n", "<Leader>e", ":NvimTreeFindFileToggle<Return>", "Toggle file tree")
-local function setup_nvim_tree_keymaps(tree_api, bufnr)
-  local opts = { buffer = bufnr, noremap = true, silent = true, nowait = true }
-
-  -- Help / Info
-  set("n", "g?", tree_api.tree.toggle_help, "Help", opts)
-  set("n", "K", tree_api.node.show_info_popup, "Info", opts)
-  set("n", "gy", tree_api.fs.copy.absolute_path, "Copy Absolute Path", opts)
-  set("n", "s", tree_api.node.run.system, "Run System", opts)
-  set("n", ".", tree_api.node.run.cmd, "Run Command", opts)
-
-  -- Open
-  set("n", "l", tree_api.node.open.edit, "Open", opts)
-  set("n", "v", tree_api.node.open.vertical, "Open: Vertical Split", opts)
-  set("n", "b", tree_api.node.open.horizontal, "Open: Horizontal Split", opts)
-
-  -- Basic operations
-  set("n", "a", tree_api.fs.create, "Create", opts)
-  set("n", "p", tree_api.fs.paste, "Paste", opts)
-  set("n", "d", tree_api.fs.remove, "Delete", opts)
-  set("n", "D", tree_api.fs.trash, "Trash", opts)
-  set("n", "x", tree_api.fs.cut, "Cut", opts)
-  set("n", "c", tree_api.fs.copy.node, "Copy", opts)
-  set("n", "r", tree_api.fs.rename, "Rename", opts)
-  set("n", "R", tree_api.tree.reload, "Refresh", opts)
-
-  -- Navigation
-  set("n", "h", tree_api.node.navigate.parent_close, "Close Directory", opts)
-  set("n", "q", tree_api.tree.close, "Close", opts)
-  set("n", "-", tree_api.tree.change_root_to_parent, "Up", opts)
-  set("n", "<Return>", tree_api.tree.change_root_to_node, "CD", opts)
-
-  -- Git / Diagnostics
-  set("n", "<Leader>gj", tree_api.node.navigate.git.next, "Next Git", opts)
-  set("n", "<Leader>gk", tree_api.node.navigate.git.prev, "Prev Git", opts)
-  set("n", "<Leader>lj", tree_api.node.navigate.diagnostics.next, "Next Diagnostic", opts)
-  set("n", "<Leader>lk", tree_api.node.navigate.diagnostics.prev, "Prev Diagnostic", opts)
-
-  -- Filters
-  set("n", "f", tree_api.live_filter.start, "Filter", opts)
-  set("n", "F", tree_api.live_filter.clear, "Clean Filter", opts)
-  set("n", "B", tree_api.tree.toggle_no_buffer_filter, "Toggle No Buffer", opts)
-  set("n", "C", tree_api.tree.toggle_git_clean_filter, "Toggle Git Clean", opts)
-  set("n", "H", tree_api.tree.toggle_hidden_filter, "Toggle Dotfiles", opts)
-  set("n", "I", tree_api.tree.toggle_gitignore_filter, "Toggle Git Ignore", opts)
-
-  -- Mouse support
-  set("n", "<2-LeftMouse>", tree_api.node.open.edit, "Open", opts)
-  set("n", "<2-RightMouse>", tree_api.tree.change_root_to_node, "CD", opts)
-end
 set("n", "<Leader>o", ":Oil<Return>", "Toggle Oil")
 set("n", "<Leader>O", ":vsplit<Return>:Oil<Return>", "Open oil nvim")
 
@@ -309,7 +264,6 @@ local function setup_linting_keymaps(lint)
 end
 
 return {
-  setup_nvim_tree_keymaps = setup_nvim_tree_keymaps,
   setup_git_keymaps = setup_git_keymaps,
   setup_lsp_keymaps = setup_lsp_keymaps,
   setup_harpoon_keymaps = setup_harpoon_keymaps,
