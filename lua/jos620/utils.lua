@@ -1,36 +1,3 @@
--- Load all lua files in a directory
-function _G.LoadPath(path)
-  for _, file in ipairs(vim.fn.readdir(path)) do
-    local full_path = path .. "/" .. file
-
-    if vim.fn.isdirectory(full_path) == 1 then
-      LoadPath(full_path)
-    elseif file:match("%.lua$") then
-      local load = loadfile(full_path)
-
-      if load then
-        load()
-      else
-        print("Error loading plugin file: " .. full_path)
-      end
-    end
-  end
-end
-
--- Reload configuration
-function _G.ReloadConfig()
-  LoadPath(vim.fn.stdpath("config") .. "/after/plugin")
-
-  for name in pairs(package.loaded) do
-    if name:match("^jos620") then
-      package.loaded[name] = nil
-    end
-  end
-  dofile(vim.env.MYVIMRC)
-
-  print("Reloaded!")
-end
-
 function _G.RootHasFile(...)
   local files = Flatten({ ... })
 

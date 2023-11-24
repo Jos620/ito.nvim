@@ -49,9 +49,6 @@ set("n", "yie", "ggVGy", "Yank all file")
 set("n", "j", "gj", "Move down")
 set("n", "k", "gk", "Move up")
 
--- Reload configuration
-set("n", "<Leader>r", ":ReloadConfig<Return>", "Reload configuration")
-
 -- Line indent with visual
 set("v", ">", ">gv", "Indent lines")
 set("v", "<", "<gv", "Unindent lines")
