@@ -11,7 +11,6 @@ return {
 
     {
       "kdheepak/lazygit.nvim",
-      event = "User FileOpened",
       cmd = {
         "LazyGit",
         "LazyGitConfig",
