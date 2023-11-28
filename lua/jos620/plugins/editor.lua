@@ -86,9 +86,9 @@ return {
       colors = {
         error = { colors.red },
         warning = { colors.yellow },
-        info = { colors.blue },
+        info = { colors.yellow },
         hint = { colors.green },
-        default = { colors.white },
+        default = { colors.blue },
         test = { colors.cyan },
       },
 
