@@ -229,7 +229,15 @@ return {
   { -- Lint / format
     {
       "mfussenegger/nvim-lint",
-      event = { "BufReadPre", "BufNewFile" },
+      ft = {
+        "typescript",
+        "javascript",
+        "typescriptreact",
+        "javascriptreact",
+        "vue",
+        "css",
+        "scss",
+      },
       config = function()
         local lint = require("lint")
 
@@ -261,7 +269,17 @@ return {
 
     {
       "stevearc/conform.nvim",
-      event = { "BufReadPre", "BufNewFile" },
+      ft = {
+        "typescript",
+        "javascript",
+        "typescriptreact",
+        "javascriptreact",
+        "vue",
+        "lua",
+        "css",
+        "scss",
+        "html",
+      },
       config = function()
         local conform = require("conform")
 
