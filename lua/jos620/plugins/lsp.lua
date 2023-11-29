@@ -2,6 +2,9 @@ return {
   { -- LSP
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
+    dependencies = {
+      "glepnir/lspsaga.nvim",
+    },
     config = function()
       local lspconfig = require("lspconfig")
 
@@ -184,7 +187,6 @@ return {
     dependencies = {
       "neovim/nvim-lspconfig",
     },
-    event = "BufReadPre",
     config = function()
       local lspsaga = require("lspsaga")
 
