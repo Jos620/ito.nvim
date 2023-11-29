@@ -71,7 +71,7 @@ return {
 
   { -- Comments
     "numToStr/Comment.nvim",
-    event = "BufRead",
+    event = "VeryLazy",
     opts = {},
   },
 
