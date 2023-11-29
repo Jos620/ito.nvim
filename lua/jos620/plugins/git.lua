@@ -26,7 +26,7 @@ return {
 
   { -- Buffers
     "lewis6991/gitsigns.nvim",
-    event = "BufRead",
+    event = "VeryLazy",
     config = function()
       local status, gitsigns = pcall(require, "gitsigns")
       if not status then
