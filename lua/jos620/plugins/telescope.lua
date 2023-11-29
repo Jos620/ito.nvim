@@ -4,6 +4,7 @@ return {
     dependencies = {
       "nvim-telescope/telescope-fzf-native.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
+      "ThePrimeagen/harpoon",
     },
     cmd = "Telescope",
     keys = {
@@ -117,7 +118,10 @@ return {
 
   { -- Hardpoon
     "ThePrimeagen/harpoon",
-    lazy = false,
+    event = "VeryLazy",
+    keys = {
+      "<Leader>",
+    },
     config = function()
       require("jos620.core.keymaps").setup_harpoon_keymaps()
     end,
