@@ -29,9 +29,10 @@ set("n", "F", "<Plug>Sneak_F")
 set("n", "zl", "30zl", "Scroll right")
 set("n", "zh", "30zh", "Scroll left")
 
--- Do not yank with "X" and "P"
+-- Do not yank with "X", "P" and "cc"
 set({ "n", "v" }, "x", '"_x', "Do not yank with 'x'")
 set({ "n", "v" }, "X", '"_X', "Do not yank with 'X'")
+set({ "n", "v" }, "cc", '"_cc', "Do not yank with 'cc'")
 set("x", "p", '"_dP', "Do not yank with 'p'")
 set("x", "<Leader>p", "p", "Yank with 'p'")
 
