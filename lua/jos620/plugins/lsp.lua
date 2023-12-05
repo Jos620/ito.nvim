@@ -293,6 +293,16 @@ return {
           table.insert(javascript_formatters, "prettierd")
         end
 
+        local css_formatters = {}
+        local stylelint_configs = {
+          ".stylelintrc",
+          ".stylelintrc.yaml",
+        }
+
+        if RootHasFile(stylelint_configs) then
+          table.insert(css_formatters, "stylelint")
+        end
+
         conform.setup({
           formatters_by_ft = {
             typescript = javascript_formatters,
@@ -301,8 +311,8 @@ return {
             javascriptreact = javascript_formatters,
             vue = javascript_formatters,
             lua = { "stylua" },
-            css = { "stylelint" },
-            scss = { "stylelint" },
+            css = css_formatters,
+            scss = css_formatters,
             html = { "prettierd" },
           },
           format_on_save = {
