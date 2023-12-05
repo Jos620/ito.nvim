@@ -42,14 +42,15 @@ return {
         ["<C-x>"] = false,
         ["<C-v>"] = actions.select_vertical,
         ["<C-b>"] = actions.select_horizontal,
-        ["q"] = actions.close,
       }
 
       telescope.setup({
         defaults = {
           mappings = {
             i = keymaps,
-            n = keymaps,
+            n = MergeTable(keymaps, {
+              ["q"] = actions.close,
+            }),
           },
           -- layout_config = {
           --   preview_width = 0.5,
