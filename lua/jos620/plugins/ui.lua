@@ -97,15 +97,16 @@ return {
     "akinsho/bufferline.nvim",
     event = "User FileOpened",
     config = function()
+      local bufferline = require("bufferline")
+
       local normal = {
         fg = colors.gray,
         bg = colors.black,
       }
 
-      local bold = {
+      local selected = {
         fg = colors.white,
         bg = colors.darkgray,
-        bold = true,
       }
 
       local black = {
@@ -163,8 +164,9 @@ return {
         bg = colors.darkgray,
       }
 
-      require("bufferline").setup({
+      bufferline.setup({
         options = {
+          style_preset = bufferline.style_preset.no_bold,
           close_command = "bdelete! %d",
           diagnostics = "nvim_lsp",
           separator_style = {
@@ -239,7 +241,7 @@ return {
 
           -- Buffers
           buffer_visible = normal,
-          buffer_selected = bold,
+          buffer_selected = selected,
 
           -- Numbers
           numbers = normal,
@@ -302,7 +304,7 @@ return {
           indicator_selected = green,
 
           -- Pick
-          pick_selected = bold,
+          pick_selected = selected,
           pick_visible = normal,
           pick = normal,
 
