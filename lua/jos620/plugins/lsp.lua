@@ -283,36 +283,44 @@ return {
       config = function()
         local conform = require("conform")
 
-        local javascript_formatters = { "eslint_d" }
-        local prettier_configs = {
-          ".prettierrc",
-          ".prettierrc.yaml",
-        }
+        local function get_javascript_formatters()
+          local formatters = { "eslint_d" }
+          local prettier_configs = {
+            ".prettierrc",
+            ".prettierrc.yaml",
+          }
 
-        if RootHasFile(prettier_configs) then
-          table.insert(javascript_formatters, "prettierd")
+          if RootHasFile(prettier_configs) then
+            table.insert(formatters, "prettierd")
+          end
+
+          return formatters
         end
 
-        local css_formatters = {}
-        local stylelint_configs = {
-          ".stylelintrc",
-          ".stylelintrc.yaml",
-        }
+        local function get_css_formatters()
+          local formatters = {}
+          local stylelint_configs = {
+            ".stylelintrc",
+            ".stylelintrc.yaml",
+          }
 
-        if RootHasFile(stylelint_configs) then
-          table.insert(css_formatters, "stylelint")
+          if RootHasFile(stylelint_configs) then
+            table.insert(formatters, "stylelint")
+          end
+
+          return formatters
         end
 
         conform.setup({
           formatters_by_ft = {
-            typescript = javascript_formatters,
-            javascript = javascript_formatters,
-            typescriptreact = javascript_formatters,
-            javascriptreact = javascript_formatters,
-            vue = javascript_formatters,
+            typescript = get_javascript_formatters,
+            javascript = get_javascript_formatters,
+            typescriptreact = get_javascript_formatters,
+            javascriptreact = get_javascript_formatters,
+            vue = get_javascript_formatters,
             lua = { "stylua" },
-            css = css_formatters,
-            scss = css_formatters,
+            css = get_css_formatters,
+            scss = get_css_formatters,
             html = { "prettierd" },
           },
           format_on_save = {
