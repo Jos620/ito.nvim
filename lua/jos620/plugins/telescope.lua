@@ -58,6 +58,15 @@ return {
           layout_strategy = "horizontal",
           -- sorting_strategy = "ascending",
           winblend = 0,
+          file_ignore_patterns = {
+            "node_modules",
+            "yarn.lock",
+            "package-lock.json",
+            "pnpm-lock.yaml",
+            ".git",
+            ".cache",
+            ".DS_Store",
+          },
         },
         extensions = {
           file_browser = {
