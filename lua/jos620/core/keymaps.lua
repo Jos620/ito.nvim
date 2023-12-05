@@ -33,6 +33,8 @@ set("n", "zh", "30zh", "Scroll left")
 set({ "n", "v" }, "x", '"_x', "Do not yank with 'x'")
 set({ "n", "v" }, "X", '"_X', "Do not yank with 'X'")
 set({ "n", "v" }, "cc", '"_cc', "Do not yank with 'cc'")
+set("n", "p", "p`[", "Move cursor to previous position after paste")
+set("n", "P", "p`]", "Move cursor to next position after paste")
 set("x", "p", '"_dP', "Do not yank with 'p'")
 set("x", "<Leader>p", "p", "Yank with 'p'")
 
