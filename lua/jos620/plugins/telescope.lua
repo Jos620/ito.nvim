@@ -1,3 +1,5 @@
+local utils = require("jos620.utils")
+
 return {
   { -- Telescope
     "nvim-telescope/telescope.nvim",
@@ -48,7 +50,7 @@ return {
         defaults = {
           mappings = {
             i = keymaps,
-            n = MergeTable(keymaps, {
+            n = utils.MergeTable(keymaps, {
               ["q"] = actions.close,
             }),
           },
@@ -122,7 +124,7 @@ return {
     build = "make",
     lazy = true,
     cond = function()
-      return CheckDependencies({ "fzf", "make" })
+      return utils.CheckDependencies({ "fzf", "make" })
     end,
   },
 
