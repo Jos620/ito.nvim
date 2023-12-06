@@ -1,0 +1,8 @@
+---@class KeymapSetOptions
+---@field silent boolean
+---@field expr boolean
+---@field noremap boolean
+---@field nowait boolean
+---@field script boolean
+---@field unique boolean
+---@field buffer number

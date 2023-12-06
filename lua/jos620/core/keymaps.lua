@@ -1,14 +1,5 @@
 local utils = require("jos620.utils")
 
----@class KeymapSetOptions
----@field silent boolean
----@field expr boolean
----@field noremap boolean
----@field nowait boolean
----@field script boolean
----@field unique boolean
----@field buffer number
-
 -- Alias for vim.api.nvim_set_keymap
 ---@param mode string|string[]
 ---@param key string
