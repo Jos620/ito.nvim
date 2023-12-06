@@ -50,8 +50,11 @@ return {
         defaults = {
           mappings = {
             i = keymaps,
-            n = utils.MergeTable(keymaps, {
-              ["q"] = actions.close,
+            n = utils.MergeTables({
+              keymaps,
+              {
+                ["q"] = actions.close,
+              },
             }),
           },
           -- layout_config = {
