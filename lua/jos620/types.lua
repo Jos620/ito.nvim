@@ -6,3 +6,25 @@
 ---@field script boolean
 ---@field unique boolean
 ---@field buffer number
+
+---@class HighlightSetOptions
+---@field fg? string
+---@field bg? string
+---@field sp? string
+---@field blend? integer
+---@field bold? boolean
+---@field standout? boolean
+---@field underline? boolean
+---@field undercurl? boolean
+---@field underdouble? boolean
+---@field underdotted? boolean
+---@field underdashed? boolean
+---@field strikethrough? boolean
+---@field italic? boolean
+---@field reverse? boolean
+---@field nocombine? boolean
+---@field link? string
+---@field default? string
+---@field ctermfg? string
+---@field ctermbg? string
+---@field cterm? string
