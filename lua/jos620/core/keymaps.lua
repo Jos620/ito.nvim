@@ -87,7 +87,7 @@ set("n", "<<", "<C-w><", "Decrease window width")
 set("n", "<Leader>Sv", "<C-w>t<C-w>H", "Change split orientation to horizontal")
 set("n", "<Leader>Sb", "<C-w>t<C-w>K", "Change split orientation to vertical")
 
--- Folds
+--- Setup fold keymaps
 local function setup_fold_keymaps()
   set("n", "<Leader>z", "$V%zf", "Create fold")
 
@@ -109,7 +109,7 @@ set("n", "<Leader>O", ":vsplit<Return>:Oil<Return>", "Open oil nvim")
 set("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
 set("n", "<Leader>U", ":UndotreeFocus<Return>", "Focus Undo Tree")
 
--- Harpoon
+--- Setup Harpoon keymaps
 local function setup_harpoon_keymaps()
   local harpoon_status, _ = pcall(require, "harpoon")
   if not harpoon_status then
@@ -172,6 +172,7 @@ set("n", "gm", ":GitMessenger<Return>", "Open git messenger")
 set("n", "gl", ":diffget //3<Return>", "Use right diff hunk")
 set("n", "gL", ":LazyGit<Return>", "Open lazy git")
 
+--- Setup Git keymaps
 local function setup_git_keymaps(buffer, gitsigns)
   local opts = { noremap = true, silent = true, buffer = buffer }
 
@@ -224,7 +225,7 @@ local function setup_git_keymaps(buffer, gitsigns)
   end, "Diff buffer against HEAD")
 end
 
--- LSP
+--- Setup LSP keymaps
 local function setup_lsp_keymaps(buffer)
   local opts = { noremap = true, silent = true, buffer = buffer }
 
@@ -255,6 +256,7 @@ local function setup_lsp_keymaps(buffer)
   end
 end
 
+--- Setup formatting keymaps
 local function setup_formatting_keymaps(conform)
   set({ "n", "v" }, "<Leader>lF", function()
     conform.format({
@@ -265,6 +267,7 @@ local function setup_formatting_keymaps(conform)
   end, "Format file or range")
 end
 
+--- Setup linting keymaps
 local function setup_linting_keymaps(lint)
   set("n", "<Leader>lL", function()
     lint.try_lint()
