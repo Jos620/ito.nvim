@@ -1,3 +1,5 @@
+local utils = require("jos620.utils")
+
 ---@class KeymapSetOptions
 ---@field silent boolean
 ---@field expr boolean
@@ -15,7 +17,7 @@
 ---@param options? KeymapSetOptions
 local function set(mode, key, command, desc, options)
   local opts = options or { silent = true }
-  vim.keymap.set(mode, key, command, MergeTable(opts, { desc = desc }))
+  vim.keymap.set(mode, key, command, utils.MergeTables({ opts, { desc = desc } }))
 end
 
 -- Exit insert mode
@@ -193,7 +195,7 @@ local function setup_git_keymaps(buffer, gitsigns)
     end)
 
     return "<Ignore>"
-  end, "Go to next git hunk", MergeTable(opts, { expr = true }))
+  end, "Go to next git hunk", utils.MergeTables({ opts, { expr = true } }))
 
   set("n", "<Leader>gk", function()
     if vim.wo.diff then
@@ -205,7 +207,7 @@ local function setup_git_keymaps(buffer, gitsigns)
     end)
 
     return "<Ignore>"
-  end, "go to previous hunk", MergeTable(opts, { expr = true }))
+  end, "go to previous hunk", utils.MergeTables({ opts, { expr = true } }))
 
   -- Stage
   set("n", "<Leader>gS", gitsigns.stage_buffer, "Stage buffer")
