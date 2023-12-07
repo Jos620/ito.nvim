@@ -1,3 +1,5 @@
+local utils = require("jos620.utils")
+
 return {
   { -- LSP
     "neovim/nvim-lspconfig",
@@ -290,7 +292,7 @@ return {
             ".prettierrc.yaml",
           }
 
-          if RootHasFile(prettier_configs) then
+          if utils.RootHasFile(prettier_configs) then
             table.insert(formatters, "prettierd")
           end
 
@@ -304,7 +306,7 @@ return {
             ".stylelintrc.yaml",
           }
 
-          if RootHasFile(stylelint_configs) then
+          if utils.RootHasFile(stylelint_configs) then
             table.insert(formatters, "stylelint")
           end
 
