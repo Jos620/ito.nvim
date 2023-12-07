@@ -18,9 +18,10 @@ autocmd({ "VimEnter" }, {
       return
     end
 
+    local is_git_file = string.find(last_file_path, ".git")
     local is_home = vim.fn.expand("%:p:h") == vim.fn.expand("$HOME")
 
-    if string.find(last_file_path, ".git") or is_home then
+    if is_home or is_git_file then
       return
     end
 
