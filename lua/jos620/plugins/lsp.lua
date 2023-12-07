@@ -146,6 +146,14 @@ return {
           },
         },
       })
+
+      -- HTMX
+      lspconfig.htmx.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        cmd = { "htmx-lsp" },
+        filetypes = { "html", "astro" },
+      })
     end,
   },
 
@@ -180,6 +188,7 @@ return {
           "prismals",
           "marksman",
           "vuels",
+          "htmx",
           "astro",
         },
       },
