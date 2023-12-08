@@ -160,9 +160,6 @@ set("n", "<Leader>c", ":bdelete<Return>", "Close buffer")
 set("n", "<Leader>C", ":b# <bar> bd#<Return>", "Close buffer, without closing the window")
 
 -- Packages
-set("n", "<Leader>pi", ":PackerInstall<Return>", "Install packages")
-set("n", "<Leader>pc", ":PackerCompile<Return>", "Compile packages")
-set("n", "<Leader>ps", ":PackerSync<Return>", "Sync packages")
 set("n", "<Leader>mm", ":Mason<Return>", "Launch Mason")
 
 -- Git
