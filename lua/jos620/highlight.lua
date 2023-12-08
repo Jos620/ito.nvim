@@ -1,9 +1,15 @@
 local colors = require("jos620.core.colors")
 
+--- Set highlight
+---@param group string
+---@param options HighlightSetOptions
 local function hi(group, options)
   vim.api.nvim_set_hl(0, group, options)
 end
 
+--- Link two highlight groups
+---@param group string
+---@param link_to string
 local function link(group, link_to)
   vim.cmd("highlight! link " .. group .. " " .. link_to)
 end
