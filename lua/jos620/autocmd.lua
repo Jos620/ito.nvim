@@ -1,6 +1,9 @@
 local utils = require("jos620.utils")
 
+---@type AugroupFunction
 local augroup = vim.api.nvim_create_augroup
+
+---@type AutocmdFunction
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd({ "VimEnter" }, {
