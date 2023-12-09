@@ -28,3 +28,25 @@
 ---@field ctermfg? string
 ---@field ctermbg? string
 ---@field cterm? string
+
+--- Augroup options
+---@class AugroupOptions
+---@field clear? boolean
+
+--- Augroup function
+---@alias AugroupFunction fun(name: string, options: AugroupOptions)
+
+--- Autocmd options
+---@class AutocmdOptions
+---@field group AugroupFunction
+---@field nested? boolean
+---@field callback? fun(args: AutocmdCallbackArgs)
+
+--- Autocmd callback arguments
+---@class AutocmdCallbackArgs
+---@field event string[]
+---@field buf number
+---@field data string
+
+--- Autocmd function
+---@alias AutocmdFunction fun(event: string[], options: AutocmdOptions)
