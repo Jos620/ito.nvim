@@ -19,7 +19,8 @@ hi("BufferLineIndicatorVisible", { bg = colors.black })
 hi("MatchParen", { bg = "None", fg = colors.red })
 hi("Sneak", { bg = colors.yellow, fg = colors.black })
 
--- Normal
+--- Groups to link to Normal
+---@type string[]
 local link_to_normal_groups = {
   "packerWorking",
   "harpoonwindow",
@@ -30,7 +31,8 @@ for _, group in ipairs(link_to_normal_groups) do
   link(group, "Normal")
 end
 
--- Green foreground
+--- Groups to apply green foreground
+---@type string[]
 local green_fg_groups = {
   "OilDirIcon",
   "harpoonborder",
@@ -43,7 +45,8 @@ for _, group in ipairs(green_fg_groups) do
   hi(group, { fg = colors.green })
 end
 
--- Darkgray background
+--- Groups to apply darkgray background
+---@type string[]
 local darkgray_bg_groups = {
   "ColorColumn",
   "Visual",
