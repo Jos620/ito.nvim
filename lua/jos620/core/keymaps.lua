@@ -1,11 +1,4 @@
----@class KeymapSetOptions
----@field silent boolean
----@field expr boolean
----@field noremap boolean
----@field nowait boolean
----@field script boolean
----@field unique boolean
----@field buffer number
+local utils = require("jos620.utils")
 
 -- Alias for vim.api.nvim_set_keymap
 ---@param mode string|string[]
@@ -15,7 +8,7 @@
 ---@param options? KeymapSetOptions
 local function set(mode, key, command, desc, options)
   local opts = options or { silent = true }
-  vim.keymap.set(mode, key, command, MergeTable(opts, { desc = desc }))
+  vim.keymap.set(mode, key, command, utils.MergeTables({ opts, { desc = desc } }))
 end
 
 -- Exit insert mode
@@ -48,10 +41,8 @@ set("n", "zh", "30zh", "Scroll left")
 set({ "n", "v" }, "x", '"_x', "Do not yank with 'x'")
 set({ "n", "v" }, "X", '"_X', "Do not yank with 'X'")
 set("n", "cc", '"_cc', "Do not yank with 'cc'")
-set("n", "p", "p`[", "Move cursor to previous position after paste")
-set("n", "P", "p`]", "Move cursor to next position after paste")
+set("n", "<Leader>p", "p`[", "Move cursor to previous position after paste")
 set("x", "p", '"_dP', "Do not yank with 'p'")
-set("x", "<Leader>p", "p", "Yank with 'p'")
 
 -- Move lines with visual
 set("v", "J", ":m '>+1<Return>gv=gv", "Move lines down")
@@ -94,7 +85,7 @@ set("n", "<<", "<C-w><", "Decrease window width")
 set("n", "<Leader>Sv", "<C-w>t<C-w>H", "Change split orientation to horizontal")
 set("n", "<Leader>Sb", "<C-w>t<C-w>K", "Change split orientation to vertical")
 
--- Folds
+--- Setup fold keymaps
 local function setup_fold_keymaps()
   set("n", "<Leader>z", "$V%zf", "Create fold")
 
@@ -116,7 +107,7 @@ set("n", "<Leader>O", ":vsplit<Return>:Oil<Return>", "Open oil nvim")
 set("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
 set("n", "<Leader>U", ":UndotreeFocus<Return>", "Focus Undo Tree")
 
--- Harpoon
+--- Setup Harpoon keymaps
 local function setup_harpoon_keymaps()
   local harpoon_status, _ = pcall(require, "harpoon")
   if not harpoon_status then
@@ -167,9 +158,6 @@ set("n", "<Leader>c", ":bdelete<Return>", "Close buffer")
 set("n", "<Leader>C", ":b# <bar> bd#<Return>", "Close buffer, without closing the window")
 
 -- Packages
-set("n", "<Leader>pi", ":PackerInstall<Return>", "Install packages")
-set("n", "<Leader>pc", ":PackerCompile<Return>", "Compile packages")
-set("n", "<Leader>ps", ":PackerSync<Return>", "Sync packages")
 set("n", "<Leader>mm", ":Mason<Return>", "Launch Mason")
 
 -- Git
@@ -179,6 +167,7 @@ set("n", "gm", ":GitMessenger<Return>", "Open git messenger")
 set("n", "gl", ":diffget //3<Return>", "Use right diff hunk")
 set("n", "gL", ":LazyGit<Return>", "Open lazy git")
 
+--- Setup Git keymaps
 local function setup_git_keymaps(buffer, gitsigns)
   local opts = { noremap = true, silent = true, buffer = buffer }
 
@@ -193,7 +182,7 @@ local function setup_git_keymaps(buffer, gitsigns)
     end)
 
     return "<Ignore>"
-  end, "Go to next git hunk", MergeTable(opts, { expr = true }))
+  end, "Go to next git hunk", utils.MergeTables({ opts, { expr = true } }))
 
   set("n", "<Leader>gk", function()
     if vim.wo.diff then
@@ -205,7 +194,7 @@ local function setup_git_keymaps(buffer, gitsigns)
     end)
 
     return "<Ignore>"
-  end, "go to previous hunk", MergeTable(opts, { expr = true }))
+  end, "go to previous hunk", utils.MergeTables({ opts, { expr = true } }))
 
   -- Stage
   set("n", "<Leader>gS", gitsigns.stage_buffer, "Stage buffer")
@@ -231,7 +220,7 @@ local function setup_git_keymaps(buffer, gitsigns)
   end, "Diff buffer against HEAD")
 end
 
--- LSP
+--- Setup LSP keymaps
 local function setup_lsp_keymaps(buffer)
   local opts = { noremap = true, silent = true, buffer = buffer }
 
@@ -262,6 +251,7 @@ local function setup_lsp_keymaps(buffer)
   end
 end
 
+--- Setup formatting keymaps
 local function setup_formatting_keymaps(conform)
   set({ "n", "v" }, "<Leader>lF", function()
     conform.format({
@@ -272,6 +262,7 @@ local function setup_formatting_keymaps(conform)
   end, "Format file or range")
 end
 
+--- Setup linting keymaps
 local function setup_linting_keymaps(lint)
   set("n", "<Leader>lL", function()
     lint.try_lint()

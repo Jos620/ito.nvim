@@ -1,3 +1,5 @@
+local utils = require("jos620.utils")
+
 return {
   { -- LSP
     "neovim/nvim-lspconfig",
@@ -55,6 +57,7 @@ return {
         "tsserver",
         "dockerls",
         "bufls",
+        "astro",
       }
 
       for _, server in ipairs(servers) do
@@ -143,6 +146,14 @@ return {
           },
         },
       })
+
+      -- HTMX
+      lspconfig.htmx.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        cmd = { "htmx-lsp" },
+        filetypes = { "html", "astro" },
+      })
     end,
   },
 
@@ -177,6 +188,8 @@ return {
           "prismals",
           "marksman",
           "vuels",
+          "htmx",
+          "astro",
         },
       },
     },
@@ -237,6 +250,7 @@ return {
         "vue",
         "css",
         "scss",
+        "astro",
       },
       config = function()
         local lint = require("lint")
@@ -249,6 +263,7 @@ return {
           vue = { "eslint_d" },
           css = { "stylelint" },
           scss = { "stylelint" },
+          astro = { "eslint_d" },
         }
 
         local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -279,6 +294,7 @@ return {
         "css",
         "scss",
         "html",
+        "astro",
       },
       config = function()
         local conform = require("conform")
@@ -290,7 +306,7 @@ return {
             ".prettierrc.yaml",
           }
 
-          if RootHasFile(prettier_configs) then
+          if utils.RootHasFile(prettier_configs) then
             table.insert(formatters, "prettierd")
           end
 
@@ -304,7 +320,7 @@ return {
             ".stylelintrc.yaml",
           }
 
-          if RootHasFile(stylelint_configs) then
+          if utils.RootHasFile(stylelint_configs) then
             table.insert(formatters, "stylelint")
           end
 
@@ -322,6 +338,7 @@ return {
             css = get_css_formatters,
             scss = get_css_formatters,
             html = { "prettierd" },
+            astro = { "eslint_d", "prettierd" },
           },
           format_on_save = {
             lsp_fallback = true,
