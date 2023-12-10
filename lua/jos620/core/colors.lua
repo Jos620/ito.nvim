@@ -1,15 +1,4 @@
 ---@class Colors
----@field white string
----@field black string
----@field darkgray string
----@field gray string
----@field lightgray string
----@field green string
----@field cyan string
----@field blue string
----@field red string
----@field yellow string
----@field orange string
 local M = {
   white = "#ffffff",
   black = "#181818",
