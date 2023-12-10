@@ -422,6 +422,9 @@ return {
       event = "BufRead",
       config = function()
         vim.g["sneak#prompt"] = ">"
+
+        keymaps.set("n", "f", "<Plug>Sneak_f")
+        keymaps.set("n", "F", "<Plug>Sneak_F")
       end,
     },
 

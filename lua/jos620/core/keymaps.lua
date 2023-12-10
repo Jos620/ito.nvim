@@ -27,10 +27,6 @@ M.set("n", "<Leader>h", function()
   end
 end, "Clear screen")
 
--- Navigation
-M.set("n", "f", "<Plug>Sneak_f")
-M.set("n", "F", "<Plug>Sneak_F")
-
 -- Scroll
 M.set("n", "zl", "30zl", "Scroll right")
 M.set("n", "zh", "30zh", "Scroll left")
