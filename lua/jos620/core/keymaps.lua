@@ -86,13 +86,6 @@ M.set("n", "<Leader>O", ":vsplit<Return>:Oil<Return>", "Open oil nvim")
 M.set("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
 M.set("n", "<Leader>U", ":UndotreeFocus<Return>", "Focus Undo Tree")
 
--- Telescope
-M.set("n", "<Leader>ff", ":Telescope find_files<Return>", "Find files")
-M.set("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", "Find all files")
-M.set("n", "<Leader>fs", ":Telescope live_grep<Return>", "Search in files")
-M.set("n", "<Leader>fb", ":Telescope buffers<Return>", "Find buffers")
-M.set("n", "<Leader>fo", ":Telescope oldfiles<Return>", "Find recent files")
-M.set("n", "<Leader>fk", ":Telescope keymaps<Return>", "Find keymaps")
 -- Buffers
 M.set("n", "H", ":BufferLineCyclePrev<Return>", "Previous buffer")
 M.set("n", "L", ":BufferLineCycleNext<Return>", "Next buffer")

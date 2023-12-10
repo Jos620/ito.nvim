@@ -106,6 +106,13 @@ return {
         },
       })
 
+      keymaps.set("n", "<Leader>ff", ":Telescope find_files<Return>", "Find files")
+      keymaps.set("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", "Find all files")
+      keymaps.set("n", "<Leader>fs", ":Telescope live_grep<Return>", "Search in files")
+      keymaps.set("n", "<Leader>fb", ":Telescope buffers<Return>", "Find buffers")
+      keymaps.set("n", "<Leader>fo", ":Telescope oldfiles<Return>", "Find recent files")
+      keymaps.set("n", "<Leader>fk", ":Telescope keymaps<Return>", "Find keymaps")
+
       local fzf_status = pcall(require, "telescope._extensions.fzf")
       if fzf_status and vim.fn.executable("fzf") == 1 then
         telescope.load_extension("fzf")
