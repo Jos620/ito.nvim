@@ -194,9 +194,18 @@ return {
     {
       "williamboman/mason.nvim",
       lazy = false,
-      opts = {
-        PATH = "prepend",
-      },
+      config = function()
+        local status, mason = pcall(require, "mason")
+        if not status then
+          return
+        end
+
+        mason.setup({
+          PATH = "prepend",
+        })
+
+        keymaps.set("n", "<Leader>mm", ":Mason<Return>", "Launch Mason")
+      end,
     },
 
     {

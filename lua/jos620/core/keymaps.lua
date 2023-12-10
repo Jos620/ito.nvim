@@ -82,9 +82,6 @@ M.set("n", "-", "<C-x>", "Decrease")
 M.set("n", "<Leader>c", ":bdelete<Return>", "Close buffer")
 M.set("n", "<Leader>C", ":b# <bar> bd#<Return>", "Close buffer, without closing the window")
 
--- Packages
-M.set("n", "<Leader>mm", ":Mason<Return>", "Launch Mason")
-
 -- Git
 M.set("n", "gs", ":vertical rightbelow Git<Return>", "Open git status")
 M.set("n", "gh", ":diffget //2<Return>", "Use left diff hunk")
