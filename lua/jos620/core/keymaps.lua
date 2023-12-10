@@ -13,10 +13,6 @@ end
 
 -- Exit insert mode
 set("i", "jk", "<Esc>", "Exit insert mode")
-set("i", "jj", "<Esc>:wa<Return>", "Exit insert mode and save")
-
--- Search and replace
-set("n", "<C-S>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Search and replace")
 
 -- Clean
 set("n", "<Leader>h", function()
@@ -41,7 +37,6 @@ set("n", "zh", "30zh", "Scroll left")
 set({ "n", "v" }, "x", '"_x', "Do not yank with 'x'")
 set({ "n", "v" }, "X", '"_X', "Do not yank with 'X'")
 set("n", "cc", '"_cc', "Do not yank with 'cc'")
-set("n", "<Leader>p", "p`[", "Move cursor to previous position after paste")
 set("x", "p", '"_dP', "Do not yank with 'p'")
 
 -- Move lines with visual
@@ -72,29 +67,11 @@ set("n", "<Leader>%", "<C-w>o", "Close other windows")
 set("n", "<Leader>q", ":quit<Return>", "Quit window")
 set("n", "<Leader>x", ":close<Return>", "Close window")
 
--- Split resize
-set("n", "<M-up>", "<C-w>+", "Increase window height")
-set("n", "<M-down>", "<C-w>-", "Decrease window height")
-set("n", "<M-right>", "<C-w>>", "Increase window width")
-set("n", "<M-left>", "<C-w><", "Decrease window width")
-set("n", "+", "<C-w>+", "Increase window height")
-set("n", "_", "<C-w>-", "Decrease window height")
-set("n", ">>", "<C-w>>", "Increase window width")
-set("n", "<<", "<C-w><", "Decrease window width")
-
 set("n", "<Leader>Sv", "<C-w>t<C-w>H", "Change split orientation to horizontal")
 set("n", "<Leader>Sb", "<C-w>t<C-w>K", "Change split orientation to vertical")
 
 --- Setup fold keymaps
-local function setup_fold_keymaps()
-  set("n", "<Leader>z", "$V%zf", "Create fold")
-
-  local status, ufo = pcall(require, "ufo")
-  if status then
-    set("n", "zR", ufo.openAllFolds, "Open all folds")
-    set("n", "zM", ufo.closeAllFolds, "Close all folds")
-  end
-end
+set("n", "<Leader>z", "$V%zf", "Create fold")
 
 -- Increase / decrease
 set("n", "=", "<C-a>", "Increase")
@@ -131,9 +108,6 @@ local function setup_harpoon_keymaps()
   end
 end
 
--- Terminal
-set("n", "<Leader>st", ":vsplit term://zsh<Return>i", "Open terminal")
-
 -- Telescope
 set("n", "<Leader>ff", ":Telescope find_files<Return>", "Find files")
 set("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", "Find all files")
@@ -142,16 +116,10 @@ set("n", "<Leader>fb", ":Telescope buffers<Return>", "Find buffers")
 set("n", "<Leader>fo", ":Telescope oldfiles<Return>", "Find recent files")
 set("n", "<Leader>fk", ":Telescope keymaps<Return>", "Find keymaps")
 set("n", "<Leader>fh", ":Telescope highlights<Return>", "Find highlights")
-set("n", "<Leader>fgf", ":Telescope git_status<Return>", "Find changed files")
-set("n", "<Leader>fgb", ":Telescope git_branches<Return>", "Find git branches")
-set("n", "<Leader>fgc", ":Telescope git_commits<Return>", "Find git commits")
-set("n", "<Leader>fm", ":Telescope harpoon marks<Return>", "Find git commits")
 
 -- Buffers
 set("n", "H", ":BufferLineCyclePrev<Return>", "Previous buffer")
 set("n", "L", ":BufferLineCycleNext<Return>", "Next buffer")
-set("n", "<Tab>", ":BufferLineCycleNext<Return>", "Next buffer")
-set("n", "<S-Tab>", ":BufferLineCyclePrev<Return>", "Next buffer")
 set("n", "<Leader>,", ":BufferLineMovePrev<Return>", "Move buffer left")
 set("n", "<Leader>.", ":BufferLineMoveNext<Return>", "Move buffer right")
 set("n", "<Leader>c", ":bdelete<Return>", "Close buffer")
@@ -199,25 +167,13 @@ local function setup_git_keymaps(buffer, gitsigns)
   -- Stage
   set("n", "<Leader>gS", gitsigns.stage_buffer, "Stage buffer")
   set("n", "<Leader>gu", gitsigns.undo_stage_hunk, "Undo stage hunk")
-  set("n", "<Leader>gp", gitsigns.preview_hunk, "Preview hunk")
   set("n", "<Leader>td", gitsigns.toggle_deleted, "Toggle deleted sections")
 
   -- Reset
-  set("n", "<Leader>gR", gitsigns.reset_buffer, "Reset buffer")
   set({ "n", "v" }, "<Leader>gr", gitsigns.reset_hunk, "Reset hunk")
-  set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<Return>", "Select hunk")
-
-  -- Blame
-  set("n", "<Leader>gl", function()
-    gitsigns.blame_line({ full = true })
-  end)
-  set("n", "<Leader>gb", gitsigns.toggle_current_line_blame, "Toggle blame line")
 
   -- Diff
   set("n", "<Leader>gd", ":Gvdiffsplit<Return>", "Diff buffer")
-  set("n", "<Leader>gD", function()
-    gitsigns.diffthis("~")
-  end, "Diff buffer against HEAD")
 end
 
 --- Setup LSP keymaps
@@ -273,7 +229,6 @@ return {
   setup_git_keymaps = setup_git_keymaps,
   setup_lsp_keymaps = setup_lsp_keymaps,
   setup_harpoon_keymaps = setup_harpoon_keymaps,
-  setup_fold_keymaps = setup_fold_keymaps,
   setup_formatting_keymaps = setup_formatting_keymaps,
   setup_linting_keymaps = setup_linting_keymaps,
 }
