@@ -79,10 +79,6 @@ M.set("n", "=", "<C-a>", "Increase")
 M.set("n", "-", "<C-x>", "Decrease")
 
 -- Buffers
-M.set("n", "H", ":BufferLineCyclePrev<Return>", "Previous buffer")
-M.set("n", "L", ":BufferLineCycleNext<Return>", "Next buffer")
-M.set("n", "<Leader>,", ":BufferLineMovePrev<Return>", "Move buffer left")
-M.set("n", "<Leader>.", ":BufferLineMoveNext<Return>", "Move buffer right")
 M.set("n", "<Leader>c", ":bdelete<Return>", "Close buffer")
 M.set("n", "<Leader>C", ":b# <bar> bd#<Return>", "Close buffer, without closing the window")
 

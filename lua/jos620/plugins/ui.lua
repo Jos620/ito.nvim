@@ -316,6 +316,11 @@ return {
           offset_separator = black,
         },
       })
+
+      keymaps.set("n", "H", ":BufferLineCyclePrev<Return>", "Previous buffer")
+      keymaps.set("n", "L", ":BufferLineCycleNext<Return>", "Next buffer")
+      keymaps.set("n", "<Leader>,", ":BufferLineMovePrev<Return>", "Move buffer left")
+      keymaps.set("n", "<Leader>.", ":BufferLineMoveNext<Return>", "Move buffer right")
     end,
   },
 
