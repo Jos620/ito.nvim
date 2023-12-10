@@ -24,6 +24,9 @@ return {
       dependencies = {
         "nvim-lua/plenary.nvim",
       },
+      config = function()
+        keymaps.set("n", "gL", ":LazyGit<Return>", "Open lazy git")
+      end,
     },
   },
 
