@@ -72,7 +72,7 @@ M.set("n", "<Leader>x", ":close<Return>", "Close window")
 M.set("n", "<Leader>Sv", "<C-w>t<C-w>H", "Change split orientation to horizontal")
 M.set("n", "<Leader>Sb", "<C-w>t<C-w>K", "Change split orientation to vertical")
 
---- Setup fold keymaps
+--- Fold keymaps
 M.set("n", "<Leader>z", "$V%zf", "Create fold")
 
 -- Increase / decrease
