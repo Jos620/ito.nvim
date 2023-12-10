@@ -111,49 +111,6 @@ M.set("n", "gm", ":GitMessenger<Return>", "Open git messenger")
 M.set("n", "gl", ":diffget //3<Return>", "Use right diff hunk")
 M.set("n", "gL", ":LazyGit<Return>", "Open lazy git")
 
---- Setup Git keymaps
----@param buffer number
----@param gitsigns any
-function M.setup_git_keymaps(buffer, gitsigns)
-  local opts = { noremap = true, silent = true, buffer = buffer }
-
-  -- Navigation
-  M.set("n", "<Leader>gj", function()
-    if vim.wo.diff then
-      return "<Leader>gj"
-    end
-
-    vim.schedule(function()
-      gitsigns.next_hunk()
-    end)
-
-    return "<Ignore>"
-  end, "Go to next git hunk", utils.MergeTables({ opts, { expr = true } }))
-
-  M.set("n", "<Leader>gk", function()
-    if vim.wo.diff then
-      return "<Leader>gk"
-    end
-
-    vim.schedule(function()
-      gitsigns.prev_hunk()
-    end)
-
-    return "<Ignore>"
-  end, "go to previous hunk", utils.MergeTables({ opts, { expr = true } }))
-
-  -- Stage
-  M.set("n", "<Leader>gS", gitsigns.stage_buffer, "Stage buffer")
-  M.set("n", "<Leader>gu", gitsigns.undo_stage_hunk, "Undo stage hunk")
-  M.set("n", "<Leader>td", gitsigns.toggle_deleted, "Toggle deleted sections")
-
-  -- Reset
-  M.set({ "n", "v" }, "<Leader>gr", gitsigns.reset_hunk, "Reset hunk")
-
-  -- Diff
-  M.set("n", "<Leader>gd", ":Gvdiffsplit<Return>", "Diff buffer")
-end
-
 --- Setup LSP keymaps
 ---@param buffer number
 function M.setup_lsp_keymaps(buffer)
