@@ -91,6 +91,9 @@ return {
           show_hidden = true,
         },
       })
+
+      keymaps.set("n", "<Leader>o", ":Oil<Return>", "Toggle Oil")
+      keymaps.set("n", "<Leader>O", ":vsplit<Return>:Oil<Return>", "Open oil nvim")
     end,
   },
 

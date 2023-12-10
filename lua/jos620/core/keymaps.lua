@@ -79,8 +79,6 @@ M.set("n", "=", "<C-a>", "Increase")
 M.set("n", "-", "<C-x>", "Decrease")
 
 -- File tree
-M.set("n", "<Leader>o", ":Oil<Return>", "Toggle Oil")
-M.set("n", "<Leader>O", ":vsplit<Return>:Oil<Return>", "Open oil nvim")
 
 M.set("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
 M.set("n", "<Leader>U", ":UndotreeFocus<Return>", "Focus Undo Tree")
