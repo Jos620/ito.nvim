@@ -108,6 +108,7 @@ return {
 
       keymaps.set("n", "<Leader>ff", ":Telescope find_files<Return>", "Find files")
       keymaps.set("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", "Find all files")
+      keymaps.set("n", "<Leader>fh", ":Telescope highlights<Return>", "Find highlights")
       keymaps.set("n", "<Leader>fs", ":Telescope live_grep<Return>", "Search in files")
       keymaps.set("n", "<Leader>fb", ":Telescope buffers<Return>", "Find buffers")
       keymaps.set("n", "<Leader>fo", ":Telescope oldfiles<Return>", "Find recent files")
