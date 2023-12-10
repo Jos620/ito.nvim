@@ -1,3 +1,5 @@
+local keymaps = require("jos620.core.keymaps")
+
 local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazy_path) then
   vim.fn.system({
@@ -46,3 +48,5 @@ require("lazy").setup({
   },
   debug = false,
 })
+
+keymaps.set("n", "<Leader>ll", ":Lazy<Return>", "Launch Lazy")
