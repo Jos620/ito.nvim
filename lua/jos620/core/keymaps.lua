@@ -1,5 +1,7 @@
 local utils = require("jos620.utils")
 
+local M = {}
+
 -- Alias for vim.api.nvim_set_keymap
 ---@param mode string|string[]
 ---@param key string
@@ -85,7 +87,7 @@ set("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
 set("n", "<Leader>U", ":UndotreeFocus<Return>", "Focus Undo Tree")
 
 --- Setup Harpoon keymaps
-local function setup_harpoon_keymaps()
+function M.setup_harpoon_keymaps()
   local harpoon_status, _ = pcall(require, "harpoon")
   if not harpoon_status then
     return
@@ -136,7 +138,7 @@ set("n", "gl", ":diffget //3<Return>", "Use right diff hunk")
 set("n", "gL", ":LazyGit<Return>", "Open lazy git")
 
 --- Setup Git keymaps
-local function setup_git_keymaps(buffer, gitsigns)
+function M.setup_git_keymaps(buffer, gitsigns)
   local opts = { noremap = true, silent = true, buffer = buffer }
 
   -- Navigation
@@ -177,7 +179,7 @@ local function setup_git_keymaps(buffer, gitsigns)
 end
 
 --- Setup LSP keymaps
-local function setup_lsp_keymaps(buffer)
+function M.setup_lsp_keymaps(buffer)
   local opts = { noremap = true, silent = true, buffer = buffer }
 
   set("n", "K", ":Lspsaga hover_doc<Return>", "Show hover doc", opts)
@@ -208,7 +210,7 @@ local function setup_lsp_keymaps(buffer)
 end
 
 --- Setup formatting keymaps
-local function setup_formatting_keymaps(conform)
+function M.setup_formatting_keymaps(conform)
   set({ "n", "v" }, "<Leader>lF", function()
     conform.format({
       lsp_fallback = true,
@@ -219,16 +221,10 @@ local function setup_formatting_keymaps(conform)
 end
 
 --- Setup linting keymaps
-local function setup_linting_keymaps(lint)
+function M.setup_linting_keymaps(lint)
   set("n", "<Leader>lL", function()
     lint.try_lint()
   end, "Lint file")
 end
 
-return {
-  setup_git_keymaps = setup_git_keymaps,
-  setup_lsp_keymaps = setup_lsp_keymaps,
-  setup_harpoon_keymaps = setup_harpoon_keymaps,
-  setup_formatting_keymaps = setup_formatting_keymaps,
-  setup_linting_keymaps = setup_linting_keymaps,
-}
+return M
