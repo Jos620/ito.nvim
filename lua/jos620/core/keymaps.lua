@@ -2,7 +2,7 @@ local utils = require("jos620.utils")
 
 local M = {}
 
--- Alias for vim.api.nvim_set_keymap
+--- Alias for vim.api.nvim_set_keymap
 ---@param mode string|string[]
 ---@param key string
 ---@param command string|function
@@ -13,10 +13,10 @@ function M.set(mode, key, command, desc, options)
   vim.keymap.set(mode, key, command, utils.MergeTables({ opts, { desc = desc } }))
 end
 
--- Exit insert mode
+--- Exit insert mode
 M.set("i", "jk", "<Esc>", "Exit insert mode")
 
--- Clear screen
+--- Clear screen
 M.set("n", "<Leader>h", function()
   vim.cmd([[nohlsearch]])
   vim.cmd([[echom '']])
@@ -27,35 +27,35 @@ M.set("n", "<Leader>h", function()
   end
 end, "Clear screen")
 
--- Scroll
+--- Scroll
 M.set("n", "zl", "30zl", "Scroll right")
 M.set("n", "zh", "30zh", "Scroll left")
 
--- Do not yank with "X", "P" and "cc"
+--- Do not yank with "X", "P" and "cc"
 M.set({ "n", "v" }, "x", '"_x', "Do not yank with 'x'")
 M.set({ "n", "v" }, "X", '"_X', "Do not yank with 'X'")
 M.set("n", "cc", '"_cc', "Do not yank with 'cc'")
 M.set("x", "p", '"_dP', "Do not yank with 'p'")
 
--- Move lines with visual
+--- Move lines with visual
 M.set("v", "J", ":m '>+1<Return>gv=gv", "Move lines down")
 M.set("v", "K", ":m '<-2<Return>gv=gv", "Move lines up")
 
--- "ie" as file
+--- "ie" for "all file"
 M.set("n", "vie", "ggVG", "Select all file")
 M.set("n", "cie", "ggcG", "Change all file")
 M.set("n", "die", "ggdG", "Delete all file")
 M.set("n", "yie", "ggVGy", "Yank all file")
 
--- Better navigation on wrapped lines
+--- Better navigation on wrapped lines
 M.set("n", "j", "gj", "Move down")
 M.set("n", "k", "gk", "Move up")
 
--- Line indent with visual
+--- Line indent with visual
 M.set("v", ">", ">gv", "Indent lines")
 M.set("v", "<", "<gv", "Unindent lines")
 
--- Split window
+--- Split window
 M.set("n", "<Leader>sv", "<C-w>v", "Split window vertically")
 M.set("n", "<Leader>sb", "<C-w>s", "Split window horizontally")
 M.set("n", "<Leader>se", "<C-w>=", "Equalize windows")
@@ -70,15 +70,15 @@ M.set("n", "<Leader>Sb", "<C-w>t<C-w>K", "Change split orientation to vertical")
 --- Fold keymaps
 M.set("n", "<Leader>z", "$V%zf", "Create fold")
 
--- Increase / decrease
+--- Increase / decrease
 M.set("n", "=", "<C-a>", "Increase")
 M.set("n", "-", "<C-x>", "Decrease")
 
--- Buffers
+--- Buffers
 M.set("n", "<Leader>c", ":bdelete<Return>", "Close buffer")
 M.set("n", "<Leader>C", ":b# <bar> bd#<Return>", "Close buffer, without closing the window")
 
--- Git
+--- Git
 M.set("n", "gs", ":vertical rightbelow Git<Return>", "Open git status")
 M.set("n", "gh", ":diffget //2<Return>", "Use left diff hunk")
 M.set("n", "gl", ":diffget //3<Return>", "Use right diff hunk")
