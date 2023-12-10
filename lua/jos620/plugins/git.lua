@@ -10,6 +10,9 @@ return {
         "Git",
       },
       event = "VeryLazy",
+      config = function()
+        keymaps.set("n", "gs", ":vertical rightbelow Git<Return>", "Open git status")
+      end,
     },
 
     {
