@@ -409,6 +409,7 @@ return {
 
     {
       "szw/vim-maximizer",
+      event = "VeryLazy",
       cmd = { "MaximizerToggle" },
       config = function()
         keymaps.set("n", "<Leader>sm", ":MaximizerToggle<Return>", "Maximize window")
