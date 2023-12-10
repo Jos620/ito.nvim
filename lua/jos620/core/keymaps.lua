@@ -14,7 +14,7 @@ end
 -- Exit insert mode
 set("i", "jk", "<Esc>", "Exit insert mode")
 
--- Clean
+-- Clear screen
 set("n", "<Leader>h", function()
   vim.cmd([[nohlsearch]])
   vim.cmd([[echom '']])
@@ -23,7 +23,7 @@ set("n", "<Leader>h", function()
   if notify_status then
     notify.dismiss()
   end
-end, "Clear")
+end, "Clear screen")
 
 -- Navigation
 set("n", "f", "<Plug>Sneak_f")
