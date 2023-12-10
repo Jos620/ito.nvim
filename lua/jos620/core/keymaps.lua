@@ -138,6 +138,8 @@ set("n", "gl", ":diffget //3<Return>", "Use right diff hunk")
 set("n", "gL", ":LazyGit<Return>", "Open lazy git")
 
 --- Setup Git keymaps
+---@param buffer number
+---@param gitsigns any
 function M.setup_git_keymaps(buffer, gitsigns)
   local opts = { noremap = true, silent = true, buffer = buffer }
 
@@ -179,6 +181,7 @@ function M.setup_git_keymaps(buffer, gitsigns)
 end
 
 --- Setup LSP keymaps
+---@param buffer number
 function M.setup_lsp_keymaps(buffer)
   local opts = { noremap = true, silent = true, buffer = buffer }
 
@@ -210,6 +213,7 @@ function M.setup_lsp_keymaps(buffer)
 end
 
 --- Setup formatting keymaps
+---@param conform any
 function M.setup_formatting_keymaps(conform)
   set({ "n", "v" }, "<Leader>lF", function()
     conform.format({
@@ -221,6 +225,7 @@ function M.setup_formatting_keymaps(conform)
 end
 
 --- Setup linting keymaps
+---@param lint any
 function M.setup_linting_keymaps(lint)
   set("n", "<Leader>lL", function()
     lint.try_lint()
