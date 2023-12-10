@@ -72,6 +72,7 @@ return {
 
           --- Reset
           keymaps.set({ "n", "v" }, "<Leader>gr", gitsigns.reset_hunk, "Reset hunk")
+          keymaps.set({ "n", "v" }, "<Leader>gR", gitsigns.reset_buffer, "Reset buffer")
 
           --- Diff
           keymaps.set("n", "<Leader>gd", ":Gvdiffsplit<Return>", "Diff buffer")
