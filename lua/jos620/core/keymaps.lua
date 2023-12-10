@@ -78,11 +78,6 @@ M.set("n", "<Leader>z", "$V%zf", "Create fold")
 M.set("n", "=", "<C-a>", "Increase")
 M.set("n", "-", "<C-x>", "Decrease")
 
--- File tree
-
-M.set("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
-M.set("n", "<Leader>U", ":UndotreeFocus<Return>", "Focus Undo Tree")
-
 -- Buffers
 M.set("n", "H", ":BufferLineCyclePrev<Return>", "Previous buffer")
 M.set("n", "L", ":BufferLineCycleNext<Return>", "Next buffer")

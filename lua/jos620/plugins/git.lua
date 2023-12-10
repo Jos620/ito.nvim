@@ -102,6 +102,9 @@ return {
     },
     config = function()
       vim.g.undotree_WindowLayout = 3
+
+      keymaps.set("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
+      keymaps.set("n", "<Leader>U", ":UndotreeFocus<Return>", "Focus Undo Tree")
     end,
   },
 }
