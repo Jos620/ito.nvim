@@ -65,7 +65,6 @@ return {
     },
     config = function()
       require("ufo").setup()
-      require("jos620.core.keymaps").setup_fold_keymaps()
     end,
   },
 
