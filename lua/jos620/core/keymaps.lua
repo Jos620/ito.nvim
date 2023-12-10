@@ -63,7 +63,6 @@ M.set("v", "<", "<gv", "Unindent lines")
 M.set("n", "<Leader>sv", "<C-w>v", "Split window vertically")
 M.set("n", "<Leader>sb", "<C-w>s", "Split window horizontally")
 M.set("n", "<Leader>se", "<C-w>=", "Equalize windows")
-M.set("n", "<Leader>sm", ":MaximizerToggle<Return>", "Maximize window")
 
 M.set("n", "<Leader>%", "<C-w>o", "Close other windows")
 M.set("n", "<Leader>q", ":quit<Return>", "Quit window")

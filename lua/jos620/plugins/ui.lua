@@ -1,4 +1,5 @@
 local colors = require("jos620.core.colors")
+local keymaps = require("jos620.core.keymaps")
 
 return {
   { -- Better UI for Neovim
@@ -401,6 +402,9 @@ return {
     {
       "szw/vim-maximizer",
       cmd = { "MaximizerToggle" },
+      config = function()
+        keymaps.set("n", "<Leader>sm", ":MaximizerToggle<Return>", "Maximize window")
+      end,
     },
   },
 
