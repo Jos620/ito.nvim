@@ -111,36 +111,4 @@ M.set("n", "gm", ":GitMessenger<Return>", "Open git messenger")
 M.set("n", "gl", ":diffget //3<Return>", "Use right diff hunk")
 M.set("n", "gL", ":LazyGit<Return>", "Open lazy git")
 
---- Setup LSP keymaps
----@param buffer number
-function M.setup_lsp_keymaps(buffer)
-  local opts = { noremap = true, silent = true, buffer = buffer }
-
-  M.set("n", "K", ":Lspsaga hover_doc<Return>", "Show hover doc", opts)
-
-  M.set("n", "gf", ":Lspsaga finder<Return>", "Find definition", opts)
-  M.set("n", "gd", ":Lspsaga goto_definition<Return>", "Go to definition", opts)
-  M.set("n", "gD", ":Lspsaga peek_definition<Return>", "Peek definition", opts)
-  M.set("n", "gi", ":lua vim.lsp.buf.implementation()<Return>", "Go to implementation", opts)
-
-  M.set("n", "<Leader>lf", ":Lspsaga lsp_finder<Return>", "Find references", opts)
-  M.set("n", "<Leader>la", ":Lspsaga code_action<Return>", "Code action", opts)
-  M.set("n", "<Leader>lr", ":Lspsaga rename<Return>", "Rename symbol", opts)
-  M.set("n", "<Leader>ld", ":Lspsaga show_line_diagnostics<Return>", "Show line diagnostics", opts)
-  M.set("n", "<Leader>lc", ":Lspsaga show_cursor_diagnostics<Return>", "Show cursor diagnostics", opts)
-  M.set("n", "<Leader>lb", ":Lspsaga show_buf_diagnostics<Return>", "Show buffer diagnostics", opts)
-  M.set("n", "<Leader>lw", ":Lspsaga show_workspace_diagnostics<Return>", "Show workspace diagnostics", opts)
-
-  local diagnostic_status, diagnostic = pcall(require, "lspsaga.diagnostic")
-  if diagnostic_status then
-    M.set("n", "<Leader>lj", function()
-      diagnostic:goto_next()
-    end, "Jump to next diagnostic", opts)
-
-    M.set("n", "<Leader>lk", function()
-      diagnostic:goto_prev()
-    end, "Jump to previous diagnostic", opts)
-  end
-end
-
 return M
