@@ -70,7 +70,7 @@ return {
             "yarn.lock",
             "package-lock.json",
             "pnpm-lock.yaml",
-            ".git",
+            "\\.git",
             ".cache",
             ".DS_Store",
           },
