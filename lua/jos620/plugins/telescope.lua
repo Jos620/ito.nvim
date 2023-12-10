@@ -1,4 +1,5 @@
 local utils = require("jos620.utils")
+local keymaps = require("jos620.core.keymaps")
 
 return {
   { -- Telescope
@@ -138,7 +139,26 @@ return {
       "<Leader>",
     },
     config = function()
-      require("jos620.core.keymaps").setup_harpoon_keymaps()
+      local harpoon_status, _ = pcall(require, "harpoon")
+      if not harpoon_status then
+        return
+      end
+
+      local mark = require("harpoon.mark")
+      local ui = require("harpoon.ui")
+
+      keymaps.set("n", "<Leader>\\", function()
+        mark.add_file()
+        ui.toggle_quick_menu()
+      end, "Add file to harpoon")
+
+      keymaps.set("n", "<Leader>|", ui.toggle_quick_menu, "Toggle harpoon menu")
+
+      for i = 1, 9 do
+        keymaps.set("n", "<Leader>" .. tostring(i), function()
+          ui.nav_file(i)
+        end, "Go to harpoon mark " .. i)
+      end
     end,
   },
 }
