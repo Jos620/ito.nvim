@@ -348,7 +348,13 @@ return {
           },
         })
 
-        keymaps.setup_formatting_keymaps(conform)
+        keymaps.set({ "n", "v" }, "<Leader>lF", function()
+          conform.format({
+            lsp_fallback = true,
+            async = false,
+            timeout_ms = 500,
+          })
+        end, "Format file or range")
       end,
     },
   },

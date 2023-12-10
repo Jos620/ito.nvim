@@ -143,18 +143,6 @@ function M.setup_lsp_keymaps(buffer)
   end
 end
 
---- Setup formatting keymaps
----@param conform any
-function M.setup_formatting_keymaps(conform)
-  M.set({ "n", "v" }, "<Leader>lF", function()
-    conform.format({
-      lsp_fallback = true,
-      async = false,
-      timeout_ms = 500,
-    })
-  end, "Format file or range")
-end
-
 --- Setup linting keymaps
 ---@param lint any
 function M.setup_linting_keymaps(lint)
