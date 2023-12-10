@@ -16,17 +16,6 @@ end
 --- Exit insert mode
 M.set("i", "jk", "<Esc>", "Exit insert mode")
 
---- Clear screen
-M.set("n", "<Leader>h", function()
-  vim.cmd([[nohlsearch]])
-  vim.cmd([[echom '']])
-
-  local notify_status, notify = pcall(require, "notify")
-  if notify_status then
-    notify.dismiss()
-  end
-end, "Clear screen")
-
 --- Scroll
 M.set("n", "zl", "30zl", "Scroll right")
 M.set("n", "zh", "30zh", "Scroll left")

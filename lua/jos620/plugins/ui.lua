@@ -66,6 +66,12 @@ return {
       })
 
       vim.notify = notify
+
+      keymaps.set("n", "<Leader>h", function()
+        vim.cmd([[nohlsearch]])
+        vim.cmd([[echom '']])
+        notify.dismiss()
+      end, "Clear screen")
     end,
   },
 
