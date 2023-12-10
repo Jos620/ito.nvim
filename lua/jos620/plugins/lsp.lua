@@ -1,4 +1,5 @@
 local utils = require("jos620.utils")
+local keymaps = require("jos620.core.keymaps")
 
 return {
   { -- LSP
@@ -11,7 +12,7 @@ return {
       local lspconfig = require("lspconfig")
 
       local on_attach = function(client, buffer)
-        require("jos620.core.keymaps").setup_lsp_keymaps(buffer)
+        keymaps.setup_lsp_keymaps(buffer)
 
         -- Stop tsserver when in Vue project
         local is_vue_project = lspconfig.util.root_pattern({
@@ -278,7 +279,7 @@ return {
           end,
         })
 
-        require("jos620.core.keymaps").setup_linting_keymaps(lint)
+        keymaps.setup_linting_keymaps(lint)
       end,
     },
 
@@ -347,7 +348,7 @@ return {
           },
         })
 
-        require("jos620.core.keymaps").setup_formatting_keymaps(conform)
+        keymaps.setup_formatting_keymaps(conform)
       end,
     },
   },
@@ -454,7 +455,7 @@ return {
           },
           lsp = {
             on_attach = function(_, buffer)
-              require("jos620.core.keymaps").setup_lsp_keymaps(buffer)
+              keymaps.setup_lsp_keymaps(buffer)
             end,
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
           },
