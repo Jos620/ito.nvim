@@ -9,7 +9,7 @@ return {
       "nvim-telescope/telescope-file-browser.nvim",
       "ThePrimeagen/harpoon",
     },
-    cmd = "Telescope",
+    event = "VeryLazy",
     keys = {
       {
         "<Leader>F",
