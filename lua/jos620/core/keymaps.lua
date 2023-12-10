@@ -85,7 +85,6 @@ M.set("n", "<Leader>C", ":b# <bar> bd#<Return>", "Close buffer, without closing 
 -- Git
 M.set("n", "gs", ":vertical rightbelow Git<Return>", "Open git status")
 M.set("n", "gh", ":diffget //2<Return>", "Use left diff hunk")
-M.set("n", "gm", ":GitMessenger<Return>", "Open git messenger")
 M.set("n", "gl", ":diffget //3<Return>", "Use right diff hunk")
 M.set("n", "gL", ":LazyGit<Return>", "Open lazy git")
 
