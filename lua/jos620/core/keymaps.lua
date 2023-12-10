@@ -143,12 +143,4 @@ function M.setup_lsp_keymaps(buffer)
   end
 end
 
---- Setup linting keymaps
----@param lint any
-function M.setup_linting_keymaps(lint)
-  M.set("n", "<Leader>lL", function()
-    lint.try_lint()
-  end, "Lint file")
-end
-
 return M

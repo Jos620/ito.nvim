@@ -279,7 +279,9 @@ return {
           end,
         })
 
-        keymaps.setup_linting_keymaps(lint)
+        keymaps.set("n", "<Leader>lL", function()
+          lint.try_lint()
+        end, "Lint file")
       end,
     },
 
