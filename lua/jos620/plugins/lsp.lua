@@ -26,8 +26,20 @@ return {
         keymaps.set("n", "<Leader>la", vim.lsp.buf.code_action, "Code action", opts)
         keymaps.set("n", "<Leader>lr", vim.lsp.buf.rename, "Rename symbol", opts)
 
-        keymaps.set("n", "<Leader>lj", vim.diagnostic.goto_next, "Go to next diagnostic", opts)
-        keymaps.set("n", "<Leader>lk", vim.diagnostic.goto_prev, "Go to previous diagnostic", opts)
+        keymaps.set("n", "<Leader>lj", function()
+          vim.diagnostic.goto_next({
+            float = {
+              border = "rounded",
+            },
+          })
+        end, "Go to next diagnostic", opts)
+        keymaps.set("n", "<Leader>lk", function()
+          vim.diagnostic.goto_prev({
+            float = {
+              border = "rounded",
+            },
+          })
+        end, "Go to previous diagnostic", opts)
 
         -- Stop tsserver when in Vue project
         local is_vue_project = lspconfig.util.root_pattern({
