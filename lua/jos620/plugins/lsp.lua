@@ -6,6 +6,7 @@ return {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
     dependencies = {
+      "nvim-telescope/telescope.nvim",
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -13,37 +14,19 @@ return {
       local on_attach = function(client, buffer)
         local opts = { noremap = true, silent = true, buffer = buffer }
 
-        keymaps.set("n", "K", ":Lspsaga hover_doc<Return>", "Show hover doc", opts)
+        keymaps.set("n", "K", vim.lsp.buf.hover, "Show hover doc", opts)
 
-        keymaps.set("n", "gf", ":Lspsaga finder<Return>", "Find definition", opts)
-        keymaps.set("n", "gd", ":Lspsaga goto_definition<Return>", "Go to definition", opts)
-        keymaps.set("n", "gD", ":Lspsaga peek_definition<Return>", "Peek definition", opts)
-        keymaps.set("n", "gi", ":lua vim.lsp.buf.implementation()<Return>", "Go to implementation", opts)
+        keymaps.set("n", "gd", function()
+          require("telescope.builtin").lsp_definitions({
+            reuse_win = true,
+          })
+        end, "Go to definition", opts)
+        keymaps.set("n", "gi", vim.lsp.buf.implementation, "Go to implementation", opts)
+        keymaps.set("n", "<Leader>la", vim.lsp.buf.code_action, "Code action", opts)
+        keymaps.set("n", "<Leader>lr", vim.lsp.buf.rename, "Rename symbol", opts)
 
-        keymaps.set("n", "<Leader>lf", ":Lspsaga lsp_finder<Return>", "Find references", opts)
-        keymaps.set("n", "<Leader>la", ":Lspsaga code_action<Return>", "Code action", opts)
-        keymaps.set("n", "<Leader>lr", ":Lspsaga rename<Return>", "Rename symbol", opts)
-        keymaps.set("n", "<Leader>ld", ":Lspsaga show_line_diagnostics<Return>", "Show line diagnostics", opts)
-        keymaps.set("n", "<Leader>lc", ":Lspsaga show_cursor_diagnostics<Return>", "Show cursor diagnostics", opts)
-        keymaps.set("n", "<Leader>lb", ":Lspsaga show_buf_diagnostics<Return>", "Show buffer diagnostics", opts)
-        keymaps.set(
-          "n",
-          "<Leader>lw",
-          ":Lspsaga show_workspace_diagnostics<Return>",
-          "Show workspace diagnostics",
-          opts
-        )
-
-        local diagnostic_status, diagnostic = pcall(require, "lspsaga.diagnostic")
-        if diagnostic_status then
-          keymaps.set("n", "<Leader>lj", function()
-            diagnostic:goto_next()
-          end, "Jump to next diagnostic", opts)
-
-          keymaps.set("n", "<Leader>lk", function()
-            diagnostic:goto_prev()
-          end, "Jump to previous diagnostic", opts)
-        end
+        keymaps.set("n", "<Leader>lj", vim.diagnostic.goto_next, "Go to next diagnostic", opts)
+        keymaps.set("n", "<Leader>lk", vim.diagnostic.goto_prev, "Go to previous diagnostic", opts)
 
         -- Stop tsserver when in Vue project
         local is_vue_project = lspconfig.util.root_pattern({
