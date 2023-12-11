@@ -293,13 +293,37 @@ return {
         local conform = require("conform")
 
         local function get_javascript_formatters()
-          local formatters = { "eslint_d" }
-          local prettier_configs = {
-            ".prettierrc",
-            ".prettierrc.yaml",
-          }
+          local formatters = {}
 
-          if utils.RootHasFile(prettier_configs) then
+          local has_eslint = utils.RootHasFile({
+            ".eslintrc",
+            ".eslintrc.js",
+            ".eslintrc.cjs",
+            ".eslintrc.yaml",
+            ".eslintrc.yml",
+            ".eslintrc.json",
+          })
+
+          if has_eslint then
+            table.insert(formatters, "eslint_d")
+          end
+
+          local has_prettier = utils.RootHasFile({
+            ".prettierrc",
+            ".prettierrc.json",
+            ".prettierrc.yml",
+            ".prettierrc.yaml",
+            ".prettierrc.json5",
+            ".prettierrc.js",
+            ".prettierrc.mjs",
+            ".prettierrc.cjs",
+            ".prettier.config.js",
+            "prettier.config.mjs",
+            "prettier.config.cjs",
+            ".prettierrc.toml",
+          })
+
+          if has_prettier then
             table.insert(formatters, "prettierd")
           end
 
