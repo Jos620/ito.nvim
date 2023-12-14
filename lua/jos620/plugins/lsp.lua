@@ -23,6 +23,7 @@ return {
           })
         end, "Go to definition", opts)
         keymaps.set("n", "gi", vim.lsp.buf.implementation, "Go to implementation", opts)
+        keymaps.set("n", "gr", vim.lsp.buf.references, "Go to references", opts)
         keymaps.set("n", "<Leader>la", vim.lsp.buf.code_action, "Code action", opts)
         keymaps.set("n", "<Leader>lr", vim.lsp.buf.rename, "Rename symbol", opts)
 
