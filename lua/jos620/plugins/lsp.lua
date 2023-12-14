@@ -230,6 +230,31 @@ return {
     },
   },
 
+  { -- Errors
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      local trouble = require("trouble")
+
+      trouble.setup({
+        auto_close = true,
+        action_keys = {
+          open_split = { "<C-b>" },
+          open_vsplit = { "<C-v>" },
+        },
+      })
+
+      keymaps.set("n", "<Leader>lt", trouble.toggle, "Toggle trouble")
+
+      keymaps.set("n", "<Leader>ld", function()
+        trouble.open("document_diagnostics")
+      end, "Open document diagnostics")
+      keymaps.set("n", "<Leader>lw", function()
+        trouble.open("workspace_diagnostics")
+      end, "Open workspace diagnostics")
+    end,
+  },
+
   { -- Lint / format
     {
       "mfussenegger/nvim-lint",
