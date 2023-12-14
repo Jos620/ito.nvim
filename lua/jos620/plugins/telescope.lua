@@ -155,7 +155,7 @@ return {
       local mark = require("harpoon.mark")
       local ui = require("harpoon.ui")
 
-      keymaps.set("n", "<Leader>\\", function()
+      keymaps.set("n", "|", function()
         mark.add_file()
         ui.toggle_quick_menu()
       end, "Add file to harpoon")
@@ -163,7 +163,7 @@ return {
       keymaps.set("n", "<Leader>|", ui.toggle_quick_menu, "Toggle harpoon menu")
 
       for i = 1, 9 do
-        keymaps.set("n", "<Leader>" .. tostring(i), function()
+        keymaps.set("n", "\\" .. tostring(i), function()
           ui.nav_file(i)
         end, "Go to harpoon mark " .. i)
       end
