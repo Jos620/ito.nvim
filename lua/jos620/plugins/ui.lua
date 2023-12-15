@@ -3,56 +3,62 @@ local keymaps = require("jos620.core.keymaps")
 
 return {
   { -- Better UI for Neovim
-    "folke/noice.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
+    {
+      "folke/noice.nvim",
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+        "rcarriga/nvim-notify",
+      },
+      config = function()
+        require("noice").setup({
+          routes = {
+            { -- Hide "No information available" message
+              filter = {
+                event = "notify",
+                find = "No information available",
+              },
+              opts = {
+                skip = true,
+              },
+            },
+            { -- Hide search count
+              filter = {
+                event = "msg_show",
+                kind = "search_count",
+              },
+              opts = {
+                skip = true,
+              },
+            },
+            { -- Hide written message
+              filter = {
+                event = "msg_show",
+                find = "written$",
+              },
+              opts = {
+                skip = true,
+              },
+            },
+            { -- Hide Sneak messages
+              filter = {
+                event = "msg_show",
+                find = "^" .. (vim.g["sneak#prompt"] or ">") .. ".*",
+              },
+              opts = {
+                skip = true,
+              },
+            },
+          },
+          presets = {
+            lsp_doc_border = true,
+          },
+        })
+      end,
     },
-    config = function()
-      require("noice").setup({
-        routes = {
-          { -- Hide "No information available" message
-            filter = {
-              event = "notify",
-              find = "No information available",
-            },
-            opts = {
-              skip = true,
-            },
-          },
-          { -- Hide search count
-            filter = {
-              event = "msg_show",
-              kind = "search_count",
-            },
-            opts = {
-              skip = true,
-            },
-          },
-          { -- Hide written message
-            filter = {
-              event = "msg_show",
-              find = "written$",
-            },
-            opts = {
-              skip = true,
-            },
-          },
-          { -- Hide Sneak messages
-            filter = {
-              event = "msg_show",
-              find = "^" .. (vim.g["sneak#prompt"] or ">") .. ".*",
-            },
-            opts = {
-              skip = true,
-            },
-          },
-        },
-        presets = {
-          lsp_doc_border = true,
-        },
-      })
-    end,
+
+    {
+      "stevearc/dressing.nvim",
+    },
   },
 
   { -- Notifications

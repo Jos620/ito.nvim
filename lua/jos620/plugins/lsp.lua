@@ -6,7 +6,8 @@ return {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
     dependencies = {
-      "glepnir/lspsaga.nvim",
+      "nvim-telescope/telescope.nvim",
+      "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -14,37 +15,31 @@ return {
       local on_attach = function(client, buffer)
         local opts = { noremap = true, silent = true, buffer = buffer }
 
-        keymaps.set("n", "K", ":Lspsaga hover_doc<Return>", "Show hover doc", opts)
+        keymaps.set("n", "K", vim.lsp.buf.hover, "Show hover doc", opts)
 
-        keymaps.set("n", "gf", ":Lspsaga finder<Return>", "Find definition", opts)
-        keymaps.set("n", "gd", ":Lspsaga goto_definition<Return>", "Go to definition", opts)
-        keymaps.set("n", "gD", ":Lspsaga peek_definition<Return>", "Peek definition", opts)
-        keymaps.set("n", "gi", ":lua vim.lsp.buf.implementation()<Return>", "Go to implementation", opts)
+        keymaps.set("n", "gd", function()
+          require("telescope.builtin").lsp_definitions({
+            reuse_win = true,
+          })
+        end, "Go to definition", opts)
+        keymaps.set("n", "gi", vim.lsp.buf.implementation, "Go to implementation", opts)
+        keymaps.set("n", "gr", vim.lsp.buf.references, "Go to references", opts)
+        keymaps.set("n", "<Leader>la", vim.lsp.buf.code_action, "Code action", opts)
+        keymaps.set("n", "<Leader>lr", vim.lsp.buf.rename, "Rename symbol", opts)
 
-        keymaps.set("n", "<Leader>lf", ":Lspsaga lsp_finder<Return>", "Find references", opts)
-        keymaps.set("n", "<Leader>la", ":Lspsaga code_action<Return>", "Code action", opts)
-        keymaps.set("n", "<Leader>lr", ":Lspsaga rename<Return>", "Rename symbol", opts)
-        keymaps.set("n", "<Leader>ld", ":Lspsaga show_line_diagnostics<Return>", "Show line diagnostics", opts)
-        keymaps.set("n", "<Leader>lc", ":Lspsaga show_cursor_diagnostics<Return>", "Show cursor diagnostics", opts)
-        keymaps.set("n", "<Leader>lb", ":Lspsaga show_buf_diagnostics<Return>", "Show buffer diagnostics", opts)
-        keymaps.set(
-          "n",
-          "<Leader>lw",
-          ":Lspsaga show_workspace_diagnostics<Return>",
-          "Show workspace diagnostics",
-          opts
-        )
+        local diagnostic_opts = {
+          float = {
+            border = "rounded",
+          },
+        }
 
-        local diagnostic_status, diagnostic = pcall(require, "lspsaga.diagnostic")
-        if diagnostic_status then
-          keymaps.set("n", "<Leader>lj", function()
-            diagnostic:goto_next()
-          end, "Jump to next diagnostic", opts)
+        keymaps.set("n", "<Leader>lj", function()
+          vim.diagnostic.goto_next(diagnostic_opts)
+        end, "Go to next diagnostic", opts)
 
-          keymaps.set("n", "<Leader>lk", function()
-            diagnostic:goto_prev()
-          end, "Jump to previous diagnostic", opts)
-        end
+        keymaps.set("n", "<Leader>lk", function()
+          vim.diagnostic.goto_prev(diagnostic_opts)
+        end, "Go to previous diagnostic", opts)
 
         -- Stop tsserver when in Vue project
         local is_vue_project = lspconfig.util.root_pattern({
@@ -67,9 +62,8 @@ return {
       end
 
       -- Enable auto completion
-      local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-      local capabilities = cmp_nvim_lsp_status and cmp_nvim_lsp.default_capabilities()
-        or vim.lsp.protocol.make_client_capabilities()
+      local cmp_nvim_lsp = require("cmp_nvim_lsp")
+      local capabilities = cmp_nvim_lsp.default_capabilities() or vim.lsp.protocol.make_client_capabilities()
 
       -- Folding
       capabilities.textDocument.foldingRange = {
@@ -214,7 +208,7 @@ return {
         "williamboman/mason.nvim",
         "neovim/nvim-lspconfig",
       },
-      lazy = true,
+      event = "VeryLazy",
       opts = {
         ensure_installed = {
           "html",
@@ -237,47 +231,28 @@ return {
     },
   },
 
-  { -- LSP UI
-    "glepnir/lspsaga.nvim",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-    },
+  { -- Errors
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      local lspsaga = require("lspsaga")
+      local trouble = require("trouble")
 
-      lspsaga.setup({
-        ui = {
-          border = "rounded",
-        },
-        move_in_saga = {
-          prev = "<C-k>",
-          next = "<C-j>",
-        },
-        finder = {
-          keys = {
-            toggle_or_open = "<Return>",
-            vsplit = "v",
-            split = "b",
-          },
-        },
-        definition = {
-          edit = "<Return>",
-          vsplit = "v",
-          split = "b",
-        },
-        symbol_in_winbar = {
-          enable = false,
-        },
-        beacon = {
-          enable = false,
-        },
-        lightbulb = {
-          enable = false,
-        },
-        hover = {
-          open_link = "o",
+      trouble.setup({
+        auto_close = true,
+        action_keys = {
+          open_split = { "<C-b>" },
+          open_vsplit = { "<C-v>" },
         },
       })
+
+      keymaps.set("n", "<Leader>lt", trouble.toggle, "Toggle trouble")
+
+      keymaps.set("n", "<Leader>ld", function()
+        trouble.open("document_diagnostics")
+      end, "Open document diagnostics")
+      keymaps.set("n", "<Leader>lw", function()
+        trouble.open("workspace_diagnostics")
+      end, "Open workspace diagnostics")
     end,
   },
 
@@ -344,13 +319,37 @@ return {
         local conform = require("conform")
 
         local function get_javascript_formatters()
-          local formatters = { "eslint_d" }
-          local prettier_configs = {
-            ".prettierrc",
-            ".prettierrc.yaml",
-          }
+          local formatters = {}
 
-          if utils.RootHasFile(prettier_configs) then
+          local has_eslint = utils.RootHasFile({
+            ".eslintrc",
+            ".eslintrc.js",
+            ".eslintrc.cjs",
+            ".eslintrc.yaml",
+            ".eslintrc.yml",
+            ".eslintrc.json",
+          })
+
+          if has_eslint then
+            table.insert(formatters, "eslint_d")
+          end
+
+          local has_prettier = utils.RootHasFile({
+            ".prettierrc",
+            ".prettierrc.json",
+            ".prettierrc.yml",
+            ".prettierrc.yaml",
+            ".prettierrc.json5",
+            ".prettierrc.js",
+            ".prettierrc.mjs",
+            ".prettierrc.cjs",
+            ".prettier.config.js",
+            "prettier.config.mjs",
+            "prettier.config.cjs",
+            ".prettierrc.toml",
+          })
+
+          if has_prettier then
             table.insert(formatters, "prettierd")
           end
 
