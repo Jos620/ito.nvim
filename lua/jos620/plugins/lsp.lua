@@ -208,7 +208,7 @@ return {
         "williamboman/mason.nvim",
         "neovim/nvim-lspconfig",
       },
-      lazy = true,
+      event = "VeryLazy",
       opts = {
         ensure_installed = {
           "html",
