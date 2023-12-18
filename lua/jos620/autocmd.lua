@@ -21,14 +21,16 @@ autocmd({ "VimEnter" }, {
       return
     end
 
-    local is_git_file = string.find(last_file_path, ".git")
     local is_home = vim.fn.expand("%:p:h") == vim.fn.expand("$HOME")
+    local is_git_file = string.find(last_file_path, ".git")
 
     if is_home or is_git_file then
       return
     end
 
-    if utils.FileIsInWorkingDirectory(last_file_path) then
+    local file_exists = vim.fn.filereadable(last_file_path) == 1
+
+    if file_exists and utils.FileIsInWorkingDirectory(last_file_path) then
       vim.cmd("normal! '0")
       vim.cmd("bdelete #")
     end
