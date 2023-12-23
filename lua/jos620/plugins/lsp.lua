@@ -1,6 +1,55 @@
 local utils = require("jos620.utils")
 local keymaps = require("jos620.core.keymaps")
 
+-- Get JavaScript formatters
+---@param linters_only? boolean -- Only return linters
+---@return string[]             -- List of linters and formatters
+local function get_javascript_formatters(linters_only)
+  linters_only = linters_only or false
+
+  local linters = {}
+
+  local has_eslint = utils.RootHasFile({
+    ".eslintrc",
+    ".eslintrc.js",
+    ".eslintrc.cjs",
+    ".eslintrc.yaml",
+    ".eslintrc.yml",
+    ".eslintrc.json",
+  })
+
+  if has_eslint then
+    table.insert(linters, "eslint_d")
+  end
+
+  if linters_only then
+    return linters
+  end
+
+  local formatters = {}
+
+  local has_prettier = utils.RootHasFile({
+    ".prettierrc",
+    ".prettierrc.json",
+    ".prettierrc.yml",
+    ".prettierrc.yaml",
+    ".prettierrc.json5",
+    ".prettierrc.js",
+    ".prettierrc.mjs",
+    ".prettierrc.cjs",
+    ".prettier.config.js",
+    "prettier.config.mjs",
+    "prettier.config.cjs",
+    ".prettierrc.toml",
+  })
+
+  if has_prettier then
+    table.insert(formatters, "prettierd")
+  end
+
+  return utils.Flatten({ linters, formatters })
+end
+
 return {
   { -- LSP
     "neovim/nvim-lspconfig",
@@ -318,44 +367,6 @@ return {
       config = function()
         local conform = require("conform")
 
-        local function get_javascript_formatters()
-          local formatters = {}
-
-          local has_eslint = utils.RootHasFile({
-            ".eslintrc",
-            ".eslintrc.js",
-            ".eslintrc.cjs",
-            ".eslintrc.yaml",
-            ".eslintrc.yml",
-            ".eslintrc.json",
-          })
-
-          if has_eslint then
-            table.insert(formatters, "eslint_d")
-          end
-
-          local has_prettier = utils.RootHasFile({
-            ".prettierrc",
-            ".prettierrc.json",
-            ".prettierrc.yml",
-            ".prettierrc.yaml",
-            ".prettierrc.json5",
-            ".prettierrc.js",
-            ".prettierrc.mjs",
-            ".prettierrc.cjs",
-            ".prettier.config.js",
-            "prettier.config.mjs",
-            "prettier.config.cjs",
-            ".prettierrc.toml",
-          })
-
-          if has_prettier then
-            table.insert(formatters, "prettierd")
-          end
-
-          return formatters
-        end
-
         local function get_css_formatters()
           local formatters = {}
           local stylelint_configs = {
@@ -370,13 +381,15 @@ return {
           return formatters
         end
 
+        local javascript_formatters = get_javascript_formatters()
+
         conform.setup({
           formatters_by_ft = {
-            typescript = get_javascript_formatters,
-            javascript = get_javascript_formatters,
-            typescriptreact = get_javascript_formatters,
-            javascriptreact = get_javascript_formatters,
-            vue = get_javascript_formatters,
+            typescript = javascript_formatters,
+            javascript = javascript_formatters,
+            typescriptreact = javascript_formatters,
+            javascriptreact = javascript_formatters,
+            vue = javascript_formatters,
             lua = { "stylua" },
             css = get_css_formatters,
             scss = get_css_formatters,
