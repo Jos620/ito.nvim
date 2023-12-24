@@ -1,11 +1,14 @@
 local utils = require("jos620.utils")
 local keymaps = require("jos620.core.keymaps")
 
--- Get JavaScript formatters
----@param linters_only? boolean -- Only return linters
----@return string[]             -- List of linters and formatters
-local function get_javascript_formatters(linters_only)
-  linters_only = linters_only or false
+---@class GetFormattersOptions
+---@field linters_only boolean
+
+---Get JavaScript formatters
+---@param options? GetFormattersOptions -- Only return linters
+---@return string[]                     -- List of linters and formatters
+local function get_javascript_formatters(options)
+  options = options or { linters_only = false }
 
   local linters = {}
 
@@ -22,7 +25,7 @@ local function get_javascript_formatters(linters_only)
     table.insert(linters, "eslint_d")
   end
 
-  if linters_only then
+  if options.linters_only then
     return linters
   end
 
