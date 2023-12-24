@@ -349,15 +349,22 @@ return {
       config = function()
         local lint = require("lint")
 
+        local javascript_linters = get_javascript_formatters({
+          linters_only = true,
+        })
+        local css_linters = get_css_formatters({
+          linters_only = true,
+        })
+
         lint.linters_by_ft = {
-          typescript = { "eslint_d" },
-          javascript = { "eslint_d" },
-          typescriptreact = { "eslint_d" },
-          javascriptreact = { "eslint_d" },
-          vue = { "eslint_d" },
-          css = { "stylelint" },
-          scss = { "stylelint" },
-          astro = { "eslint_d" },
+          typescript = javascript_linters,
+          javascript = javascript_linters,
+          typescriptreact = javascript_linters,
+          javascriptreact = javascript_linters,
+          vue = javascript_linters,
+          css = css_linters,
+          scss = css_linters,
+          astro = javascript_linters,
         }
 
         local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -396,6 +403,7 @@ return {
         local conform = require("conform")
 
         local javascript_formatters = get_javascript_formatters()
+        local css_formatters = get_css_formatters()
 
         conform.setup({
           formatters_by_ft = {
@@ -405,10 +413,10 @@ return {
             javascriptreact = javascript_formatters,
             vue = javascript_formatters,
             lua = { "stylua" },
-            css = get_css_formatters,
-            scss = get_css_formatters,
+            css = css_formatters,
+            scss = css_formatters,
             html = { "prettierd" },
-            astro = { "eslint_d", "prettierd" },
+            astro = javascript_formatters,
           },
           format_on_save = {
             lsp_fallback = true,
