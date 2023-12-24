@@ -1,4 +1,4 @@
---- Create a command
+---Create a command
 ---@param name string
 ---@param lua_script string
 local function command(name, lua_script)

@@ -1,13 +1,13 @@
 local colors = require("jos620.core.colors")
 
---- Set highlight
+---Set highlight
 ---@param group string
 ---@param options HighlightSetOptions
 local function hi(group, options)
   vim.api.nvim_set_hl(0, group, options)
 end
 
---- Link two highlight groups
+---Link two highlight groups
 ---@param group string
 ---@param link_to string
 local function link(group, link_to)
@@ -19,7 +19,7 @@ hi("BufferLineIndicatorVisible", { bg = colors.black })
 hi("MatchParen", { bg = "None", fg = colors.red })
 hi("Sneak", { bg = colors.yellow, fg = colors.black })
 
---- Groups to link to Normal
+---Groups to link to Normal
 ---@type string[]
 local link_to_normal_groups = {
   "packerWorking",
@@ -31,7 +31,7 @@ for _, group in ipairs(link_to_normal_groups) do
   link(group, "Normal")
 end
 
---- Groups to apply green foreground
+---Groups to apply green foreground
 ---@type string[]
 local green_fg_groups = {
   "OilDirIcon",
@@ -45,7 +45,7 @@ for _, group in ipairs(green_fg_groups) do
   hi(group, { fg = colors.green })
 end
 
---- Groups to apply darkgray background
+---Groups to apply darkgray background
 ---@type string[]
 local darkgray_bg_groups = {
   "ColorColumn",

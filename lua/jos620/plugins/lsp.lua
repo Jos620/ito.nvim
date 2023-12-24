@@ -334,7 +334,7 @@ return {
   },
 
   { -- Lint / format
-    {
+    { -- Lint
       "mfussenegger/nvim-lint",
       ft = {
         "typescript",
@@ -385,7 +385,7 @@ return {
       end,
     },
 
-    {
+    { -- Format
       "stevearc/conform.nvim",
       ft = {
         "typescript",
