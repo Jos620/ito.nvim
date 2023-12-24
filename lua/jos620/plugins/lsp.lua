@@ -53,6 +53,31 @@ local function get_javascript_formatters(options)
   return utils.Flatten({ linters, formatters })
 end
 
+---Get CSS formatters
+---@param options? GetFormattersOptions -- Only return linters
+---@return string[]                     -- List of linters and formatters
+local function get_css_formatters(options)
+  options = options or { linters_only = false }
+
+  local linters = {}
+  local formatters = {}
+
+  local stylelint_configs = {
+    ".stylelintrc",
+    ".stylelintrc.yaml",
+  }
+
+  if utils.RootHasFile(stylelint_configs) then
+    table.insert(linters, "stylelint")
+  end
+
+  if options.linters_only then
+    return linters
+  end
+
+  return utils.Flatten({ linters, formatters })
+end
+
 return {
   { -- LSP
     "neovim/nvim-lspconfig",
@@ -369,20 +394,6 @@ return {
       },
       config = function()
         local conform = require("conform")
-
-        local function get_css_formatters()
-          local formatters = {}
-          local stylelint_configs = {
-            ".stylelintrc",
-            ".stylelintrc.yaml",
-          }
-
-          if utils.RootHasFile(stylelint_configs) then
-            table.insert(formatters, "stylelint")
-          end
-
-          return formatters
-        end
 
         local javascript_formatters = get_javascript_formatters()
 
