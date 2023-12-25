@@ -158,7 +158,6 @@ return {
         "prismals",
         "unocss",
         "marksman",
-        "tsserver",
         "dockerls",
         "bufls",
         "astro",
@@ -215,6 +214,13 @@ return {
           },
         })
       end
+
+      -- TypeScript
+      lspconfig.tsserver.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git", "."),
+      })
 
       -- Vue
       lspconfig.volar.setup({
