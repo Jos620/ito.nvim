@@ -22,7 +22,6 @@ hi("Sneak", { bg = colors.yellow, fg = colors.black })
 ---Groups to link to Normal
 ---@type string[]
 local link_to_normal_groups = {
-  "packerWorking",
   "harpoonwindow",
   "Directory",
 }
