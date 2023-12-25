@@ -148,6 +148,13 @@ return {
         lineFoldingOnly = true,
       }
 
+      -- Additional filetypes
+      vim.filetype.add({
+        extension = {
+          templ = "templ",
+        },
+      })
+
       -- Base LSP config
       local servers = {
         "html",
@@ -161,6 +168,7 @@ return {
         "dockerls",
         "bufls",
         "astro",
+        "templ",
       }
 
       for _, server in ipairs(servers) do
@@ -423,6 +431,7 @@ return {
             scss = css_formatters,
             html = { "prettierd" },
             astro = javascript_formatters,
+            templ = { "templ" },
           },
           format_on_save = {
             lsp_fallback = true,
