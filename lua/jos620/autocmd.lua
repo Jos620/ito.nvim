@@ -23,7 +23,7 @@ autocmd({ "VimEnter" }, {
 
     local is_home = vim.fn.expand("%:p:h") == vim.fn.expand("$HOME")
     local is_git_file = string.find(last_file_path, ".git")
-    local is_folder = vim.fn.isdirectory(last_file_path) == 1
+    local is_folder = utils.IsDirectory(last_file_path)
 
     if is_home or is_git_file or is_folder then
       return
