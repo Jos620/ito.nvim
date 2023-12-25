@@ -43,23 +43,6 @@ function M.GetFilePathByMark(mark)
   return nil
 end
 
----Converts a string or boolean to a boolean value.
----@param original string|boolean -- String or boolean input
----@return boolean                -- Boolean equivalent
-function M.StringToBoolean(original)
-  if type(original) == "boolean" then
-    return original
-  end
-
-  local bool = false
-
-  if original == "true" then
-    bool = true
-  end
-
-  return bool
-end
-
 ---Merges multiple tables into a single table.
 ---@param tables table[] -- Tables to merge
 ---@return table table   -- Merged table
@@ -73,20 +56,6 @@ function M.MergeTables(tables)
   end
 
   return result
-end
-
----Checks if a value is present in a table.
----@param tbl table -- Table to search in
----@param value any -- Value to search for
----@return boolean  -- True if value is present
-function M.Contains(tbl, value)
-  for _, current in pairs(tbl) do
-    if current == value then
-      return true
-    end
-  end
-
-  return false
 end
 
 ---Flattens a nested table structure.
@@ -110,24 +79,6 @@ function M.Flatten(tbl)
   end
 
   return result
-end
-
----Checks if a range represents a single line.
----@param range number[] -- Range to check
----@return boolean       -- True if range is one line
-function M.IsOneLine(range)
-  return range[1] == range[3]
-end
-
----Checks if a range is empty or invalid.
----@param range number[] -- Range to check
----@return boolean       -- True if range is empty or invalid
-function M.IsRangeEmptyOrInvalid(range)
-  if range[3] < range[1] or (M.IsOneLine(range) and range[4] <= range[2]) then
-    return true
-  end
-
-  return false
 end
 
 ---Checks if a buffer name represents a directory.
