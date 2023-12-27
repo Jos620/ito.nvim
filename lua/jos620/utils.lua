@@ -85,7 +85,7 @@ end
 ---@param bufname string -- Buffer name
 ---@return boolean       -- True if buffer is a directory
 function M.IsDirectory(bufname)
-  return vim.fn.isdirectory(vim.fn.fnamemodify(bufname, ":p"))
+  return vim.fn.isdirectory(vim.fn.fnamemodify(bufname, ":p")) == 1
 end
 
 ---Checks if a specified executable is present.
