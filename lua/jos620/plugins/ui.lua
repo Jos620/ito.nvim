@@ -48,6 +48,15 @@ return {
                 skip = true,
               },
             },
+            { -- Hide Gitsigns hunk messages
+              filter = {
+                event = "msg_show",
+                find = "^Hunk %d+ of %d+$",
+              },
+              opts = {
+                skip = true,
+              },
+            },
           },
           presets = {
             lsp_doc_border = true,
