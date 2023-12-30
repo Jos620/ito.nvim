@@ -158,7 +158,6 @@ return {
       -- Base LSP config
       local servers = {
         "html",
-        "cssls",
         "tailwindcss",
         "rust_analyzer",
         "svelte",
@@ -223,6 +222,21 @@ return {
         })
       end
 
+      -- CSS
+      local css_settings = {
+        lint = {
+          unknownAtRules = "ignore",
+        },
+      }
+      lspconfig.cssls.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+          css = css_settings,
+          scss = css_settings,
+        },
+      })
+
       -- TypeScript
       lspconfig.tsserver.setup({
         capabilities = capabilities,
@@ -235,16 +249,8 @@ return {
         filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue", "json" },
         on_attach = on_attach,
         settings = {
-          css = {
-            lint = {
-              unknownAtRules = "ignore",
-            },
-          },
-          scss = {
-            lint = {
-              unknownAtRules = "ignore",
-            },
-          },
+          css = css_settings,
+          scss = css_settings,
         },
       })
 
