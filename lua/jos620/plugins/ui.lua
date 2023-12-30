@@ -57,6 +57,15 @@ return {
                 skip = true,
               },
             },
+            { -- Hide search loop warning
+              filter = {
+                event = "msg_show",
+                find = "^search hit %a+, continuing at %a+$",
+              },
+              opts = {
+                skip = true,
+              },
+            },
           },
           presets = {
             lsp_doc_border = true,
