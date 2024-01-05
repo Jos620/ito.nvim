@@ -522,6 +522,27 @@ return {
     end,
   },
 
+  { -- Hover
+    "roobert/hoversplit.nvim",
+    config = function()
+      local hoversplit = require("hoversplit")
+
+      hoversplit.setup({
+        key_bindings = {
+          split_remain_focused = "<leader>lb",
+          vsplit_remain_focused = "<leader>lv",
+          split = "<leader>lB",
+          vsplit = "<leader>lV",
+        },
+      })
+
+      keymaps.set("n", "<leader>lb", hoversplit.split_remain_focused, "Hoversplit horizontal")
+      keymaps.set("n", "<leader>lv", hoversplit.vsplit_remain_focused, "Hoversplit vertical")
+      keymaps.set("n", "<leader>lB", hoversplit.split, "Hoversplit horizontal")
+      keymaps.set("n", "<leader>lV", hoversplit.vsplit, "Hoversplit vertical")
+    end,
+  },
+
   { -- Snippets
     {
       "L3MON4D3/LuaSnip",
