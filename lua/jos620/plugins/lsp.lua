@@ -527,19 +527,21 @@ return {
     config = function()
       local hoversplit = require("hoversplit")
 
+      local keys = {
+        split_remain_focused = "<Leader>lb",
+        vsplit_remain_focused = "<Leader>lv",
+        split = "<Leader>lB",
+        vsplit = "<Leader>lV",
+      }
+
       hoversplit.setup({
-        key_bindings = {
-          split_remain_focused = "<leader>lb",
-          vsplit_remain_focused = "<leader>lv",
-          split = "<leader>lB",
-          vsplit = "<leader>lV",
-        },
+        key_bindings = keys,
       })
 
-      keymaps.set("n", "<leader>lb", hoversplit.split_remain_focused, "Hoversplit horizontal")
-      keymaps.set("n", "<leader>lv", hoversplit.vsplit_remain_focused, "Hoversplit vertical")
-      keymaps.set("n", "<leader>lB", hoversplit.split, "Hoversplit horizontal")
-      keymaps.set("n", "<leader>lV", hoversplit.vsplit, "Hoversplit vertical")
+      keymaps.set("n", keys.split_remain_focused, hoversplit.split_remain_focused, "Hoversplit horizontal")
+      keymaps.set("n", keys.vsplit_remain_focused, hoversplit.vsplit_remain_focused, "Hoversplit vertical")
+      keymaps.set("n", keys.split, hoversplit.split, "Hoversplit horizontal")
+      keymaps.set("n", keys.vsplit, hoversplit.vsplit, "Hoversplit vertical")
     end,
   },
 
