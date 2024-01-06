@@ -23,7 +23,6 @@ M.set("n", "zh", "30zh", "Scroll left")
 -- Do not yank with "X", "P" and "cc"
 M.set({ "n", "v" }, "x", '"_x', "Do not yank with 'x'")
 M.set({ "n", "v" }, "X", '"_X', "Do not yank with 'X'")
-M.set({ "n", "v" }, "C", '"_C', "Do not yank with 'C'")
 M.set("v", "c", '"_c', "Do not yank with 'c' in visual")
 M.set("n", "cc", '"_cc', "Do not yank with 'cc'")
 M.set("x", "p", '"_dP', "Do not yank with 'p'")
