@@ -365,6 +365,7 @@ return {
         "css",
         "scss",
         "astro",
+        "go",
       },
       config = function()
         local lint = require("lint")
@@ -418,6 +419,7 @@ return {
         "scss",
         "html",
         "astro",
+        "go",
       },
       config = function()
         local conform = require("conform")
@@ -438,6 +440,7 @@ return {
             html = { "prettierd" },
             astro = javascript_formatters,
             templ = { "templ" },
+            go = { "goimports", "gofmt" },
           },
           format_on_save = {
             lsp_fallback = true,
