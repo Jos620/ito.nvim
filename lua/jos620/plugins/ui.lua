@@ -229,8 +229,6 @@ return {
 
               -- File functions
               ["style"] = "󰏘",
-              ["spec"] = "",
-              ["test"] = "",
 
               -- Database
               ["repositor"] = "",
