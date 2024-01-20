@@ -356,7 +356,7 @@ return {
 
   { -- Lualine
     "nvim-lualine/lualine.nvim",
-    event = "VimEnter",
+    event = "VeryLazy",
     config = function()
       local mode_color = {
         normal = colors.green,
