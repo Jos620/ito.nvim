@@ -87,6 +87,7 @@ return {
       notify.setup({
         background_colour = colors.black,
         timeout = 8000,
+        top_down = false,
       })
 
       vim.notify = notify
