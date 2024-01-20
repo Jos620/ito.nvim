@@ -8,7 +8,7 @@ return {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
     },
-    event = "User FileOpened",
+    event = "VeryLazy",
     opts = {
       max_time = 2000,
       max_count = 5,
