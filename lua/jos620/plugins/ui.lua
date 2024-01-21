@@ -123,8 +123,8 @@ return {
         },
       })
 
-      keymaps.set("n", "<Leader>o", ":Oil<Return>", "Toggle Oil")
-      keymaps.set("n", "<Leader>O", ":vsplit<Return>:Oil<Return>", "Open oil nvim")
+      keymaps.set("n", "<Leader>o", ":vsplit<Return>:Oil<Return>", "Open oil nvim")
+      keymaps.set("n", "<Leader>O", ":split<Return>:Oil<Return>", "Open oil nvim")
     end,
   },
 
