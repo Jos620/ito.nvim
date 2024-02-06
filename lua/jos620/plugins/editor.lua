@@ -23,7 +23,18 @@ return {
   { -- Pairs
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    opts = {},
+    config = function()
+      local npairs = require("nvim-autopairs")
+      local Rule = require("nvim-autopairs.rule")
+
+      npairs.setup({
+        check_ts = true,
+      })
+
+      npairs.add_rules({
+        Rule("<", ">"),
+      })
+    end,
   },
 
   { -- HTML tags
