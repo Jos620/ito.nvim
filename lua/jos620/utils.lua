@@ -114,4 +114,83 @@ function M.CheckDependencies(executableList)
   return true
 end
 
+---@class GetFormattersOptions
+---@field linters_only boolean
+
+---Get JavaScript formatters
+---@param options? GetFormattersOptions -- Only return linters
+---@return string[]                     -- List of linters and formatters
+function M.GetJavascriptFormatters(options)
+  options = options or { linters_only = false }
+
+  local linters = {}
+
+  local has_eslint = M.RootHasFile({
+    ".eslintrc",
+    ".eslintrc.js",
+    ".eslintrc.cjs",
+    ".eslintrc.yaml",
+    ".eslintrc.yml",
+    ".eslintrc.json",
+  })
+
+  if has_eslint then
+    table.insert(linters, "eslint_d")
+  end
+
+  if options.linters_only then
+    return linters
+  end
+
+  local formatters = {}
+
+  local has_prettier = M.RootHasFile({
+    ".prettierrc",
+    ".prettierrc.json",
+    ".prettierrc.yml",
+    ".prettierrc.yaml",
+    ".prettierrc.json5",
+    ".prettierrc.js",
+    ".prettierrc.mjs",
+    ".prettierrc.cjs",
+    ".prettier.config.js",
+    "prettier.config.mjs",
+    "prettier.config.cjs",
+    ".prettierrc.toml",
+  })
+
+  if has_prettier then
+    table.insert(formatters, "prettierd")
+  end
+
+  return M.Flatten({ linters, formatters })
+end
+
+---Get CSS formatters
+---@param options? GetFormattersOptions -- Only return linters
+---@return string[]                     -- List of linters and formatters
+function M.GetCSSFormatters(options)
+  options = options or { linters_only = false }
+
+  local linters = {}
+  local formatters = {
+    "prettier",
+  }
+
+  local stylelint_configs = {
+    ".stylelintrc",
+    ".stylelintrc.yaml",
+  }
+
+  if M.RootHasFile(stylelint_configs) then
+    table.insert(linters, "stylelint")
+  end
+
+  if options.linters_only then
+    return linters
+  end
+
+  return M.Flatten({ linters, formatters })
+end
+
 return M

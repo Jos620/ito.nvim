@@ -1,83 +1,6 @@
 local utils = require("jos620.utils")
 local keymaps = require("jos620.core.keymaps")
 
----@class GetFormattersOptions
----@field linters_only boolean
-
----Get JavaScript formatters
----@param options? GetFormattersOptions -- Only return linters
----@return string[]                     -- List of linters and formatters
-local function get_javascript_formatters(options)
-  options = options or { linters_only = false }
-
-  local linters = {}
-
-  local has_eslint = utils.RootHasFile({
-    ".eslintrc",
-    ".eslintrc.js",
-    ".eslintrc.cjs",
-    ".eslintrc.yaml",
-    ".eslintrc.yml",
-    ".eslintrc.json",
-  })
-
-  if has_eslint then
-    table.insert(linters, "eslint_d")
-  end
-
-  if options.linters_only then
-    return linters
-  end
-
-  local formatters = {}
-
-  local has_prettier = utils.RootHasFile({
-    ".prettierrc",
-    ".prettierrc.json",
-    ".prettierrc.yml",
-    ".prettierrc.yaml",
-    ".prettierrc.json5",
-    ".prettierrc.js",
-    ".prettierrc.mjs",
-    ".prettierrc.cjs",
-    ".prettier.config.js",
-    "prettier.config.mjs",
-    "prettier.config.cjs",
-    ".prettierrc.toml",
-  })
-
-  if has_prettier then
-    table.insert(formatters, "prettierd")
-  end
-
-  return utils.Flatten({ linters, formatters })
-end
-
----Get CSS formatters
----@param options? GetFormattersOptions -- Only return linters
----@return string[]                     -- List of linters and formatters
-local function get_css_formatters(options)
-  options = options or { linters_only = false }
-
-  local linters = {}
-  local formatters = {}
-
-  local stylelint_configs = {
-    ".stylelintrc",
-    ".stylelintrc.yaml",
-  }
-
-  if utils.RootHasFile(stylelint_configs) then
-    table.insert(linters, "stylelint")
-  end
-
-  if options.linters_only then
-    return linters
-  end
-
-  return utils.Flatten({ linters, formatters })
-end
-
 return {
   { -- LSP
     "neovim/nvim-lspconfig",
@@ -370,10 +293,10 @@ return {
       config = function()
         local lint = require("lint")
 
-        local javascript_linters = get_javascript_formatters({
+        local javascript_linters = utils.GetJavascriptFormatters({
           linters_only = true,
         })
-        local css_linters = get_css_formatters({
+        local css_linters = utils.GetCSSFormatters({
           linters_only = true,
         })
 
@@ -424,8 +347,8 @@ return {
       config = function()
         local conform = require("conform")
 
-        local javascript_formatters = get_javascript_formatters()
-        local css_formatters = get_css_formatters()
+        local javascript_formatters = utils.GetJavascriptFormatters()
+        local css_formatters = utils.GetCSSFormatters()
 
         conform.setup({
           formatters_by_ft = {
