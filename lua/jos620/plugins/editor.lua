@@ -26,13 +26,14 @@ return {
     config = function()
       local npairs = require("nvim-autopairs")
       local Rule = require("nvim-autopairs.rule")
+      local conds = require("nvim-autopairs.conds")
 
       npairs.setup({
         check_ts = true,
       })
 
       npairs.add_rules({
-        Rule("<", ">"),
+        Rule("<", ">"):with_pair(conds.after_text("(")),
       })
     end,
   },
