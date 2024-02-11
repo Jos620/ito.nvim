@@ -186,10 +186,11 @@ return {
 
         if file_exists and utils.FileIsInWorkingDirectory(last_file_path) then
           local is_empty_buffer = vim.fn.empty(vim.fn.expand("%")) == 1
+          local buffer_has_changes = vim.fn.getbufvar(vim.fn.bufnr("%"), "&modified") == 1
 
           vim.cmd("normal! '0")
 
-          if is_empty_buffer then
+          if is_empty_buffer and not buffer_has_changes then
             vim.cmd("bdelete #")
           end
         end
