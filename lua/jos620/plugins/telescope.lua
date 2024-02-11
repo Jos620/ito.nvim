@@ -177,22 +177,20 @@ return {
         local is_home = vim.fn.expand("%:p:h") == vim.fn.expand("$HOME")
         local is_git_file = string.find(last_file_path, ".git")
         local is_folder = utils.IsDirectory(last_file_path)
+        local file_exists = vim.fn.filereadable(last_file_path) == 1
+        local is_inside_working_directory = utils.FileIsInWorkingDirectory(last_file_path)
 
-        if is_home or is_git_file or is_folder then
+        if is_home or is_git_file or is_folder or not file_exists or not is_inside_working_directory then
           return
         end
 
-        local file_exists = vim.fn.filereadable(last_file_path) == 1
+        local is_empty_buffer = vim.fn.empty(vim.fn.expand("%")) == 1
+        local buffer_has_changes = vim.fn.getbufvar(vim.fn.bufnr("%"), "&modified") == 1
 
-        if file_exists and utils.FileIsInWorkingDirectory(last_file_path) then
-          local is_empty_buffer = vim.fn.empty(vim.fn.expand("%")) == 1
-          local buffer_has_changes = vim.fn.getbufvar(vim.fn.bufnr("%"), "&modified") == 1
+        vim.cmd("normal! '0")
 
-          vim.cmd("normal! '0")
-
-          if is_empty_buffer and not buffer_has_changes then
-            vim.cmd("bdelete #")
-          end
+        if is_empty_buffer and not buffer_has_changes then
+          vim.cmd("bdelete #")
         end
       end, "Go to last opened file")
     end,
