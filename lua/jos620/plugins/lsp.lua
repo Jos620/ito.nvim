@@ -1,12 +1,45 @@
+local utils = require("jos620.utils")
+local keymaps = require("jos620.core.keymaps")
+
 return {
   { -- LSP
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "hrsh7th/cmp-nvim-lsp",
+    },
     config = function()
       local lspconfig = require("lspconfig")
 
       local on_attach = function(client, buffer)
-        require("jos620.core.keymaps").setup_lsp_keymaps(buffer)
+        local opts = { noremap = true, silent = true, buffer = buffer }
+
+        keymaps.set("n", "K", vim.lsp.buf.hover, "Show hover doc", opts)
+
+        keymaps.set("n", "gd", function()
+          require("telescope.builtin").lsp_definitions({
+            reuse_win = true,
+          })
+        end, "Go to definition", opts)
+        keymaps.set("n", "gi", vim.lsp.buf.implementation, "Go to implementation", opts)
+        keymaps.set("n", "gr", vim.lsp.buf.references, "Go to references", opts)
+        keymaps.set("n", "<Leader>la", vim.lsp.buf.code_action, "Code action", opts)
+        keymaps.set("n", "<Leader>lr", vim.lsp.buf.rename, "Rename symbol", opts)
+
+        local diagnostic_opts = {
+          float = {
+            border = "rounded",
+          },
+        }
+
+        keymaps.set("n", "<Leader>lj", function()
+          vim.diagnostic.goto_next(diagnostic_opts)
+        end, "Go to next diagnostic", opts)
+
+        keymaps.set("n", "<Leader>lk", function()
+          vim.diagnostic.goto_prev(diagnostic_opts)
+        end, "Go to previous diagnostic", opts)
 
         -- Stop tsserver when in Vue project
         local is_vue_project = lspconfig.util.root_pattern({
@@ -29,9 +62,8 @@ return {
       end
 
       -- Enable auto completion
-      local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-      local capabilities = cmp_nvim_lsp_status and cmp_nvim_lsp.default_capabilities()
-        or vim.lsp.protocol.make_client_capabilities()
+      local cmp_nvim_lsp = require("cmp_nvim_lsp")
+      local capabilities = cmp_nvim_lsp.default_capabilities() or vim.lsp.protocol.make_client_capabilities()
 
       -- Folding
       capabilities.textDocument.foldingRange = {
@@ -39,19 +71,26 @@ return {
         lineFoldingOnly = true,
       }
 
+      -- Additional filetypes
+      vim.filetype.add({
+        extension = {
+          templ = "templ",
+        },
+      })
+
       -- Base LSP config
       local servers = {
         "html",
-        "cssls",
         "tailwindcss",
         "rust_analyzer",
         "svelte",
         "prismals",
         "unocss",
         "marksman",
-        "tsserver",
         "dockerls",
         "bufls",
+        "astro",
+        "templ",
       }
 
       for _, server in ipairs(servers) do
@@ -106,21 +145,35 @@ return {
         })
       end
 
+      -- CSS
+      local css_settings = {
+        lint = {
+          unknownAtRules = "ignore",
+        },
+      }
+      lspconfig.cssls.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+          css = css_settings,
+          scss = css_settings,
+        },
+      })
+
+      -- TypeScript
+      lspconfig.tsserver.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git", "."),
+      })
+
       -- Vue
       lspconfig.volar.setup({
         filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue", "json" },
         on_attach = on_attach,
         settings = {
-          css = {
-            lint = {
-              unknownAtRules = "ignore",
-            },
-          },
-          scss = {
-            lint = {
-              unknownAtRules = "ignore",
-            },
-          },
+          css = css_settings,
+          scss = css_settings,
         },
       })
 
@@ -140,6 +193,14 @@ return {
           },
         },
       })
+
+      -- HTMX
+      lspconfig.htmx.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        cmd = { "htmx-lsp" },
+        filetypes = { "html", "astro" },
+      })
     end,
   },
 
@@ -147,9 +208,18 @@ return {
     {
       "williamboman/mason.nvim",
       lazy = false,
-      opts = {
-        PATH = "prepend",
-      },
+      config = function()
+        local status, mason = pcall(require, "mason")
+        if not status then
+          return
+        end
+
+        mason.setup({
+          PATH = "prepend",
+        })
+
+        keymaps.set("n", "<Leader>mm", ":Mason<Return>", "Launch Mason")
+      end,
     },
 
     {
@@ -158,7 +228,7 @@ return {
         "williamboman/mason.nvim",
         "neovim/nvim-lspconfig",
       },
-      lazy = true,
+      event = "VeryLazy",
       opts = {
         ensure_installed = {
           "html",
@@ -174,71 +244,72 @@ return {
           "prismals",
           "marksman",
           "vuels",
+          "htmx",
+          "astro",
         },
       },
     },
   },
 
-  { -- LSP UI
-    "glepnir/lspsaga.nvim",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-    },
+  { -- Errors
+    "folke/trouble.nvim",
     event = "BufReadPre",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      local lspsaga = require("lspsaga")
+      local trouble = require("trouble")
 
-      lspsaga.setup({
-        ui = {
-          border = "rounded",
-        },
-        move_in_saga = {
-          prev = "<C-k>",
-          next = "<C-j>",
-        },
-        finder = {
-          keys = {
-            toggle_or_open = "<Return>",
-            vsplit = "v",
-            split = "b",
-          },
-        },
-        definition = {
-          edit = "<Return>",
-          vsplit = "v",
-          split = "b",
-        },
-        symbol_in_winbar = {
-          enable = false,
-        },
-        beacon = {
-          enable = false,
-        },
-        lightbulb = {
-          enable = false,
-        },
-        hover = {
-          open_link = "o",
+      trouble.setup({
+        auto_close = true,
+        action_keys = {
+          open_split = { "<C-b>" },
+          open_vsplit = { "<C-v>" },
         },
       })
+
+      keymaps.set("n", "<Leader>lt", trouble.toggle, "Toggle trouble")
+
+      keymaps.set("n", "<Leader>ld", function()
+        trouble.open("document_diagnostics")
+      end, "Open document diagnostics")
+      keymaps.set("n", "<Leader>lw", function()
+        trouble.open("workspace_diagnostics")
+      end, "Open workspace diagnostics")
     end,
   },
 
   { -- Lint / format
-    {
+    { -- Lint
       "mfussenegger/nvim-lint",
-      event = { "BufReadPre", "BufNewFile" },
+      ft = {
+        "typescript",
+        "javascript",
+        "typescriptreact",
+        "javascriptreact",
+        "vue",
+        "css",
+        "scss",
+        "astro",
+        "go",
+      },
       config = function()
         local lint = require("lint")
 
+        local javascript_linters = utils.GetJavascriptFormatters({
+          linters_only = true,
+        })
+        local css_linters = utils.GetCSSFormatters({
+          linters_only = true,
+        })
+
         lint.linters_by_ft = {
-          typescript = { "eslint_d" },
-          javascript = { "eslint_d" },
-          typescriptreact = { "eslint_d" },
-          javascriptreact = { "eslint_d" },
-          vue = { "eslint_d" },
-          css = { "stylelint" },
-          scss = { "stylelint" },
+          typescript = javascript_linters,
+          javascript = javascript_linters,
+          typescriptreact = javascript_linters,
+          javascriptreact = javascript_linters,
+          vue = javascript_linters,
+          css = css_linters,
+          scss = css_linters,
+          astro = javascript_linters,
         }
 
         local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
@@ -253,25 +324,32 @@ return {
           end,
         })
 
-        require("jos620.core.keymaps").setup_linting_keymaps(lint)
+        keymaps.set("n", "<Leader>lL", function()
+          lint.try_lint()
+        end, "Lint file")
       end,
     },
 
-    {
+    { -- Format
       "stevearc/conform.nvim",
-      event = { "BufReadPre", "BufNewFile" },
+      ft = {
+        "typescript",
+        "javascript",
+        "typescriptreact",
+        "javascriptreact",
+        "vue",
+        "lua",
+        "css",
+        "scss",
+        "html",
+        "astro",
+        "go",
+      },
       config = function()
         local conform = require("conform")
 
-        local javascript_formatters = { "eslint_d" }
-        local prettier_configs = {
-          ".prettierrc",
-          ".prettierrc.yaml",
-        }
-
-        if RootHasFile(prettier_configs) then
-          table.insert(javascript_formatters, "prettierd")
-        end
+        local javascript_formatters = utils.GetJavascriptFormatters()
+        local css_formatters = utils.GetCSSFormatters()
 
         conform.setup({
           formatters_by_ft = {
@@ -281,9 +359,12 @@ return {
             javascriptreact = javascript_formatters,
             vue = javascript_formatters,
             lua = { "stylua" },
-            css = { "stylelint" },
-            scss = { "stylelint" },
+            css = css_formatters,
+            scss = css_formatters,
             html = { "prettierd" },
+            astro = javascript_formatters,
+            templ = { "templ" },
+            go = { "goimports", "gofmt" },
           },
           format_on_save = {
             lsp_fallback = true,
@@ -292,7 +373,13 @@ return {
           },
         })
 
-        require("jos620.core.keymaps").setup_formatting_keymaps(conform)
+        keymaps.set({ "n", "v" }, "<Leader>lF", function()
+          conform.format({
+            lsp_fallback = true,
+            async = false,
+            timeout_ms = 500,
+          })
+        end, "Format file or range")
       end,
     },
   },
@@ -362,6 +449,30 @@ return {
     end,
   },
 
+  { -- Hover
+    "roobert/hoversplit.nvim",
+    event = "BufReadPre",
+    config = function()
+      local hoversplit = require("hoversplit")
+
+      local keys = {
+        split_remain_focused = "<Leader>lb",
+        vsplit_remain_focused = "<Leader>lv",
+        split = "<Leader>lB",
+        vsplit = "<Leader>lV",
+      }
+
+      hoversplit.setup({
+        key_bindings = keys,
+      })
+
+      keymaps.set("n", keys.split_remain_focused, hoversplit.split_remain_focused, "Hoversplit horizontal")
+      keymaps.set("n", keys.vsplit_remain_focused, hoversplit.vsplit_remain_focused, "Hoversplit vertical")
+      keymaps.set("n", keys.split, hoversplit.split, "Hoversplit horizontal")
+      keymaps.set("n", keys.vsplit, hoversplit.vsplit, "Hoversplit vertical")
+    end,
+  },
+
   { -- Snippets
     {
       "L3MON4D3/LuaSnip",
@@ -399,7 +510,7 @@ return {
           },
           lsp = {
             on_attach = function(_, buffer)
-              require("jos620.core.keymaps").setup_lsp_keymaps(buffer)
+              keymaps.setup_lsp_keymaps(buffer)
             end,
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
           },
@@ -412,6 +523,7 @@ return {
 
     { -- Markdown
       "ixru/nvim-markdown",
+      ft = { "markdown" },
     },
   },
 }

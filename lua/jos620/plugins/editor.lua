@@ -8,7 +8,7 @@ return {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
     },
-    event = "User FileOpened",
+    event = "VeryLazy",
     opts = {
       max_time = 2000,
       max_count = 5,
@@ -23,7 +23,19 @@ return {
   { -- Pairs
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    opts = {},
+    config = function()
+      local npairs = require("nvim-autopairs")
+      local Rule = require("nvim-autopairs.rule")
+      local conds = require("nvim-autopairs.conds")
+
+      npairs.setup({
+        check_ts = true,
+      })
+
+      npairs.add_rules({
+        Rule("<", ">"):with_pair(conds.after_text("(")),
+      })
+    end,
   },
 
   { -- HTML tags
@@ -65,13 +77,12 @@ return {
     },
     config = function()
       require("ufo").setup()
-      require("jos620.core.keymaps").setup_fold_keymaps()
     end,
   },
 
   { -- Comments
     "numToStr/Comment.nvim",
-    event = "BufRead",
+    event = "VeryLazy",
     opts = {},
   },
 
@@ -86,9 +97,9 @@ return {
       colors = {
         error = { colors.red },
         warning = { colors.yellow },
-        info = { colors.blue },
+        info = { colors.yellow },
         hint = { colors.green },
-        default = { colors.white },
+        default = { colors.blue },
         test = { colors.cyan },
       },
 

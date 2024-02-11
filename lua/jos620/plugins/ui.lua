@@ -1,70 +1,111 @@
 local colors = require("jos620.core.colors")
+local keymaps = require("jos620.core.keymaps")
 
 return {
   { -- Better UI for Neovim
-    "folke/noice.nvim",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
+    {
+      "folke/noice.nvim",
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+        "rcarriga/nvim-notify",
+      },
+      config = function()
+        require("noice").setup({
+          routes = {
+            { -- Hide "No information available" message
+              filter = {
+                event = "notify",
+                find = "No information available",
+              },
+              opts = {
+                skip = true,
+              },
+            },
+            { -- Hide search count
+              filter = {
+                event = "msg_show",
+                kind = "search_count",
+              },
+              opts = {
+                skip = true,
+              },
+            },
+            { -- Hide written message
+              filter = {
+                event = "msg_show",
+                find = "written$",
+              },
+              opts = {
+                skip = true,
+              },
+            },
+            { -- Hide Sneak messages
+              filter = {
+                event = "msg_show",
+                find = "^" .. (vim.g["sneak#prompt"] or ">") .. ".*",
+              },
+              opts = {
+                skip = true,
+              },
+            },
+            { -- Hide Gitsigns hunk messages
+              filter = {
+                event = "msg_show",
+                find = "^Hunk %d+ of %d+$",
+              },
+              opts = {
+                skip = true,
+              },
+            },
+            { -- Hide search loop warning
+              filter = {
+                event = "msg_show",
+                find = "^search hit %a+, continuing at %a+$",
+              },
+              opts = {
+                skip = true,
+              },
+            },
+          },
+          presets = {
+            lsp_doc_border = true,
+          },
+          lsp = {
+            signature = {
+              auto_open = {
+                enabled = false,
+              },
+            },
+          },
+        })
+      end,
     },
-    config = function()
-      require("noice").setup({
-        routes = {
-          { -- Hide "No information available" message
-            filter = {
-              event = "notify",
-              find = "No information available",
-            },
-            opts = {
-              skip = true,
-            },
-          },
-          { -- Hide search count
-            filter = {
-              event = "msg_show",
-              kind = "search_count",
-            },
-            opts = {
-              skip = true,
-            },
-          },
-          { -- Hide written message
-            filter = {
-              event = "msg_show",
-              find = "written$",
-            },
-            opts = {
-              skip = true,
-            },
-          },
-          { -- Hide Sneak messages
-            filter = {
-              event = "msg_show",
-              find = "^" .. (vim.g["sneak#prompt"] or ">") .. ".*",
-            },
-            opts = {
-              skip = true,
-            },
-          },
-        },
-        presets = {
-          lsp_doc_border = true,
-        },
-      })
-    end,
+
+    {
+      "stevearc/dressing.nvim",
+      event = "VeryLazy",
+    },
   },
 
   { -- Notifications
     "rcarriga/nvim-notify",
+    event = "VeryLazy",
     config = function()
       local notify = require("notify")
 
       notify.setup({
         background_colour = colors.black,
         timeout = 8000,
+        top_down = false,
       })
 
       vim.notify = notify
+
+      keymaps.set("n", "<Leader>h", function()
+        vim.cmd([[nohlsearch]])
+        vim.cmd([[echom '']])
+        notify.dismiss()
+      end, "Clear screen")
     end,
   },
 
@@ -90,6 +131,9 @@ return {
           show_hidden = true,
         },
       })
+
+      keymaps.set("n", "<Leader>o", ":vsplit<Return>:Oil<Return>", "Open oil nvim")
+      keymaps.set("n", "<Leader>O", ":split<Return>:Oil<Return>", "Open oil nvim")
     end,
   },
 
@@ -97,15 +141,16 @@ return {
     "akinsho/bufferline.nvim",
     event = "User FileOpened",
     config = function()
+      local bufferline = require("bufferline")
+
       local normal = {
         fg = colors.gray,
         bg = colors.black,
       }
 
-      local bold = {
+      local selected = {
         fg = colors.white,
         bg = colors.darkgray,
-        bold = true,
       }
 
       local black = {
@@ -163,8 +208,9 @@ return {
         bg = colors.darkgray,
       }
 
-      require("bufferline").setup({
+      bufferline.setup({
         options = {
+          style_preset = bufferline.style_preset.no_bold,
           close_command = "bdelete! %d",
           diagnostics = "nvim_lsp",
           separator_style = {
@@ -193,8 +239,6 @@ return {
 
               -- File functions
               ["style"] = "󰏘",
-              ["spec"] = "",
-              ["test"] = "",
 
               -- Database
               ["repositor"] = "",
@@ -239,7 +283,7 @@ return {
 
           -- Buffers
           buffer_visible = normal,
-          buffer_selected = bold,
+          buffer_selected = selected,
 
           -- Numbers
           numbers = normal,
@@ -302,7 +346,7 @@ return {
           indicator_selected = green,
 
           -- Pick
-          pick_selected = bold,
+          pick_selected = selected,
           pick_visible = normal,
           pick = normal,
 
@@ -310,12 +354,17 @@ return {
           offset_separator = black,
         },
       })
+
+      keymaps.set("n", "H", ":BufferLineCyclePrev<Return>", "Previous buffer")
+      keymaps.set("n", "L", ":BufferLineCycleNext<Return>", "Next buffer")
+      keymaps.set("n", "<Leader>,", ":BufferLineMovePrev<Return>", "Move buffer left")
+      keymaps.set("n", "<Leader>.", ":BufferLineMoveNext<Return>", "Move buffer right")
     end,
   },
 
   { -- Lualine
     "nvim-lualine/lualine.nvim",
-    event = "VimEnter",
+    event = "VeryLazy",
     config = function()
       local mode_color = {
         normal = colors.green,
@@ -398,7 +447,11 @@ return {
 
     {
       "szw/vim-maximizer",
+      event = "VeryLazy",
       cmd = { "MaximizerToggle" },
+      config = function()
+        keymaps.set("n", "<Leader>sm", ":MaximizerToggle<Return>", "Maximize window")
+      end,
     },
   },
 
@@ -408,6 +461,9 @@ return {
       event = "BufRead",
       config = function()
         vim.g["sneak#prompt"] = ">"
+
+        keymaps.set("n", "f", "<Plug>Sneak_f")
+        keymaps.set("n", "F", "<Plug>Sneak_F")
       end,
     },
 

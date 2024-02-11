@@ -1,47 +1,24 @@
--- Load all lua files in a directory
-function _G.LoadPath(path)
-  for _, file in ipairs(vim.fn.readdir(path)) do
-    local full_path = path .. "/" .. file
+local M = {}
 
-    if vim.fn.isdirectory(full_path) == 1 then
-      LoadPath(full_path)
-    elseif file:match("%.lua$") then
-      local load = loadfile(full_path)
+---Checks if any of the specified files exist in the root directory.
+---@param files string[] -- List of file names
+---@return boolean       -- True if any file exists
+function M.RootHasFile(files)
+  local flatFiles = M.Flatten({ files })
 
-      if load then
-        load()
-      else
-        print("Error loading plugin file: " .. full_path)
-      end
-    end
-  end
-end
-
--- Reload configuration
-function _G.ReloadConfig()
-  LoadPath(vim.fn.stdpath("config") .. "/after/plugin")
-
-  for name in pairs(package.loaded) do
-    if name:match("^jos620") then
-      package.loaded[name] = nil
-    end
-  end
-  dofile(vim.env.MYVIMRC)
-
-  print("Reloaded!")
-end
-
-function _G.RootHasFile(...)
-  local files = Flatten({ ... })
-
-  for _, file in ipairs(files) do
+  for _, file in ipairs(flatFiles) do
     if vim.fn.filereadable(vim.fn.getcwd() .. "/" .. file) == 1 then
       return true
     end
   end
+
+  return false
 end
 
-function _G.FileIsInWorkingDirectory(filepath)
+---Checks if a given file path is within the working directory.
+---@param filepath string -- File path to check
+---@return boolean        -- True if file is in working directory
+function M.FileIsInWorkingDirectory(filepath)
   local cwd = vim.fn.getcwd()
 
   if filepath:sub(1, #cwd) == cwd then
@@ -51,7 +28,10 @@ function _G.FileIsInWorkingDirectory(filepath)
   return false
 end
 
-function _G.GetFilePathByMark(mark)
+---Retrieves the file path associated with a specified mark.
+---@param mark string -- Mark to search for
+---@return string|nil -- File path or nil if not found
+function M.GetFilePathByMark(mark)
   local list = vim.fn.getmarklist()
 
   for _, item in ipairs(list) do
@@ -59,30 +39,18 @@ function _G.GetFilePathByMark(mark)
       return item.file
     end
   end
+
+  return nil
 end
 
--- Type conversion
-function _G.StringToBoolean(original)
-  if type(original) == "boolean" then
-    return original
-  end
-
-  local bool = false
-
-  if original == "true" then
-    bool = true
-  end
-
-  return bool
-end
-
--- Table merge
-function _G.MergeTable(...)
-  local tables = { ... }
+---Merges multiple tables into a single table.
+---@param tables table[] -- Tables to merge
+---@return table table   -- Merged table
+function M.MergeTables(tables)
   local result = {}
 
-  for _, table in ipairs(tables) do
-    for key, value in pairs(table) do
+  for _, tbl in ipairs(tables) do
+    for key, value in pairs(tbl) do
       result[key] = value
     end
   end
@@ -90,17 +58,10 @@ function _G.MergeTable(...)
   return result
 end
 
-function _G.Contains(tbl, value)
-  for _, current in pairs(tbl) do
-    if current == value then
-      return true
-    end
-  end
-
-  return false
-end
-
-function _G.Flatten(tbl)
+---Flattens a nested table structure.
+---@param tbl any -- Table to flatten
+---@return any[]  -- Flattened table
+function M.Flatten(tbl)
   local result = {}
 
   if type(tbl) ~= "table" then
@@ -109,7 +70,7 @@ function _G.Flatten(tbl)
 
   for _, value in ipairs(tbl) do
     if type(value) == "table" then
-      for _, current in ipairs(Flatten(value)) do
+      for _, current in ipairs(M.Flatten(value)) do
         table.insert(result, current)
       end
     else
@@ -120,26 +81,17 @@ function _G.Flatten(tbl)
   return result
 end
 
--- Range
-function _G.IsOneLine(range)
-  return range[1] == range[3]
+---Checks if a buffer name represents a directory.
+---@param bufname string -- Buffer name
+---@return boolean       -- True if buffer is a directory
+function M.IsDirectory(bufname)
+  return vim.fn.isdirectory(vim.fn.fnamemodify(bufname, ":p")) == 1
 end
 
-function _G.IsRangeEmptyOrInvalid(range)
-  if range[3] < range[1] or (IsOneLine(range) and range[4] <= range[2]) then
-    return true
-  end
-
-  return false
-end
-
--- File / Directory
-function _G.IsDirectory(bufname)
-  return vim.fn.isdirectory(vim.fn.fnamemodify(bufname, ":p"))
-end
-
--- Dependencies
-function _G.CheckDependency(executable)
+---Checks if a specified executable is present.
+---@param executable string -- Executable name
+---@return boolean          -- True if executable is present
+function M.CheckDependency(executable)
   if vim.fn.executable(executable) == 1 then
     return true
   else
@@ -149,12 +101,96 @@ function _G.CheckDependency(executable)
   return false
 end
 
-function _G.CheckDependencies(executable_list)
-  for _, executable in ipairs(executable_list) do
-    if not CheckDependency(executable) then
+---Checks if multiple dependencies are present.
+---@param executableList string[] -- List of executable names
+---@return boolean                -- True if all executables are present
+function M.CheckDependencies(executableList)
+  for _, executable in ipairs(executableList) do
+    if not M.CheckDependency(executable) then
       return false
     end
   end
 
   return true
 end
+
+---@class GetFormattersOptions
+---@field linters_only boolean
+
+---Get JavaScript formatters
+---@param options? GetFormattersOptions -- Only return linters
+---@return string[]                     -- List of linters and formatters
+function M.GetJavascriptFormatters(options)
+  options = options or { linters_only = false }
+
+  local linters = {}
+
+  local has_eslint = M.RootHasFile({
+    ".eslintrc",
+    ".eslintrc.js",
+    ".eslintrc.cjs",
+    ".eslintrc.yaml",
+    ".eslintrc.yml",
+    ".eslintrc.json",
+  })
+
+  if has_eslint then
+    table.insert(linters, "eslint_d")
+  end
+
+  if options.linters_only then
+    return linters
+  end
+
+  local formatters = {}
+
+  local has_prettier = M.RootHasFile({
+    ".prettierrc",
+    ".prettierrc.json",
+    ".prettierrc.yml",
+    ".prettierrc.yaml",
+    ".prettierrc.json5",
+    ".prettierrc.js",
+    ".prettierrc.mjs",
+    ".prettierrc.cjs",
+    ".prettier.config.js",
+    "prettier.config.mjs",
+    "prettier.config.cjs",
+    ".prettierrc.toml",
+  })
+
+  if has_prettier then
+    table.insert(formatters, "prettierd")
+  end
+
+  return M.Flatten({ linters, formatters })
+end
+
+---Get CSS formatters
+---@param options? GetFormattersOptions -- Only return linters
+---@return string[]                     -- List of linters and formatters
+function M.GetCSSFormatters(options)
+  options = options or { linters_only = false }
+
+  local linters = {}
+  local formatters = {
+    "prettier",
+  }
+
+  local stylelint_configs = {
+    ".stylelintrc",
+    ".stylelintrc.yaml",
+  }
+
+  if M.RootHasFile(stylelint_configs) then
+    table.insert(linters, "stylelint")
+  end
+
+  if options.linters_only then
+    return linters
+  end
+
+  return M.Flatten({ linters, formatters })
+end
+
+return M

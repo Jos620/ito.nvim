@@ -1,28 +1,10 @@
+local utils = require("jos620.utils")
+
+---@type AugroupFunction
 local augroup = vim.api.nvim_create_augroup
+
+---@type AutocmdFunction
 local autocmd = vim.api.nvim_create_autocmd
-
-autocmd({ "VimEnter" }, {
-  group = augroup("OpenLastFile", {
-    clear = true,
-  }),
-  nested = true,
-  callback = function()
-    if vim.fn.argc() ~= 0 then
-      return
-    end
-
-    local last_file_path = GetFilePathByMark("0")
-
-    if string.find(last_file_path, ".git") then
-      return
-    end
-
-    if FileIsInWorkingDirectory(last_file_path) then
-      vim.cmd("normal! '0")
-      vim.cmd("bdelete #")
-    end
-  end,
-})
 
 autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.conf",
@@ -64,7 +46,7 @@ autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
   nested = true,
   callback = function(args)
     local bufname = vim.api.nvim_buf_get_name(args.buf)
-    if IsDirectory(bufname) then
+    if utils.IsDirectory(bufname) then
       vim.api.nvim_del_augroup_by_name("_dir_opened")
       vim.cmd("do User DirOpened")
       vim.api.nvim_exec_autocmds(args.event, { buffer = args.buf, data = args.data })

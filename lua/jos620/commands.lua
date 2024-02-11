@@ -1,10 +1,9 @@
-local function command(name, fn)
-  vim.cmd("command! " .. name .. " lua " .. fn)
+---Create a command
+---@param name string
+---@param lua_script string
+local function command(name, lua_script)
+  vim.cmd("command! " .. name .. " lua " .. lua_script)
 end
-
-command("ReloadConfig", "ReloadConfig()")
 
 command("Harpoon", "require('harpoon.ui').toggle_quick_menu()")
 command("HarpoonAdd", "require('harpoon.mark').add_file()")
-
-command("NullLsFormat", "NullLsFormat(vim.api.nvim_get_current_buf())")

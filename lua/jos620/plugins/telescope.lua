@@ -1,11 +1,15 @@
+local utils = require("jos620.utils")
+local keymaps = require("jos620.core.keymaps")
+
 return {
   { -- Telescope
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-telescope/telescope-fzf-native.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
+      "ThePrimeagen/harpoon",
     },
-    cmd = "Telescope",
+    event = "VeryLazy",
     keys = {
       {
         "<Leader>F",
@@ -37,18 +41,22 @@ return {
       local actions = require("telescope.actions")
       local fb_actions = require("telescope").extensions.file_browser.actions
 
-      local keymaps = {
+      local telescope_keymaps = {
         ["<C-x>"] = false,
         ["<C-v>"] = actions.select_vertical,
         ["<C-b>"] = actions.select_horizontal,
-        ["q"] = actions.close,
       }
 
       telescope.setup({
         defaults = {
           mappings = {
-            i = keymaps,
-            n = keymaps,
+            i = telescope_keymaps,
+            n = utils.MergeTables({
+              telescope_keymaps,
+              {
+                ["q"] = actions.close,
+              },
+            }),
           },
           -- layout_config = {
           --   preview_width = 0.5,
@@ -57,6 +65,15 @@ return {
           layout_strategy = "horizontal",
           -- sorting_strategy = "ascending",
           winblend = 0,
+          file_ignore_patterns = {
+            "node_modules",
+            "yarn.lock",
+            "package-lock.json",
+            "pnpm-lock.yaml",
+            "\\.git",
+            ".cache",
+            ".DS_Store",
+          },
         },
         extensions = {
           file_browser = {
@@ -89,6 +106,14 @@ return {
         },
       })
 
+      keymaps.set("n", "<Leader>ff", ":Telescope find_files<Return>", "Find files")
+      keymaps.set("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", "Find all files")
+      keymaps.set("n", "<Leader>fh", ":Telescope highlights<Return>", "Find highlights")
+      keymaps.set("n", "<Leader>fs", ":Telescope live_grep<Return>", "Search in files")
+      keymaps.set("n", "<Leader>fb", ":Telescope buffers<Return>", "Find buffers")
+      keymaps.set("n", "<Leader>fo", ":Telescope oldfiles<Return>", "Find recent files")
+      keymaps.set("n", "<Leader>fk", ":Telescope keymaps<Return>", "Find keymaps")
+
       local fzf_status = pcall(require, "telescope._extensions.fzf")
       if fzf_status and vim.fn.executable("fzf") == 1 then
         telescope.load_extension("fzf")
@@ -111,15 +136,63 @@ return {
     build = "make",
     lazy = true,
     cond = function()
-      return CheckDependencies({ "fzf", "make" })
+      return utils.CheckDependencies({ "fzf", "make" })
     end,
   },
 
   { -- Hardpoon
     "ThePrimeagen/harpoon",
     lazy = false,
+    keys = {
+      "<Leader>",
+    },
     config = function()
-      require("jos620.core.keymaps").setup_harpoon_keymaps()
+      local harpoon_status, _ = pcall(require, "harpoon")
+      if not harpoon_status then
+        return
+      end
+
+      local mark = require("harpoon.mark")
+      local ui = require("harpoon.ui")
+
+      keymaps.set("n", "|", function()
+        mark.add_file()
+        ui.toggle_quick_menu()
+      end, "Add file to harpoon")
+
+      keymaps.set("n", "<Leader>|", ui.toggle_quick_menu, "Toggle harpoon menu")
+
+      for i = 1, 9 do
+        keymaps.set("n", "\\" .. tostring(i), function()
+          ui.nav_file(i)
+        end, "Go to harpoon mark " .. i)
+      end
+
+      keymaps.set("n", "\\<Tab>", function()
+        local last_file_path = utils.GetFilePathByMark("0")
+        if last_file_path == nil then
+          return
+        end
+
+        local is_home = vim.fn.expand("%:p:h") == vim.fn.expand("$HOME")
+        local is_git_file = string.find(last_file_path, ".git")
+        local is_folder = utils.IsDirectory(last_file_path)
+        local file_exists = vim.fn.filereadable(last_file_path) == 1
+        local is_inside_working_directory = utils.FileIsInWorkingDirectory(last_file_path)
+
+        if is_home or is_git_file or is_folder or not file_exists or not is_inside_working_directory then
+          return
+        end
+
+        local is_empty_buffer = vim.fn.empty(vim.fn.expand("%")) == 1
+        local buffer_has_changes = vim.fn.getbufvar(vim.fn.bufnr("%"), "&modified") == 1
+
+        vim.cmd("normal! '0")
+
+        if is_empty_buffer and not buffer_has_changes then
+          vim.cmd("bdelete #")
+        end
+      end, "Go to last opened file")
     end,
   },
 }
