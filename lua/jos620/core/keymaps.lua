@@ -48,7 +48,10 @@ M.set("n", "<Leader>sv", "<C-w>v", "Split window vertically")
 M.set("n", "<Leader>sb", "<C-w>s", "Split window horizontally")
 M.set("n", "<Leader>se", "<C-w>=", "Equalize windows")
 
-M.set("n", "<Leader>%", "<C-w>o", "Close other windows")
+M.set("n", "<Leader>%", function()
+  vim.cmd("only")
+  utils.CloseEmptyBuffers()
+end, "Close other windows")
 M.set("n", "<Leader>q", ":quit<Return>", "Quit window")
 M.set("n", "<Leader>x", ":close<Return>", "Close window")
 

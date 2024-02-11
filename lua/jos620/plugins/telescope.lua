@@ -184,14 +184,8 @@ return {
           return
         end
 
-        local is_empty_buffer = vim.fn.empty(vim.fn.expand("%")) == 1
-        local buffer_has_changes = vim.fn.getbufvar(vim.fn.bufnr("%"), "&modified") == 1
-
         vim.cmd("normal! '0")
-
-        if is_empty_buffer and not buffer_has_changes then
-          vim.cmd("bdelete #")
-        end
+        utils.CloseEmptyBuffers()
       end, "Go to last opened file")
     end,
   },

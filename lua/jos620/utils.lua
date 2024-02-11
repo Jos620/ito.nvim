@@ -193,4 +193,39 @@ function M.GetCSSFormatters(options)
   return M.Flatten({ linters, formatters })
 end
 
+---Check if a buffer is empty
+---@param bufnr number -- Buffer number
+---@return boolean     -- True if buffer is empty
+function M.BufferIsEmpty(bufnr)
+  if vim.fn.bufname(bufnr) == "" then
+    return true
+  end
+
+  return false
+end
+
+---Check if a buffer has unsaved changes
+---@param bufnr number -- Buffer number
+---@return boolean     -- True if buffer has unsaved changes
+function M.BufferHasUnsavedChanges(bufnr)
+  if vim.fn.getbufvar(bufnr, "&modified") == 1 then
+    return true
+  end
+
+  return false
+end
+
+---Close all empty buffers
+---@param force? boolean -- Close all buffers regardless of contents
+function M.CloseEmptyBuffers(force)
+  for _, bufnr in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
+    local is_empty = M.BufferIsEmpty(bufnr.bufnr)
+    local has_unsaved_changes = M.BufferHasUnsavedChanges(bufnr.bufnr)
+
+    if is_empty and (force or not has_unsaved_changes) then
+      vim.cmd("bdelete " .. bufnr.bufnr)
+    end
+  end
+end
+
 return M
