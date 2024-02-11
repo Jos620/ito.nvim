@@ -142,7 +142,7 @@ return {
 
   { -- Hardpoon
     "ThePrimeagen/harpoon",
-    event = "VeryLazy",
+    lazy = false,
     keys = {
       "<Leader>",
     },
@@ -167,6 +167,33 @@ return {
           ui.nav_file(i)
         end, "Go to harpoon mark " .. i)
       end
+
+      keymaps.set("n", "\\<Tab>", function()
+        local last_file_path = utils.GetFilePathByMark("0")
+        if last_file_path == nil then
+          return
+        end
+
+        local is_home = vim.fn.expand("%:p:h") == vim.fn.expand("$HOME")
+        local is_git_file = string.find(last_file_path, ".git")
+        local is_folder = utils.IsDirectory(last_file_path)
+
+        if is_home or is_git_file or is_folder then
+          return
+        end
+
+        local file_exists = vim.fn.filereadable(last_file_path) == 1
+
+        if file_exists and utils.FileIsInWorkingDirectory(last_file_path) then
+          local is_empty_buffer = vim.fn.empty(vim.fn.expand("%")) == 1
+
+          vim.cmd("normal! '0")
+
+          if is_empty_buffer then
+            vim.cmd("bdelete #")
+          end
+        end
+      end, "Go to last opened file")
     end,
   },
 }
