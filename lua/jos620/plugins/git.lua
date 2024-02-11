@@ -5,7 +5,7 @@ return {
   { -- Git UI
     {
       "tpope/vim-fugitive",
-      lazy = false,
+      event = "VeryLazy",
       config = function()
         keymaps.set("n", "gs", ":vertical rightbelow Git<Return>", "Open git status")
       end,

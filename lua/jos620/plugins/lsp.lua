@@ -253,6 +253,7 @@ return {
 
   { -- Errors
     "folke/trouble.nvim",
+    event = "BufReadPre",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       local trouble = require("trouble")
@@ -450,6 +451,7 @@ return {
 
   { -- Hover
     "roobert/hoversplit.nvim",
+    event = "BufReadPre",
     config = function()
       local hoversplit = require("hoversplit")
 
@@ -521,6 +523,7 @@ return {
 
     { -- Markdown
       "ixru/nvim-markdown",
+      ft = { "markdown" },
     },
   },
 }

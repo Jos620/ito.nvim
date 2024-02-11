@@ -83,11 +83,13 @@ return {
 
     {
       "stevearc/dressing.nvim",
+      event = "VeryLazy",
     },
   },
 
   { -- Notifications
     "rcarriga/nvim-notify",
+    event = "VeryLazy",
     config = function()
       local notify = require("notify")
 
