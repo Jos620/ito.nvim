@@ -1,5 +1,6 @@
 local colors = require("jos620.core.colors")
 local keymaps = require("jos620.core.keymaps")
+local utils = require("jos620.utils")
 
 return {
   { -- Better UI for Neovim
@@ -132,8 +133,18 @@ return {
         },
       })
 
-      keymaps.set("n", "<Leader>o", ":vsplit<Return>:Oil<Return>", "Open oil nvim")
-      keymaps.set("n", "<Leader>O", ":split<Return>:Oil<Return>", "Open oil nvim")
+      local split_shortcuts = {
+        ["<Leader>o"] = "vsplit",
+        ["<Leader>O"] = "split",
+      }
+
+      for key, action in pairs(split_shortcuts) do
+        keymaps.set("n", key, function()
+          vim.cmd(action)
+          vim.cmd("Oil")
+          utils.CloseEmptyBuffers()
+        end, "Open file explorer")
+      end
     end,
   },
 
