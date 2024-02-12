@@ -58,6 +58,7 @@ return {
       "glimmer",
       "handlebars",
       "hbs",
+      "templ",
     },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
