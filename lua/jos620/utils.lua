@@ -115,14 +115,24 @@ function M.CheckDependencies(executableList)
 end
 
 ---@class GetFormattersOptions
----@field linters_only boolean
+---@field linters_only? boolean
 
 ---Get JavaScript formatters
 ---@param options? GetFormattersOptions -- Only return linters
 ---@return string[]                     -- List of linters and formatters
 function M.GetJavascriptFormatters(options)
-  options = options or { linters_only = false }
+  ---@type GetFormattersOptions
+  local defaultOptions = {
+    linters_only = false,
+  }
 
+  ---@type GetFormattersOptions
+  local mergedOptions = M.MergeTables({
+    defaultOptions,
+    options,
+  })
+
+  ---@type string[]
   local linters = {}
 
   local has_eslint = M.RootHasFile({
@@ -138,10 +148,11 @@ function M.GetJavascriptFormatters(options)
     table.insert(linters, "eslint_d")
   end
 
-  if options.linters_only then
+  if mergedOptions.linters_only then
     return linters
   end
 
+  ---@type string[]
   local formatters = {}
 
   local has_prettier = M.RootHasFile({
