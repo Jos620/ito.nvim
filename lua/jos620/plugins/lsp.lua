@@ -12,7 +12,7 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
 
-      local on_attach = function(client, buffer)
+      local on_attach = function(_, buffer)
         local opts = { noremap = true, silent = true, buffer = buffer }
 
         keymaps.set("n", "K", vim.lsp.buf.hover, "Show hover doc", opts)
@@ -40,25 +40,6 @@ return {
         keymaps.set("n", "<Leader>lk", function()
           vim.diagnostic.goto_prev(diagnostic_opts)
         end, "Go to previous diagnostic", opts)
-
-        -- Stop tsserver when in Vue project
-        local is_vue_project = lspconfig.util.root_pattern({
-          "vue.config.{js,ts}",
-          "nuxt.config.{js,ts}",
-          "[Aa]pp.vue",
-          "./src/[Aa]pp.vue",
-          "./src/renderer/src/[Aa]pp.vue",
-        })(vim.fn.getcwd())
-
-        if is_vue_project then
-          if client.name == "tsserver" then
-            client.stop()
-          end
-        else
-          if client.name == "volar" then
-            client.stop()
-          end
-        end
       end
 
       -- Enable auto completion
@@ -160,13 +141,6 @@ return {
         },
       })
 
-      -- TypeScript
-      lspconfig.tsserver.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git", "."),
-      })
-
       -- Vue
       lspconfig.volar.setup({
         filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue", "json" },
@@ -237,7 +211,6 @@ return {
           "unocss",
           "volar",
           "svelte",
-          "tsserver",
           "rust_analyzer",
           "lua_ls",
           "jsonls",
