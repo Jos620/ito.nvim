@@ -33,6 +33,7 @@ return {
 
       npairs.add_rules({
         Rule("<", ">"):with_pair(conds.after_text("(")),
+        Rule("<", ">"):with_pair(conds.after_text(">")),
       })
     end,
   },
