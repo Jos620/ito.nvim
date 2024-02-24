@@ -112,4 +112,18 @@ return {
       keymaps.set("n", "<Leader>U", ":UndotreeFocus<Return>", "Focus Undo Tree")
     end,
   },
+
+  { -- PR comments
+    "dlvhdr/gh-addressed.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "folke/trouble.nvim",
+    },
+    cmd = "GhReviewComments",
+    keys = { "<Leader>lg" },
+    config = function()
+      keymaps.set("n", "<Leader>lg", ":GhReviewComments<Return>", "Open GitHub review comments")
+    end,
+  },
 }
