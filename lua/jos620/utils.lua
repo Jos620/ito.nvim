@@ -177,6 +177,30 @@ function M.GetJavascriptFormatters(options)
   return M.Flatten({ linters, formatters })
 end
 
+---Get Typescript server path
+---@param path string         -- Path to search for typescript server
+---@param defaultPath? string -- Default path to use if not found
+---@return string             -- Path to typescript server
+function M.GetTypescriptServerPath(path, defaultPath)
+  local lspconfig = require("lspconfig")
+
+  local global_ts = defaultPath or "/usr/local/lib/node_modules/typescript/lib"
+  local found_ts = ""
+
+  local function check_dir(dir_path)
+    found_ts = lspconfig.util.path.join(dir_path, "node_modules", "typescript", "lib")
+    if lspconfig.util.path.exists(found_ts) then
+      return dir_path
+    end
+  end
+
+  if lspconfig.util.search_ancestors(path, check_dir) then
+    return found_ts
+  else
+    return global_ts
+  end
+end
+
 ---Get CSS formatters
 ---@param options? GetFormattersOptions -- Only return linters
 ---@return string[]                     -- List of linters and formatters

@@ -145,6 +145,12 @@ return {
       lspconfig.volar.setup({
         filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue", "json" },
         on_attach = on_attach,
+        root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git", "."),
+        init_options = {
+          typescript = {
+            tsdk = utils.GetTypescriptServerPath(vim.fn.getcwd()),
+          },
+        },
         settings = {
           css = css_settings,
           scss = css_settings,
