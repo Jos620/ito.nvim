@@ -1,4 +1,3 @@
-local colors = require("jos620.core.colors")
 local scroll_keys = { "<C-u>", "<C-d>", "zt", "zz", "zb" }
 
 return {
@@ -94,24 +93,31 @@ return {
     },
     cmd = { "TodoLocList", "TodoQuickFix", "TodoTelescope" },
     event = "BufRead",
-    opts = {
-      colors = {
-        error = { colors.red },
-        warning = { colors.yellow },
-        info = { colors.yellow },
-        hint = { colors.green },
-        default = { colors.blue },
-        test = { colors.cyan },
-      },
+    config = function()
+      local todo_comments = require("todo-comments")
+      local utils = require("jos620.utils")
 
-      keywords = {
-        FIX = { color = "error" },
-        TODO = { color = "info" },
-        HACK = { color = "warning" },
-        WARN = { color = "warning" },
-        NOTE = { color = "hint" },
-      },
-    },
+      local colors = utils.GetCurrentThemeColors()
+
+      todo_comments.setup({
+        colors = {
+          error = { colors.red },
+          warning = { colors.yellow },
+          info = { colors.yellow },
+          hint = { colors.green },
+          default = { colors.blue },
+          test = { colors.cyan },
+        },
+
+        keywords = {
+          FIX = { color = "error" },
+          TODO = { color = "info" },
+          HACK = { color = "warning" },
+          WARN = { color = "warning" },
+          NOTE = { color = "hint" },
+        },
+      })
+    end,
   },
 
   { -- Scroll

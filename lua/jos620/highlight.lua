@@ -1,4 +1,5 @@
-local colors = require("jos620.core.colors")
+local utils = require("jos620.utils")
+local colors = utils.GetCurrentThemeColors()
 
 ---Set highlight
 ---@param group string

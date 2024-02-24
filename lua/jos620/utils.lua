@@ -239,4 +239,18 @@ function M.CloseEmptyBuffers(force)
   end
 end
 
+---Get the current theme colors
+---@param colorscheme? colorscheme
+---@return Colors
+function M.GetCurrentThemeColors(colorscheme)
+  local theme_colors = require("jos620.theme.colors")
+
+  local current_theme = colorscheme or vim.api.nvim_exec("colorscheme", true)
+  if not current_theme or theme_colors[current_theme] == nil then
+    current_theme = "default"
+  end
+
+  return theme_colors[current_theme]
+end
+
 return M

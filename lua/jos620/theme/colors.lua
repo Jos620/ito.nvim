@@ -1,5 +1,7 @@
----@class Colors
-local M = {
+---@type { [colorscheme]: Colors }
+local M = {}
+
+M.vitesse = {
   white = "#ffffff",
   black = "#181818",
   darkgray = "#292929",
@@ -12,5 +14,7 @@ local M = {
   yellow = "#e6cc77",
   orange = "#d4976c",
 }
+
+M.default = M.vitesse
 
 return M

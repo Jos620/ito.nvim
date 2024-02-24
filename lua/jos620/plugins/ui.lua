@@ -1,6 +1,7 @@
-local colors = require("jos620.core.colors")
 local keymaps = require("jos620.core.keymaps")
 local utils = require("jos620.utils")
+
+local colors = utils.GetCurrentThemeColors()
 
 return {
   { -- Better UI for Neovim
