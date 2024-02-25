@@ -1,8 +1,6 @@
 require("jos620.types")
 require("jos620.utils")
-
-require("jos620.core.options")
-require("jos620.core.keymaps")
-require("jos620.core.plugins")
-
+require("jos620.options")
+require("jos620.keymaps")
+require("jos620.lazy")
 require("jos620.highlight")

@@ -1,5 +1,5 @@
 local utils = require("jos620.utils")
-local keymaps = require("jos620.core.keymaps")
+local keymaps = require("jos620.keymaps")
 
 return {
   { -- LSP

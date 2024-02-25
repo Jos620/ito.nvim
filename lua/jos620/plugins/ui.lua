@@ -1,4 +1,4 @@
-local keymaps = require("jos620.core.keymaps")
+local keymaps = require("jos620.keymaps")
 local utils = require("jos620.utils")
 
 local colors = utils.GetCurrentThemeColors()
