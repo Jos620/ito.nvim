@@ -1,3 +1,12 @@
+local utils = require("jos620.utils")
+
+utils.Autocmd({ "BufRead", "BufNewFile" }, {
+  command = "set colorcolumn=80",
+  group = utils.Augroup("ColorColumn", {
+    clear = true,
+  }),
+})
+
 return {
   { -- Treesitter
     "nvim-treesitter/nvim-treesitter",

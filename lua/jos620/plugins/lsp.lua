@@ -181,6 +181,14 @@ return {
         cmd = { "htmx-lsp" },
         filetypes = { "html", "astro" },
       })
+
+      utils.Autocmd({ "BufRead", "BufNewFile" }, {
+        pattern = "*.conf",
+        command = "set filetype=tmux",
+        group = utils.Augroup("TMUX", {
+          clear = true,
+        }),
+      })
     end,
   },
 
