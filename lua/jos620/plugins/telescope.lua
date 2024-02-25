@@ -187,6 +187,9 @@ return {
         vim.cmd("normal! '0")
         utils.CloseEmptyBuffers()
       end, "Go to last opened file")
+
+      utils.Command("Harpoon", "require('harpoon.ui').toggle_quick_menu()")
+      utils.Command("HarpoonAdd", "require('harpoon.mark').add_file()")
     end,
   },
 }

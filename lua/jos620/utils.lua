@@ -12,6 +12,13 @@ function M.Augroup(name, options)
   return vim.api.nvim_create_augroup(name, options)
 end
 
+---Create a command
+---@param name string
+---@param lua_script string
+function M.Command(name, lua_script)
+  vim.cmd("command! " .. name .. " lua " .. lua_script)
+end
+
 ---Checks if any of the specified files exist in the root directory.
 ---@param files string[] -- List of file names
 ---@return boolean       -- True if any file exists
