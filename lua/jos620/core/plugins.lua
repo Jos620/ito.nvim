@@ -53,8 +53,8 @@ require("lazy").setup({
 keymaps.set("n", "<Leader>ll", ":Lazy<Return>", "Launch Lazy")
 
 -- Fire FileOpened event
-utils.Autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
-  group = utils.Augroup("_file_opened", {
+utils.CreateAutocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
+  group = utils.CreateAugroup("_file_opened", {
     clear = true,
   }),
   nested = true,
@@ -69,8 +69,8 @@ utils.Autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
 })
 
 -- Fire DirOpened event
-utils.Autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
-  group = utils.Augroup("_dir_opened", {
+utils.CreateAutocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
+  group = utils.CreateAugroup("_dir_opened", {
     clear = true,
   }),
   nested = true,

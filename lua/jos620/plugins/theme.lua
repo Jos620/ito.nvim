@@ -1,8 +1,8 @@
 local utils = require("jos620.utils")
 
-utils.Autocmd({ "BufRead", "BufNewFile" }, {
+utils.CreateAutocmd({ "BufRead", "BufNewFile" }, {
   command = "set colorcolumn=80",
-  group = utils.Augroup("ColorColumn", {
+  group = utils.CreateAugroup("ColorColumn", {
     clear = true,
   }),
 })

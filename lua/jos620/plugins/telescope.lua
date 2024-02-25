@@ -188,8 +188,8 @@ return {
         utils.CloseEmptyBuffers()
       end, "Go to last opened file")
 
-      utils.Command("Harpoon", "require('harpoon.ui').toggle_quick_menu()")
-      utils.Command("HarpoonAdd", "require('harpoon.mark').add_file()")
+      utils.CreateCommand("Harpoon", "require('harpoon.ui').toggle_quick_menu()")
+      utils.CreateCommand("HarpoonAdd", "require('harpoon.mark').add_file()")
     end,
   },
 }

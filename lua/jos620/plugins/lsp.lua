@@ -182,10 +182,10 @@ return {
         filetypes = { "html", "astro" },
       })
 
-      utils.Autocmd({ "BufRead", "BufNewFile" }, {
+      utils.CreateAutocmd({ "BufRead", "BufNewFile" }, {
         pattern = "*.conf",
         command = "set filetype=tmux",
-        group = utils.Augroup("TMUX", {
+        group = utils.CreateAugroup("TMUX", {
           clear = true,
         }),
       })
@@ -299,13 +299,12 @@ return {
           astro = javascript_linters,
         }
 
-        local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-        vim.api.nvim_create_autocmd({
+        utils.CreateAutocmd({
           "BufWritePost",
           "BufEnter",
           "InsertLeave",
         }, {
-          group = lint_augroup,
+          group = utils.CreateAugroup("lint", { clear = true }),
           callback = function()
             lint.try_lint()
           end,

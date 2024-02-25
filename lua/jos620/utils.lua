@@ -2,20 +2,20 @@ local M = {}
 
 ---Create an autocommand
 ---@type AutocmdFunction
-function M.Autocmd(events, options)
+function M.CreateAutocmd(events, options)
   return vim.api.nvim_create_autocmd(events, options)
 end
 
 ---Create an autocommand group.
 ---@type AugroupFunction
-function M.Augroup(name, options)
+function M.CreateAugroup(name, options)
   return vim.api.nvim_create_augroup(name, options)
 end
 
 ---Create a command
 ---@param name string
 ---@param lua_script string
-function M.Command(name, lua_script)
+function M.CreateCommand(name, lua_script)
   vim.cmd("command! " .. name .. " lua " .. lua_script)
 end
 
