@@ -19,6 +19,20 @@ function M.CreateCommand(name, lua_script)
   vim.cmd("command! " .. name .. " lua " .. lua_script)
 end
 
+---Set highlight
+---@param group string
+---@param options HighlightSetOptions
+function M.SetHighlight(group, options)
+  vim.api.nvim_set_hl(0, group, options)
+end
+--
+---Link two highlight groups
+---@param group string
+---@param link_to string
+function M.LinkHighlightGroups(group, link_to)
+  vim.cmd("highlight! link " .. group .. " " .. link_to)
+end
+
 ---Checks if any of the specified files exist in the root directory.
 ---@param files string[] -- List of file names
 ---@return boolean       -- True if any file exists
