@@ -1,30 +1,24 @@
 local utils = require("jos620.utils")
 
----@type AugroupFunction
-local augroup = vim.api.nvim_create_augroup
-
----@type AutocmdFunction
-local autocmd = vim.api.nvim_create_autocmd
-
-autocmd({ "BufRead", "BufNewFile" }, {
+utils.Autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.conf",
   command = "set filetype=tmux",
-  group = augroup("TMUX", {
+  group = utils.Augroup("TMUX", {
     clear = true,
   }),
 })
 
 -- Add colorcolumn
-autocmd({ "BufRead", "BufNewFile" }, {
+utils.Autocmd({ "BufRead", "BufNewFile" }, {
   command = "set colorcolumn=80",
-  group = augroup("ColorColumn", {
+  group = utils.Augroup("ColorColumn", {
     clear = true,
   }),
 })
 
 -- Fire FileOpened event
-autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
-  group = augroup("_file_opened", {
+utils.Autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
+  group = utils.Augroup("_file_opened", {
     clear = true,
   }),
   nested = true,
@@ -39,8 +33,8 @@ autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
 })
 
 -- Fire DirOpened event
-autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
-  group = augroup("_dir_opened", {
+utils.Autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
+  group = utils.Augroup("_dir_opened", {
     clear = true,
   }),
   nested = true,
