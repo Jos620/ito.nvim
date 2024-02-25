@@ -25,7 +25,7 @@ end
 function M.SetHighlight(group, options)
   vim.api.nvim_set_hl(0, group, options)
 end
---
+
 ---Link two highlight groups
 ---@param group string
 ---@param link_to string
@@ -300,14 +300,14 @@ end
 ---@param colorscheme? colorscheme
 ---@return Colors
 function M.GetCurrentThemeColors(colorscheme)
-  local theme_colors = require("jos620.theme.colors")
+  local theme = require("jos620.theme")
 
   local current_theme = colorscheme or vim.api.nvim_exec("colorscheme", true)
-  if not current_theme or theme_colors[current_theme] == nil then
+  if not current_theme or not theme.colors[current_theme] then
     current_theme = "default"
   end
 
-  return theme_colors[current_theme]
+  return theme.colors[current_theme]
 end
 
 return M
