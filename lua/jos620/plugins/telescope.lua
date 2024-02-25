@@ -190,6 +190,11 @@ return {
 
       utils.CreateCommand("Harpoon", "require('harpoon.ui').toggle_quick_menu()")
       utils.CreateCommand("HarpoonAdd", "require('harpoon.mark').add_file()")
+
+      local colors = utils.GetCurrentThemeColors()
+
+      utils.LinkHighlightGroups("harpoonwindow", "Normal")
+      utils.SetHighlight("HarpoonBorder", { fg = colors.green })
     end,
   },
 }

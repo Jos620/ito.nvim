@@ -80,6 +80,29 @@ return {
             },
           },
         })
+
+        local green_fg_groups = {
+          "NoiceCmdlineIcon",
+          "NoiceCmdlinePopupBorder",
+          "NoiceCmdlinePopupTitle",
+        }
+
+        for _, group in ipairs(green_fg_groups) do
+          utils.SetHighlight(group, {
+            fg = colors.green,
+          })
+        end
+
+        local darkgray_bg_groups = {
+          "NoiceCmdlinePrompt",
+          "NoiceCmdline",
+        }
+
+        for _, group in ipairs(darkgray_bg_groups) do
+          utils.SetHighlight(group, {
+            bg = colors.darkgray,
+          })
+        end
       end,
     },
 
@@ -146,6 +169,9 @@ return {
           utils.CloseEmptyBuffers()
         end, "Open file explorer")
       end
+
+      utils.SetHighlight("OilDirIcon", { fg = colors.green })
+      utils.LinkHighlightGroups("Directory", "Normal")
     end,
   },
 
@@ -374,6 +400,8 @@ return {
       keymaps.set("n", "L", ":BufferLineCycleNext<Return>", "Next buffer")
       keymaps.set("n", "<Leader>,", ":BufferLineMovePrev<Return>", "Move buffer left")
       keymaps.set("n", "<Leader>.", ":BufferLineMoveNext<Return>", "Move buffer right")
+
+      utils.SetHighlight("BufferLineIndicatorVisible", { bg = colors.black })
     end,
   },
 
@@ -479,6 +507,7 @@ return {
 
         keymaps.set("n", "f", "<Plug>Sneak_f")
         keymaps.set("n", "F", "<Plug>Sneak_F")
+        utils.SetHighlight("Sneak", { bg = colors.yellow, fg = colors.black })
       end,
     },
 
