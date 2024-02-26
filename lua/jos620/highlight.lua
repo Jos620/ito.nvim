@@ -6,13 +6,6 @@ utils.SetHighlight("MatchParen", {
   fg = colors.red,
 })
 
-local darkgray_bg_groups = {
-  "ColorColumn",
-  "Visual",
-}
-
-for _, group in ipairs(darkgray_bg_groups) do
-  utils.SetHighlight(group, {
-    bg = colors.darkgray,
-  })
-end
+utils.SetHighlight("Visual", {
+  bg = colors.darkgray,
+})

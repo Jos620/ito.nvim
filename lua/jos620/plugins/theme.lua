@@ -1,12 +1,5 @@
 local utils = require("jos620.utils")
 
-utils.CreateAutocmd({ "BufRead", "BufNewFile" }, {
-  command = "set colorcolumn=80",
-  group = utils.CreateAugroup("ColorColumn", {
-    clear = true,
-  }),
-})
-
 return {
   { -- Treesitter
     "nvim-treesitter/nvim-treesitter",
@@ -74,6 +67,16 @@ return {
       })
 
       vim.cmd("colorscheme vitesse")
+
+      local colors = utils.GetCurrentThemeColors()
+
+      utils.SetHighlight("ColorColumn", {
+        bg = colors.darkgray,
+      })
+
+      vim.defer_fn(function()
+        vim.opt.colorcolumn = "80"
+      end, 0)
     end,
   },
 }
