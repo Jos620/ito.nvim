@@ -23,14 +23,18 @@ end
 ---@param group string
 ---@param options HighlightSetOptions
 function M.SetHighlight(group, options)
-  vim.api.nvim_set_hl(0, group, options)
+  vim.defer_fn(function()
+    vim.api.nvim_set_hl(0, group, options)
+  end, 0)
 end
 
 ---Link two highlight groups
 ---@param group string
 ---@param link_to string
 function M.LinkHighlightGroups(group, link_to)
-  vim.cmd("highlight! link " .. group .. " " .. link_to)
+  vim.defer_fn(function()
+    vim.cmd("highlight! link " .. group .. " " .. link_to)
+  end, 0)
 end
 
 ---Checks if any of the specified files exist in the root directory.
