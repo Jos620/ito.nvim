@@ -1,5 +1,4 @@
 local utils = require("jos620.utils")
-local keymaps = require("jos620.keymaps")
 
 return {
   { -- Telescope
@@ -30,12 +29,7 @@ return {
               },
             }),
           },
-          -- layout_config = {
-          --   preview_width = 0.5,
-          -- },
-          -- wrap_results = true,
           layout_strategy = "horizontal",
-          -- sorting_strategy = "ascending",
           winblend = 0,
           file_ignore_patterns = {
             "node_modules",
@@ -49,13 +43,13 @@ return {
         },
       })
 
-      keymaps.set("n", "<Leader>ff", ":Telescope find_files<Return>", "Find files")
-      keymaps.set("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", "Find all files")
-      keymaps.set("n", "<Leader>fh", ":Telescope highlights<Return>", "Find highlights")
-      keymaps.set("n", "<Leader>fs", ":Telescope live_grep<Return>", "Search in files")
-      keymaps.set("n", "<Leader>fb", ":Telescope buffers<Return>", "Find buffers")
-      keymaps.set("n", "<Leader>fo", ":Telescope oldfiles<Return>", "Find recent files")
-      keymaps.set("n", "<Leader>fk", ":Telescope keymaps<Return>", "Find keymaps")
+      utils.SetKeymap("n", "<Leader>ff", ":Telescope find_files<Return>", "Find files")
+      utils.SetKeymap("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", "Find all files")
+      utils.SetKeymap("n", "<Leader>fh", ":Telescope highlights<Return>", "Find highlights")
+      utils.SetKeymap("n", "<Leader>fs", ":Telescope live_grep<Return>", "Search in files")
+      utils.SetKeymap("n", "<Leader>fb", ":Telescope buffers<Return>", "Find buffers")
+      utils.SetKeymap("n", "<Leader>fo", ":Telescope oldfiles<Return>", "Find recent files")
+      utils.SetKeymap("n", "<Leader>fk", ":Telescope keymaps<Return>", "Find keymaps")
 
       local fzf_status = pcall(require, "telescope._extensions.fzf")
       if fzf_status and vim.fn.executable("fzf") == 1 then
@@ -81,32 +75,24 @@ return {
   { -- Hardpoon
     "ThePrimeagen/harpoon",
     lazy = false,
-    keys = {
-      "<Leader>",
-    },
     config = function()
-      local harpoon_status, _ = pcall(require, "harpoon")
-      if not harpoon_status then
-        return
-      end
-
       local mark = require("harpoon.mark")
       local ui = require("harpoon.ui")
 
-      keymaps.set("n", "|", function()
+      utils.SetKeymap("n", "|", function()
         mark.add_file()
         ui.toggle_quick_menu()
       end, "Add file to harpoon")
 
-      keymaps.set("n", "<Leader>|", ui.toggle_quick_menu, "Toggle harpoon menu")
+      utils.SetKeymap("n", "<Leader>|", ui.toggle_quick_menu, "Toggle harpoon menu")
 
       for i = 1, 9 do
-        keymaps.set("n", "\\" .. tostring(i), function()
+        utils.SetKeymap("n", "\\" .. tostring(i), function()
           ui.nav_file(i)
         end, "Go to harpoon mark " .. i)
       end
 
-      keymaps.set("n", "\\<Tab>", function()
+      utils.SetKeymap("n", "\\<Tab>", function()
         local last_file_path = utils.GetFilePathByMark("0")
         if last_file_path == nil then
           return

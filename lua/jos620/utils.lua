@@ -1,5 +1,16 @@
 local M = {}
 
+---Set a keymap
+---@param mode string|string[]
+---@param key string
+---@param command string|function
+---@param desc? string
+---@param options? KeymapSetOptions
+function M.SetKeymap(mode, key, command, desc, options)
+  local opts = options or { silent = true }
+  vim.keymap.set(mode, key, command, M.MergeTables({ opts, { desc = desc } }))
+end
+
 ---Create an autocommand
 ---@type AutocmdFunction
 function M.CreateAutocmd(events, options)

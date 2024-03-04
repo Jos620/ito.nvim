@@ -1,4 +1,3 @@
-local keymaps = require("jos620.keymaps")
 local utils = require("jos620.utils")
 
 local colors = utils.GetCurrentThemeColors()
@@ -126,7 +125,7 @@ return {
 
       vim.notify = notify
 
-      keymaps.set("n", "<Leader>h", function()
+      utils.SetKeymap("n", "<Leader>h", function()
         vim.cmd([[nohlsearch]])
         vim.cmd([[echom '']])
         notify.dismiss()
@@ -163,7 +162,7 @@ return {
       }
 
       for key, action in pairs(split_shortcuts) do
-        keymaps.set("n", key, function()
+        utils.SetKeymap("n", key, function()
           vim.cmd(action)
           vim.cmd("Oil")
           utils.CloseEmptyBuffers()
@@ -396,10 +395,10 @@ return {
         },
       })
 
-      keymaps.set("n", "H", ":BufferLineCyclePrev<Return>", "Previous buffer")
-      keymaps.set("n", "L", ":BufferLineCycleNext<Return>", "Next buffer")
-      keymaps.set("n", "<Leader>,", ":BufferLineMovePrev<Return>", "Move buffer left")
-      keymaps.set("n", "<Leader>.", ":BufferLineMoveNext<Return>", "Move buffer right")
+      utils.SetKeymap("n", "H", ":BufferLineCyclePrev<Return>", "Previous buffer")
+      utils.SetKeymap("n", "L", ":BufferLineCycleNext<Return>", "Next buffer")
+      utils.SetKeymap("n", "<Leader>,", ":BufferLineMovePrev<Return>", "Move buffer left")
+      utils.SetKeymap("n", "<Leader>.", ":BufferLineMoveNext<Return>", "Move buffer right")
 
       utils.SetHighlight("BufferLineIndicatorVisible", { bg = colors.black })
     end,
@@ -493,7 +492,7 @@ return {
       event = "VeryLazy",
       cmd = { "MaximizerToggle" },
       config = function()
-        keymaps.set("n", "<Leader>sm", ":MaximizerToggle<Return>", "Maximize window")
+        utils.SetKeymap("n", "<Leader>sm", ":MaximizerToggle<Return>", "Maximize window")
       end,
     },
   },
@@ -505,8 +504,8 @@ return {
       config = function()
         vim.g["sneak#prompt"] = ">"
 
-        keymaps.set("n", "f", "<Plug>Sneak_f")
-        keymaps.set("n", "F", "<Plug>Sneak_F")
+        utils.SetKeymap("n", "f", "<Plug>Sneak_f")
+        utils.SetKeymap("n", "F", "<Plug>Sneak_F")
         utils.SetHighlight("Sneak", { bg = colors.yellow, fg = colors.black })
       end,
     },

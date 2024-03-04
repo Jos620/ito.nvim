@@ -1,5 +1,4 @@
 local utils = require("jos620.utils")
-local keymaps = require("jos620.keymaps")
 
 return {
   { -- LSP
@@ -15,17 +14,17 @@ return {
       local on_attach = function(_, buffer)
         local opts = { noremap = true, silent = true, buffer = buffer }
 
-        keymaps.set("n", "K", vim.lsp.buf.hover, "Show hover doc", opts)
+        utils.SetKeymap("n", "K", vim.lsp.buf.hover, "Show hover doc", opts)
 
-        keymaps.set("n", "gd", function()
+        utils.SetKeymap("n", "gd", function()
           require("telescope.builtin").lsp_definitions({
             reuse_win = true,
           })
         end, "Go to definition", opts)
-        keymaps.set("n", "gi", vim.lsp.buf.implementation, "Go to implementation", opts)
-        keymaps.set("n", "gr", vim.lsp.buf.references, "Go to references", opts)
-        keymaps.set("n", "<Leader>la", vim.lsp.buf.code_action, "Code action", opts)
-        keymaps.set("n", "<Leader>lr", vim.lsp.buf.rename, "Rename symbol", opts)
+        utils.SetKeymap("n", "gi", vim.lsp.buf.implementation, "Go to implementation", opts)
+        utils.SetKeymap("n", "gr", vim.lsp.buf.references, "Go to references", opts)
+        utils.SetKeymap("n", "<Leader>la", vim.lsp.buf.code_action, "Code action", opts)
+        utils.SetKeymap("n", "<Leader>lr", vim.lsp.buf.rename, "Rename symbol", opts)
 
         local diagnostic_opts = {
           float = {
@@ -33,11 +32,11 @@ return {
           },
         }
 
-        keymaps.set("n", "<Leader>lj", function()
+        utils.SetKeymap("n", "<Leader>lj", function()
           vim.diagnostic.goto_next(diagnostic_opts)
         end, "Go to next diagnostic", opts)
 
-        keymaps.set("n", "<Leader>lk", function()
+        utils.SetKeymap("n", "<Leader>lk", function()
           vim.diagnostic.goto_prev(diagnostic_opts)
         end, "Go to previous diagnostic", opts)
       end
@@ -206,7 +205,7 @@ return {
           PATH = "prepend",
         })
 
-        keymaps.set("n", "<Leader>mm", ":Mason<Return>", "Launch Mason")
+        utils.SetKeymap("n", "<Leader>mm", ":Mason<Return>", "Launch Mason")
       end,
     },
 
@@ -253,12 +252,12 @@ return {
         },
       })
 
-      keymaps.set("n", "<Leader>lt", trouble.toggle, "Toggle trouble")
+      utils.SetKeymap("n", "<Leader>lt", trouble.toggle, "Toggle trouble")
 
-      keymaps.set("n", "<Leader>ld", function()
+      utils.SetKeymap("n", "<Leader>ld", function()
         trouble.open("document_diagnostics")
       end, "Open document diagnostics")
-      keymaps.set("n", "<Leader>lw", function()
+      utils.SetKeymap("n", "<Leader>lw", function()
         trouble.open("workspace_diagnostics")
       end, "Open workspace diagnostics")
     end,
@@ -310,7 +309,7 @@ return {
           end,
         })
 
-        keymaps.set("n", "<Leader>lL", function()
+        utils.SetKeymap("n", "<Leader>lL", function()
           lint.try_lint()
         end, "Lint file")
       end,
@@ -359,7 +358,7 @@ return {
           },
         })
 
-        keymaps.set({ "n", "v" }, "<Leader>lF", function()
+        utils.SetKeymap({ "n", "v" }, "<Leader>lF", function()
           conform.format({
             lsp_fallback = true,
             async = false,
@@ -452,10 +451,10 @@ return {
         key_bindings = keys,
       })
 
-      keymaps.set("n", keys.split_remain_focused, hoversplit.split_remain_focused, "Hoversplit horizontal")
-      keymaps.set("n", keys.vsplit_remain_focused, hoversplit.vsplit_remain_focused, "Hoversplit vertical")
-      keymaps.set("n", keys.split, hoversplit.split, "Hoversplit horizontal")
-      keymaps.set("n", keys.vsplit, hoversplit.vsplit, "Hoversplit vertical")
+      utils.SetKeymap("n", keys.split_remain_focused, hoversplit.split_remain_focused, "Hoversplit horizontal")
+      utils.SetKeymap("n", keys.vsplit_remain_focused, hoversplit.vsplit_remain_focused, "Hoversplit vertical")
+      utils.SetKeymap("n", keys.split, hoversplit.split, "Hoversplit horizontal")
+      utils.SetKeymap("n", keys.vsplit, hoversplit.vsplit, "Hoversplit vertical")
     end,
   },
 

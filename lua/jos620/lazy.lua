@@ -1,4 +1,3 @@
-local keymaps = require("jos620.keymaps")
 local utils = require("jos620.utils")
 
 local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -50,7 +49,7 @@ require("lazy").setup({
   debug = false,
 })
 
-keymaps.set("n", "<Leader>ll", ":Lazy<Return>", "Launch Lazy")
+utils.SetKeymap("n", "<Leader>ll", ":Lazy<Return>", "Launch Lazy")
 
 -- Fire FileOpened event
 utils.CreateAutocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
