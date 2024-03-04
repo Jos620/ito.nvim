@@ -68,9 +68,9 @@ return {
 
       vim.cmd("colorscheme vitesse")
 
-      local colors = utils.GetCurrentThemeColors()
+      local colors = utils.get_current_theme_colors()
 
-      utils.SetHighlight("ColorColumn", {
+      utils.set_highlight("ColorColumn", {
         bg = colors.darkgray,
       })
 

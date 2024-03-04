@@ -14,17 +14,17 @@ return {
       local on_attach = function(_, buffer)
         local opts = { noremap = true, silent = true, buffer = buffer }
 
-        utils.SetKeymap("n", "K", vim.lsp.buf.hover, "Show hover doc", opts)
+        utils.set_keymap("n", "K", vim.lsp.buf.hover, "Show hover doc", opts)
 
-        utils.SetKeymap("n", "gd", function()
+        utils.set_keymap("n", "gd", function()
           require("telescope.builtin").lsp_definitions({
             reuse_win = true,
           })
         end, "Go to definition", opts)
-        utils.SetKeymap("n", "gi", vim.lsp.buf.implementation, "Go to implementation", opts)
-        utils.SetKeymap("n", "gr", vim.lsp.buf.references, "Go to references", opts)
-        utils.SetKeymap("n", "<Leader>la", vim.lsp.buf.code_action, "Code action", opts)
-        utils.SetKeymap("n", "<Leader>lr", vim.lsp.buf.rename, "Rename symbol", opts)
+        utils.set_keymap("n", "gi", vim.lsp.buf.implementation, "Go to implementation", opts)
+        utils.set_keymap("n", "gr", vim.lsp.buf.references, "Go to references", opts)
+        utils.set_keymap("n", "<Leader>la", vim.lsp.buf.code_action, "Code action", opts)
+        utils.set_keymap("n", "<Leader>lr", vim.lsp.buf.rename, "Rename symbol", opts)
 
         local diagnostic_opts = {
           float = {
@@ -32,11 +32,11 @@ return {
           },
         }
 
-        utils.SetKeymap("n", "<Leader>lj", function()
+        utils.set_keymap("n", "<Leader>lj", function()
           vim.diagnostic.goto_next(diagnostic_opts)
         end, "Go to next diagnostic", opts)
 
-        utils.SetKeymap("n", "<Leader>lk", function()
+        utils.set_keymap("n", "<Leader>lk", function()
           vim.diagnostic.goto_prev(diagnostic_opts)
         end, "Go to previous diagnostic", opts)
       end
@@ -147,7 +147,7 @@ return {
         root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git", "."),
         init_options = {
           typescript = {
-            tsdk = utils.GetTypescriptServerPath(vim.fn.getcwd()),
+            tsdk = utils.get_typescript_server_path(vim.fn.getcwd()),
           },
         },
         settings = {
@@ -181,10 +181,10 @@ return {
         filetypes = { "html", "astro" },
       })
 
-      utils.CreateAutocmd({ "BufRead", "BufNewFile" }, {
+      utils.create_autocmd({ "BufRead", "BufNewFile" }, {
         pattern = "*.conf",
         command = "set filetype=tmux",
-        group = utils.CreateAugroup("TMUX", {
+        group = utils.create_augroup("TMUX", {
           clear = true,
         }),
       })
@@ -205,7 +205,7 @@ return {
           PATH = "prepend",
         })
 
-        utils.SetKeymap("n", "<Leader>mm", ":Mason<Return>", "Launch Mason")
+        utils.set_keymap("n", "<Leader>mm", ":Mason<Return>", "Launch Mason")
       end,
     },
 
@@ -252,12 +252,12 @@ return {
         },
       })
 
-      utils.SetKeymap("n", "<Leader>lt", trouble.toggle, "Toggle trouble")
+      utils.set_keymap("n", "<Leader>lt", trouble.toggle, "Toggle trouble")
 
-      utils.SetKeymap("n", "<Leader>ld", function()
+      utils.set_keymap("n", "<Leader>ld", function()
         trouble.open("document_diagnostics")
       end, "Open document diagnostics")
-      utils.SetKeymap("n", "<Leader>lw", function()
+      utils.set_keymap("n", "<Leader>lw", function()
         trouble.open("workspace_diagnostics")
       end, "Open workspace diagnostics")
     end,
@@ -280,10 +280,10 @@ return {
       config = function()
         local lint = require("lint")
 
-        local javascript_linters = utils.GetJavascriptFormatters({
+        local javascript_linters = utils.get_javascript_formatters({
           linters_only = true,
         })
-        local css_linters = utils.GetCSSFormatters({
+        local css_linters = utils.get_css_formatters({
           linters_only = true,
         })
 
@@ -298,18 +298,18 @@ return {
           astro = javascript_linters,
         }
 
-        utils.CreateAutocmd({
+        utils.create_autocmd({
           "BufWritePost",
           "BufEnter",
           "InsertLeave",
         }, {
-          group = utils.CreateAugroup("lint", { clear = true }),
+          group = utils.create_augroup("lint", { clear = true }),
           callback = function()
             lint.try_lint()
           end,
         })
 
-        utils.SetKeymap("n", "<Leader>lL", function()
+        utils.set_keymap("n", "<Leader>lL", function()
           lint.try_lint()
         end, "Lint file")
       end,
@@ -333,8 +333,8 @@ return {
       config = function()
         local conform = require("conform")
 
-        local javascript_formatters = utils.GetJavascriptFormatters()
-        local css_formatters = utils.GetCSSFormatters()
+        local javascript_formatters = utils.get_javascript_formatters()
+        local css_formatters = utils.get_css_formatters()
 
         conform.setup({
           formatters_by_ft = {
@@ -358,7 +358,7 @@ return {
           },
         })
 
-        utils.SetKeymap({ "n", "v" }, "<Leader>lF", function()
+        utils.set_keymap({ "n", "v" }, "<Leader>lF", function()
           conform.format({
             lsp_fallback = true,
             async = false,
@@ -451,10 +451,10 @@ return {
         key_bindings = keys,
       })
 
-      utils.SetKeymap("n", keys.split_remain_focused, hoversplit.split_remain_focused, "Hoversplit horizontal")
-      utils.SetKeymap("n", keys.vsplit_remain_focused, hoversplit.vsplit_remain_focused, "Hoversplit vertical")
-      utils.SetKeymap("n", keys.split, hoversplit.split, "Hoversplit horizontal")
-      utils.SetKeymap("n", keys.vsplit, hoversplit.vsplit, "Hoversplit vertical")
+      utils.set_keymap("n", keys.split_remain_focused, hoversplit.split_remain_focused, "Hoversplit horizontal")
+      utils.set_keymap("n", keys.vsplit_remain_focused, hoversplit.vsplit_remain_focused, "Hoversplit vertical")
+      utils.set_keymap("n", keys.split, hoversplit.split, "Hoversplit horizontal")
+      utils.set_keymap("n", keys.vsplit, hoversplit.vsplit, "Hoversplit vertical")
     end,
   },
 

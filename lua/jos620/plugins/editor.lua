@@ -98,7 +98,7 @@ return {
       local todo_comments = require("todo-comments")
       local utils = require("jos620.utils")
 
-      local colors = utils.GetCurrentThemeColors()
+      local colors = utils.get_current_theme_colors()
 
       todo_comments.setup({
         colors = {

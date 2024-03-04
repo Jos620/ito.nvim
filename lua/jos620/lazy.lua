@@ -49,11 +49,11 @@ require("lazy").setup({
   debug = false,
 })
 
-utils.SetKeymap("n", "<Leader>ll", ":Lazy<Return>", "Launch Lazy")
+utils.set_keymap("n", "<Leader>ll", ":Lazy<Return>", "Launch Lazy")
 
 -- Fire FileOpened event
-utils.CreateAutocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
-  group = utils.CreateAugroup("_file_opened", {
+utils.create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
+  group = utils.create_augroup("_file_opened", {
     clear = true,
   }),
   nested = true,
@@ -68,14 +68,14 @@ utils.CreateAutocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
 })
 
 -- Fire DirOpened event
-utils.CreateAutocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
-  group = utils.CreateAugroup("_dir_opened", {
+utils.create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
+  group = utils.create_augroup("_dir_opened", {
     clear = true,
   }),
   nested = true,
   callback = function(args)
     local bufname = vim.api.nvim_buf_get_name(args.buf)
-    if utils.IsDirectory(bufname) then
+    if utils.is_directory(bufname) then
       vim.api.nvim_del_augroup_by_name("_dir_opened")
       vim.cmd("do User DirOpened")
       vim.api.nvim_exec_autocmds(args.event, { buffer = args.buf, data = args.data })

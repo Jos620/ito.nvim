@@ -1,6 +1,6 @@
 local utils = require("jos620.utils")
 
-local colors = utils.GetCurrentThemeColors()
+local colors = utils.get_current_theme_colors()
 
 return {
   { -- Better UI for Neovim
@@ -87,7 +87,7 @@ return {
         }
 
         for _, group in ipairs(green_fg_groups) do
-          utils.SetHighlight(group, {
+          utils.set_highlight(group, {
             fg = colors.green,
           })
         end
@@ -98,7 +98,7 @@ return {
         }
 
         for _, group in ipairs(darkgray_bg_groups) do
-          utils.SetHighlight(group, {
+          utils.set_highlight(group, {
             bg = colors.darkgray,
           })
         end
@@ -125,7 +125,7 @@ return {
 
       vim.notify = notify
 
-      utils.SetKeymap("n", "<Leader>h", function()
+      utils.set_keymap("n", "<Leader>h", function()
         vim.cmd([[nohlsearch]])
         vim.cmd([[echom '']])
         notify.dismiss()
@@ -162,15 +162,15 @@ return {
       }
 
       for key, action in pairs(split_shortcuts) do
-        utils.SetKeymap("n", key, function()
+        utils.set_keymap("n", key, function()
           vim.cmd(action)
           vim.cmd("Oil")
-          utils.CloseEmptyBuffers()
+          utils.close_empty_buffers()
         end, "Open file explorer")
       end
 
-      utils.SetHighlight("OilDirIcon", { fg = colors.green })
-      utils.LinkHighlightGroups("Directory", "Normal")
+      utils.set_highlight("OilDirIcon", { fg = colors.green })
+      utils.link_highlight_groups("Directory", "Normal")
     end,
   },
 
@@ -395,12 +395,12 @@ return {
         },
       })
 
-      utils.SetKeymap("n", "H", ":BufferLineCyclePrev<Return>", "Previous buffer")
-      utils.SetKeymap("n", "L", ":BufferLineCycleNext<Return>", "Next buffer")
-      utils.SetKeymap("n", "<Leader>,", ":BufferLineMovePrev<Return>", "Move buffer left")
-      utils.SetKeymap("n", "<Leader>.", ":BufferLineMoveNext<Return>", "Move buffer right")
+      utils.set_keymap("n", "H", ":BufferLineCyclePrev<Return>", "Previous buffer")
+      utils.set_keymap("n", "L", ":BufferLineCycleNext<Return>", "Next buffer")
+      utils.set_keymap("n", "<Leader>,", ":BufferLineMovePrev<Return>", "Move buffer left")
+      utils.set_keymap("n", "<Leader>.", ":BufferLineMoveNext<Return>", "Move buffer right")
 
-      utils.SetHighlight("BufferLineIndicatorVisible", { bg = colors.black })
+      utils.set_highlight("BufferLineIndicatorVisible", { bg = colors.black })
     end,
   },
 
@@ -492,7 +492,7 @@ return {
       event = "VeryLazy",
       cmd = { "MaximizerToggle" },
       config = function()
-        utils.SetKeymap("n", "<Leader>sm", ":MaximizerToggle<Return>", "Maximize window")
+        utils.set_keymap("n", "<Leader>sm", ":MaximizerToggle<Return>", "Maximize window")
       end,
     },
   },
@@ -504,9 +504,9 @@ return {
       config = function()
         vim.g["sneak#prompt"] = ">"
 
-        utils.SetKeymap("n", "f", "<Plug>Sneak_f")
-        utils.SetKeymap("n", "F", "<Plug>Sneak_F")
-        utils.SetHighlight("Sneak", { bg = colors.yellow, fg = colors.black })
+        utils.set_keymap("n", "f", "<Plug>Sneak_f")
+        utils.set_keymap("n", "F", "<Plug>Sneak_F")
+        utils.set_highlight("Sneak", { bg = colors.yellow, fg = colors.black })
       end,
     },
 

@@ -6,34 +6,34 @@ local M = {}
 ---@param command string|function
 ---@param desc? string
 ---@param options? KeymapSetOptions
-function M.SetKeymap(mode, key, command, desc, options)
+function M.set_keymap(mode, key, command, desc, options)
   local opts = options or { silent = true }
-  vim.keymap.set(mode, key, command, M.MergeTables({ opts, { desc = desc } }))
+  vim.keymap.set(mode, key, command, M.merge_tables({ opts, { desc = desc } }))
 end
 
 ---Create an autocommand
 ---@type AutocmdFunction
-function M.CreateAutocmd(events, options)
+function M.create_autocmd(events, options)
   return vim.api.nvim_create_autocmd(events, options)
 end
 
 ---Create an autocommand group.
 ---@type AugroupFunction
-function M.CreateAugroup(name, options)
+function M.create_augroup(name, options)
   return vim.api.nvim_create_augroup(name, options)
 end
 
 ---Create a command
 ---@param name string
 ---@param lua_script string
-function M.CreateCommand(name, lua_script)
+function M.create_command(name, lua_script)
   vim.cmd("command! " .. name .. " lua " .. lua_script)
 end
 
 ---Set highlight
 ---@param group string
 ---@param options HighlightSetOptions
-function M.SetHighlight(group, options)
+function M.set_highlight(group, options)
   vim.defer_fn(function()
     vim.api.nvim_set_hl(0, group, options)
   end, 0)
@@ -42,7 +42,7 @@ end
 ---Link two highlight groups
 ---@param group string
 ---@param link_to string
-function M.LinkHighlightGroups(group, link_to)
+function M.link_highlight_groups(group, link_to)
   vim.defer_fn(function()
     vim.cmd("highlight! link " .. group .. " " .. link_to)
   end, 0)
@@ -51,8 +51,8 @@ end
 ---Checks if any of the specified files exist in the root directory.
 ---@param files string[] -- List of file names
 ---@return boolean       -- True if any file exists
-function M.RootHasFile(files)
-  local flatFiles = M.Flatten({ files })
+function M.root_has_file(files)
+  local flatFiles = M.flatten({ files })
 
   for _, file in ipairs(flatFiles) do
     if vim.fn.filereadable(vim.fn.getcwd() .. "/" .. file) == 1 then
@@ -66,7 +66,7 @@ end
 ---Checks if a given file path is within the working directory.
 ---@param filepath string -- File path to check
 ---@return boolean        -- True if file is in working directory
-function M.FileIsInWorkingDirectory(filepath)
+function M.file_is_in_working_directory(filepath)
   local cwd = vim.fn.getcwd()
 
   if filepath:sub(1, #cwd) == cwd then
@@ -79,7 +79,7 @@ end
 ---Retrieves the file path associated with a specified mark.
 ---@param mark string -- Mark to search for
 ---@return string|nil -- File path or nil if not found
-function M.GetFilePathByMark(mark)
+function M.get_file_path_by_mark(mark)
   local list = vim.fn.getmarklist()
 
   for _, item in ipairs(list) do
@@ -94,7 +94,7 @@ end
 ---Merges multiple tables into a single table.
 ---@param tables table[] -- Tables to merge
 ---@return table table   -- Merged table
-function M.MergeTables(tables)
+function M.merge_tables(tables)
   local result = {}
 
   for _, tbl in ipairs(tables) do
@@ -109,7 +109,7 @@ end
 ---Flattens a nested table structure.
 ---@param tbl any -- Table to flatten
 ---@return any[]  -- Flattened table
-function M.Flatten(tbl)
+function M.flatten(tbl)
   local result = {}
 
   if type(tbl) ~= "table" then
@@ -118,7 +118,7 @@ function M.Flatten(tbl)
 
   for _, value in ipairs(tbl) do
     if type(value) == "table" then
-      for _, current in ipairs(M.Flatten(value)) do
+      for _, current in ipairs(M.flatten(value)) do
         table.insert(result, current)
       end
     else
@@ -132,14 +132,14 @@ end
 ---Checks if a buffer name represents a directory.
 ---@param bufname string -- Buffer name
 ---@return boolean       -- True if buffer is a directory
-function M.IsDirectory(bufname)
+function M.is_directory(bufname)
   return vim.fn.isdirectory(vim.fn.fnamemodify(bufname, ":p")) == 1
 end
 
 ---Checks if a specified executable is present.
 ---@param executable string -- Executable name
 ---@return boolean          -- True if executable is present
-function M.CheckDependency(executable)
+function M.check_dependency(executable)
   if vim.fn.executable(executable) == 1 then
     return true
   else
@@ -152,9 +152,9 @@ end
 ---Checks if multiple dependencies are present.
 ---@param executableList string[] -- List of executable names
 ---@return boolean                -- True if all executables are present
-function M.CheckDependencies(executableList)
+function M.check_dependencies(executableList)
   for _, executable in ipairs(executableList) do
-    if not M.CheckDependency(executable) then
+    if not M.check_dependency(executable) then
       return false
     end
   end
@@ -168,14 +168,14 @@ end
 ---Get JavaScript formatters
 ---@param options? GetFormattersOptions -- Only return linters
 ---@return string[]                     -- List of linters and formatters
-function M.GetJavascriptFormatters(options)
+function M.get_javascript_formatters(options)
   ---@type GetFormattersOptions
   local defaultOptions = {
     linters_only = false,
   }
 
   ---@type GetFormattersOptions
-  local mergedOptions = M.MergeTables({
+  local mergedOptions = M.merge_tables({
     defaultOptions,
     options,
   })
@@ -183,7 +183,7 @@ function M.GetJavascriptFormatters(options)
   ---@type string[]
   local linters = {}
 
-  local has_eslint = M.RootHasFile({
+  local has_eslint = M.root_has_file({
     ".eslintrc",
     ".eslintrc.js",
     ".eslintrc.cjs",
@@ -203,7 +203,7 @@ function M.GetJavascriptFormatters(options)
   ---@type string[]
   local formatters = {}
 
-  local has_prettier = M.RootHasFile({
+  local has_prettier = M.root_has_file({
     ".prettierrc",
     ".prettierrc.json",
     ".prettierrc.yml",
@@ -222,14 +222,14 @@ function M.GetJavascriptFormatters(options)
     table.insert(formatters, "prettierd")
   end
 
-  return M.Flatten({ linters, formatters })
+  return M.flatten({ linters, formatters })
 end
 
 ---Get Typescript server path
 ---@param path string         -- Path to search for typescript server
 ---@param defaultPath? string -- Default path to use if not found
 ---@return string             -- Path to typescript server
-function M.GetTypescriptServerPath(path, defaultPath)
+function M.get_typescript_server_path(path, defaultPath)
   local lspconfig = require("lspconfig")
 
   local global_ts = defaultPath or "/usr/local/lib/node_modules/typescript/lib"
@@ -252,7 +252,7 @@ end
 ---Get CSS formatters
 ---@param options? GetFormattersOptions -- Only return linters
 ---@return string[]                     -- List of linters and formatters
-function M.GetCSSFormatters(options)
+function M.get_css_formatters(options)
   options = options or { linters_only = false }
 
   local linters = {}
@@ -265,7 +265,7 @@ function M.GetCSSFormatters(options)
     ".stylelintrc.yaml",
   }
 
-  if M.RootHasFile(stylelint_configs) then
+  if M.root_has_file(stylelint_configs) then
     table.insert(linters, "stylelint")
   end
 
@@ -273,13 +273,13 @@ function M.GetCSSFormatters(options)
     return linters
   end
 
-  return M.Flatten({ linters, formatters })
+  return M.flatten({ linters, formatters })
 end
 
 ---Check if a buffer is empty
 ---@param bufnr number -- Buffer number
 ---@return boolean     -- True if buffer is empty
-function M.BufferIsEmpty(bufnr)
+function M.buffer_is_empty(bufnr)
   if vim.fn.bufname(bufnr) == "" then
     return true
   end
@@ -290,7 +290,7 @@ end
 ---Check if a buffer has unsaved changes
 ---@param bufnr number -- Buffer number
 ---@return boolean     -- True if buffer has unsaved changes
-function M.BufferHasUnsavedChanges(bufnr)
+function M.buffer_has_unsaved_changes(bufnr)
   if vim.fn.getbufvar(bufnr, "&modified") == 1 then
     return true
   end
@@ -300,10 +300,10 @@ end
 
 ---Close all empty buffers
 ---@param force? boolean -- Close all buffers regardless of contents
-function M.CloseEmptyBuffers(force)
+function M.close_empty_buffers(force)
   for _, bufnr in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
-    local is_empty = M.BufferIsEmpty(bufnr.bufnr)
-    local has_unsaved_changes = M.BufferHasUnsavedChanges(bufnr.bufnr)
+    local is_empty = M.buffer_is_empty(bufnr.bufnr)
+    local has_unsaved_changes = M.buffer_has_unsaved_changes(bufnr.bufnr)
 
     if is_empty and (force or not has_unsaved_changes) then
       vim.cmd("bdelete " .. bufnr.bufnr)
@@ -314,7 +314,7 @@ end
 ---Get the current theme colors
 ---@param colorscheme? colorscheme
 ---@return Colors
-function M.GetCurrentThemeColors(colorscheme)
+function M.get_current_theme_colors(colorscheme)
   local theme = require("jos620.theme")
 
   local current_theme = colorscheme or vim.api.nvim_exec("colorscheme", true)

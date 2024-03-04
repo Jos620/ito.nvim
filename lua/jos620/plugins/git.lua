@@ -6,7 +6,7 @@ return {
       "tpope/vim-fugitive",
       event = "VeryLazy",
       config = function()
-        utils.SetKeymap("n", "gs", ":vertical rightbelow Git<Return>", "Open git status")
+        utils.set_keymap("n", "gs", ":vertical rightbelow Git<Return>", "Open git status")
       end,
     },
 
@@ -23,7 +23,7 @@ return {
         "nvim-lua/plenary.nvim",
       },
       config = function()
-        utils.SetKeymap("n", "gL", ":LazyGit<Return>", "Open lazy git")
+        utils.set_keymap("n", "gL", ":LazyGit<Return>", "Open lazy git")
       end,
     },
   },
@@ -42,7 +42,7 @@ return {
           local opts = { noremap = true, silent = true, buffer = buffer }
 
           --- Navigation
-          utils.SetKeymap("n", "<Leader>gj", function()
+          utils.set_keymap("n", "<Leader>gj", function()
             if vim.wo.diff then
               return "<Leader>gj"
             end
@@ -52,9 +52,9 @@ return {
             end)
 
             return "<Ignore>"
-          end, "Go to next git hunk", utils.MergeTables({ opts, { expr = true } }))
+          end, "Go to next git hunk", utils.merge_tables({ opts, { expr = true } }))
 
-          utils.SetKeymap("n", "<Leader>gk", function()
+          utils.set_keymap("n", "<Leader>gk", function()
             if vim.wo.diff then
               return "<Leader>gk"
             end
@@ -64,19 +64,19 @@ return {
             end)
 
             return "<Ignore>"
-          end, "go to previous hunk", utils.MergeTables({ opts, { expr = true } }))
+          end, "go to previous hunk", utils.merge_tables({ opts, { expr = true } }))
 
           --- Stage
-          utils.SetKeymap("n", "<Leader>gS", gitsigns.stage_buffer, "Stage buffer")
-          utils.SetKeymap("n", "<Leader>gu", gitsigns.undo_stage_hunk, "Undo stage hunk")
-          utils.SetKeymap("n", "<Leader>td", gitsigns.toggle_deleted, "Toggle deleted sections")
+          utils.set_keymap("n", "<Leader>gS", gitsigns.stage_buffer, "Stage buffer")
+          utils.set_keymap("n", "<Leader>gu", gitsigns.undo_stage_hunk, "Undo stage hunk")
+          utils.set_keymap("n", "<Leader>td", gitsigns.toggle_deleted, "Toggle deleted sections")
 
           --- Reset
-          utils.SetKeymap({ "n", "v" }, "<Leader>gr", gitsigns.reset_hunk, "Reset hunk")
-          utils.SetKeymap({ "n", "v" }, "<Leader>gR", gitsigns.reset_buffer, "Reset buffer")
+          utils.set_keymap({ "n", "v" }, "<Leader>gr", gitsigns.reset_hunk, "Reset hunk")
+          utils.set_keymap({ "n", "v" }, "<Leader>gR", gitsigns.reset_buffer, "Reset buffer")
 
           --- Diff
-          utils.SetKeymap("n", "<Leader>gd", ":Gvdiffsplit<Return>", "Diff buffer")
+          utils.set_keymap("n", "<Leader>gd", ":Gvdiffsplit<Return>", "Diff buffer")
         end,
       })
     end,
@@ -92,7 +92,7 @@ return {
         border = "rounded",
       }
 
-      utils.SetKeymap("n", "gm", ":GitMessenger<Return>", "Open git messenger")
+      utils.set_keymap("n", "gm", ":GitMessenger<Return>", "Open git messenger")
     end,
   },
 
@@ -107,8 +107,8 @@ return {
     config = function()
       vim.g.undotree_WindowLayout = 3
 
-      utils.SetKeymap("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
-      utils.SetKeymap("n", "<Leader>U", ":UndotreeFocus<Return>", "Focus Undo Tree")
+      utils.set_keymap("n", "<Leader>u", ":UndotreeToggle<Return>", "Toggle Undo Tree")
+      utils.set_keymap("n", "<Leader>U", ":UndotreeFocus<Return>", "Focus Undo Tree")
     end,
   },
 
@@ -122,7 +122,7 @@ return {
     cmd = "GhReviewComments",
     keys = { "<Leader>lg" },
     config = function()
-      utils.SetKeymap("n", "<Leader>lg", ":GhReviewComments<Return>", "Open GitHub review comments")
+      utils.set_keymap("n", "<Leader>lg", ":GhReviewComments<Return>", "Open GitHub review comments")
     end,
   },
 }

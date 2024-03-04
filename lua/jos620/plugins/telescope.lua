@@ -22,7 +22,7 @@ return {
         defaults = {
           mappings = {
             i = telescope_keymaps,
-            n = utils.MergeTables({
+            n = utils.merge_tables({
               telescope_keymaps,
               {
                 ["q"] = actions.close,
@@ -43,13 +43,13 @@ return {
         },
       })
 
-      utils.SetKeymap("n", "<Leader>ff", ":Telescope find_files<Return>", "Find files")
-      utils.SetKeymap("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", "Find all files")
-      utils.SetKeymap("n", "<Leader>fh", ":Telescope highlights<Return>", "Find highlights")
-      utils.SetKeymap("n", "<Leader>fs", ":Telescope live_grep<Return>", "Search in files")
-      utils.SetKeymap("n", "<Leader>fb", ":Telescope buffers<Return>", "Find buffers")
-      utils.SetKeymap("n", "<Leader>fo", ":Telescope oldfiles<Return>", "Find recent files")
-      utils.SetKeymap("n", "<Leader>fk", ":Telescope keymaps<Return>", "Find keymaps")
+      utils.set_keymap("n", "<Leader>ff", ":Telescope find_files<Return>", "Find files")
+      utils.set_keymap("n", "<Leader>fa", ":Telescope find_files hidden=true<Return>", "Find all files")
+      utils.set_keymap("n", "<Leader>fh", ":Telescope highlights<Return>", "Find highlights")
+      utils.set_keymap("n", "<Leader>fs", ":Telescope live_grep<Return>", "Search in files")
+      utils.set_keymap("n", "<Leader>fb", ":Telescope buffers<Return>", "Find buffers")
+      utils.set_keymap("n", "<Leader>fo", ":Telescope oldfiles<Return>", "Find recent files")
+      utils.set_keymap("n", "<Leader>fk", ":Telescope keymaps<Return>", "Find keymaps")
 
       local fzf_status = pcall(require, "telescope._extensions.fzf")
       if fzf_status and vim.fn.executable("fzf") == 1 then
@@ -68,7 +68,7 @@ return {
     build = "make",
     lazy = true,
     cond = function()
-      return utils.CheckDependencies({ "fzf", "make" })
+      return utils.check_dependencies({ "fzf", "make" })
     end,
   },
 
@@ -79,46 +79,46 @@ return {
       local mark = require("harpoon.mark")
       local ui = require("harpoon.ui")
 
-      utils.SetKeymap("n", "|", function()
+      utils.set_keymap("n", "|", function()
         mark.add_file()
         ui.toggle_quick_menu()
       end, "Add file to harpoon")
 
-      utils.SetKeymap("n", "<Leader>|", ui.toggle_quick_menu, "Toggle harpoon menu")
+      utils.set_keymap("n", "<Leader>|", ui.toggle_quick_menu, "Toggle harpoon menu")
 
       for i = 1, 9 do
-        utils.SetKeymap("n", "\\" .. tostring(i), function()
+        utils.set_keymap("n", "\\" .. tostring(i), function()
           ui.nav_file(i)
         end, "Go to harpoon mark " .. i)
       end
 
-      utils.SetKeymap("n", "\\<Tab>", function()
-        local last_file_path = utils.GetFilePathByMark("0")
+      utils.set_keymap("n", "\\<Tab>", function()
+        local last_file_path = utils.get_file_path_by_mark("0")
         if last_file_path == nil then
           return
         end
 
         local is_home = vim.fn.expand("%:p:h") == vim.fn.expand("$HOME")
         local is_git_file = string.find(last_file_path, ".git")
-        local is_folder = utils.IsDirectory(last_file_path)
+        local is_folder = utils.is_directory(last_file_path)
         local file_exists = vim.fn.filereadable(last_file_path) == 1
-        local is_inside_working_directory = utils.FileIsInWorkingDirectory(last_file_path)
+        local is_inside_working_directory = utils.file_is_in_working_directory(last_file_path)
 
         if is_home or is_git_file or is_folder or not file_exists or not is_inside_working_directory then
           return
         end
 
         vim.cmd("normal! '0")
-        utils.CloseEmptyBuffers()
+        utils.close_empty_buffers()
       end, "Go to last opened file")
 
-      utils.CreateCommand("Harpoon", "require('harpoon.ui').toggle_quick_menu()")
-      utils.CreateCommand("HarpoonAdd", "require('harpoon.mark').add_file()")
+      utils.create_command("Harpoon", "require('harpoon.ui').toggle_quick_menu()")
+      utils.create_command("HarpoonAdd", "require('harpoon.mark').add_file()")
 
-      local colors = utils.GetCurrentThemeColors()
+      local colors = utils.get_current_theme_colors()
 
-      utils.LinkHighlightGroups("harpoonwindow", "Normal")
-      utils.SetHighlight("HarpoonBorder", { fg = colors.green })
+      utils.link_highlight_groups("harpoonwindow", "Normal")
+      utils.set_highlight("HarpoonBorder", { fg = colors.green })
     end,
   },
 }
