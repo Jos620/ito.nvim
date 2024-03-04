@@ -480,32 +480,6 @@ return {
   },
 
   { -- Languages
-    { -- Dart (flutter)
-      "akinsho/flutter-tools.nvim",
-      lazy = true,
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "stevearc/dressing.nvim",
-        "hrsh7th/cmp-nvim-lsp",
-      },
-      config = function()
-        require("flutter-tools").setup({
-          ui = {
-            border = "rounded",
-          },
-          lsp = {
-            on_attach = function(_, buffer)
-              keymaps.setup_lsp_keymaps(buffer)
-            end,
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
-          },
-          widget_guides = {
-            enabled = true,
-          },
-        })
-      end,
-    },
-
     { -- Markdown
       "ixru/nvim-markdown",
       ft = { "markdown" },
