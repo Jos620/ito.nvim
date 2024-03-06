@@ -4,9 +4,11 @@ return {
   { -- Git UI
     {
       "tpope/vim-fugitive",
-      event = "VeryLazy",
+      keys = {
+        "gS",
+      },
       config = function()
-        utils.set_keymap("n", "gs", ":vertical rightbelow Git<Return>", "Open git status")
+        utils.set_keymap("n", "gS", ":vertical rightbelow Git<Return>", "Open git status")
       end,
     },
 
@@ -19,11 +21,14 @@ return {
         "LazyGitFilter",
         "LazyGitFilterCurrentFile",
       },
+      keys = {
+        "gs",
+      },
       dependencies = {
         "nvim-lua/plenary.nvim",
       },
       config = function()
-        utils.set_keymap("n", "gL", ":LazyGit<Return>", "Open lazy git")
+        utils.set_keymap("n", "gs", ":LazyGit<Return>", "Open lazy git")
       end,
     },
   },
