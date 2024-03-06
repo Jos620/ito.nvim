@@ -39,6 +39,7 @@ return {
             "\\.git",
             ".cache",
             ".DS_Store",
+            "lotties",
           },
         },
       })
