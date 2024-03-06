@@ -1,5 +1,35 @@
 local utils = require("jos620.utils")
 
+local on_attach = function(_, buffer)
+  local opts = { noremap = true, silent = true, buffer = buffer }
+
+  utils.set_keymap("n", "K", vim.lsp.buf.hover, "Show hover doc", opts)
+
+  utils.set_keymap("n", "gd", function()
+    require("telescope.builtin").lsp_definitions({
+      reuse_win = true,
+    })
+  end, "Go to definition", opts)
+  utils.set_keymap("n", "gi", vim.lsp.buf.implementation, "Go to implementation", opts)
+  utils.set_keymap("n", "gr", vim.lsp.buf.references, "Go to references", opts)
+  utils.set_keymap("n", "<Leader>la", vim.lsp.buf.code_action, "Code action", opts)
+  utils.set_keymap("n", "<Leader>lr", vim.lsp.buf.rename, "Rename symbol", opts)
+
+  local diagnostic_opts = {
+    float = {
+      border = "rounded",
+    },
+  }
+
+  utils.set_keymap("n", "<Leader>lj", function()
+    vim.diagnostic.goto_next(diagnostic_opts)
+  end, "Go to next diagnostic", opts)
+
+  utils.set_keymap("n", "<Leader>lk", function()
+    vim.diagnostic.goto_prev(diagnostic_opts)
+  end, "Go to previous diagnostic", opts)
+end
+
 return {
   { -- LSP
     "neovim/nvim-lspconfig",
@@ -10,36 +40,6 @@ return {
     },
     config = function()
       local lspconfig = require("lspconfig")
-
-      local on_attach = function(_, buffer)
-        local opts = { noremap = true, silent = true, buffer = buffer }
-
-        utils.set_keymap("n", "K", vim.lsp.buf.hover, "Show hover doc", opts)
-
-        utils.set_keymap("n", "gd", function()
-          require("telescope.builtin").lsp_definitions({
-            reuse_win = true,
-          })
-        end, "Go to definition", opts)
-        utils.set_keymap("n", "gi", vim.lsp.buf.implementation, "Go to implementation", opts)
-        utils.set_keymap("n", "gr", vim.lsp.buf.references, "Go to references", opts)
-        utils.set_keymap("n", "<Leader>la", vim.lsp.buf.code_action, "Code action", opts)
-        utils.set_keymap("n", "<Leader>lr", vim.lsp.buf.rename, "Rename symbol", opts)
-
-        local diagnostic_opts = {
-          float = {
-            border = "rounded",
-          },
-        }
-
-        utils.set_keymap("n", "<Leader>lj", function()
-          vim.diagnostic.goto_next(diagnostic_opts)
-        end, "Go to next diagnostic", opts)
-
-        utils.set_keymap("n", "<Leader>lk", function()
-          vim.diagnostic.goto_prev(diagnostic_opts)
-        end, "Go to previous diagnostic", opts)
-      end
 
       -- Enable auto completion
       local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -101,30 +101,6 @@ return {
         },
       })
 
-      -- JSON
-      local schemastore_status, schemastore = pcall(require, "schemastore")
-
-      if schemastore_status then
-        lspconfig.jsonls.setup({
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = {
-            json = {
-              schemas = schemastore.json.schemas(),
-              validate = {
-                enable = true,
-              },
-            },
-            yaml = {
-              schemas = schemastore.yaml.schemas(),
-              validate = {
-                enable = true,
-              },
-            },
-          },
-        })
-      end
-
       -- CSS
       local css_settings = {
         lint = {
@@ -179,14 +155,6 @@ return {
         on_attach = on_attach,
         cmd = { "htmx-lsp" },
         filetypes = { "html", "astro" },
-      })
-
-      utils.create_autocmd({ "BufRead", "BufNewFile" }, {
-        pattern = "*.conf",
-        command = "set filetype=tmux",
-        group = utils.create_augroup("TMUX", {
-          clear = true,
-        }),
       })
     end,
   },
@@ -472,10 +440,40 @@ return {
 
     {
       "b0o/schemastore.nvim",
+      dependencies = {
+        "neovim/nvim-lspconfig",
+        "hrsh7th/cmp-nvim-lsp",
+      },
       ft = {
         "json",
         "yaml",
       },
+      config = function()
+        local lspconfig = require("lspconfig")
+        local cmp_nvim_lsp = require("cmp_nvim_lsp")
+        local schemastore = require("schemastore")
+
+        local capabilities = cmp_nvim_lsp.default_capabilities() or vim.lsp.protocol.make_client_capabilities()
+
+        lspconfig.jsonls.setup({
+          capabilities = capabilities,
+          on_attach = on_attach,
+          settings = {
+            json = {
+              schemas = schemastore.json.schemas(),
+              validate = {
+                enable = true,
+              },
+            },
+            yaml = {
+              schemas = schemastore.yaml.schemas(),
+              validate = {
+                enable = true,
+              },
+            },
+          },
+        })
+      end,
     },
   },
 
