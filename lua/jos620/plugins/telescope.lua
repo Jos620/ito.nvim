@@ -113,9 +113,6 @@ return {
         utils.close_empty_buffers()
       end, "Go to last opened file")
 
-      utils.create_command("Harpoon", "require('harpoon.ui').toggle_quick_menu()")
-      utils.create_command("HarpoonAdd", "require('harpoon.mark').add_file()")
-
       local colors = utils.get_current_theme_colors()
 
       utils.link_highlight_groups("harpoonwindow", "Normal")
