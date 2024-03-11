@@ -25,15 +25,21 @@ return {
     config = function()
       local npairs = require("nvim-autopairs")
       local Rule = require("nvim-autopairs.rule")
-      local conds = require("nvim-autopairs.conds")
 
       npairs.setup({
         check_ts = true,
       })
 
       npairs.add_rules({
-        Rule("<", ">"):with_pair(conds.after_text("(")),
-        Rule("<", ">"):with_pair(conds.after_text(">")),
+        Rule("<", ">"):with_pair(
+          -- Do not close the pair if the character is the last one in the line
+          function()
+            ---@diagnostic disable-next-line: deprecated
+            local current_line, current_column = unpack(vim.api.nvim_win_get_cursor(0))
+            local line_length = string.len(vim.api.nvim_buf_get_lines(0, current_line - 1, current_line, false)[1])
+            return current_column + 1 <= line_length
+          end
+        ),
       })
     end,
   },
