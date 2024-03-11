@@ -25,9 +25,10 @@ end
 
 ---Create a command
 ---@param name string
----@param lua_script string
-function M.create_command(name, lua_script)
-  vim.cmd("command! " .. name .. " lua " .. lua_script)
+---@param lua_script string|function
+---@param opts? any
+function M.create_command(name, lua_script, opts)
+  return vim.api.nvim_create_user_command(name, lua_script, opts or {})
 end
 
 ---Set highlight
