@@ -118,17 +118,27 @@ return {
 
       -- Vue
       lspconfig.volar.setup({
-        filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue", "json" },
+        capabilities = capabilities,
         on_attach = on_attach,
-        root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git", "."),
-        init_options = {
-          typescript = {
-            tsdk = utils.get_typescript_server_path(vim.fn.getcwd()),
-          },
-        },
         settings = {
           css = css_settings,
           scss = css_settings,
+        },
+      })
+
+      -- TypeScript
+      lspconfig.tsserver.setup({
+        filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue", "json" },
+        capabilities = capabilities,
+        on_attach = on_attach,
+        init_options = {
+          plugins = {
+            {
+              name = "@vue/typescript-plugin",
+              location = utils.get_vue_typescript_plugin_path(),
+              languages = { "javascript", "typescript", "vue" },
+            },
+          },
         },
       })
 
@@ -197,7 +207,6 @@ return {
           "jsonls",
           "prismals",
           "marksman",
-          "vuels",
           "htmx",
           "astro",
         },

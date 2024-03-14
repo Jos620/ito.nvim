@@ -250,6 +250,12 @@ function M.get_typescript_server_path(path, defaultPath)
   end
 end
 
+---Get Vue's TypeScript plugin path
+function M.get_vue_typescript_plugin_path()
+  -- TODO: dinamically find the path
+  return "/usr/local/lib/node_modules/@vue/typescript-plugin"
+end
+
 ---Get CSS formatters
 ---@param options? GetFormattersOptions -- Only return linters
 ---@return string[]                     -- List of linters and formatters
