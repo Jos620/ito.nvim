@@ -128,7 +128,7 @@ return {
 
       -- TypeScript
       lspconfig.tsserver.setup({
-        filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue", "json" },
+        filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" },
         capabilities = capabilities,
         on_attach = on_attach,
         init_options = {
