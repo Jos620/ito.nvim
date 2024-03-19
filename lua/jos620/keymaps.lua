@@ -37,7 +37,6 @@ utils.set_keymap("n", "<Leader>se", "<C-w>=", "Equalize windows")
 
 utils.set_keymap("n", "<Leader>%", function()
   vim.cmd("only")
-  utils.close_empty_buffers()
 end, "Close other windows")
 utils.set_keymap("n", "<Leader>q", ":quit<Return>", "Quit window")
 utils.set_keymap("n", "<Leader>x", ":close<Return>", "Close window")

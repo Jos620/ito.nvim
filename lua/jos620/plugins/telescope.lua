@@ -110,7 +110,6 @@ return {
         end
 
         vim.cmd("normal! '0")
-        utils.close_empty_buffers()
       end, "Go to last opened file")
 
       local colors = utils.get_current_theme_colors()

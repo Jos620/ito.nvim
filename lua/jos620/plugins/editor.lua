@@ -1,4 +1,16 @@
+local utils = require("jos620.utils")
+
 local scroll_keys = { "<C-u>", "<C-d>", "zt", "zz", "zb" }
+
+utils.create_autocmd({ "BufReadPost" }, {
+  group = utils.create_augroup("clean_empty_buffers", {
+    clear = true,
+  }),
+  pattern = "*",
+  callback = function()
+    utils.close_empty_buffers()
+  end,
+})
 
 return {
   { -- Hardtime
@@ -102,7 +114,6 @@ return {
     event = "BufRead",
     config = function()
       local todo_comments = require("todo-comments")
-      local utils = require("jos620.utils")
 
       local colors = utils.get_current_theme_colors()
 
