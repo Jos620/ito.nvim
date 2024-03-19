@@ -308,12 +308,12 @@ end
 ---Close all empty buffers
 ---@param force? boolean -- Close all buffers regardless of contents
 function M.close_empty_buffers(force)
-  for _, bufnr in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
-    local is_empty = M.buffer_is_empty(bufnr.bufnr)
-    local has_unsaved_changes = M.buffer_has_unsaved_changes(bufnr.bufnr)
+  for _, buffer in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
+    local is_empty = M.buffer_is_empty(buffer.bufnr)
+    local has_unsaved_changes = M.buffer_has_unsaved_changes(buffer.bufnr)
 
     if is_empty and (force or not has_unsaved_changes) then
-      vim.cmd("bdelete " .. bufnr.bufnr)
+      vim.cmd("bdelete " .. buffer.bufnr)
     end
   end
 end
