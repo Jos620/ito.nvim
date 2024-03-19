@@ -1,15 +1,25 @@
 local utils = require("jos620.utils")
 
+utils.set_keymap("n", "gS", ":vertical rightbelow Git<Return>", "Open git status")
+utils.set_keymap("n", "<Leader>gd", ":Gvdiffsplit<Return>", "Diff buffer")
+
 return {
   { -- Git UI
     {
       "tpope/vim-fugitive",
-      keys = {
-        "gS",
+      cmd = {
+        "G",
+        "Git",
+        "Gdiffsplit",
+        "Gvdiffsplit",
+        "Gread",
+        "Gwrite",
+        "Ggrep",
+        "GMove",
+        "GDelete",
+        "GBrowse",
       },
-      config = function()
-        utils.set_keymap("n", "gS", ":vertical rightbelow Git<Return>", "Open git status")
-      end,
+      lazy = true,
     },
 
     {
@@ -79,9 +89,6 @@ return {
           --- Reset
           utils.set_keymap({ "n", "v" }, "<Leader>gr", gitsigns.reset_hunk, "Reset hunk")
           utils.set_keymap({ "n", "v" }, "<Leader>gR", gitsigns.reset_buffer, "Reset buffer")
-
-          --- Diff
-          utils.set_keymap("n", "<Leader>gd", ":Gvdiffsplit<Return>", "Diff buffer")
         end,
       })
     end,
