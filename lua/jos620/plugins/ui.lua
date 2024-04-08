@@ -500,7 +500,7 @@ return {
   { -- Text navigation
     {
       "justinmk/vim-sneak",
-      event = "BufRead",
+      event = "VeryLazy",
       config = function()
         vim.g["sneak#prompt"] = ">"
 
