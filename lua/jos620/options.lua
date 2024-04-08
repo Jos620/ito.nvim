@@ -29,13 +29,14 @@ o.smartcase = true
 o.hlsearch = false
 o.incsearch = true
 
--- Cursor line
-o.cursorline = true
-
 -- Appearance
 o.termguicolors = true
 o.background = "dark"
 o.signcolumn = "yes"
+vim.defer_fn(function()
+  -- o.cursorline = true
+  -- o.colorcolumn = "80"
+end, 0)
 
 -- Backspace
 o.backspace = "indent,eol,start"

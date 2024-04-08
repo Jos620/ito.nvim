@@ -65,10 +65,6 @@ return {
       })
 
       vim.cmd("colorscheme vitesse")
-
-      vim.defer_fn(function()
-        vim.opt.colorcolumn = "80"
-      end, 0)
     end,
   },
 }
