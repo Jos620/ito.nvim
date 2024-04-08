@@ -181,67 +181,55 @@ return {
       local bufferline = require("bufferline")
 
       ---@type table<string, HighlightSetOptions>
-      local bufferline_colors = {
+      local highlight_colors = {
         normal = {
           fg = colors.gray,
           bg = colors.black,
         },
-
         selected = {
           fg = colors.white,
           bg = colors.darkgray,
         },
-
         black = {
           fg = colors.black,
           bg = colors.black,
         },
-
         gray = {
           fg = colors.gray,
           bg = colors.darkgray,
         },
-
         green = {
           fg = colors.green,
           bg = colors.darkgray,
         },
-
         cyan = {
           fg = colors.cyan,
           bg = colors.black,
         },
-
         cyan_gray = {
           fg = colors.cyan,
           bg = colors.darkgray,
         },
-
         blue = {
           fg = colors.blue,
           bg = colors.black,
         },
-
         blue_gray = {
           fg = colors.blue,
           bg = colors.darkgray,
         },
-
         yellow = {
           fg = colors.yellow,
           bg = colors.black,
         },
-
         yellow_gray = {
           fg = colors.yellow,
           bg = colors.darkgray,
         },
-
         red = {
           fg = colors.red,
           bg = colors.black,
         },
-
         red_gray = {
           fg = colors.red,
           bg = colors.darkgray,
@@ -260,90 +248,90 @@ return {
         },
         highlights = {
           -- General
-          background = bufferline_colors.normal,
-          fill = bufferline_colors.normal,
+          background = highlight_colors.normal,
+          fill = highlight_colors.normal,
 
           -- Tabs
-          tab = bufferline_colors.normal,
-          tab_selected = bufferline_colors.green,
-          tab_close = bufferline_colors.normal,
+          tab = highlight_colors.normal,
+          tab_selected = highlight_colors.green,
+          tab_close = highlight_colors.normal,
 
           -- Close button
-          close_button = bufferline_colors.normal,
-          close_button_visible = bufferline_colors.normal,
-          close_button_selected = bufferline_colors.green,
+          close_button = highlight_colors.normal,
+          close_button_visible = highlight_colors.normal,
+          close_button_selected = highlight_colors.green,
 
           -- Buffers
-          buffer_visible = bufferline_colors.normal,
-          buffer_selected = bufferline_colors.selected,
+          buffer_visible = highlight_colors.normal,
+          buffer_selected = highlight_colors.selected,
 
           -- Numbers
-          numbers = bufferline_colors.normal,
-          numbers_visible = bufferline_colors.normal,
-          numbers_selected = bufferline_colors.green,
+          numbers = highlight_colors.normal,
+          numbers_visible = highlight_colors.normal,
+          numbers_selected = highlight_colors.green,
 
           -- General diagnostics
-          diagnostic = bufferline_colors.normal,
-          diagnostic_visible = bufferline_colors.normal,
-          diagnostic_selected = bufferline_colors.green,
+          diagnostic = highlight_colors.normal,
+          diagnostic_visible = highlight_colors.normal,
+          diagnostic_selected = highlight_colors.green,
 
           -- Hint
-          hint = bufferline_colors.cyan,
-          hint_visible = bufferline_colors.cyan,
-          hint_selected = bufferline_colors.cyan_gray,
-          hint_diagnostic = bufferline_colors.cyan,
-          hint_diagnostic_visible = bufferline_colors.cyan,
-          hint_diagnostic_selected = bufferline_colors.cyan_gray,
+          hint = highlight_colors.cyan,
+          hint_visible = highlight_colors.cyan,
+          hint_selected = highlight_colors.cyan_gray,
+          hint_diagnostic = highlight_colors.cyan,
+          hint_diagnostic_visible = highlight_colors.cyan,
+          hint_diagnostic_selected = highlight_colors.cyan_gray,
 
           -- Info
-          info = bufferline_colors.blue,
-          info_visible = bufferline_colors.blue,
-          info_selected = bufferline_colors.blue_gray,
-          info_diagnostic = bufferline_colors.blue,
-          info_diagnostic_visible = bufferline_colors.blue,
-          info_diagnostic_selected = bufferline_colors.blue_gray,
+          info = highlight_colors.blue,
+          info_visible = highlight_colors.blue,
+          info_selected = highlight_colors.blue_gray,
+          info_diagnostic = highlight_colors.blue,
+          info_diagnostic_visible = highlight_colors.blue,
+          info_diagnostic_selected = highlight_colors.blue_gray,
 
           -- Warning
-          warning = bufferline_colors.yellow,
-          warning_visible = bufferline_colors.yellow,
-          warning_selected = bufferline_colors.yellow_gray,
-          warning_diagnostic = bufferline_colors.yellow,
-          warning_diagnostic_visible = bufferline_colors.yellow,
-          warning_diagnostic_selected = bufferline_colors.yellow_gray,
+          warning = highlight_colors.yellow,
+          warning_visible = highlight_colors.yellow,
+          warning_selected = highlight_colors.yellow_gray,
+          warning_diagnostic = highlight_colors.yellow,
+          warning_diagnostic_visible = highlight_colors.yellow,
+          warning_diagnostic_selected = highlight_colors.yellow_gray,
 
           -- Error
-          error = bufferline_colors.red,
-          error_visible = bufferline_colors.red,
-          error_selected = bufferline_colors.red_gray,
-          error_diagnostic = bufferline_colors.red,
-          error_diagnostic_visible = bufferline_colors.red,
-          error_diagnostic_selected = bufferline_colors.red_gray,
+          error = highlight_colors.red,
+          error_visible = highlight_colors.red,
+          error_selected = highlight_colors.red_gray,
+          error_diagnostic = highlight_colors.red,
+          error_diagnostic_visible = highlight_colors.red,
+          error_diagnostic_selected = highlight_colors.red_gray,
 
           -- Modified
-          modified = bufferline_colors.yellow,
-          modified_visible = bufferline_colors.yellow,
-          modified_selected = bufferline_colors.yellow_gray,
+          modified = highlight_colors.yellow,
+          modified_visible = highlight_colors.yellow,
+          modified_selected = highlight_colors.yellow_gray,
 
           -- Duplicate
-          duplicate_selected = bufferline_colors.gray,
-          duplicate_visible = bufferline_colors.normal,
-          duplicate = bufferline_colors.normal,
+          duplicate_selected = highlight_colors.gray,
+          duplicate_visible = highlight_colors.normal,
+          duplicate = highlight_colors.normal,
 
           -- Separators
-          separator_selected = bufferline_colors.black,
-          separator_visible = bufferline_colors.black,
-          separator = bufferline_colors.black,
+          separator_selected = highlight_colors.black,
+          separator_visible = highlight_colors.black,
+          separator = highlight_colors.black,
 
           -- Indicators
-          indicator_selected = bufferline_colors.green,
+          indicator_selected = highlight_colors.green,
 
           -- Pick
-          pick_selected = bufferline_colors.selected,
-          pick_visible = bufferline_colors.normal,
-          pick = bufferline_colors.normal,
+          pick_selected = highlight_colors.selected,
+          pick_visible = highlight_colors.normal,
+          pick = highlight_colors.normal,
 
           -- Offset
-          offset_separator = bufferline_colors.black,
+          offset_separator = highlight_colors.black,
         },
       })
 
