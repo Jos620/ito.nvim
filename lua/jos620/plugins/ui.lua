@@ -257,54 +257,6 @@ return {
             "",
             "",
           },
-
-          name_formatter = function(buf)
-            local modify = vim.fn.fnamemodify
-
-            local name = modify(buf.path, ":t")
-            local folder = modify(buf.path, ":h:t")
-
-            local label
-
-            if string.find(name, "index") or string.find(name, "init") then
-              label = folder
-            else
-              label = name
-            end
-
-            local icons = {
-              -- Environment
-              ["@mobile"] = "󰄜",
-              ["@desktop"] = "󰇄",
-
-              -- File functions
-              ["style"] = "󰏘",
-
-              -- Database
-              ["repositor"] = "",
-            }
-
-            for key, icon in pairs(icons) do
-              if string.find(buf.path, key) and not string.find(label, icon) then
-                label = icon .. "|" .. label
-              end
-            end
-
-            -- ScoreMilk
-            if string.find(buf.path, "ScoreMilk") then
-              -- Desktop
-              if string.find(buf.path, "components") and not string.find(buf.path, "@mobile") then
-                label = icons["@desktop"] .. "|" .. label
-              end
-
-              -- Style
-              if string.find(buf.path, "style") then
-                label = icons["style"] .. "|" .. folder
-              end
-            end
-
-            return label
-          end,
         },
         highlights = {
           -- General
