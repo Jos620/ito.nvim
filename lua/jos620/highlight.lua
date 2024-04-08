@@ -9,3 +9,11 @@ utils.set_highlight("MatchParen", {
 utils.set_highlight("Visual", {
   bg = colors.darkgray,
 })
+
+utils.set_highlight("CursorLine", {
+  bg = colors.black,
+})
+
+utils.set_highlight("ColorColumn", {
+  bg = colors.black,
+})

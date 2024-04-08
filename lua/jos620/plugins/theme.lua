@@ -1,5 +1,3 @@
-local utils = require("jos620.utils")
-
 return {
   { -- Treesitter
     "nvim-treesitter/nvim-treesitter",
@@ -67,12 +65,6 @@ return {
       })
 
       vim.cmd("colorscheme vitesse")
-
-      local colors = utils.get_current_theme_colors()
-
-      utils.set_highlight("ColorColumn", {
-        bg = colors.darkgray,
-      })
 
       vim.defer_fn(function()
         vim.opt.colorcolumn = "80"
