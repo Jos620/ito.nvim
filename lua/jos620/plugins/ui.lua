@@ -80,28 +80,20 @@ return {
           },
         })
 
-        local green_fg_groups = {
+        utils.set_highlight({
           "NoiceCmdlineIcon",
           "NoiceCmdlinePopupBorder",
           "NoiceCmdlinePopupTitle",
-        }
+        }, {
+          fg = colors.green,
+        })
 
-        for _, group in ipairs(green_fg_groups) do
-          utils.set_highlight(group, {
-            fg = colors.green,
-          })
-        end
-
-        local darkgray_bg_groups = {
+        utils.set_highlight({
           "NoiceCmdlinePrompt",
           "NoiceCmdline",
-        }
-
-        for _, group in ipairs(darkgray_bg_groups) do
-          utils.set_highlight(group, {
-            bg = colors.darkgray,
-          })
-        end
+        }, {
+          bg = colors.darkgray,
+        })
       end,
     },
 

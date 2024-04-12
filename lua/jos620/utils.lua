@@ -32,11 +32,15 @@ function M.create_command(name, lua_script, opts)
 end
 
 ---Set highlight
----@param group string
+---@param groups string|string[]
 ---@param options HighlightSetOptions
-function M.set_highlight(group, options)
+function M.set_highlight(groups, options)
   vim.defer_fn(function()
-    vim.api.nvim_set_hl(0, group, options)
+    groups = type(groups) == "table" and groups or { groups }
+
+    for _, group in ipairs(groups) do
+      vim.api.nvim_set_hl(0, group, options)
+    end
   end, 0)
 end
 

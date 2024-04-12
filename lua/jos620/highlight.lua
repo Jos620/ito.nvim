@@ -10,10 +10,6 @@ utils.set_highlight("Visual", {
   bg = colors.darkgray,
 })
 
-utils.set_highlight("CursorLine", {
-  bg = colors.black,
-})
-
-utils.set_highlight("ColorColumn", {
+utils.set_highlight({ "CursorLine", "ColorColumn" }, {
   bg = colors.black,
 })
