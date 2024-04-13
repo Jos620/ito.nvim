@@ -1,5 +1,7 @@
 local utils = require("jos620.utils")
 
+local colors = utils.get_current_theme_colors()
+
 utils.create_autocmd({ "BufReadPost" }, {
   group = utils.create_augroup("clean_empty_buffers", {
     clear = true,
@@ -43,6 +45,15 @@ utils.set_keymap("v", "<", "<gv", "Unindent lines")
 -- Increase / decrease
 utils.set_keymap("n", "=", "<C-a>", "Increase")
 utils.set_keymap("n", "-", "<C-x>", "Decrease")
+
+utils.set_highlight("MatchParen", {
+  bg = "None",
+  fg = colors.red,
+})
+
+utils.set_highlight("Visual", {
+  bg = colors.darkgray,
+})
 
 return {
   { -- Hardtime
@@ -146,8 +157,6 @@ return {
     event = "BufRead",
     config = function()
       local todo_comments = require("todo-comments")
-
-      local colors = utils.get_current_theme_colors()
 
       todo_comments.setup({
         colors = {

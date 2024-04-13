@@ -22,6 +22,10 @@ utils.set_keymap("n", "<Leader>C", ":b# <bar> bd#<Return>", "Close buffer, witho
 -- Fold
 utils.set_keymap("n", "<Leader>z", "$V%zf", "Create fold")
 
+utils.set_highlight({ "CursorLine", "ColorColumn" }, {
+  bg = colors.black,
+})
+
 return {
   { -- Better UI for Neovim
     {
