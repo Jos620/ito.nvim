@@ -2,6 +2,26 @@ local utils = require("jos620.utils")
 
 local colors = utils.get_current_theme_colors()
 
+-- Split window
+utils.set_keymap("n", "<Leader>sv", "<C-w>v", "Split window vertically")
+utils.set_keymap("n", "<Leader>sb", "<C-w>s", "Split window horizontally")
+utils.set_keymap("n", "<Leader>se", "<C-w>=", "Equalize windows")
+
+utils.set_keymap("n", "<Leader>Sv", "<C-w>t<C-w>H", "Change split orientation to horizontal")
+utils.set_keymap("n", "<Leader>Sb", "<C-w>t<C-w>K", "Change split orientation to vertical")
+
+-- Buffers
+utils.set_keymap("n", "<Leader>%", function()
+  vim.cmd("only")
+end, "Close other windows")
+utils.set_keymap("n", "<Leader>q", ":quit<Return>", "Quit window")
+utils.set_keymap("n", "<Leader>x", ":close<Return>", "Close window")
+utils.set_keymap("n", "<Leader>c", ":bdelete<Return>", "Close buffer")
+utils.set_keymap("n", "<Leader>C", ":b# <bar> bd#<Return>", "Close buffer, without closing the window")
+
+-- Fold
+utils.set_keymap("n", "<Leader>z", "$V%zf", "Create fold")
+
 return {
   { -- Better UI for Neovim
     {

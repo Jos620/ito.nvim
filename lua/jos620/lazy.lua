@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazy_path)
 
 require("lazy").setup({
   spec = {
-    import = "jos620.plugins",
+    import = "jos620.modules",
   },
   defaults = {
     version = false,

@@ -1,7 +1,5 @@
 local utils = require("jos620.utils")
 
-local scroll_keys = { "<C-u>", "<C-d>", "zt", "zz", "zb" }
-
 utils.create_autocmd({ "BufReadPost" }, {
   group = utils.create_augroup("clean_empty_buffers", {
     clear = true,
@@ -11,6 +9,40 @@ utils.create_autocmd({ "BufReadPost" }, {
     utils.close_empty_buffers()
   end,
 })
+
+-- Exit insert mode
+utils.set_keymap("i", "jk", "<Esc>", "Exit insert mode")
+
+-- Scroll sideways
+utils.set_keymap("n", "zl", "30zl", "Scroll right")
+utils.set_keymap("n", "zh", "30zh", "Scroll left")
+
+-- Do not yank with "X" and "P"
+utils.set_keymap({ "n", "v" }, "x", '"_x', "Do not yank with 'x'")
+utils.set_keymap({ "n", "v" }, "X", '"_X', "Do not yank with 'X'")
+utils.set_keymap("x", "p", '"_dP', "Do not yank with 'p'")
+
+-- Move lines with visual
+utils.set_keymap("v", "J", ":m '>+1<Return>gv=gv", "Move lines down")
+utils.set_keymap("v", "K", ":m '<-2<Return>gv=gv", "Move lines up")
+
+-- "ie" for "all file"
+utils.set_keymap("n", "vie", "ggVG", "Select all file")
+utils.set_keymap("n", "cie", "ggcG", "Change all file")
+utils.set_keymap("n", "die", "ggdG", "Delete all file")
+utils.set_keymap("n", "yie", "ggVGy", "Yank all file")
+
+-- Better navigation on wrapped lines
+utils.set_keymap("n", "j", "gj", "Move down")
+utils.set_keymap("n", "k", "gk", "Move up")
+
+-- Line indent with visual
+utils.set_keymap("v", ">", ">gv", "Indent lines")
+utils.set_keymap("v", "<", "<gv", "Unindent lines")
+
+-- Increase / decrease
+utils.set_keymap("n", "=", "<C-a>", "Increase")
+utils.set_keymap("n", "-", "<C-x>", "Decrease")
 
 return {
   { -- Hardtime
@@ -141,9 +173,9 @@ return {
   { -- Scroll
     "karb94/neoscroll.nvim",
     enabled = false,
-    keys = scroll_keys,
+    event = "VeryLazy",
     opts = {
-      mappings = scroll_keys,
+      mappings = { "<C-u>", "<C-d>", "zt", "zz", "zb" },
       hide_cursor = false,
     },
   },

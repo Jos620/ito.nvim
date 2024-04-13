@@ -3,6 +3,10 @@ local utils = require("jos620.utils")
 utils.set_keymap("n", "gS", ":vertical rightbelow Git<Return>", "Open git status")
 utils.set_keymap("n", "<Leader>gd", ":Gvdiffsplit<Return>", "Diff buffer")
 
+-- Conflict
+utils.set_keymap("n", "gh", ":diffget //2<Return>", "Use left diff hunk")
+utils.set_keymap("n", "gl", ":diffget //3<Return>", "Use right diff hunk")
+
 return {
   { -- Git UI
     {
