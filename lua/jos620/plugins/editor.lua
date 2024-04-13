@@ -140,6 +140,7 @@ return {
 
   { -- Scroll
     "karb94/neoscroll.nvim",
+    enabled = false,
     keys = scroll_keys,
     opts = {
       mappings = scroll_keys,
