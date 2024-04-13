@@ -1,3 +1,9 @@
+-- Save files
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = vim.fn.stdpath("config") .. "/undodir"
+vim.opt.undofile = true
+
 local utils = require("jos620.utils")
 
 utils.set_keymap("n", "gS", ":vertical rightbelow Git<Return>", "Open git status")

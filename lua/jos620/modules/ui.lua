@@ -1,6 +1,39 @@
-local utils = require("jos620.utils")
+-- Numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
 
-local colors = utils.get_current_theme_colors()
+-- Line wrapping
+vim.opt.wrap = false
+
+-- Show line and column
+vim.defer_fn(function()
+  -- vim.opt.cursorline = true
+  -- vim.opt.colorcolumn = "80"
+end, 0)
+
+-- Split
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Bottom bar
+vim.opt.showmode = false
+vim.opt.ruler = false
+
+-- Set global statusline
+vim.opt.laststatus = 3
+
+-- Mouse support
+vim.opt.mouse = "a"
+
+-- Fold
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+
+-- Remove intro message
+vim.opt.shortmess:append("I")
+
+local utils = require("jos620.utils")
 
 -- Split window
 utils.set_keymap("n", "<Leader>sv", "<C-w>v", "Split window vertically")
@@ -21,6 +54,8 @@ utils.set_keymap("n", "<Leader>C", ":b# <bar> bd#<Return>", "Close buffer, witho
 
 -- Fold
 utils.set_keymap("n", "<Leader>z", "$V%zf", "Create fold")
+
+local colors = utils.get_current_theme_colors()
 
 utils.set_highlight({ "CursorLine", "ColorColumn" }, {
   bg = colors.black,

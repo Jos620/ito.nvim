@@ -1,3 +1,11 @@
+-- Appearance
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
+vim.opt.signcolumn = "yes"
+
+-- Set cursor as block
+vim.opt.guicursor = "n-v-c:block,i-ci-ve:block"
+
 return {
   { -- Treesitter
     "nvim-treesitter/nvim-treesitter",

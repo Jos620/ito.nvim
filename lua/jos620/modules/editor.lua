@@ -1,6 +1,32 @@
-local utils = require("jos620.utils")
+-- Leader key
+vim.g.mapleader = " "
 
-local colors = utils.get_current_theme_colors()
+-- Tabs & indentation
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+
+-- Search settings
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+
+-- Backspace
+vim.opt.backspace = "indent,eol,start"
+
+-- Clipboard
+vim.opt.clipboard:append("unnamedplus")
+
+-- Scroll
+vim.opt.scrolloff = 5
+vim.opt.sidescrolloff = 5
+
+-- Update the file when it changes
+vim.opt.autoread = true
+
+local utils = require("jos620.utils")
 
 utils.create_autocmd({ "BufReadPost" }, {
   group = utils.create_augroup("clean_empty_buffers", {
@@ -45,6 +71,8 @@ utils.set_keymap("v", "<", "<gv", "Unindent lines")
 -- Increase / decrease
 utils.set_keymap("n", "=", "<C-a>", "Increase")
 utils.set_keymap("n", "-", "<C-x>", "Decrease")
+
+local colors = utils.get_current_theme_colors()
 
 utils.set_highlight("MatchParen", {
   bg = "None",
