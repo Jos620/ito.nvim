@@ -1,5 +1,101 @@
 local utils = require("jos620.utils")
 
+---@class GetFormattersOptions
+---@field linters_only? boolean
+
+---Get JavaScript formatters
+---@param options? GetFormattersOptions -- Only return linters
+---@return string[]                     -- List of linters and formatters
+local function get_javascript_formatters(options)
+  ---@type GetFormattersOptions
+  local defaultOptions = {
+    linters_only = false,
+  }
+
+  ---@type GetFormattersOptions
+  local mergedOptions = utils.merge_tables({
+    defaultOptions,
+    options,
+  })
+
+  ---@type string[]
+  local linters = {}
+
+  local has_eslint = utils.root_has_file({
+    ".eslintrc",
+    ".eslintrc.js",
+    ".eslintrc.cjs",
+    ".eslintrc.yaml",
+    ".eslintrc.yml",
+    ".eslintrc.json",
+  })
+
+  if has_eslint then
+    table.insert(linters, "eslint_d")
+  end
+
+  if mergedOptions.linters_only then
+    return linters
+  end
+
+  ---@type string[]
+  local formatters = {}
+
+  local has_prettier = utils.root_has_file({
+    ".prettierrc",
+    ".prettierrc.json",
+    ".prettierrc.yml",
+    ".prettierrc.yaml",
+    ".prettierrc.json5",
+    ".prettierrc.js",
+    ".prettierrc.mjs",
+    ".prettierrc.cjs",
+    ".prettier.config.js",
+    "prettier.config.mjs",
+    "prettier.config.cjs",
+    ".prettierrc.toml",
+  })
+
+  if has_prettier then
+    table.insert(formatters, "prettierd")
+  end
+
+  return utils.flatten({ linters, formatters })
+end
+
+---Get Vue's TypeScript plugin path
+local function get_vue_typescript_plugin_path()
+  -- TODO: dinamically find the path
+  return "/usr/local/lib/node_modules/@vue/typescript-plugin"
+end
+
+---Get CSS formatters
+---@param options? GetFormattersOptions -- Only return linters
+---@return string[]                     -- List of linters and formatters
+local function get_css_formatters(options)
+  options = options or { linters_only = false }
+
+  local linters = {}
+  local formatters = {
+    "prettier",
+  }
+
+  local stylelint_configs = {
+    ".stylelintrc",
+    ".stylelintrc.yaml",
+  }
+
+  if utils.root_has_file(stylelint_configs) then
+    table.insert(linters, "stylelint")
+  end
+
+  if options.linters_only then
+    return linters
+  end
+
+  return utils.flatten({ linters, formatters })
+end
+
 local on_attach = function(_, buffer)
   local opts = { noremap = true, silent = true, buffer = buffer }
 
@@ -135,7 +231,7 @@ return {
           plugins = {
             {
               name = "@vue/typescript-plugin",
-              location = utils.get_vue_typescript_plugin_path(),
+              location = get_vue_typescript_plugin_path(),
               languages = { "javascript", "typescript", "vue" },
             },
           },
@@ -257,10 +353,10 @@ return {
       config = function()
         local lint = require("lint")
 
-        local javascript_linters = utils.get_javascript_formatters({
+        local javascript_linters = get_javascript_formatters({
           linters_only = true,
         })
-        local css_linters = utils.get_css_formatters({
+        local css_linters = get_css_formatters({
           linters_only = true,
         })
 
@@ -310,8 +406,8 @@ return {
       config = function()
         local conform = require("conform")
 
-        local javascript_formatters = utils.get_javascript_formatters()
-        local css_formatters = utils.get_css_formatters()
+        local javascript_formatters = get_javascript_formatters()
+        local css_formatters = get_css_formatters()
 
         conform.setup({
           formatters_by_ft = {

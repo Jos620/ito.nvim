@@ -44,8 +44,6 @@
 ---@field buf number
 ---@field data string
 
----@alias AutocmdFunction fun(event: string[], options: AutocmdOptions)
-
 ---@class Colors
 ---@field white string
 ---@field black string

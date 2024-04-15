@@ -12,7 +12,8 @@ function M.set_keymap(mode, key, command, desc, options)
 end
 
 ---Create an autocommand
----@type AutocmdFunction
+---@param events string[]
+---@param options AutocmdOptions
 function M.create_autocmd(events, options)
   return vim.api.nvim_create_autocmd(events, options)
 end
@@ -165,126 +166,6 @@ function M.check_dependencies(executableList)
   end
 
   return true
-end
-
----@class GetFormattersOptions
----@field linters_only? boolean
-
----Get JavaScript formatters
----@param options? GetFormattersOptions -- Only return linters
----@return string[]                     -- List of linters and formatters
-function M.get_javascript_formatters(options)
-  ---@type GetFormattersOptions
-  local defaultOptions = {
-    linters_only = false,
-  }
-
-  ---@type GetFormattersOptions
-  local mergedOptions = M.merge_tables({
-    defaultOptions,
-    options,
-  })
-
-  ---@type string[]
-  local linters = {}
-
-  local has_eslint = M.root_has_file({
-    ".eslintrc",
-    ".eslintrc.js",
-    ".eslintrc.cjs",
-    ".eslintrc.yaml",
-    ".eslintrc.yml",
-    ".eslintrc.json",
-  })
-
-  if has_eslint then
-    table.insert(linters, "eslint_d")
-  end
-
-  if mergedOptions.linters_only then
-    return linters
-  end
-
-  ---@type string[]
-  local formatters = {}
-
-  local has_prettier = M.root_has_file({
-    ".prettierrc",
-    ".prettierrc.json",
-    ".prettierrc.yml",
-    ".prettierrc.yaml",
-    ".prettierrc.json5",
-    ".prettierrc.js",
-    ".prettierrc.mjs",
-    ".prettierrc.cjs",
-    ".prettier.config.js",
-    "prettier.config.mjs",
-    "prettier.config.cjs",
-    ".prettierrc.toml",
-  })
-
-  if has_prettier then
-    table.insert(formatters, "prettierd")
-  end
-
-  return M.flatten({ linters, formatters })
-end
-
----Get Typescript server path
----@param path string         -- Path to search for typescript server
----@param defaultPath? string -- Default path to use if not found
----@return string             -- Path to typescript server
-function M.get_typescript_server_path(path, defaultPath)
-  local lspconfig = require("lspconfig")
-
-  local global_ts = defaultPath or "/usr/local/lib/node_modules/typescript/lib"
-  local found_ts = ""
-
-  local function check_dir(dir_path)
-    found_ts = lspconfig.util.path.join(dir_path, "node_modules", "typescript", "lib")
-    if lspconfig.util.path.exists(found_ts) then
-      return dir_path
-    end
-  end
-
-  if lspconfig.util.search_ancestors(path, check_dir) then
-    return found_ts
-  else
-    return global_ts
-  end
-end
-
----Get Vue's TypeScript plugin path
-function M.get_vue_typescript_plugin_path()
-  -- TODO: dinamically find the path
-  return "/usr/local/lib/node_modules/@vue/typescript-plugin"
-end
-
----Get CSS formatters
----@param options? GetFormattersOptions -- Only return linters
----@return string[]                     -- List of linters and formatters
-function M.get_css_formatters(options)
-  options = options or { linters_only = false }
-
-  local linters = {}
-  local formatters = {
-    "prettier",
-  }
-
-  local stylelint_configs = {
-    ".stylelintrc",
-    ".stylelintrc.yaml",
-  }
-
-  if M.root_has_file(stylelint_configs) then
-    table.insert(linters, "stylelint")
-  end
-
-  if options.linters_only then
-    return linters
-  end
-
-  return M.flatten({ linters, formatters })
 end
 
 ---Check if a buffer is empty
