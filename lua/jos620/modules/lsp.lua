@@ -154,6 +154,16 @@ return {
         },
       })
 
+      -- Handle "todo" files as markdown
+      utils.create_autocmd({ "BufNewFile", "BufRead" }, {
+        group = utils.create_augroup("todo_markdown", { clear = true }),
+        callback = function()
+          if vim.fn.expand("%:e") == "todo" then
+            vim.bo.filetype = "markdown"
+          end
+        end,
+      })
+
       -- Base LSP config
       local servers = {
         "html",
