@@ -51,6 +51,7 @@ local function get_javascript_formatters(options)
     ".prettierrc.mjs",
     ".prettierrc.cjs",
     ".prettier.config.js",
+    "prettier.config.js",
     "prettier.config.mjs",
     "prettier.config.cjs",
     ".prettierrc.toml",
