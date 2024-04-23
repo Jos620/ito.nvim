@@ -61,6 +61,23 @@ utils.set_highlight({ "CursorLine", "ColorColumn" }, {
   bg = colors.black,
 })
 
+utils.set_highlight({
+  "NoiceCmdlineIcon",
+  "NoiceCmdlinePopupBorder",
+  "NoiceCmdlinePopupBorderSearch",
+  "NoiceCmdlineIconSearch",
+  "NoiceCmdlinePopupTitle",
+}, {
+  fg = colors.green,
+})
+
+utils.set_highlight({
+  "NoiceCmdlinePrompt",
+  "NoiceCmdline",
+}, {
+  bg = colors.darkgray,
+})
+
 return {
   { -- Better UI for Neovim
     {
@@ -137,21 +154,6 @@ return {
               },
             },
           },
-        })
-
-        utils.set_highlight({
-          "NoiceCmdlineIcon",
-          "NoiceCmdlinePopupBorder",
-          "NoiceCmdlinePopupTitle",
-        }, {
-          fg = colors.green,
-        })
-
-        utils.set_highlight({
-          "NoiceCmdlinePrompt",
-          "NoiceCmdline",
-        }, {
-          bg = colors.darkgray,
         })
       end,
     },
