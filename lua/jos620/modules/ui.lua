@@ -441,15 +441,7 @@ return {
             },
           },
           lualine_c = {},
-
-          lualine_x = {
-            {
-              "filetype",
-              color = {
-                bg = colors.black,
-              },
-            },
-          },
+          lualine_x = {},
           lualine_y = {
             {
               "progress",
