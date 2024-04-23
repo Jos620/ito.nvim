@@ -40,6 +40,7 @@ utils.create_autocmd({ "BufReadPost" }, {
 
 -- Exit insert mode
 utils.set_keymap("i", "jk", "<Esc>", "Exit insert mode")
+utils.set_keymap("i", "JK", "<Esc>", "Exit insert mode")
 
 -- Scroll sideways
 utils.set_keymap("n", "zl", "30zl", "Scroll right")
