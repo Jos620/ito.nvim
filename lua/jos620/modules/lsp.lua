@@ -152,6 +152,8 @@ return {
       vim.filetype.add({
         extension = {
           templ = "templ",
+          pcss = "css",
+          postcss = "css",
         },
       })
 
