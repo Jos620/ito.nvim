@@ -38,6 +38,9 @@ utils.create_autocmd({ "BufReadPost" }, {
   end,
 })
 
+-- Use "Ç" to open command line
+utils.set_keymap({ "n", "v" }, "Ç", ":", "Use ':' with 'Ç'", { noremap = true })
+
 -- Exit insert mode
 utils.set_keymap("i", "jk", "<Esc>", "Exit insert mode")
 utils.set_keymap("i", "JK", "<Esc>", "Exit insert mode")
