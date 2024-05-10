@@ -32,11 +32,12 @@
 ---@class AugroupOptions
 ---@field clear? boolean
 
----@alias AugroupFunction fun(name: string, options: AugroupOptions)
+---@alias AugroupFunction fun(name: string, options?: AugroupOptions)
 
 ---@class AutocmdOptions
 ---@field group AugroupFunction
 ---@field nested? boolean
+---@field pattern? string|string[]
 ---@field callback? fun(args: AutocmdCallbackArgs)
 
 ---@class AutocmdCallbackArgs
