@@ -44,6 +44,7 @@ utils.set_keymap({ "n", "v" }, "Ç", ":", "Use ':' with 'Ç'", { noremap = true 
 -- Exit insert mode
 utils.set_keymap("i", "jk", "<Esc>", "Exit insert mode")
 utils.set_keymap("i", "JK", "<Esc>", "Exit insert mode")
+utils.set_keymap("i", "Jk", "<Esc>", "Exit insert mode")
 
 -- Scroll sideways
 utils.set_keymap("n", "zl", "30zl", "Scroll right")
