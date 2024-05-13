@@ -210,9 +210,11 @@ return {
       })
 
       local split_shortcuts = {
-        ["<Leader>o"] = "vsplit",
-        ["<Leader>O"] = "split",
+        ["<Leader>O"] = "vsplit",
+        ["<Leader><C-o>"] = "split",
       }
+
+      utils.set_keymap("n", "<Leader>o", ":Oil<Return>", "Open file explorer")
 
       for key, action in pairs(split_shortcuts) do
         utils.set_keymap("n", key, function()
