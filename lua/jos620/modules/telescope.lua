@@ -7,6 +7,7 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
       "ThePrimeagen/harpoon",
     },
+    cmd = { "Telescope" },
     event = "VeryLazy",
     config = function()
       local telescope = require("telescope")
