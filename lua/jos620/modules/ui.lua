@@ -87,63 +87,46 @@ return {
         "rcarriga/nvim-notify",
       },
       config = function()
-        require("noice").setup({
-          routes = {
-            { -- Hide "No information available" message
-              filter = {
-                event = "notify",
-                find = "No information available",
-              },
-              opts = {
-                skip = true,
-              },
-            },
-            { -- Hide search count
-              filter = {
-                event = "msg_show",
-                kind = "search_count",
-              },
-              opts = {
-                skip = true,
-              },
-            },
-            { -- Hide written message
-              filter = {
-                event = "msg_show",
-                find = "written$",
-              },
-              opts = {
-                skip = true,
-              },
-            },
-            { -- Hide Sneak messages
-              filter = {
-                event = "msg_show",
-                find = "^" .. (vim.g["sneak#prompt"] or ">") .. ".*",
-              },
-              opts = {
-                skip = true,
-              },
-            },
-            { -- Hide Gitsigns hunk messages
-              filter = {
-                event = "msg_show",
-                find = "^Hunk %d+ of %d+$",
-              },
-              opts = {
-                skip = true,
-              },
-            },
-            { -- Hide search loop warning
-              filter = {
-                event = "msg_show",
-                find = "^search hit %a+, continuing at %a+$",
-              },
-              opts = {
-                skip = true,
-              },
-            },
+        ---@type table<string, string[]>
+        local messages_to_ignore = {
+          ["notify"] = {
+            "No information available",
           },
+          ["msg_show"] = {
+            "written$",
+            "^" .. (vim.g["sneak#prompt"] or ">") .. ".*",
+            "^Hunk %d+ of %d+$",
+            "^search hit %a+, continuing at %a+$",
+          },
+        }
+        local normalized_messages = {}
+
+        for kind, route in pairs(messages_to_ignore) do
+          for _, find in ipairs(route) do
+            table.insert(normalized_messages, {
+              filter = {
+                event = kind,
+                find = find,
+              },
+              opts = {
+                skip = true,
+              },
+            })
+          end
+        end
+
+        table.insert(normalized_messages, {
+          filter = {
+            event = "msg_show",
+            kind = "search_count",
+          },
+          opts = {
+            skip = true,
+          },
+        })
+
+        require("noice").setup({
+          routes = normalized_messages,
           presets = {
             lsp_doc_border = true,
           },
