@@ -38,6 +38,9 @@ utils.create_autocmd({ "BufReadPost" }, {
   end,
 })
 
+-- Alias `W` to `w`
+utils.create_command("W", "w")
+
 -- Use "Ç" to open command line
 utils.set_keymap({ "n", "v" }, "Ç", ":", "Use ':' with 'Ç'", { noremap = true })
 
