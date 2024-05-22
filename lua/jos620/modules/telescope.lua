@@ -5,7 +5,6 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-telescope/telescope-fzf-native.nvim",
-      "ThePrimeagen/harpoon",
     },
     cmd = { "Telescope" },
     event = "VeryLazy",
@@ -56,11 +55,6 @@ return {
       local fzf_status = pcall(require, "telescope._extensions.fzf")
       if fzf_status and vim.fn.executable("fzf") == 1 then
         telescope.load_extension("fzf")
-      end
-
-      local harpoon_status = pcall(require, "telescope._extensions.harpoon")
-      if harpoon_status then
-        telescope.load_extension("harpoon")
       end
     end,
   },
