@@ -207,14 +207,14 @@ end
 ---@param colorscheme? colorscheme
 ---@return Colors
 function M.get_current_theme_colors(colorscheme)
-  local theme = require("jos620.theme")
+  local colors = require("jos620.colors")
 
   local current_theme = colorscheme or vim.api.nvim_exec("colorscheme", true)
-  if not current_theme or not theme.colors[current_theme] then
+  if not current_theme or not colors[current_theme] then
     current_theme = "default"
   end
 
-  return theme.colors[current_theme]
+  return colors[current_theme]
 end
 
 return M
