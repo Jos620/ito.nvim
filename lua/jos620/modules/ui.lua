@@ -1,6 +1,8 @@
 -- Numbers
-vim.opt.number = true
-vim.opt.relativenumber = true
+if vim.o.columns >= 80 then
+  vim.opt.number = true
+  vim.opt.relativenumber = true
+end
 
 -- Line wrapping
 vim.opt.wrap = false
