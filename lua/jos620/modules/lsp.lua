@@ -3,98 +3,10 @@ local utils = require("jos620.utils")
 ---@class GetFormattersOptions
 ---@field linters_only? boolean
 
----Get JavaScript formatters
----@param options? GetFormattersOptions -- Only return linters
----@return string[]                     -- List of linters and formatters
-local function get_javascript_formatters(options)
-  ---@type GetFormattersOptions
-  local defaultOptions = {
-    linters_only = false,
-  }
-
-  ---@type GetFormattersOptions
-  local mergedOptions = utils.merge_tables({
-    defaultOptions,
-    options,
-  })
-
-  ---@type string[]
-  local linters = {}
-
-  local has_eslint = utils.root_has_file({
-    ".eslintrc",
-    ".eslintrc.js",
-    ".eslintrc.cjs",
-    ".eslintrc.yaml",
-    ".eslintrc.yml",
-    ".eslintrc.json",
-  })
-
-  if has_eslint then
-    table.insert(linters, "eslint_d")
-  end
-
-  if mergedOptions.linters_only then
-    return linters
-  end
-
-  ---@type string[]
-  local formatters = {}
-
-  local has_prettier = utils.root_has_file({
-    ".prettierrc",
-    ".prettierrc.json",
-    ".prettierrc.yml",
-    ".prettierrc.yaml",
-    ".prettierrc.json5",
-    ".prettierrc.js",
-    ".prettierrc.mjs",
-    ".prettierrc.cjs",
-    ".prettier.config.js",
-    "prettier.config.js",
-    "prettier.config.mjs",
-    "prettier.config.cjs",
-    ".prettierrc.toml",
-  })
-
-  if has_prettier then
-    table.insert(formatters, "prettierd")
-  end
-
-  return utils.flatten({ linters, formatters })
-end
-
 ---Get Vue's TypeScript plugin path
 local function get_vue_typescript_plugin_path()
   -- TODO: dinamically find the path
   return "/usr/local/lib/node_modules/@vue/typescript-plugin"
-end
-
----Get CSS formatters
----@param options? GetFormattersOptions -- Only return linters
----@return string[]                     -- List of linters and formatters
-local function get_css_formatters(options)
-  options = options or { linters_only = false }
-
-  local linters = {}
-  local formatters = {
-    "prettier",
-  }
-
-  local stylelint_configs = {
-    ".stylelintrc",
-    ".stylelintrc.yaml",
-  }
-
-  if utils.root_has_file(stylelint_configs) then
-    table.insert(linters, "stylelint")
-  end
-
-  if options.linters_only then
-    return linters
-  end
-
-  return utils.flatten({ linters, formatters })
 end
 
 local on_attach = function(_, buffer)
@@ -367,23 +279,16 @@ return {
       config = function()
         local lint = require("lint")
 
-        local javascript_linters = get_javascript_formatters({
-          linters_only = true,
-        })
-        local css_linters = get_css_formatters({
-          linters_only = true,
-        })
-
         lint.linters_by_ft = {
-          typescript = javascript_linters,
-          javascript = javascript_linters,
-          typescriptreact = javascript_linters,
-          javascriptreact = javascript_linters,
-          vue = javascript_linters,
-          svelte = javascript_linters,
-          css = css_linters,
-          scss = css_linters,
-          astro = javascript_linters,
+          typescript = { "eslint_d" },
+          javascript = { "eslint_d" },
+          typescriptreact = { "eslint_d" },
+          javascriptreact = { "eslint_d" },
+          vue = { "eslint_d" },
+          svelte = { "eslint_d" },
+          css = { "stylelint" },
+          scss = { "stylelint" },
+          astro = { "eslint_d" },
         }
 
         utils.create_autocmd({
@@ -421,23 +326,32 @@ return {
       },
       config = function()
         local conform = require("conform")
+        local conform_utils = require("conform.util")
 
-        local javascript_formatters = get_javascript_formatters()
-        local css_formatters = get_css_formatters()
+        local default_formatters = {
+          javascript = {
+            "prettierd",
+            "eslint_d",
+          },
+          css = {
+            "prettierd",
+            "stylelint",
+          },
+        }
 
         conform.setup({
           formatters_by_ft = {
-            typescript = javascript_formatters,
-            javascript = javascript_formatters,
-            typescriptreact = javascript_formatters,
-            javascriptreact = javascript_formatters,
-            vue = javascript_formatters,
-            svelte = javascript_formatters,
+            typescript = default_formatters.javascript,
+            javascript = default_formatters.javascript,
+            typescriptreact = default_formatters.javascript,
+            javascriptreact = default_formatters.javascript,
+            vue = default_formatters.javascript,
+            svelte = default_formatters.javascript,
             lua = { "stylua" },
-            css = css_formatters,
-            scss = css_formatters,
+            css = default_formatters.css,
+            scss = default_formatters.css,
             html = { "prettierd" },
-            astro = javascript_formatters,
+            astro = default_formatters.javascript,
             templ = { "templ" },
             go = { "goimports", "gofmt" },
           },
@@ -445,6 +359,44 @@ return {
             lsp_fallback = true,
             async = false,
             timeout_ms = 750,
+          },
+          formatters = {
+            prettierd = {
+              require_cwd = true,
+              cwd = conform_utils.root_file({
+                ".prettierrc",
+                ".prettierrc.json",
+                ".prettierrc.yml",
+                ".prettierrc.yaml",
+                ".prettierrc.json5",
+                ".prettierrc.js",
+                ".prettierrc.mjs",
+                ".prettierrc.cjs",
+                ".prettier.config.js",
+                "prettier.config.js",
+                "prettier.config.mjs",
+                "prettier.config.cjs",
+                ".prettierrc.toml",
+              }),
+            },
+            eslint_d = {
+              require_cwd = true,
+              cwd = conform_utils.root_file({
+                ".eslintrc",
+                ".eslintrc.js",
+                ".eslintrc.cjs",
+                ".eslintrc.yaml",
+                ".eslintrc.yml",
+                ".eslintrc.json",
+              }),
+            },
+            stylelint = {
+              require_cwd = true,
+              cwd = conform_utils.root_file({
+                ".stylelintrc",
+                ".stylelintrc.yaml",
+              }),
+            },
           },
         })
 
