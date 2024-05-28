@@ -137,25 +137,9 @@ return {
 
   { -- HTML tags
     "windwp/nvim-ts-autotag",
-    ft = {
-      "html",
-      "javascript",
-      "typescript",
-      "javascriptreact",
-      "typescriptreact",
-      "svelte",
-      "vue",
-      "tsx",
-      "jsx",
-      "rescript",
-      "xml",
-      "php",
-      "markdown",
-      "astro",
-      "glimmer",
-      "handlebars",
-      "hbs",
-      "templ",
+    event = {
+      "BufReadPre",
+      "BufNewFile",
     },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
