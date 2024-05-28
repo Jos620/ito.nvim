@@ -16,6 +16,8 @@ return {
         ["<C-x>"] = false,
         ["<C-v>"] = actions.select_vertical,
         ["<C-b>"] = actions.select_horizontal,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
       }
 
       telescope.setup({
