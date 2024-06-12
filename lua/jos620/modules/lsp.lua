@@ -6,7 +6,27 @@ local utils = require("jos620.utils")
 ---Get Vue's TypeScript plugin path
 local function get_vue_typescript_plugin_path()
   -- TODO: dinamically find the path
-  return "/usr/local/lib/node_modules/@vue/typescript-plugin"
+  local plugin_path = "/usr/local/lib/node_modules/@vue/typescript-plugin"
+
+  if vim.fn.isdirectory(plugin_path) == 1 then
+    return plugin_path
+  end
+
+  local npm_root = vim.fn.system("npm root -g")
+  plugin_path = npm_root .. "/@vue/typescript-plugin"
+
+  if vim.fn.isdirectory(plugin_path) == 1 then
+    return plugin_path
+  end
+
+  vim.fn.system({
+    "npm",
+    "install",
+    "-g",
+    "@vue/typescript-plugin",
+  })
+
+  return plugin_path
 end
 
 local on_attach = function(_, buffer)
