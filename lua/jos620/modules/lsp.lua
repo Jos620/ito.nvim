@@ -63,6 +63,15 @@ return {
   { -- LSP
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
+    cmd = {
+      "LspInfo",
+      "LspInstall",
+      "LspUninstall",
+      "LspLog",
+      "LspStart",
+      "LspStop",
+      "LspRestart",
+    },
     dependencies = {
       "nvim-telescope/telescope.nvim",
       "hrsh7th/cmp-nvim-lsp",
