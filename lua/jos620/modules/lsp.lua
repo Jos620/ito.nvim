@@ -1,5 +1,8 @@
 local utils = require("jos620.utils")
 
+local eslint_cmd = "eslint"
+local prettier_cmd = "prettierd"
+
 ---@class GetFormattersOptions
 ---@field linters_only? boolean
 
@@ -309,15 +312,15 @@ return {
         local lint = require("lint")
 
         lint.linters_by_ft = {
-          typescript = { "eslint_d" },
-          javascript = { "eslint_d" },
-          typescriptreact = { "eslint_d" },
-          javascriptreact = { "eslint_d" },
-          vue = { "eslint_d" },
-          svelte = { "eslint_d" },
+          typescript = { eslint_cmd },
+          javascript = { eslint_cmd },
+          typescriptreact = { eslint_cmd },
+          javascriptreact = { eslint_cmd },
+          vue = { eslint_cmd },
+          svelte = { eslint_cmd },
           css = { "stylelint" },
           scss = { "stylelint" },
-          astro = { "eslint_d" },
+          astro = { eslint_cmd },
         }
 
         utils.create_autocmd({
@@ -361,11 +364,11 @@ return {
 
         local default_formatters = {
           javascript = {
-            "prettierd",
-            "eslint_d",
+            prettier_cmd,
+            eslint_cmd,
           },
           css = {
-            "prettierd",
+            prettier_cmd,
             "stylelint",
           },
         }
@@ -381,7 +384,7 @@ return {
             lua = { "stylua" },
             css = default_formatters.css,
             scss = default_formatters.css,
-            html = { "prettierd" },
+            html = { prettier_cmd },
             astro = default_formatters.javascript,
             templ = { "templ" },
             go = { "goimports", "gofmt" },
