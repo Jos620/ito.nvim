@@ -324,6 +324,8 @@ return {
           "BufWritePost",
           "BufEnter",
           "InsertLeave",
+          "FocusGained",
+          "TextChanged",
         }, {
           group = utils.create_augroup("lint", { clear = true }),
           callback = function()
