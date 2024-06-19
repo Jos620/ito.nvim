@@ -6,6 +6,19 @@ local prettier_cmd = "prettierd"
 ---@class GetFormattersOptions
 ---@field linters_only? boolean
 
+utils.create_command("ESLint", function()
+  vim.print("Linting...")
+
+  local buffer_path = vim.fn.expand("%:p")
+  vim.fn.jobstart({ "npx", "eslint", buffer_path, "--fix" }, {
+    on_exit = function(_, code)
+      if code == 0 then
+        vim.cmd("e!")
+      end
+    end,
+  })
+end)
+
 ---Get Vue's TypeScript plugin path
 local function get_vue_typescript_plugin_path()
   -- TODO: dinamically find the path
