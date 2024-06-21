@@ -262,6 +262,7 @@ return {
       event = "VeryLazy",
       opts = {
         ensure_installed = {
+          "tsserver",
           "html",
           "cssls",
           "tailwindcss",
@@ -306,7 +307,7 @@ return {
     end,
   },
 
-  { -- Lint / format
+  {   -- Lint / format
     { -- Lint
       "mfussenegger/nvim-lint",
       ft = {
@@ -598,7 +599,7 @@ return {
     },
   },
 
-  { -- Languages
+  {   -- Languages
     { -- Markdown
       "ixru/nvim-markdown",
       ft = { "markdown" },
