@@ -53,6 +53,7 @@ return {
 
   { -- Highlight color codes
     "brenoprata10/nvim-highlight-colors",
+    enabled = false,
     event = "VeryLazy",
     opts = {
       render = "background",
