@@ -243,4 +243,13 @@ return {
       require("remember")
     end,
   },
+
+  {
+    "junegunn/vim-easy-align",
+    event = "BufReadPre",
+    config = function()
+      utils.set_keymap("x", "ga", "<Plug>(EasyAlign)", "Align")
+      utils.set_keymap("n", "ga", "<Plug>(EasyAlign)", "Align")
+    end,
+  },
 }
