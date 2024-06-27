@@ -302,7 +302,7 @@ return {
     end,
   },
 
-  {   -- Lint / format
+  { -- Lint / format
     { -- Lint
       "mfussenegger/nvim-lint",
       ft = {
@@ -594,10 +594,46 @@ return {
     },
   },
 
-  {   -- Languages
-    { -- Markdown
-      "ixru/nvim-markdown",
-      ft = { "markdown" },
+  { -- Obsidian integration
+    "epwalsh/obsidian.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
     },
+    version = "*",
+    event = {
+      "BufReadPre " .. vim.fn.expand("~") .. "/Notes/Personal/**/*.md",
+      "BufNewFile " .. vim.fn.expand("~") .. "/Notes/Personal/**/*.md",
+    },
+    config = function()
+      local obsidian = require("obsidian")
+
+      vim.opt.wrap = true
+      vim.opt.linebreak = true
+      vim.opt.number = false
+      vim.opt.relativenumber = false
+      vim.opt.conceallevel = 2
+
+      obsidian.setup({
+        workspaces = {
+          {
+            name = "personal",
+            path = "~/Notes/Personal",
+          },
+        },
+        disable_frontmatter = true,
+        templates = {
+          folder = "Templates",
+        },
+        daily_notes = {
+          folder = "Notes/Dailies",
+          template = "Daily.md",
+          default_tags = { "daily" },
+        },
+        completion = {
+          nvim_cmp = true,
+          min_chars = 2,
+        },
+      })
+    end,
   },
 }
