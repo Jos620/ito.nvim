@@ -600,6 +600,7 @@ return {
       "nvim-lua/plenary.nvim",
     },
     version = "*",
+    cmd = { "ObsidianToday" },
     event = {
       "BufReadPre " .. vim.fn.expand("~") .. "/Notes/Personal/**/*.md",
       "BufNewFile " .. vim.fn.expand("~") .. "/Notes/Personal/**/*.md",
